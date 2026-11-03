@@ -11,7 +11,7 @@ import { L } from '../kit.ts'
 import { MapBuilder } from '../builder.ts'
 import { KINGDOM } from './kingdom.ts'
 
-const say = (who: string, en: string, zh: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
+const say = (who: string, en: string, zh?: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
 
 /** Where the chapter puts things (map coordinates). */
 export const CH1_AT = {

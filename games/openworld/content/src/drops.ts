@@ -8,7 +8,7 @@ import type { Recipe, Rule, Text } from '@openworld/engine'
 import { FORM_BY_ID } from './items.ts'
 import { buyBackPrice } from './prices.ts'
 
-const L = (en: string, zh: string) => ({ en, zh })
+const L = (en: string, zh: string = en) => ({ en, zh })
 const rule = (r: Omit<Rule, 'source'>): Rule => ({ ...r, source: { origin: 'base' } })
 
 export const GEL = 'item/material/slime_gel'

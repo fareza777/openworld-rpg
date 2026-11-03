@@ -40,7 +40,7 @@ export const CH3_AT = {
 } as const
 
 const HUNT = (sight = 5): Omit<AiData, 'home'> => ({ behaviour: 'melee', temper: 'aggressive', sight, leash: 6 })
-const say = (who: string, en: string, zh: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
+const say = (who: string, en: string, zh?: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
 const inRect = ([rx, ry, rw, rh]: readonly number[], x: number, y: number) => x >= rx && y >= ry && x < rx + rw && y < ry + rh
 /** The Vale as a place, for the halls on a plan and the rooms behind its doors (planHall, roomsBehind read its region). */
 const VALE_PLACE = { id: 'fairweight', name: L('Fairweight', '公秤镇'), region: 'tithe', kind: 'town', x: 46, y: 24, seed: 4301 } as unknown as Place

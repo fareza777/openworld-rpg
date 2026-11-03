@@ -142,6 +142,7 @@ const hud = new Hud(
     select: (slot) => send({ t: 'select', slot }),
     answer: (yes) => send({ t: 'answer', yes }),
     advance: () => send({ t: 'advance' }),
+    choose: (i) => send({ t: 'choose', i }),
     openJournal: () => (menu.openJournal(), hud.seenJournal(), (codexSeen = -1)),
     toggleInventory: () => openPanel('bag', () => menu.toggle('inventory')),
     toggleCraft: () => openPanel('craft', () => menu.toggle('craft')),

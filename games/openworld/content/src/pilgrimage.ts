@@ -9,7 +9,7 @@
 import type { Effect, Rule, Selector, Tree, TypeDef } from '@openworld/engine'
 
 type Words = { en: string; zh: string }
-const L = (en: string, zh: string): Words => ({ en, zh })
+const L = (en: string, zh: string = en): Words => ({ en, zh })
 const story = (r: Omit<Rule, 'source'>): Rule => ({ ...r, source: { origin: 'base', note: 'story' } })
 
 /** The road's facts (the story's), in the order they come. */

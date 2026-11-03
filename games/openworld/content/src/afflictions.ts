@@ -4,7 +4,7 @@
 
 import type { Effect, KitSkill, Rule, StatusDef, Tree } from '@openworld/engine'
 
-const L = (en: string, zh: string) => ({ en, zh })
+const L = (en: string, zh: string = en) => ({ en, zh })
 const rule = (r: Omit<Rule, 'source'>): Rule => ({ ...r, source: { origin: 'base' } })
 
 /** The colours of the marks: harm, what clings (a web, a mire, a kneel), what calls others or guards itself. */

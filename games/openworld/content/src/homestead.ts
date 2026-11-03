@@ -11,7 +11,7 @@ import { VEGETABLE_CROPS } from './crops.ts'
 import { buyBackPrice, shelfPrice } from './prices.ts'
 import { stackKey } from '@openworld/engine'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 
 /** The Held Ground's coin. */
 export const COIN = 'item/misc/thornmark'

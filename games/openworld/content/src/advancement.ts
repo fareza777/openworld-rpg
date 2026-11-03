@@ -10,7 +10,7 @@ import type { ActiveDef, Effect, Rule, SkillDef, SkillPassive, Text, TypeDef } f
 import type { PathDef } from '@openworld/modules'
 import { DO } from './afflictions.ts'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 const rule = (r: Omit<Rule, 'source'>): Rule => ({ ...r, source: { origin: 'base', note: 'advancement' } })
 
 // ------------------------------------------------------------------ what the actives lay and call

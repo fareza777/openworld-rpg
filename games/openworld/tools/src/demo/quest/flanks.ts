@@ -41,7 +41,7 @@ const HUNT = (sight = 5): Omit<AiData, 'home'> => ({ behaviour: 'melee', temper:
 const grassy = (t: string) => t === 'grass' || t === 'drygrass' || t === 'flowers'
 const wood = (t: string) => t === 'tree' || t === 'pine'
 const water = (t: string) => t === 'water' || t === 'deepwater'
-const say = (who: string, en: string, zh: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
+const say = (who: string, en: string, zh?: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
 
 /** The nearest free tile to (x, y). */
 function spot(m: MapBuilder, x: number, y: number, walk = false): [number, number] {

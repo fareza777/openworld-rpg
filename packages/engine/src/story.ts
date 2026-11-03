@@ -182,6 +182,20 @@ export class Story {
     }
   }
 
+  /** The player has chosen an answer of the scene's choice: its facts are set, and the scene goes on. */
+  choose(index: number): void {
+    const s = this.eng.world.scene
+    if (s?.waiting !== 'choose') return
+    const cmd = this.defs.get(s.id)?.script?.[s.step]
+    const option = cmd && 'choose' in cmd ? cmd.options[index] : undefined
+    if (!option) return
+    if (option.facts) this.story(Object.entries(option.facts).map(([key, value]) => ({ op: 'setProp' as const, key, value })))
+    s.waiting = undefined
+    s.choice = undefined
+    s.line = undefined
+    s.step++
+  }
+
   tick(): void {
     const eng = this.eng
     const w = eng.world
@@ -211,7 +225,7 @@ export class Story {
         s.step++
         continue
       }
-      if (s.waiting === 'advance') return
+      if (s.waiting === 'advance' || s.waiting === 'choose') return
       if (s.waiting === 'move') {
         if (!this.moveStep()) return
         s.waiting = undefined
@@ -350,6 +364,13 @@ export class Story {
       this.story([{ op: 'emit', impulse: 'notify', to: 'target', params: { what: 'stage', n: c.n } }], { e: `quest.${c.stage}` })
     } else if ('tell' in c) {
       this.story([{ op: 'emit', impulse: 'notify', to: 'target', params: c.params }], { e: c.tell })
+    } else if ('choose' in c) {
+      s.choice = { text: c.choose, options: c.options.map((o) => o.text) }
+      s.line = { who: w.state.player, text: c.choose }
+      s.waiting = 'choose'
+    } else if ('branch' in c) {
+      const v = w.fact(c.branch)
+      if (c.is === undefined ? !v : v !== c.is) s.step += c.skip
     } else if ('music' in c) {
       // the music is the scene's (it ends with it): a cue of the client's, or silence
       s.music = c.music

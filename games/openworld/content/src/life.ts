@@ -15,7 +15,7 @@ import { FORM_BY_ID, MATERIALS } from './items.ts'
 import { unlockedBy } from './haven.ts'
 import { waterCrop } from './farming.ts'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 const rule = (r: Omit<Rule, 'source'>): Rule => ({ ...r, source: { origin: 'base' } })
 const DO = (...effects: Effect[]): Tree => ({ do: effects })
 const IF = (cond: Cond, then: Tree, otherwise?: Tree): Tree => ({ if: cond, then, ...(otherwise !== undefined && { else: otherwise }) })

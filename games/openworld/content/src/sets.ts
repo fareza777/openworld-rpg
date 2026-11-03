@@ -11,7 +11,7 @@ import type { GearSet, Recipe, Text } from '@openworld/engine'
 import { FORM_BY_ID } from './items.ts'
 import { unlockedBy } from './haven.ts'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 
 const STEEL = 'item/material/steel_bar'
 const IRON = 'item/material/iron_ingot'

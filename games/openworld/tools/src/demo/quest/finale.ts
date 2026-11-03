@@ -37,7 +37,7 @@ export const FIN_AT = {
   holiest: { arrive: [14, 26] as Cell, bier: [14, 5] as Cell, astra: [14, 15] as Cell, severin: [12, 25] as Cell, gate: [[14, 28], [15, 28]] as Cell[] },
 } as const
 
-const say = (who: string, en: string, zh: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
+const say = (who: string, en: string, zh?: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
 
 /** The five bearers in stone, with their seals: the avenue's statues, a pair a seal. */
 const BEARERS: [string, string][] = [

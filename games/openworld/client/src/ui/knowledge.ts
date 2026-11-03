@@ -2,7 +2,7 @@
 // Controls use the same {key:…} placeholders as quests, so the player's own bindings appear here too.
 import type { Text } from '@openworld/engine'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 
 export const KNOWLEDGE_GROUPS = [
   { id: 'journey', title: L('On the road', '旅途常识') },

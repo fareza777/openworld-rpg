@@ -38,7 +38,7 @@ export const CH5_AT = {
   bells: { severin: [24, 19] as Cell, benedek: [21, 18] as Cell },
 } as const
 
-const say = (who: string, en: string, zh: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
+const say = (who: string, en: string, zh?: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
 const HUNT = (sight = 5): Omit<AiData, 'home'> => ({ behaviour: 'melee', temper: 'aggressive', sight, leash: 6 })
 /** The Heights as a place, for the halls on a plan. */
 const ALTAR_PLACE = { id: 'whiteveil', name: L('Whiteveil Abbey', '白纱修道院'), region: 'altar', kind: 'temple', x: 12, y: 26, seed: 4501 } as unknown as Place

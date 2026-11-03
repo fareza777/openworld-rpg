@@ -25,7 +25,7 @@ import { HUNGRY_BELOW } from '@openworld/modules'
 import { ELEMENTAL, unlessElemental } from './elements.ts'
 
 const rule = (r: Omit<Rule, 'source'>): Rule => ({ ...r, source: { origin: 'base' } })
-const L = (en: string, zh: string) => ({ en, zh })
+const L = (en: string, zh: string = en) => ({ en, zh })
 const log = (en: string, zh: string): Effect => ({ op: 'log', text: L(en, zh) })
 const say = (en: string, zh: string, who?: RoleName): Effect => ({ op: 'say', text: L(en, zh), ...(who && { who }) })
 const vfx = (fx: string, at?: RoleRef): Effect => ({ op: 'vfx', fx, ...(at && { at }) })

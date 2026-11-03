@@ -158,6 +158,8 @@ export type ToWorker =
   | { t: 'save' }
   | { t: 'newGame' }
   | { t: 'advance' }
+  /** the answer chosen to a scene's choice (its index) */
+  | { t: 'choose'; i: number }
   | { t: 'debug'; op: 'teleport'; map?: string; x: number; y: number }
   | { t: 'debug'; op: 'give'; type: string; tags?: string[] }
   | { t: 'debug'; op: 'hour'; hour: number }

@@ -5,7 +5,7 @@
 import type { StepDef } from '@openworld/engine'
 import { L } from '../kit.ts'
 
-const say = (who: string, en: string, zh: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
+const say = (who: string, en: string, zh?: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
 
 export const QUEST_SCENES: StepDef[] = [
   {

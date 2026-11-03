@@ -2,7 +2,7 @@ import type { Frame, JournalQuest } from '@openworld/engine'
 import { QuestLog } from '@openworld/runtime/src/ui/questlog.ts'
 import { element, windowManager, type UiWindow } from '@openworld/runtime/src/ui/components/index.ts'
 
-const L = (en: string, zh: string) => ({ en, zh })
+const L = (en: string, zh: string = en) => ({ en, zh })
 
 /** Fixtures exercise the real journal's layout and interactions without starting the simulation. */
 function quests(): JournalQuest[] {

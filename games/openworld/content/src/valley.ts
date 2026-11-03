@@ -35,7 +35,7 @@ export interface ValleyPlace {
   crossroads?: boolean
 }
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 const QUIET_WOODS: [string, number][] = [['tree', 0.16], ['pine', 0.05], ['bush', 0.03]]
 const QUIET_PLAIN: [string, number][] = [['tree', 0.015], ['bush', 0.01]]
 

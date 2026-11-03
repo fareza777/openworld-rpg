@@ -6,7 +6,7 @@
 
 import type { Lesson, StepCond, StepDef, Text } from '@openworld/engine'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 
 /** The story's fact that opens the tutorial's way out (on the first morning after the house). */
 export const TUTORIAL_OPEN = 'tutorial.open'

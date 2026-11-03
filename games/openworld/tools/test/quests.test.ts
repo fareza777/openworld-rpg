@@ -10,7 +10,7 @@ import { BASE_RULES, CH1, FIRSTLIGHT, GARDEN_BARE_ROW, PROFESSION_BY_ID, QUESTS,
 import { buildFord } from '../src/demo/world.ts'
 
 const onto = buildOntology()
-const L = (en: string, zh: string) => ({ en, zh })
+const L = (en: string, zh: string = en) => ({ en, zh })
 
 /** A quest of the test's own: Cass's errand — a letter made in the player's bag, to carry to Gus; Cass may not die meanwhile. */
 const ERRAND: QuestDef = {

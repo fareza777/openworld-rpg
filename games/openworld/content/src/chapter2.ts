@@ -10,7 +10,7 @@
 
 import type { TypeDef } from '@openworld/engine'
 
-const L = (en: string, zh: string) => ({ en, zh })
+const L = (en: string, zh: string = en) => ({ en, zh })
 
 /** The story's facts of the chapter, in the order they come. */
 export const CH2 = {

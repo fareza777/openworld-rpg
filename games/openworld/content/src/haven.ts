@@ -10,7 +10,7 @@
 
 import type { Cond, Effect, Rule, Text, Tree } from '@openworld/engine'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 /** Words in both languages, kept as such (to be quoted into others). */
 const W = (en: string, zh: string) => ({ en, zh })
 

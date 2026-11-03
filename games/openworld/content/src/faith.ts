@@ -6,7 +6,7 @@
 
 import { TICKS_PER_DAY, type Effect, type Rule, type StatusDef, type Text, type Tree } from '@openworld/engine'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 const rule = (r: Omit<Rule, 'source'>): Rule => ({ ...r, source: { origin: 'base' } })
 
 /** What the story reads of faith: the Church's people bless one who keeps it, and turn cold to one who does not. */

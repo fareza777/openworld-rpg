@@ -5,7 +5,7 @@
 
 import type { Effect, Rule, Text, Tree } from '@openworld/engine'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 const say = (en: string, zh: string): Effect => ({ op: 'say', text: { en, zh } })
 const rule = (r: Rule): Rule => r
 

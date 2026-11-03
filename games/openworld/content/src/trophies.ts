@@ -9,7 +9,7 @@
 import { levelFactor, type AffixTable, type GearSet, type LootParams, type Text } from '@openworld/engine'
 import { GEAR_LEVELS } from './gear.ts'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 
 /** One kind's piece: the creature, the piece's type (under a wearable form, which gives its slot and picture), names, set, main stats. */
 export interface Trophy {

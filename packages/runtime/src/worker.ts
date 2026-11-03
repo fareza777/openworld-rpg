@@ -1286,6 +1286,9 @@ self.onmessage = async (ev: MessageEvent<ToWorker>) => {
       case 'advance':
         game?.engine.story.advance()
         break
+      case 'choose':
+        game?.engine.story.choose(m.i)
+        break
       case 'skipLearning': {
         // the player will not wait: the act's default now, the question answered later if it comes
         const a = game?.mods.asking

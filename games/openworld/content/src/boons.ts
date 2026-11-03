@@ -6,7 +6,7 @@
 
 import type { StatusDef, Text } from '@openworld/engine'
 
-const L = (en: string, zh: string) => ({ en, zh })
+const L = (en: string, zh: string = en) => ({ en, zh })
 
 export interface BoonDef {
   id: string

@@ -1203,12 +1203,24 @@ export type SceneCmd =
    * The client's own music (the place's, a fight's) comes back when the scene ends.
    */
   | { music: string }
+  /** the player chooses one of these (a branching line): the chosen one's facts are the story's; the scene waits for it */
+  | { choose: Text; options: SceneOption[] }
+  /** unless the story's fact is `is` (or truthy, `is` left out), the next `skip` commands are passed over (a branch after a choice) */
+  | { branch: string; is?: PropValue; skip: number }
+
+/** One answer of a scene's choice: its words and the facts it sets. */
+export interface SceneOption {
+  text: Text
+  facts?: Record<string, PropValue>
+}
 
 export interface SceneState {
   id: string
   step: number
   until?: number
-  waiting?: 'advance' | 'move'
+  waiting?: 'advance' | 'move' | 'choose'
+  /** the choice waiting to be made (a `choose` command): its question and its answers' words */
+  choice?: { text: Text; options: Text[] }
   mover?: { who: Id; path: [number, number][]; next: number }
   started?: number
   /** the line waiting to be advanced (so a client that missed the say event can show it) */

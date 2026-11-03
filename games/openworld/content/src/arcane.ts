@@ -8,7 +8,7 @@ import { FORM_BY_ID } from './items.ts'
 import { unlockedBy } from './haven.ts'
 import { skillBook } from './skills.ts'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 const formName = (type: string): Text => {
   const f = FORM_BY_ID[type]
   return f ? L(f.en, f.zh) : L(type, type)

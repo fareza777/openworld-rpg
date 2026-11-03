@@ -6,7 +6,7 @@
 
 import type { Cond, Effect, Rule, Text, Tree } from '@openworld/engine'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 
 const story = (r: Omit<Rule, 'source'>): Rule => ({ ...r, source: { origin: 'base', note: 'story' } })
 const say = (en: string, zh: string): Effect => ({ op: 'say', text: { en, zh } })

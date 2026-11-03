@@ -60,6 +60,8 @@ export interface PersonDef {
 }
 
 /** A line: key, English, Chinese, and options (mood, once). */
-export function line(key: string, en: string, zh: string, opts: { mood?: Mood; once?: boolean } = {}): LineDef {
-  return { key, text: { en, zh }, ...opts }
+/** A keyed line; the Chinese is optional (this fork's new lines are English only), and the options may stand in its place. */
+export function line(key: string, en: string, zh?: string | { mood?: Mood; once?: boolean }, opts: { mood?: Mood; once?: boolean } = {}): LineDef {
+  if (typeof zh === 'object') return { key, text: { en }, ...zh }
+  return { key, text: zh ? { en, zh } : { en }, ...opts }
 }

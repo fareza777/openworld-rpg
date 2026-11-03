@@ -8,7 +8,7 @@ import { GEAR_LEVELS } from '../gear.ts'
 import { AFFIX_TABLE } from '../trophies.ts'
 import { SET_PIECE_BY_TYPE } from '../gearsets/index.ts'
 
-export const L = (en: string, zh: string): Text => ({ en, zh })
+export const L = (en: string, zh: string = en): Text => ({ en, zh })
 
 /** A number from a name (FNV-1a): the seed of what a named piece rolls, the same every time the content is built. */
 const seedOf = (s: string): number => {

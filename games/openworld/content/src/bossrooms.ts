@@ -12,7 +12,7 @@ import { CH5, WITNESSES_ID } from './chapter5.ts'
 import { ASTRA_ID, FIN } from './finale.ts'
 import { ABBOT_ID } from './pilgrimage.ts'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 const story = (r: Omit<Rule, 'source'>): Rule => ({ ...r, source: { origin: 'base', note: 'story' } })
 
 /**

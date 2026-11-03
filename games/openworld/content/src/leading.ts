@@ -4,7 +4,7 @@
 
 import type { GuideParams, Text } from '@openworld/engine'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 
 export const LEADING: GuideParams = {
   // five seconds of nothing (ten ticks a second), eight over the spot, then twenty before she shows it again

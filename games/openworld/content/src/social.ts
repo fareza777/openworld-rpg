@@ -9,7 +9,7 @@ import { COIN } from './homestead.ts'
 import { DISCOUNT, MARKDOWN, MARKUP } from './prices.ts'
 import { MINOR } from './protection.ts'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 const rule = (r: Omit<Rule, 'source'>): Rule => ({ ...r, source: { origin: 'base' } })
 const DO = (...effects: Effect[]): Tree => ({ do: effects })
 const NOTHING: Tree = { do: [] }

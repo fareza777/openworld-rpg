@@ -5,7 +5,7 @@ import { APPEAR_EVERY, type AppearDef, type Text } from '@openworld/engine'
 import { CREATURE_ROLES, ROLES, creatureStats } from '@openworld-game/content'
 import { MapBuilder, rng } from './builder.ts'
 
-export const L = (en: string, zh: string): Text => ({ en, zh })
+export const L = (en: string, zh: string = en): Text => ({ en, zh })
 
 /** One type that appears on a map by itself, now and then, up to `max` (MapData.appear, world-model.md §6.9). */
 export const appears = (type: string, on: string[], max: number, every = APPEAR_EVERY, more: Partial<AppearDef> = {}): AppearDef => ({ types: { [type]: 1 }, on, max, every, ...more })

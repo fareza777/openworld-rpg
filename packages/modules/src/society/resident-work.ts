@@ -12,7 +12,7 @@ const ROUTE_RETRY_TICKS = 24
 const MAX_COMMAND = 8192
 const MAX_CELLS = 128
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 
 interface Route {
   key: string

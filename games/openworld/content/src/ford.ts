@@ -19,7 +19,7 @@ import { CH4_RULES } from './chapter4.ts'
 import { CH5_RULES } from './chapter5.ts'
 import { FIN_RULES } from './finale.ts'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 
 
 /** Fact prefixes only the story's rules and scenes may change. */

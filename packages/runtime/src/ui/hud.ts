@@ -16,6 +16,8 @@ export interface HudSend {
   select(slot: number): void
   answer(yes: boolean): void
   advance(): void
+  /** an answer of a scene's choice, by its index */
+  choose(i: number): void
   openJournal(): void
   toggleInventory(): void
   toggleCraft(): void
@@ -177,6 +179,7 @@ export class Hud {
     this.renderToolbar(f)
     this.renderObjective(f)
     this.renderScene(f)
+    this.renderSceneChoice(f)
     this.renderQuestion(f)
     this.renderTalk(f)
     this.renderSocial(f)
@@ -463,7 +466,7 @@ export class Hud {
   }
 
   get questionShown(): boolean {
-    return this.questionOpen
+    return this.questionOpen || this.sceneChoiceOpen
   }
 
   openDialog(who: string, name: string, text: string, scene = false, mood?: Mood): void {
@@ -702,20 +705,62 @@ export class Hud {
   /** Where the box stands in the HUD while a question has it over the windows. */
   private dialogHome?: Comment
 
+  private sceneChoiceSig = ''
+  /** A scene's choice is waiting for the player's answer (the `choose` command). */
+  private sceneChoiceOpen = false
+  private sceneChoices: string[] = []
+  private renderSceneChoice(f: Frame): void {
+    const c = f.scene?.waiting === 'choose' ? f.scene.choice : undefined
+    const sig = c ? `${locale.value}|${tx(c.text)}|${c.options.map(tx).join('|')}` : ''
+    if (sig === this.sceneChoiceSig) return
+    this.sceneChoiceSig = sig
+    this.sceneChoiceOpen = !!c
+    if (!c) {
+      this.sceneChoices = []
+      if (!this.questionOpen) $('#dChoices').classList.add('hidden')
+      if (!this.sceneDialog && !this.questionOpen) $('#dialog').classList.add('hidden')
+      return
+    }
+    this.sceneChoices = c.options.map(tx)
+    this.qChoice = 0
+    $('#dFace').classList.add('hidden')
+    $('#dName').textContent = ''
+    $('#dMore').classList.add('hidden')
+    clearInterval(this.typer)
+    $('#dLine').textContent = tx(c.text)
+    this.typedAll = true
+    this.renderChoices()
+    $('#dialog').classList.remove('hidden')
+  }
+
+  private pickScene(i: number): void {
+    if (!this.sceneChoiceOpen) return
+    this.sceneChoiceOpen = false
+    $('#dChoices').classList.add('hidden')
+    $('#dialog').classList.add('hidden')
+    this.send.choose(i)
+  }
+
   private renderChoices(): void {
     const ch = $('#dChoices')
     ch.classList.remove('hidden')
+    if (this.sceneChoiceOpen) {
+      ch.innerHTML = this.sceneChoices.map((l, i) => `<button data-pick="${i}" class="${i === this.qChoice ? 'on' : ''}">${esc(l)}</button>`).join('')
+      ch.querySelectorAll<HTMLButtonElement>('[data-pick]').forEach((b) => (b.onclick = () => this.pickScene(Number(b.dataset.pick))))
+      return
+    }
     ch.innerHTML = [t('yes'), t('no')].map((l, i) => `<button data-yes="${i === 0 ? 1 : 0}" class="${i === this.qChoice ? 'on' : ''}">${l}</button>`).join('')
     ch.querySelectorAll<HTMLButtonElement>('[data-yes]').forEach((b) => (b.onclick = () => this.answer(b.dataset.yes === '1')))
   }
 
   /** Arrows move between yes and no; E confirms; Esc says no. */
   moveChoice(): void {
-    this.qChoice = 1 - this.qChoice
+    this.qChoice = this.sceneChoiceOpen ? (this.qChoice + 1) % this.sceneChoices.length : 1 - this.qChoice
     this.renderChoices()
   }
 
   confirmChoice(): void {
+    if (this.sceneChoiceOpen) return this.pickScene(this.qChoice)
     this.answer(this.qChoice === 0)
   }
 

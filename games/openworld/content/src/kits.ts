@@ -29,7 +29,7 @@ const SHELL = skill('shell', 'Shell Up', '缩壳', { shape: 'circle', aim: 'self
 const C = 'actor/creature'
 /** A spider's web left on the ground: it holds who wades in, a blow or a flame tears it, it sags away in twelve seconds. */
 export const COBWEB = 'fixture/nature/web'
-const L = (en: string, zh: string) => ({ en, zh })
+const L = (en: string, zh: string = en) => ({ en, zh })
 const rule = (r: Omit<Rule, 'source'>): Rule => ({ ...r, source: { origin: 'base' } })
 
 /** Each kind's kit, by type (a kind's is the nearest its type or an ancestor names). */

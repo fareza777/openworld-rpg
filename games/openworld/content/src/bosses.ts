@@ -11,7 +11,7 @@ import { BOSS_ROOMS } from './bossrooms.ts'
 import { GRAVE_HANDS } from './chapter4.ts'
 import { NIGHT_POOL } from './finale.ts'
 
-const L = (en: string, zh: string) => ({ en, zh })
+const L = (en: string, zh: string = en) => ({ en, zh })
 const rule = (r: Omit<Rule, 'source'>): Rule => ({ ...r, source: { origin: 'base' } })
 
 /** A boss as the Boss Studio and the challenge pick it: its type, its body there, its kit and its fight. */

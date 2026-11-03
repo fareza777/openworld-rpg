@@ -40,7 +40,7 @@ export const CH4_AT = {
 } as const
 
 const HUNT = (sight = 5): Omit<AiData, 'home'> => ({ behaviour: 'melee', temper: 'aggressive', sight, leash: 6 })
-const say = (who: string, en: string, zh: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
+const say = (who: string, en: string, zh?: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
 /** The Fens as a place, for the halls on a plan and the rooms behind their doors. */
 const FEN_PLACE = { id: 'nailgate', name: L('Nailgate', '钉门村'), region: 'palefen', kind: 'village', x: 42, y: 34, seed: 4401 } as unknown as Place
 /** The fog lamps' light: pale and greenish, burning day and night. */

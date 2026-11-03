@@ -45,7 +45,7 @@ import { laySetPieces } from './sets/index.ts'
 const OUT = join(dirname(fileURLToPath(import.meta.url)), '../../../public/world')
 export const VERSION = 'ford-4'
 export const START_HOUR = 13
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 const SOLID = new Set(['water', 'deepwater', 'tree', 'pine', 'bush', 'rock', 'wall', 'woodwall', 'burnt_wall', 'roof', 'cave_wall', 'lava', 'charred_tree', 'void'])
 
 /**
@@ -532,7 +532,7 @@ function person(p: PersonDef, at: (name: string) => Pos, meal?: Pos): Entity {
 
 // =================================================================== scenes
 
-const say = (who: string, en: string, zh: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
+const say = (who: string, en: string, zh?: string, mood?: 'neutral' | 'happy' | 'sad' | 'angry' | 'surprised' | 'shy') => ({ say: who, text: L(en, zh), ...(mood && { mood }) })
 
 /** Firstlight's own beats: Lumi points out the healing spring the first time one comes near it. */
 const FIRSTLIGHT_BEATS: StepDef[] = [

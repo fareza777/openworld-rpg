@@ -10,7 +10,7 @@ import { buyBackPrice, shelfPrice } from './prices.ts'
 import { COIN } from './homestead.ts'
 import { ACTIVE_SKILLS, skillBook } from './skills.ts'
 
-const L = (en: string, zh: string): Text => ({ en, zh })
+const L = (en: string, zh: string = en): Text => ({ en, zh })
 const nameOf = (type: string): Text => {
   const f = FORM_BY_ID[type]
   return f ? L(f.en, f.zh) : L(type, type)

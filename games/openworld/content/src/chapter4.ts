@@ -13,7 +13,7 @@
 import type { Rule, TypeDef } from '@openworld/engine'
 import { DO } from './afflictions.ts'
 
-const L = (en: string, zh: string) => ({ en, zh })
+const L = (en: string, zh: string = en) => ({ en, zh })
 const rule = (r: Omit<Rule, 'source'>): Rule => ({ ...r, source: { origin: 'base' } })
 
 /** The story's facts of the chapter, in the order they come. */

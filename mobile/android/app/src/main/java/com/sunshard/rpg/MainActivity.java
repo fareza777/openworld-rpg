@@ -7,7 +7,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 import com.getcapacitor.BridgeActivity;
 
-/** The game full screen and landscape: the system bars hidden (a swipe shows them for a moment), the screen kept on. */
+/** The game full screen, portrait or turned to landscape as the phone is held (the user's rotation lock kept): the system
+ *  bars hidden (a swipe shows them for a moment), the screen kept on. */
 public class MainActivity extends BridgeActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {

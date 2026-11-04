@@ -92,7 +92,7 @@ describe('asked to come and live in the Held Ground', () => {
     w.fx = []
     eng.controls.talk(vigo.id, 'invite')
     expect(w.posOf(vigo)?.map).toBe(home)
-    expect(w.fx.some((x) => x.t === 'say' && x.who === vigo.id && JSON.stringify(x.text).includes('营帐'))).toBe(true)
+    expect(w.fx.some((x) => x.t === 'say' && x.who === vigo.id && JSON.stringify(x.text).includes('tent'))).toBe(true)
     // the steward raises a residents' tent: two beds more
     eng.author(() => w.setFact('haven.build.lodge1', 1))
     expect(s.residenceBeds().filter((b) => !b.who).map((b) => b.anchor)).toEqual(['home.lodge1.a', 'home.lodge1.b'])

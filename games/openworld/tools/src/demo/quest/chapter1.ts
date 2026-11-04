@@ -549,6 +549,8 @@ export const CHAPTER1_SCENES: StepDef[] = [
       say('player', '(The Herald stares at Kiri. Kiri slips behind your shoulder.)'),
       say('pip', 'I don\'t like the sun on his coat. I don\'t know why.', undefined, 'shy'),
       say('npc.courier', 'You, then. By the Regent\'s writ you are Crownseeker. The First Warden holds the Eastmarch, past the river. Bring his Diadem to Solmere, and the Regent will remember your name.'),
+      // the rival (docs/sunshard/STORY.md §4): named here, met in Chapter Two
+      say('npc.courier', 'Be quick about it. You are not the only seeker the Regent has named this year. His own rides the southern road, and Sable Vire has never come second to anyone.'),
       { give: 'item/document/proclamation' },
       say('npc.ilse', 'The shard taken, and the Regent\'s Herald at our door, on the same morning. ...When you are ready, Crownseeker, come to me.'),
       { place: 'npc.courier', map: 'offstage', x: 5, y: 3 },
@@ -599,14 +601,15 @@ export const CHAPTER1_SCENES: StepDef[] = [
       // the power leaves the kneeling knight and runs to her (the client's light and her glow); the scene waits for it
       { tell: 'pip', params: { what: 'boon', unlock: 'xp', from: ALBERIC_ID } },
       { wait: 32 },
-      say('pip', 'It came to me! ...It\'s cold. Am I allowed to keep it?', undefined, 'surprised'),
+      // (the Ember Memory it carries returns in Chapter Two: docs/sunshard/STORY.md §5)
+      say('pip', 'It came to me! ...It\'s cold. And there\'s something inside it, like a song in another room. I can\'t hear it yet.', undefined, 'surprised'),
       say('npc.severin', '...Then keep her close. Closer than you think.'),
       // Corvin takes it: the lantern drinks it, and a thread still finds her
       { branch: 'choice.ch1.light', is: 'corvin', skip: CORVIN_BRANCH },
       say('player', '(Corvin opens his lantern. The light pours into the stolen flame; it flares gold and gutters, and his hand shakes. One thread of it slips past him and runs to Kiri.)'),
       { tell: 'pip', params: { what: 'boon', unlock: 'xp', from: ALBERIC_ID } },
       { wait: 32 },
-      say('pip', 'A little came to me anyway! ...It\'s cold.', undefined, 'surprised'),
+      say('pip', 'A little came to me anyway! ...It\'s cold. There was something in it, a voice? It went into the lantern with the rest.', undefined, 'surprised'),
       say('npc.severin', 'I owe you for this. I do not forget what I owe.'),
       say('npc.severin', 'Every Warden you bring down makes the night longer. Ask your Regent why.'),
       say('npc.severin', 'Go home, and tell Rowan the light is safer with me than with any of them.'),

@@ -1211,8 +1211,8 @@ gameEl.addEventListener('mousedown', (e) => {
   if (sets) handDrag = handCell(tile!)
   send({ t: 'key', key: 'secondary', ...(tile && { tile }), ...(sets && handUp && { layer: CEILING }) })
 })
-// a touch screen (docs/sunshard/ANDROID.md): a tap on the world is the left click there, a long press the right click;
-// the stick and the buttons are ui/touch.ts's
+// a touch screen (docs/sunshard/ANDROID.md): a thumb on the left half of the world is the floating stick; elsewhere a tap
+// on the world is the left click there, a long press the right click; the stick and the buttons are ui/touch.ts's
 const touch = isTouchScreen() ? new TouchControls({ primary: (on) => setSwing(on, undefined), secondary: () => send({ t: 'key', key: 'secondary' }) }) : undefined
 const TOUCH_LONG_MS = 450
 let touchHold: ReturnType<typeof setTimeout> | undefined
@@ -1225,6 +1225,8 @@ gameEl.addEventListener('pointerdown', (e) => {
   if (hud.questionShown) return
   if (hud.dialogOpen) return hud.advanceDialog()
   if (menu.anyOpen || dev.open) return
+  // the left half of the world is the floating stick's: it appears under the thumb (ui/touch.ts)
+  if (!building.open && touch?.grab(e)) return
   mouseAt = { x: e.clientX, y: e.clientY }
   pointerStill = false
   reaim()
@@ -1235,7 +1237,7 @@ gameEl.addEventListener('pointerdown', (e) => {
   touchHold = setTimeout(() => ((touchLong = true), send({ t: 'key', key: 'secondary', ...(tile && { tile }) })), TOUCH_LONG_MS)
 })
 gameEl.addEventListener('pointerup', (e) => {
-  if (e.pointerType !== 'touch') return
+  if (e.pointerType !== 'touch' || touch?.owns(e.pointerId)) return
   if (building.open) return building.release()
   clearTimeout(touchHold)
   if (touchLong || menu.anyOpen || dev.open || hud.dialogOpen) return

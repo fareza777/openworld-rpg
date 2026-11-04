@@ -34,7 +34,7 @@ describe('the Held Ground mist', () => {
     expect(plan.unknown).toBeFalsy()
     const firstGuide = JSON.stringify(eng.world.fx.find((fx) => fx.t === 'log')?.text)
     expect(firstGuide).toContain(`Ring ${ring}`)
-    expect(firstGuide).toContain('Alberic')
+    expect(firstGuide).toContain('Gavrel')
     expect(firstGuide).toContain(prerequisite)
     for (const material of materials) expect(firstGuide).toContain(material)
     expect(firstGuide).toContain('completion reward')
@@ -46,7 +46,7 @@ describe('the Held Ground mist', () => {
     expect(hands.unknown).toBeFalsy()
     expect(hands.instrument).toBeUndefined()
     eng.controls.run(hands)
-    expect(eng.world.fx.filter((fx) => fx.t === 'log' && JSON.stringify(fx.text).includes('Alberic'))).toHaveLength(2)
+    expect(eng.world.fx.filter((fx) => fx.t === 'log' && JSON.stringify(fx.text).includes('Gavrel'))).toHaveLength(2)
   })
 
   it('leaves an unknown tool use on the mist unanswered', () => {

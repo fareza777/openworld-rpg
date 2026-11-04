@@ -3347,7 +3347,7 @@ req('P3', "the main line never breaks: Rowan's rescue begins by itself at the we
   // the second floor: the Order's dead, Oskar in his cell, the roll; the stair further down
   expect(w.posOf(w.get('npc.oskar')!)?.map).toBe('ossuary')
   expect(talkTo(f, 'npc.oskar')).toContain('守墓者在楼梯最底下')
-  expect(w.get('ossuary.roll')?.props?.text).toContain('ALBERIC')
+  expect(w.get('ossuary.roll')?.props?.text).toContain('GAVREL')
   // the Order's dead do not lie still: a ghost among the niches
   expect(Object.values(w.state.entities).some((e) => e.type === 'actor/creature/undead/ghost' && w.posOf(e)?.map === 'ossuary')).toBe(true)
   // the stair further down holds the warden's fog (docs/boss-rooms.md): a hand on it, and one is in the sanctum
@@ -3358,7 +3358,7 @@ req('P3', "the main line never breaks: Rowan's rescue begins by itself at the we
   expect(w.posOf(w.player)?.map).toBe('sanctum')
   // the bottom: the warden before the Commander's vow
   expect(w.posOf(w.get('barrow.warden')!)?.map).toBe('sanctum')
-  expect(w.get('sanctum.vow')?.props?.text).toContain('I WILL HOLD UNTIL I AM RELIEVED')
+  expect(w.get('sanctum.vow')?.props?.text).toContain('WE HOLD THE RIVER UNTIL THE QUEEN')
   expect(qs(f, 'rescue')).toBe('active')
   fell(f, w.get('barrow.warden')!)
   ticks(f, 2)
@@ -4043,7 +4043,7 @@ req('V1', "Firstlight's vigil (the main line between the rescue and the night of
     expect([to, ticks(f, 40, () => (f.eng.movePlayer('up'), w.posOf(w.player)?.map === to))]).toEqual([to, true])
   }
   const takeAll = (map: string, zh: string) => {
-    for (const e of Object.values(w.state.entities).filter((e) => w.posOf(e)?.map === map && typeof e.name === 'object' && e.name.zh === zh)) {
+    for (const e of Object.values(w.state.entities).filter((e) => w.posOf(e)?.map === map && typeof e.name === 'object' && (e.name.zh === zh || e.name.en === zh))) {
       const at = w.posOf(e)!
       stand(f, at.x, at.y + 1, 'up', map)
       run(f, 'take', at.x, at.y)

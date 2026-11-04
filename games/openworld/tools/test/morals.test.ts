@@ -99,7 +99,7 @@ describe('faith', () => {
     w.fx = []
     hands(20, 14)
     expect(w.num(p, 'faith')).toBe(2)
-    expect(w.fx.some((x) => x.t === 'say' && JSON.stringify(x.text).includes('CROWN'))).toBe(true)
+    expect(w.fx.some((x) => x.t === 'say' && JSON.stringify(x.text).includes('DIADEM'))).toBe(true)
   })
 
   it('told there are no gods, the devout take it ill; the teller\'s faith wavers; once a day to each', () => {

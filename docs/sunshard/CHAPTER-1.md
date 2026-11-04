@@ -38,8 +38,10 @@ a specific answer use the scene, not the key; a person's line for "any answer" u
 - The waystone at Shardstone Foot (`stone`): a Sunshard waystone, five facets; the first is cracked and dark, fresh
   ash on it. Kiri: "It's colder near it. Like it's... going out."
 - "Try something the world has never seen" stays (the engine's experiments).
-- `watch_log` (Cloudtop table): sunset times year on year, each earlier; last page: "Found a small light asleep in
-  the snow by the cairn, warm as a coal. Beside it a child's silver locket. No child." (plants Ch 8)
+- `watch_log` (Cloudtop table): sunset times year on year, each earlier; between the columns the watchman's note that
+  "the young one" he raises up here asks where they came from, and that he swore to "Ser G." to tell them nothing; the
+  last page: a small light came to his window, and something was moving in the cut below. Kiri remembers the window and
+  nothing before it. (The player was raised on Cloudtop; plants Ch 8.)
 
 ### Emberwick
 
@@ -60,7 +62,7 @@ a specific answer use the scene, not the key; a person's line for "any answer" u
 - `letter`: at dawn **the Regent's Herald** in gold and black arrives with soldiers to take the Hearthshard to
   Solmere — finds the shrine cold. Reads the proclamation (the five Wardens are oathbreakers; the Dimming; the
   Reforging). "It is written: one who walks with a fallen star shall gather the Crown. You." He stares at Kiri;
-  Kiri hides behind you ("I don't like his sun. The one on his coat.") Gives `item/document/proclamation` (the
+  Kiri hides behind you ("I don't like his sun. The one on his coat.") He names the rival — the Regent's own seeker, Sable Vire, rides the southern road (met in Ch 2). Gives `item/document/proclamation` (the
   Regent's Writ). Maren: "When you are ready, Crownseeker, come to me."
 - `fennick_memory`: Fennick was Gavrel's squire in the Briar Knights, nineteen years ago, the night of the Sundering;
   Gavrel rode into Emberwick at dawn with "something under his cloak, wrapped against the cold", and rode out without
@@ -90,7 +92,8 @@ a specific answer use the scene, not the key; a person's line for "any answer" u
   always send another." "I hold. I... hold. I no longer remember what for." Kiri warns of the thorn ring.
 - `crown`: he falls, kneels, lifts the Diadem off. Sees the locket at your throat. "...You have her eyes." "Take it.
   It was never mine to keep. Only to keep from *him*." Light comes loose. **Choice** `choice.ch1.light`. Kiri path:
-  the light runs to Kiri (the boon), Corvin arrives too late: "...Then keep her close. Closer than you think."
+  the light runs to Kiri (the boon); she hears "something inside it, like a song in another room" (the Ember Memory
+  that returns in Ch 2), Corvin arrives too late: "...Then keep her close. Closer than you think."
   Corvin path: Corvin opens the lantern, the light goes in; Kiri still catches a thread of it (the boon is always
   given — the game's progression needs it). Either way Corvin: "Every Warden you bring down makes the night longer.
   Ask your Regent why." `night.shift` stays.

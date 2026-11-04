@@ -18,6 +18,13 @@ import { bake, fordProject } from '../scripts/bake.ts'
  */
 function asBuilt(got: unknown, want: unknown): unknown {
   if (typeof want === 'string' && got && typeof got === 'object' && !Array.isArray(got) && (got as { en?: unknown }).en === want) return want
+  // a text the builders left in English alone that a table translates (as above, in the builders' own shape)
+  if (want && typeof want === 'object' && !Array.isArray(want) && Object.keys(want).length === 1 && typeof (want as { en?: unknown }).en === 'string' && got && typeof got === 'object' && (got as { en?: unknown }).en === (want as { en: string }).en) return want
+  // a text in English alone (no translation, or one that is the English again) is written as its words
+  if (typeof got === 'string' && want && typeof want === 'object' && !Array.isArray(want)) {
+    const t = want as { en?: unknown; zh?: unknown }
+    if (t.en === got && (t.zh === undefined || t.zh === got) && Object.keys(t).every((k) => k === 'en' || k === 'zh')) return want
+  }
   if (Array.isArray(got) && Array.isArray(want)) return got.map((g, i) => asBuilt(g, want[i]))
   if (got && want && typeof got === 'object' && typeof want === 'object' && !Array.isArray(got)) {
     const out: Record<string, unknown> = {}

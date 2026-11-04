@@ -56,6 +56,7 @@ export const hesper: PersonDef = {
     line('default', 'Aldo and Joss built the footbridge, twenty years back. A rider in white took it apart in one night, and laid the nails on my pier.', '那座小桥是阿尔多和乔斯二十年前一起搭的。有个白衣骑手，一夜之间就把它拆了，还把钉子一根根摆在我的码头上。'),
     line('hour:evening', 'The evenings come sooner every week. I light the lamp earlier and earlier.', '天黑得一个礼拜比一个礼拜早。我点灯也一回比一回早。'),
     line('fact:ch1.crown', 'The rider is down? ...Then I\'ll build the bridge again. Properly, this time.', '那个骑手倒了？……那我就把桥再修起来。这回要修结实些。', { once: true }),
+    line('fact:choice.ch1.tale', "The square can tell it how it likes. I'll put Aldo's bridge back. That part is mine.", { once: true }),
     line('default', "That tree at the narrows has been dead ten years. Aldo always said it would fall the wrong way.", '窄口那棵树枯了十年了。阿尔多一直说，它倒的时候会往不该倒的那边倒。'),
     line('hour:morning', 'Water is high. It will be high all day.', '水涨了。今天一整天都会这么高。'),
     line('hour:evening', 'Keep near the fire after dark. Things come up out of the hollow.', '天黑以后待在火边。会有东西从洞里爬出来。'),

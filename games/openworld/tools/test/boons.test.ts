@@ -66,7 +66,7 @@ describe('the companion\'s boons', () => {
     eng.queue({ kind: 'impulse/notify', host: { e: 'pip' }, roles: {}, params: { what: 'boon', unlock: 'xp', from: knight.id }, origin: 'world' })
     eng.tick()
     const fx = w.fx.find((x) => x.t === 'boon')
-    expect(fx).toMatchObject({ t: 'boon', who: 'pip', boon: 'xp', seal: 1, name: { zh: '荆冠之悟' }, from: { map: at.map, x: at.x, y: at.y } })
+    expect(fx).toMatchObject({ t: 'boon', who: 'pip', boon: 'xp', seal: 1, name: { en: "Diadem's Insight" }, from: { map: at.map, x: at.x, y: at.y } })
     // given again, nothing new: no second light
     w.fx.length = 0
     give(eng, 'xp')

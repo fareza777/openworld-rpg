@@ -116,7 +116,7 @@ const BROOD: Tree = {
     { op: 'spawn', type: 'actor/creature/whelp', at: 'host', count: 3 },
     { op: 'emit', impulse: 'notify', to: 'story', params: { what: 'whelps' } },
     { op: 'vfx', fx: 'fire_burst' },
-    { op: 'log', text: L('The dragon shrieks. Its whelps pour out of the dark!', '魔龙一声尖啸，幼龙从黑暗里涌了出来！') },
+    { op: 'log', text: L('Vharok shrieks. Its whelps pour out of the dark!') },
   ),
   else: DO({ op: 'vfx', fx: 'fire_burst' }),
 }
@@ -267,9 +267,9 @@ const HANDS = { shape: 'cross', aim: 'self', radius: 5, action: 'attack', fx: fx
 const WITNESSES_SKILLS: KitSkill[] = [
   skill('howlong', 'How Long?', '何时', { shape: 'ring', aim: 'self', radius: 5, windup: 18, recovery: 12, action: 'cast', fx: fxW('howlong'), fxPlacement: 'pattern', color: ROBE_WHITE }),
   skill('robes', 'The Robes Fall', '白袍坠落', { shape: 'spots', aim: 'target', radius: 4, windup: 18, recovery: 12, action: 'cast', fx: fxW('robes'), color: ROBE_WHITE }),
-  skill('hands', 'The Martyrs\' Hands', '殉者之手', { ...HANDS, windup: 18, recovery: 12 }),
-  skill('hands_twice', 'The Martyrs\' Hands', '殉者之手', { ...HANDS, windup: 16, recovery: 0, then: 'hands_again' }),
-  skill('hands_again', 'The Martyrs\' Hands, Again', '殉者之手·再', { ...HANDS, radius: 6, windup: 8, recovery: 12 }),
+  skill('hands', 'The Witnesses\' Hands', 'The Witnesses\' Hands', { ...HANDS, windup: 18, recovery: 12 }),
+  skill('hands_twice', 'The Witnesses\' Hands', 'The Witnesses\' Hands', { ...HANDS, windup: 16, recovery: 0, then: 'hands_again' }),
+  skill('hands_again', 'The Witnesses\' Hands, Again', 'The Witnesses\' Hands, Again', { ...HANDS, radius: 6, windup: 8, recovery: 12 }),
   skill('lance', 'The Lance\'s Shadow', '圣枪之影', { shape: 'line', aim: 'target', radius: 12, width: 1, windup: 16, recovery: 12, action: 'cast', fx: fxW('lance'), fxPlacement: 'beam', color: HARM }),
   skill('shove', 'They Press Close', '万众簇拥', { shape: 'circle', aim: 'self', radius: 2, range: [1, 2], cooldown: 60, windup: 8, recovery: 8, action: 'attack', fx: 'dust', fxPlacement: 'pattern', color: HARM }),
   skill('myriad', 'The Myriad', '万证', { shape: 'ring', aim: 'self', radius: 6, windup: 24, recovery: 10, steady: true, action: 'cast', fx: fxW('myriad'), fxPlacement: 'pattern', color: CALL }),
@@ -309,7 +309,7 @@ const ASTRA_SKILLS: KitSkill[] = [
   skill('weight', 'The Weight', '秤压', { shape: 'circle', aim: 'target', radius: 2, windup: 18, recovery: 12, action: 'attack', fx: fxS('weight'), fxPlacement: 'pattern', color: HARM }),
   skill('nails', 'The Nails', '圣钉', { shape: 'spots', aim: 'target', radius: 4, windup: 16, recovery: 12, action: 'cast', fx: fxS('nails'), color: CLING }),
   skill('lance', 'The Lance', '圣枪', { shape: 'line', aim: 'target', radius: 13, width: 1, windup: 18, recovery: 14, action: 'cast', fx: fxS('lance'), fxPlacement: 'beam', color: HARM }),
-  skill('night', 'The First Night', '原夜', { shape: 'spots', aim: 'target', radius: 5, windup: 20, recovery: 12, action: 'cast', fx: fxS('night'), color: NIGHT }),
+  skill('night', 'The Dimming', 'The Dimming', { shape: 'spots', aim: 'target', radius: 5, windup: 20, recovery: 12, action: 'cast', fx: fxS('night'), color: NIGHT }),
   skill('shove', 'Leave', '退下', { shape: 'circle', aim: 'self', radius: 2, range: [1, 2], cooldown: 60, windup: 8, recovery: 8, action: 'attack', fx: 'dust', fxPlacement: 'pattern', color: HARM }),
   skill('rise', 'He Rises', '起身', { shape: 'ring', aim: 'self', radius: 5, windup: 24, recovery: 10, steady: true, action: 'cast', fx: fxS('weight'), fxPlacement: 'pattern', color: CALL }),
   skill('unbound', 'Unbound', '挣脱', { shape: 'ring', aim: 'self', radius: 6, windup: 24, recovery: 10, steady: true, action: 'cast', fx: fxS('night'), fxPlacement: 'pattern', color: CALL }),
@@ -355,17 +355,17 @@ function sin(id: string, name: { en: string; zh: string }, footprint: [number, n
   }
 }
 const SINS = [
-  sin('lust', L('The Velvet Lure · Lust', '绯愿兰后 · 色欲'), [5, 3], 1600, 2, 0xe578a7, [
+  sin('lust', L("Lust, the Engine's Vessel"), [5, 3], 1600, 2, 0xe578a7, [
     [sinSkill('lust', 'petal', 'Velvet Crescent', '绯瓣弧斩', 'cone', 'self', 7, 16, 10), 30],
     [sinSkill('lust', 'lure', 'False Promise', '虚愿花印', 'spots', 'target', 4, 18, 10), 24, { pull: 1, coat: 'entranced' }],
     [sinSkill('lust', 'thorns', 'Thorn Covenant', '荆棘誓约', 'cross', 'target', 6, 20, 12), 32, { coat: 'mired' }],
   ]),
-  sin('envy', L('The Face Thief · Envy', '窃面者 · 嫉妒'), [1, 1], 1000, 1, 0x56d7a0, [
+  sin('envy', L("Envy, the Regent's Shadow"), [1, 1], 1000, 1, 0x56d7a0, [
     [sinSkill('envy', 'daggers', 'Borrowed Blades', '借影双刃', 'cone', 'self', 3, 10, 8), 24],
     [sinSkill('envy', 'mirror', 'Shattered Faces', '碎面镜雨', 'spots', 'target', 3, 14, 10), 20],
     [sinSkill('envy', 'blink', 'Stolen Footstep', '窃步瞬身', 'circle', 'target', 1, 12, 8, { move: 'blink' }), 24],
   ]),
-  sin('pride', L('The Crown Without a King · Pride', '无王之冠 · 傲慢'), [5, 4], 2600, 3, 0x9aafff, [
+  sin('pride', L("Pride, the Regent's Champion"), [5, 4], 2600, 3, 0x9aafff, [
     [sinSkill('pride', 'wing', 'Royal Rebuff', '王翼斥退', 'cone', 'self', 7, 18, 12), 42, { push: 1 }],
     [sinSkill('pride', 'mirror', 'Perfect Reflection', '完美镜裁', 'cross', 'target', 7, 22, 14), 36],
     [sinSkill('pride', 'crown', 'Kneel Before the Crown', '万象俯首', 'ring', 'target', 5, 24, 16), 44],
@@ -375,13 +375,13 @@ const SINS = [
 // ------------------------------------------------------------------ the roster
 
 export const BOSSES: BossDef[] = [
-  { id: 'alberic', type: ALBERIC, name: L('The White Knight Alberic · First Seal', '白骑士·阿尔贝里克 · 第一印'), footprint: [3, 2], hp: 1200, defense: 2, atk: 24, skills: ALBERIC_SKILLS, encounter: ALBERIC_FIGHT },
-  { id: 'dragon', type: DRAGON, name: L('The Dragon of Cinder Peak', '烬峰魔龙'), footprint: [2, 2], hp: 1600, defense: 3, atk: 22, skills: DRAGON_SKILLS, encounter: DRAGON_FIGHT },
-  { id: 'matthias', type: MATTHIAS, name: L('Matthias the War-Giver · Second Seal', '赐战者·马提亚 · 第二印'), footprint: [3, 2], hp: 1400, defense: 3, atk: 26, skills: MATTHIAS_SKILLS, encounter: MATTHIAS_FIGHT },
-  { id: 'nacht', type: NACHT, name: L('Nacht, Reinholder of Death · Fourth Seal', '死之执辔者·纳赫特 · 第四印'), footprint: [3, 2], hp: 1800, defense: 3, atk: 30, skills: NACHT_SKILLS, encounter: NACHT_FIGHT },
-  { id: 'witnesses', type: WITNESSES, name: L('The White-Robed Witnesses Beneath the Altar · Fifth Seal', '祭坛之下的白衣万证 · 第五印'), footprint: [3, 2], hp: 2000, defense: 3, atk: 32, skills: WITNESSES_SKILLS, encounter: WITNESSES_FIGHT },
-  { id: 'astra', type: ASTRA, name: L('Astra, the First Martyr', '初殉者·阿斯特拉'), footprint: [3, 2], hp: 2600, defense: 4, atk: 34, skills: ASTRA_SKILLS, encounter: ASTRA_FIGHT },
-  { id: 'ele', type: ELE, name: L('Ele, Priest of the Black Scales · Third Seal', '黑衡司铎·厄勒 · 第三印'), footprint: [3, 2], hp: 1600, defense: 3, atk: 28, skills: ELE_SKILLS, encounter: ELE_FIGHT },
+  { id: 'alberic', type: ALBERIC, name: L('Ser Gavrel the Thornbound · First Warden'), footprint: [3, 2], hp: 1200, defense: 2, atk: 24, skills: ALBERIC_SKILLS, encounter: ALBERIC_FIGHT },
+  { id: 'dragon', type: DRAGON, name: L('Vharok, the Drake of Cinder Peak'), footprint: [2, 2], hp: 1600, defense: 3, atk: 22, skills: DRAGON_SKILLS, encounter: DRAGON_FIGHT },
+  { id: 'matthias', type: MATTHIAS, name: L('Matthias the Ember-Sworn · Second Warden'), footprint: [3, 2], hp: 1400, defense: 3, atk: 26, skills: MATTHIAS_SKILLS, encounter: MATTHIAS_FIGHT },
+  { id: 'nacht', type: NACHT, name: L('Nacht, the Drowned Lantern · Fourth Warden'), footprint: [3, 2], hp: 1800, defense: 3, atk: 30, skills: NACHT_SKILLS, encounter: NACHT_FIGHT },
+  { id: 'witnesses', type: WITNESSES, name: L('The Witnesses of the Vigil · Fifth Warden'), footprint: [3, 2], hp: 2000, defense: 3, atk: 32, skills: WITNESSES_SKILLS, encounter: WITNESSES_FIGHT },
+  { id: 'astra', type: ASTRA, name: L('Caedmon, the False Sun'), footprint: [3, 2], hp: 2600, defense: 4, atk: 34, skills: ASTRA_SKILLS, encounter: ASTRA_FIGHT },
+  { id: 'ele', type: ELE, name: L('Ele of the Golden Scales · Third Warden'), footprint: [3, 2], hp: 1600, defense: 3, atk: 28, skills: ELE_SKILLS, encounter: ELE_FIGHT },
   ...SINS.map((s) => s.def),
 ]
 export const BOSS_BY_ID: Record<string, BossDef> = Object.fromEntries(BOSSES.map((b) => [b.id, b]))
@@ -391,7 +391,7 @@ export const BOSS_ENCOUNTERS: Record<string, EncounterDef> = Object.fromEntries(
 const SIN_BOSSES = BOSSES.filter((b) => b.type.startsWith('actor/creature/sin/'))
 
 export const BOSS_TYPES: TypeDef[] = [
-  { id: 'actor/creature/sin', name: L('Sin sovereign', '原罪领主'), tags: ['boss'], props: { range: 1 } },
+  { id: 'actor/creature/sin', name: L("the Regent's champion"), tags: ['boss'], props: { range: 1 } },
   ...SIN_BOSSES.map((b): TypeDef => ({ id: b.type, name: b.name, sprite: `boss:sin:${b.id}`, footprint: b.footprint,
     tags: b.footprint[0] * b.footprint[1] === 1 ? ['small'] : ['large'], props: { hp: b.hp, maxHp: b.hp, def: b.defense, atk: b.atk, speed: 8 } })),
   // the White Knight's briars, grown where he says (no wall: one wades through, and kneels); they wither in a while

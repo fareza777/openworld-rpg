@@ -78,7 +78,7 @@ Choices are story facts (`choice.*`), read by people's lines, scenes, quest stag
 |---|---|---|---|---|
 | C1 | 1, the Briar Diadem | Who takes the loose light when Gavrel falls: **Kiri** (she grows brighter; her first gift is stronger) or **Corvin's lantern** (he owes you; Ch 2 he helps in the mine) | `choice.ch1.light` = `kiri` \| `corvin` | Kiri's gift; Corvin's later trust; Nessa's sunset count (5 or 4 minutes) |
 | C2 | 1, the homecoming | Tell Emberwick the truth of Gavrel (a loyal knight) or let them keep the tale (a tyrant slain) | `choice.ch1.tale` = `truth` \| `legend` | Rowan's and Maren's lines; Fennick's farewell; a memorial at the Ford (truth) |
-| C3 | 1, the Herald | Hand the Briar Diadem to the Herald for Solmere, or keep it | `choice.ch1.diadem` = `herald` \| `kept` | Ch 2 opening (the Order's escort or Covenant contact); the Dimming's pace |
+| C3 | 2, opening | The Herald returns for the Briar Diadem: hand it over for Solmere, or refuse | `choice.ch2.diadem` = `herald` \| `kept` | Ch 2's road (the Order's escort or Covenant contact); the Dimming's pace |
 | C4–C10 | 2–9 | Spare or slay each Warden; side with Sabine or Corvin; the Free Marches' charter; who holds Solmere's gate | `choice.chN.*` | allies available in Ch 10, three endings |
 
 ## 6. The ten chapters
@@ -89,7 +89,7 @@ Regions and bosses are upstream assets re-cast. Each chapter's end sets the fact
 | Ch | Title | Region (upstream) | Boss (asset) | Beat |
 |---|---|---|---|---|
 | **1** | **The Ember Letter** | Frostfang Coast: Cloudtop, Shardstone Foot, Emberwick, the Ford, the Old Crown Road | Ser Gavrel the Thornbound (`alberic`) | Wake without memory; rescue the foragers from the barrow; Corvin steals the Hearthshard's flame; the Regent's Herald names the Crownseeker; mend the bridge; walk the Old Crown Road; bring Gavrel down; the Briar Diadem; "You have her eyes." The sunset comes four minutes early. |
-| 2 | Ashes of Cinderholt | The Scarred March (Emberfall, the mine, Cinder Pass) | the drake Vharok (`dragon`) and Warden Matthias the Ember-Sworn (`matthias`) | A mining town on strike under a Warden who fused with the Ember Scepter; the drake is his. Corvin returns (C1). The mine's deep vault shows the Engine's pipes for the first time. |
+| 2 | Ashes of Cinderholt | The Scarred March (Emberfall, the mine, Cinder Pass) | the drake Vharok (`dragon`) and Warden Matthias the Ember-Sworn (`matthias`) | A mining town on strike under a Warden who fused with the Ember Chain; the drake is his. Corvin returns (C1). The mine's deep vault shows the Engine's pipes for the first time. |
 | 3 | The Weight of Grain | The Vale of Scales | Warden Ele of the Golden Scales (`ele`) | Famine politics: the Scales "weigh" the harvest owed to Solmere. The player chooses who eats. First hint that shards are being drained *toward* the capital. |
 | 4 | Mirelight | The Pale Fens | Warden Nacht, the Drowned Lantern (`nacht`) | Fog that never lifts; drowned villages; Maren arrives with the Order and sees the truth. **Twist 2:** the Engine exists; every fallen Warden fed it. |
 | 5 | The White Vigil | The White Altar Heights | the Witnesses of the Vigil (`witnesses`) | The last Warden is a choir of the Queen's guard bound into one; the Order's archive holds the Queen's letter — she broke the Crown. Sabine appears. |

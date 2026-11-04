@@ -1873,9 +1873,10 @@ export const SITE_GATES: Gate[] = [
   // Chapter 2's road (regions.ts CHAPTER_TWO): the road on east from the knight's field, opened once the Crown is home
   {
     fact: CHAPTER_TWO,
-    say: L('The road on east to Emberfall opens once the Crown of Thorns is home in Firstlight.', '往东去余烬镇的路，要等荆棘冠送回初原村以后才走得通。'),
-    remark: L("The Crown first. Let's take it home to Firstlight, then we can go on east.", '先把荆棘冠送回初原村吧，回来再往东走。'),
-    again: L('Firstlight first.', '先回初原村。'),
+    // (this fork seals it for the next update: docs/sunshard/STORY.md §7)
+    say: L('The road on east to Cinderholt is not open yet. Chapter Two waits there, in the next update.'),
+    remark: L("Cinderholt is that way... but the road is closed. Not yet. Let's see to Emberwick first."),
+    again: L('Not yet. Cinderholt waits.'),
   },
   // the way down off Cinder Pass into the Scarred March, under the dragon's nest (docs/chapter-2.md §2)
   {

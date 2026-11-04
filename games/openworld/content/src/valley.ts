@@ -57,13 +57,13 @@ export const VALLEY: Record<string, ValleyPlace> = {
     ],
     things: {
       x: { type: 'fixture/sign', name: L('The cairn', '石堆'), props: { text: 'A cairn of flat stones, piled by the watchmen of Cloudtop to mark where their watch ended. No one has piled any stones beyond it.', text_zh: '一堆扁平的石头，是云顶台地的守望人堆的，标着他们巡守到的地方。再往上，就没有人堆过石头了。' } },
-      y: { type: 'fixture/remains/bones', name: L("A pilgrim's bones", '朝圣者的遗骨') },
+      y: { type: 'fixture/remains/bones', name: L("A traveller's bones") },
       z: { type: 'fixture/container/sack', name: L('A frozen pack', '冻硬的行囊'), contents: ['item/food/bread', 'item/light/candle', 'item/tool/rope'] },
     },
   },
   // Dawn Hill's crag: rock thrown up through the turf, a wild hive in its lee, herbs where the sun lies longest
   '6,3': {
-    name: L("Dawn Hill's Crag", '晨光丘的岩岗'),
+    name: L("Beacon Hill's Crag"),
     floor: '.',
     at: [12, 8],
     patches: [['gravel', 2, 2]],
@@ -119,7 +119,7 @@ export const VALLEY: Record<string, ValleyPlace> = {
       '..  z.',
     ],
     things: {
-      x: { type: 'fixture/sign', props: { text: 'NORTH: Millbrook. EAST: Dusklea, and Firstlight beyond. SOUTH: the Charcoal Dell.', text_zh: '北：水车磨坊。东：暮牧原，再往前是初原村。南：烧炭谷。' } },
+      x: { type: 'fixture/sign', props: { text: 'NORTH: Millbrook. EAST: Dusklea, and Emberwick beyond. SOUTH: the Charcoal Dell.' } },
       y: { type: 'fixture/furniture/bench/log' },
       z: { type: 'fixture/light/lantern', statuses: { lit: -1 } },
     },

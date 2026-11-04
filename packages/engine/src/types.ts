@@ -1218,8 +1218,8 @@ export interface SceneState {
   id: string
   step: number
   until?: number
-  waiting?: 'advance' | 'move' | 'choose'
-  /** the choice waiting to be made (a `choose` command): its question and its answers' words */
+  waiting?: 'advance' | 'move'
+  /** the choice waiting to be made (a `choose` command; it waits as a line does): its question and its answers' words */
   choice?: { text: Text; options: Text[] }
   mover?: { who: Id; path: [number, number][]; next: number }
   started?: number

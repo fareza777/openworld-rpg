@@ -23,11 +23,11 @@ export interface KnowledgeEntry {
 export const KNOWLEDGE: KnowledgeEntry[] = [
   {
     id: 'waypoints', group: 'journey', title: L('Waypoint statues', '传送雕像'),
-    summary: L('A light to return to, a place to begin again, and somewhere to change my power.', '点亮一座雕像，就多一个能回去的地方；它也能成为落脚处，让我更换力量。'),
+    summary: L('A light to return to, a place to begin again, and somewhere to change my gift.'),
     sections: [
       { title: L('Wake a statue', '唤醒雕像'), body: L('Stand beside an unlit statue and press {key:hands}. It lights up, unlocks a fast-travel destination and becomes your new foothold. On normal difficulty, this is where you return after falling.', '走到未点亮的雕像旁，按 {key:hands} 唤醒它。雕像会发光，解锁传送，并成为新的落脚处；普通难度下倒下后会在这里复活。') },
       { title: L('Travel back', '从地图传送'), body: L('Press {key:map} to open the world map, then click an awakened statue to travel there from anywhere. Unawakened statues cannot be used. Travel is unavailable during a story scene, a question or while the world is learning an action.', '按 {key:map} 打开世界地图，点击已唤醒的雕像，就能从别处传送过去。未唤醒的雕像不能传送；剧情演出、问答或世界正在学习动作时也暂时不能传送。') },
-      { title: L('Change a power', '更换露米的力量'), body: L('Press {key:hands} on an awakened statue to open the powers page. Within three tiles of it, you can choose a power I have already gained. I carry one at a time, and must be on your map for it to help you.', '对已唤醒的雕像按 {key:hands}，会打开「印之力量」。在雕像三格以内，可以切换已经获得的力量。我一次只能携带一种，也要与你在同一张地图上才能生效。') },
+      { title: L('Change a gift'), body: L('Press {key:hands} on an awakened statue to open the gifts page. Within three tiles of it, you can choose a gift I have already caught. I carry one at a time, and must be on your map for it to help you.') },
     ],
     tip: L('Wake a statue when you reach a new place. Listening to one already awake does not change your foothold; sleeping in a bed does.', '到了新地方，记得先唤醒雕像。再次倾听已亮的雕像不会改变落脚处；想把落脚处改回家里，回床上睡一觉就好。'),
   },
@@ -36,7 +36,7 @@ export const KNOWLEDGE: KnowledgeEntry[] = [
     summary: L('A little practice becomes a skill; a profession opens a new road.', '升级后别忘了花技能点；选定职业，还会打开一条新的成长道路。'),
     sections: [
       { title: L('Spend skill points', '学习技能'), body: L('Open the skill tree with {key:skills}. Select a skill to see its effects, prerequisites and point cost. Life skills can help with gathering, fishing, farming and smithing.', '按 {key:skills} 打开技能树，点选技能查看效果、前置条件和所需点数。生活技能能帮助采集、钓鱼、种植和锻造。') },
-      { title: L('Choose a profession', '选择职业'), body: L('At level 5, visit Bram in the drill yard of Firstlight Village. Look for the crossed-blades marker and press {key:hands} to talk. Choose assassin, warrior, ranger or mage to open that profession’s skill branch.', '达到 5 级后，去初原村操练场找布拉姆。他头顶有交叉双剑标记，按 {key:hands} 与他交谈，可以选择刺客、战士、游侠或法师，解锁对应的技能分支。') },
+      { title: L('Choose a profession', '选择职业'), body: L('At level 5, visit Bram in the drill yard of Emberwick. Look for the crossed-blades marker and press {key:hands} to talk. Choose assassin, warrior, ranger or mage to open that profession’s skill branch.') },
       { title: L('Use active skills', '使用主动技能'), body: L('Hover a learned active skill in the skill tree and press a skill-slot key ({key:casts}) to assign it. Back in the world, that key casts it. Passive skills take effect once learned.', '在技能树中把鼠标放到已学会的主动技能上，按技能栏按键（{key:casts}）装入对应格子。回到游戏后按同一个键施放；被动技能学会就会生效。') },
     ],
     tip: L('Read a skill’s prerequisites before saving up points for it.', '想学某个技能，先看看它需要哪些前置技能，再安排点数。'),
@@ -45,8 +45,8 @@ export const KNOWLEDGE: KnowledgeEntry[] = [
     id: 'fishing', group: 'living', title: L('Fishing', '钓鱼'),
     summary: L('Bring a rod, find a quiet patch of water, and watch the float.', '带上鱼竿，找一格安静的水，留意浮漂的动静。'),
     sections: [
-      { title: L('Rod & bait', '准备鱼竿和鱼饵'), body: L('Open crafting with {key:craft}: two sticks and two tufts of grass make a fishing rod by hand. Bait is sold at the Held Ground’s market stall. Hold the rod and right-click yourself to choose bait; matching bait can be topped up, but use it up before changing kinds.', '按 {key:craft} 打开制作，用 2 根树枝和 2 把干草就能徒手做鱼竿。鱼饵可以在誓守之地的货摊购买。拿着鱼竿右键点自己，选择鱼饵装上；同种鱼饵可以追加，换另一种前要先用完。') },
-      { title: L('Cast & reel', '抛竿和收线'), body: L('Hold the rod and left-click shallow or deep water within three tiles. In the Held Ground and its grounds, wait for a bite, then click or press {key:attack} to reel. Hold to raise the control zone and release to lower it; keep the fish inside until the catch bar fills. Other waters resolve the catch immediately.', '拿着鱼竿，左键点三格以内的浅水或深水抛竿。在誓守之地及其扩建区域，等鱼咬钩后点击左键或按 {key:attack} 开始收线；按住抬高控制区，松开下降，让鱼待在控制区里，直到捕获进度满。其他水域会直接结算鱼获。') },
+      { title: L('Rod & bait', '准备鱼竿和鱼饵'), body: L('Open crafting with {key:craft}: two sticks and two tufts of grass make a fishing rod by hand. Bait is sold at Thornhold’s market stall. Hold the rod and right-click yourself to choose bait; matching bait can be topped up, but use it up before changing kinds.') },
+      { title: L('Cast & reel', '抛竿和收线'), body: L('Hold the rod and left-click shallow or deep water within three tiles. In Thornhold and its grounds, wait for a bite, then click or press {key:attack} to reel. Hold to raise the control zone and release to lower it; keep the fish inside until the catch bar fills. Other waters resolve the catch immediately.') },
       { title: L('Find different fish', '寻找不同的鱼'), body: L('Bait improves the chance of a bite; an unbaited rod still works. Time, weather and water depth affect the fish: eels at night, catfish in rain, pike in deep water. A cast stirs its tile for ten seconds, so move to another tile while it settles.', '挂饵能提高咬钩几率，没饵也能钓。时辰、天气和水深会影响鱼种：夜里有鳗鱼，下雨有鲶鱼，深水有狗鱼。抛竿后那格水会搅浑十秒，换一格水就能继续试。') },
     ],
     tip: L('Leave room in your pack. Fish can be eaten, cooked or sold; a rare catch may be worth more at the market than on the fire.', '出发前给背包留些空位。鱼可以吃、烤熟或出售，稀有鱼先看看价钱，再决定要不要下锅。'),
@@ -55,7 +55,7 @@ export const KNOWLEDGE: KnowledgeEntry[] = [
     id: 'farming', group: 'living', title: L('Farming', '种植与农耕'),
     summary: L('Till, sow, water and harvest — a small patch can feed you for the road.', '锄地、播种、浇水、收获，一小块菜地也能备好旅途的口粮。'),
     sections: [
-      { title: L('Start a garden', '开垦和播种'), body: L('Hold a hoe and left-click grass or dirt to till it. Hold seeds and right-click empty farmland to sow. The garden tool chest in Firstlight Village has starter supplies; the Held Ground’s market sells more seeds.', '拿锄头左键点草地或泥地，开垦成农田。再拿着种子右键点空农田播种。初原村菜圃旁的工具箱有入门物资，更多种子可以去誓守之地货摊买。') },
+      { title: L('Start a garden', '开垦和播种'), body: L('Hold a hoe and left-click grass or dirt to till it. Hold seeds and right-click empty farmland to sow. The garden tool chest in Emberwick has starter supplies; Thornhold’s market sells more seeds.') },
       { title: L('Water each stage', '浇水与生长'), body: L('Use an empty bucket on water to fill it, then use the full bucket on the crop with a right click. Crops need open sky and water at each growth stage; their item descriptions show the time needed. Rain does not water farmland.', '拿空桶右键点水源装水，再拿满桶右键点作物浇水。作物需要露天生长，每个阶段都要有水，种子说明会写所需时间；下雨不能代替浇水。') },
       { title: L('Harvest & sow again', '收获与再种'), body: L('Use a sickle with a left click to harvest a ripe crop, or press {key:hands} to pick it by hand. A sickle gives more produce and seeds. Some crops, such as tomatoes, bear again after you water them.', '成熟后拿镰刀左键收割，也可以按 {key:hands} 徒手采摘。镰刀能带回更多作物和种子。番茄等多年生作物收获后，再浇水还会继续结果。') },
     ],
@@ -76,15 +76,15 @@ export const KNOWLEDGE: KnowledgeEntry[] = [
     summary: L('Flowers, tufts, ferns, leaves, pebbles and moss are all things: pick them up, and put them to use.', '花、草丛、蕨草、落叶、卵石、苔藓都是能捡的东西：按一下就进包，各有用处。'),
     sections: [
       { title: L('Pick them up', '怎么捡'), body: L('Stand beside any of the small things on the ground and press {key:hands}. Wildflowers give a wildflower; a grass tuft, ferns, reeds or fallen leaves give grass; pebbles give a stone; moss gives a herb; soot gives ash. Whatever you pick is gone, and the ground brings new flowers, tufts, leaves and pebbles slowly: one more every couple of hours on an outdoor map, never more than a few at a time.', '走到地上的小东西旁边，按 {key:hands}。野花给一枝野花；草丛、蕨草、芦苇、落叶给干草；卵石给石块；苔藓给草药；炭灰给灰烬。捡过的就没了，野花、草丛、落叶、卵石会在户外地图上慢慢重新出现：每隔两个小时左右多一处，一次最多几处。') },
-      { title: L('What flowers are for', '野花能做什么'), body: L('Three wildflowers and a handful of grass tie into a bouquet from the bag — a gift almost anyone is glad of, and some people like flowers best of all. At the Held Ground\'s arcane workbench, three flowers and a herb brew a healing potion when you have no honey. And Odette the dresser takes flowers as part of her fee.', '3 枝野花加 1 把干草，在背包里就能扎成一束花——几乎人人收了都高兴，有的人最喜欢的就是花。在领地的魔法工作台上，没有蜂蜜时 3 枝野花加 1 株草药也能熬一瓶治疗药水。梳妆师奥黛特也收野花当工钱。') },
+      { title: L('What flowers are for', '野花能做什么'), body: L('Three wildflowers and a handful of grass tie into a bouquet from the bag — a gift almost anyone is glad of, and some people like flowers best of all. At Thornhold\'s arcane workbench, three flowers and a herb brew a healing potion when you have no honey. And Odette the dresser takes flowers as part of her fee.') },
     ],
     tip: L('Foragers pick one flower more from every patch. Keep a few in the bag before you visit the dresser.', '学了「采集好手」，每丛花多采 1 枝。去找梳妆师之前，包里先备上几枝。'),
   },
   {
     id: 'dresser', group: 'living', title: L('Changing your look', '改换样子'),
-    summary: L('Odette on Firstlight\'s square redoes your hair, face and colours for ten Dawnmarks and three wildflowers.', '初原村广场上的奥黛特能给你重做头发、五官和衣服颜色，收 10 枚晨辉币和 3 枝野花。'),
+    summary: L('Odette on Emberwick\'s square redoes your hair, face and colours for ten Dawnmarks and three wildflowers.'),
     sections: [
-      { title: L('Find the dresser', '找到梳妆师'), body: L('Odette works beside her standing mirror at the south-east of Firstlight\'s square, east of the evening fire, from nine in the morning to six in the evening. She sleeps in the little cabin down the south lane.', '奥黛特白天九点到傍晚六点在初原村广场东南、营火东边她的穿衣镜旁干活。晚上住在南边小巷的小木屋里。') },
+      { title: L('Find the dresser', '找到梳妆师'), body: L('Odette works beside her standing mirror at the south-east of Emberwick\'s square, east of the evening fire, from nine in the morning to six in the evening. She sleeps in the little cabin down the south lane.') },
       { title: L('Open her panel', '打开面板'), body: L('Talk to her with {key:hands} and choose “Could you do something with my look?”, or press {key:hands} on the mirror itself. The character creator opens over your own look: body, hair, face, marks, outfit and every colour. Nothing changes until you keep it.', '按 {key:hands} 和她说话，选「帮我改改样子吧。」，或者直接对穿衣镜按 {key:hands}。捏脸面板会打开，上面是你自己的样子：身体、发型、五官、印记、服装和所有颜色。没按「就这样」之前什么都不会变。') },
       { title: L('Pay and keep', '付钱'), body: L('Keeping a look costs ten Dawnmarks and three wildflowers, taken from your bag; the button stays grey while you are short. The new look is yours for good: your sprite, your portrait and how people describe you all follow it, and armour or a hat still shows over it.', '按「就这样」要从包里扣 10 枚晨辉币和 3 枝野花；不够时按钮是灰的。改好的样子就是你自己的了：地图上的小人、对话里的立绘、别人形容你的话都跟着变；穿戴的盔甲、帽子照旧盖在上面。') },
     ],
@@ -94,22 +94,22 @@ export const KNOWLEDGE: KnowledgeEntry[] = [
     id: 'smithing', group: 'craft', title: L('Smelting & smithing', '冶炼与锻造'),
     summary: L('Ore becomes a bar at the forge; a bar becomes equipment at the anvil.', '矿石在熔炉里变成锭，金属锭在铁砧上变成装备。'),
     sections: [
-      { title: L('Find a smithy', '找到铁匠铺'), body: L('Firstlight Village, the Held Ground and Emberfall have forges and anvils. Haldor in Firstlight sells smithing hammers, coal, iron ore and iron bars. You can use the workstations even when the smith is away.', '初原村、誓守之地和余烬镇都有熔炉、铁砧。初原村的哈尔多出售锻锤、煤炭、铁矿石和铁锭；铁匠不在时，旁边的工作设施照样能用。') },
+      { title: L('Find a smithy', '找到铁匠铺'), body: L('Emberwick, Thornhold and Cinderholt have forges and anvils. Haldor in Emberwick sells smithing hammers, coal, iron ore and iron bars. You can use the workstations even when the smith is away.') },
       { title: L('Smelt metal', '先把矿石炼成锭'), body: L('Press {key:hands} on a forge to open it. The iron recipe turns two iron ore and one coal into two iron bars. Gold and steel recipes require their smithing skills. You can also use iron ore directly on a lit forge with a right click.', '对熔炉按 {key:hands} 打开熔炉面板。基础配方用 2 块铁矿石和 1 块煤炭炼出 2 块铁锭；金锭、钢条需要对应的锻造技能。也可以拿铁矿石右键点已点燃的熔炉，直接熔炼。') },
       { title: L('Forge equipment', '再到铁砧打造'), body: L('Bring bars and a smithing hammer and press {key:hands} on an anvil to open it. Choose a weapon, armour piece or tool and check its materials and requirements. Your level and smithing skills affect the result; advanced recipes need skills shown in the recipe.', '带上金属锭和锻锤，对铁砧按 {key:hands} 打开铁砧面板，选择武器、护甲或工具，查看材料和条件。角色等级与锻造技能会影响成品；高级配方需要先学会配方中列出的技能。') },
     ],
-    tip: L('Need ore? Dawn Hill Mine north of Firstlight has iron and coal. Take a pickaxe, and make room for what you bring back.', '缺矿石可以去初原村北面的晨光丘矿洞，那里有铁矿和煤。记得带镐，也给带回来的材料留些空位。'),
+    tip: L('Need ore? Beacon Hill Mine north of Emberwick has iron and coal. Take a pickaxe, and make room for what you bring back.'),
   },
   {
     id: 'crafting', group: 'craft', title: L('Crafting & the workshop', '制作与工坊'),
-    summary: L('Everything is made from the bag; the Held Ground\'s buildings open more recipes.', '东西都在背包里直接做；领地的建筑会解锁更多配方。'),
+    summary: L('Everything is made from the bag; Thornhold\'s buildings open more recipes.'),
     sections: [
       { title: L('Make it from the bag', '在背包里做'), body: L('Press {key:craft} to open crafting. Nothing is made beside a bench: what the panel lists is made wherever you stand, from what you carry. Tools a recipe asks for are carried, not used up.', '按 {key:craft} 打开制作面板。做东西不用站在什么旁边：面板里列的配方，站在哪里都能用身上的材料做。配方要的工具只需带着，不会消耗。') },
-      { title: L('Buildings unlock recipes', '建筑解锁配方'), body: L('Simple tools are made by hand from the first. The rest wait for a building on the Held Ground: the Workshop opens the club, the shield and the bow, and raised to Workshop II, candles, lanterns and a smith\'s own forge; the Weaving Shed opens cloth and, for a Leatherworker, leather gear. A greyed recipe names the building it waits for.', '简单的工具一开始就能徒手做。其余的要等领地里建好对应的建筑：工坊解锁棍棒、盾牌和弓，升到工坊 II 后还有蜡烛、提灯和铁匠炉；织坊解锁织布，皮匠还能做皮甲。灰掉的配方上会标着它在等哪座建筑。') },
-      { title: L('Forges, anvils and the smithy', '熔炉、铁砧与铁匠铺'), body: L('Smelting and smithing are done at the thing itself: press {key:hands} on a forge or an anvil and its own panel opens. The Held Ground\'s smithy can be bettered twice: a bellows lets a skilled smith forge heavy arms, plate, metal tools and jewellery; a hardened anvil, the professions\' sets.', '冶炼和锻造在设施本身进行：对熔炉或铁砧按 {key:hands} 打开它的面板。领地的铁匠铺能升级两次：装上风箱后，学了技能的铁匠能打重兵器、板甲、金属工具和首饰；淬硬铁砧后能锻造职业套装。') },
-      { title: L('The arcane workshop', '魔法工坊'), body: L('Built on the Held Ground, its workbench makes wands, staves (a mage\'s alone), healing and fireproof draughts, and spell books: read one to learn a mage\'s spell. Raised to Arcane Workshop II, it makes staves of fire and frost and the deeper spell books.', '在领地建好魔法工坊后，对魔法工作台按 {key:hands}：能做魔杖、法杖（只有法师能用）、治疗药水、防火药剂和法术书，读一本就学会一个法师法术。升到魔法工坊 II 后还能做火焰、冰霜法杖和更深的法术书。') },
+      { title: L('Buildings unlock recipes', '建筑解锁配方'), body: L('Simple tools are made by hand from the first. The rest wait for a building on Thornhold: the Workshop opens the club, the shield and the bow, and raised to Workshop II, candles, lanterns and a smith\'s own forge; the Weaving Shed opens cloth and, for a Leatherworker, leather gear. A greyed recipe names the building it waits for.') },
+      { title: L('Forges, anvils and the smithy', '熔炉、铁砧与铁匠铺'), body: L('Smelting and smithing are done at the thing itself: press {key:hands} on a forge or an anvil and its own panel opens. Thornhold\'s smithy can be bettered twice: a bellows lets a skilled smith forge heavy arms, plate, metal tools and jewellery; a hardened anvil, the professions\' sets.') },
+      { title: L('The arcane workshop', '魔法工坊'), body: L('Built on Thornhold, its workbench makes wands, staves (a mage\'s alone), healing and fireproof draughts, and spell books: read one to learn a mage\'s spell. Raised to Arcane Workshop II, it makes staves of fire and frost and the deeper spell books.') },
     ],
-    tip: L('Ask Alberic about the Held Ground to see what each building unlocks before you gather for it.', '收集材料之前，先找阿尔贝里克打开领地扩建面板，看看每座建筑会解锁什么。'),
+    tip: L('Ask Gavrel about Thornhold to see what each building unlocks before you gather for it.'),
   },
   {
     id: 'building', group: 'craft', title: L('Building & moving', '建造与搬放'),

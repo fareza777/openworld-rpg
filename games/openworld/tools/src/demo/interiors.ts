@@ -1,6 +1,6 @@
 // The rooms behind the doors outside Firstlight (2026-10-11: every building can be walked into): Emberfall's houses,
 // the elder's teahouse, Garrick's smithy and Wren's hut; the burned farmstead on the East Road; and the tents — the
-// ferry camp's at the Ford, the rotted one in the forest, Alberic's in the Held Ground. A building's door is a portal
+// ferry camp's at the Ford, the rotted one in the forest, Gavrel's in Thornhold. A building's door is a portal
 // (as Firstlight's: village.ts); a tent is a thing that stands in the way, so one goes in with a hand on it (content
 // rules.ts tent/enter: its `interior` props), and comes out in front of it.
 
@@ -85,7 +85,7 @@ export function tentRoom(outer: MapBuilder, tent: Entity, id: string, en: string
   return m
 }
 
-/** The tents of the world as their maps placed them, each with a room: the ferry camp's, the rotted one, Alberic's. */
+/** The tents of the world as their maps placed them, each with a room: the ferry camp's, the rotted one, Gavrel's. */
 export function tentRooms(ford: MapBuilder, forest: MapBuilder, haven: MapBuilder): MapBuilder[] {
   const tentOf = (m: MapBuilder) => m.entities.find((e) => e.type.startsWith('fixture/tent'))!
   return [
@@ -94,17 +94,16 @@ export function tentRooms(ford: MapBuilder, forest: MapBuilder, haven: MapBuilde
       m.fixture('fixture/container/crate', 6, 1)
       m.fixture('fixture/light/candles', 4, 1, { statuses: { lit: -1 } })
     }),
-    // the pilgrim before you camped here and did not go home (quest/chapter1.ts): bare earth under the canvas, his
+    // the Crownseeker before you camped here and did not go home (quest/chapter1.ts): bare earth under the canvas, his
     // bedroll against the back, his daybook on a box beside it, his sack and an empty crate; the woods coming in
     tentRoom(forest, tentOf(forest), 'forest.tentroom', 'Inside the Rotted Tent', '朽烂的帐篷里', (m) => {
       m.rect(1, 1, 6, 4, 'dirt')
       m.fixture('fixture/furniture/bed', 1, 2, { name: L('A mouldy bedroll', '发霉的铺盖') })
       m.fixture('fixture/furniture/table', 3, 1, {
-        name: L("The pilgrim's daybook", '朝圣者的日记'),
+        name: L("A Crownseeker's daybook"),
         tags: ['readable'],
         props: {
-          text: "A pilgrim's daybook, its pages swollen together with damp. A few lines can still be read: 'The road east, and him on it.' — 'I knelt. God forgive me.' — and on the last page, pressed hard: 'Not home. Not like this.'",
-          text_zh: '一本朝圣者的日记，纸页受了潮，粘成一团。还能认出几行：“往东的路，他就在路上。”——“我跪下了。愿神宽恕我。”——最后一页，字压得很深：“不回家了。不能这样回去。”',
+          text: "A daybook, its pages swollen together with damp. A small crown is drawn inside the cover. A few lines can still be read: 'The road east, and him on it.' — 'He asked who sent me. I told him, and he sent me back.' — and on the last page, pressed hard: 'Not home. Not like this.'",
         },
       })
       m.fixture('fixture/container/sack', 6, 2, { name: L("A forager's sack", '采集者的麻袋') })
@@ -113,9 +112,9 @@ export function tentRooms(ford: MapBuilder, forest: MapBuilder, haven: MapBuilde
       for (const [x, y] of [[5, 1], [1, 4]] as const) m.fixture('fixture/nature/leaves', x, y)
       m.fixture('fixture/nature/moss', 5, 3)
     }),
-    tentRoom(haven, tentOf(haven), 'haven.tentroom', "Inside Alberic's Tent", '阿尔贝里克的帐篷里', (m) => {
-      m.fixture('fixture/furniture/bed', 1, 1, { name: L("Alberic's cot", '阿尔贝里克的行军床') })
-      m.fixture('fixture/furniture/rack', 6, 1, { name: L('His old armour, on a stand', '架子上他的旧盔甲'), tags: ['readable'], props: { text: 'White plate, the crown\'s thorns still caught in the joints. He keeps it polished and does not wear it.', text_zh: '白色的板甲，关节里还卡着荆棘冠的刺。他一直把它擦得锃亮，却再没穿过。' } })
+    tentRoom(haven, tentOf(haven), 'haven.tentroom', "Inside Gavrel's Tent", "Inside Gavrel's Tent", (m) => {
+      m.fixture('fixture/furniture/bed', 1, 1, { name: L("Gavrel's cot") })
+      m.fixture('fixture/furniture/rack', 6, 1, { name: L('His old armour, on a stand', '架子上他的旧盔甲'), tags: ['readable'], props: { text: 'White plate, the Diadem\'s thorns still caught in the joints. He keeps it polished and does not wear it.' } })
       m.fixture('fixture/container/chest', 6, 3)
     }),
   ]

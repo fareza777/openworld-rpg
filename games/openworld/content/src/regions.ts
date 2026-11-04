@@ -27,14 +27,14 @@ export const REGIONS: RegionDef[] = [
   {
     id: 'frostfang',
     name: { en: 'Frostfang Coast', zh: '霜牙海岸' },
-    doc: { en: 'The first seal\'s: a cold coast of pine and fords, the White Knight\'s kingdom, briars where the Crown of Thorns is carried.', zh: '第一印之地：松林与渡口的寒冷海岸，白骑士的王国，荆棘冠的重负化作遍地荆棘。' },
+    doc: { en: 'The first March: a cold coast of pine and fords, the White Knight\'s river, briars where the Briar Diadem is carried.', zh: 'The first March: a cold coast of pine and fords, the White Knight\'s river, briars where the Briar Diadem is carried.' },
     seal: 'crown',
     color: '#9cc4dc',
   },
   {
     id: 'redmarch',
     name: { en: 'The Scarred March', zh: '赤痕边境' },
-    doc: { en: 'The second seal\'s: red badlands and steppe where the war never ends — forts, old battlefields, the whipping post\'s welts in the rock.', zh: '第二印之地：战事从未停歇的赤岩荒原与草原——要塞、古战场，鞭刑柱的血痕刻进岩石。' },
+    doc: { en: 'The second March: red badlands and steppe where the war never ends — forts, old battlefields, the Ember Chain\'s scorch in the rock.', zh: 'The second March: red badlands and steppe where the war never ends — forts, old battlefields, the Ember Chain\'s scorch in the rock.' },
     seal: 'scourge',
     color: '#c8644a',
     // the red of the rock and of the welts: warm, dusty, a little dim
@@ -43,8 +43,8 @@ export const REGIONS: RegionDef[] = [
   },
   {
     id: 'tithe',
-    name: { en: 'The Vale of Scales', zh: '衡谷平原' },
-    doc: { en: 'The third seal\'s: a great grain plain gone barren, salt flats and dust, market towns where everything is weighed and the poor go hungry.', zh: '第三印之地：枯死的大粮原、盐滩与尘暴；集市城里万物过秤，穷人挨饿。' },
+    name: { en: 'The Golden Reach', zh: 'The Golden Reach' },
+    doc: { en: 'The third March: a great grain plain gone barren, salt flats and dust, market towns where everything is weighed and the poor go hungry.', zh: 'The third March: a great grain plain gone barren, salt flats and dust, market towns where everything is weighed and the poor go hungry.' },
     seal: 'scales',
     color: '#d6b45a',
     // grain gone to dust: a pale straw light, the colour drained from it
@@ -53,8 +53,8 @@ export const REGIONS: RegionDef[] = [
   },
   {
     id: 'palefen',
-    name: { en: 'The Pale Fens', zh: '苍白林沼' },
-    doc: { en: 'The fourth seal\'s: marsh and dead wood under a dusk that hardly lifts, graveyards and ossuaries — the dead who will not rest.', zh: '第四印之地：几乎不散的黄昏下的沼泽与死林，墓园与骨堂——不得安息的亡者。' },
+    name: { en: 'The Mirewood', zh: 'The Mirewood' },
+    doc: { en: 'The fourth March: marsh and dead wood under a dusk that hardly lifts, graveyards and ossuaries — the dead who will not rest.', zh: 'The fourth March: marsh and dead wood under a dusk that hardly lifts, graveyards and ossuaries — the dead who will not rest.' },
     seal: 'nails',
     color: '#8a9a8c',
     // a dusk that hardly lifts: grey-green, the colour nearly gone, dim by day and darker at night
@@ -63,8 +63,8 @@ export const REGIONS: RegionDef[] = [
   },
   {
     id: 'altar',
-    name: { en: 'The White Altar Heights', zh: '白坛高地' },
-    doc: { en: 'The fifth seal\'s: white stone highlands and cliffs, monasteries and reliquaries, the catacombs of the martyrs under the altar.', zh: '第五印之地：白石高原与悬崖，修道院与圣髑堂，祭坛之下殉道者的地下墓穴。' },
+    name: { en: 'The Silverspire Heights', zh: 'The Silverspire Heights' },
+    doc: { en: 'The fifth March: white stone highlands and cliffs, monasteries and reliquaries, the catacombs of the Vigil under the altar.', zh: 'The fifth March: white stone highlands and cliffs, monasteries and reliquaries, the catacombs of the Vigil under the altar.' },
     seal: 'lance',
     color: '#e6e0d0',
     // white stone under a high, cold light: bleached, a touch of blue
@@ -73,8 +73,8 @@ export const REGIONS: RegionDef[] = [
   },
   {
     id: 'holy',
-    name: { en: 'The Holy City', zh: '圣城' },
-    doc: { en: 'Where the five are carried: the city of the Church of the Five Sufferings round the Most Holy Hall, and the old works under it that carry power to it.', zh: '五苦汇聚之处：围绕至圣大殿的五苦圣教之城，以及城下把力量输向它的古老结构。' },
+    name: { en: 'Solmere, the Crown City', zh: 'Solmere, the Crown City' },
+    doc: { en: 'Where the five Regalia are called home: the Regent\'s city round the Crown Chapel, the seat of the Radiant Order, and the old works under it that carry light to it.', zh: 'Where the five Regalia are called home: the Regent\'s city round the Crown Chapel, the seat of the Radiant Order, and the old works under it that carry light to it.' },
     color: '#f0d890',
     // the city of candles and gold leaf: a warm gold
     look: { tint: '#f0cf7a', tintAmount: 0.16, desat: -0.05 },

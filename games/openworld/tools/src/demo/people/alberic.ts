@@ -1,6 +1,6 @@
-// Alberic, freed of the crown (docs/chapter-1.md §12): the White Knight's human form, steward of the Held Ground. The
-// crown took most of him; what is left keeps his vow another way — he holds the ground for the one who relieved him,
-// and widens it for what they bring. He does not remember names. He asks yours.
+// Ser Gavrel the Thornbound, freed of the Briar Diadem (docs/sunshard/CHAPTER-1.md, oath_thorn / haven_first): the First
+// Warden, steward of Thornhold. The Diadem took most of him; what is left keeps his vow another way — he holds the ground for
+// the one who relieved him, and widens it for what they bring. He does not remember names. He asks yours.
 
 import { line, type PersonDef } from '../person.ts'
 
@@ -8,10 +8,10 @@ export const alberic: PersonDef = {
   id: 'npc.alberic',
   role: 'steward',
   essential: true,
-  name: { en: 'Alberic', zh: '阿尔贝里克' },
+  name: { en: 'Ser Gavrel' },
   gender: 'male',
   look: { parts: { hair: 'hair.tied', face: 'face.weary', outfit: 'outfit.coat', mark: 'mark.scar', beard: null, hat: null, age: null }, colors: { hair: 'snow', eyes: 'storm', skin: 'porcelain', 'outfit.1': 'ivory', 'outfit.2': 'slate', 'outfit.3': 'gold' } },
-  age: 341,
+  age: 54,
   temperament: { personality: 'steadfast', manner: 'polite', social: 'reserved', outlook: 'hopeful' },
   ties: { 'npc.fennick': 'squire' },
   // the Held Ground's smith too: a mark over his head (tag smith); he sells what the anvil needs

@@ -26,7 +26,7 @@ export interface ShopDef {
 
 const SELL = { name: L('Sell', '出售'), sell: true }
 export const SHOPS: ShopDef[] = [
-  { station: 'stall', name: L("Alberic's stall", '阿尔贝里克的货摊'), shelves: [{ group: 'farm', name: L('Farming', '农业') }, { group: 'ranch', name: L('Ranching', '牧业') }, { group: 'fish', name: L('Fishing', '渔业') }, { group: 'sell', ...SELL }] },
+  { station: 'stall', name: L("Gavrel's stall"), shelves: [{ group: 'farm', name: L('Farming', '农业') }, { group: 'ranch', name: L('Ranching', '牧业') }, { group: 'fish', name: L('Fishing', '渔业') }, { group: 'sell', ...SELL }] },
   { station: 'store', name: L('General Store', '杂货铺'), shelves: [{ group: 'supplies', name: L('Supplies', '杂货') }, { group: 'provisions', name: L('Provisions', '食物与药水') }, { group: 'store-sell', ...SELL }] },
   { station: 'books', name: L('Chapel Bookstand', '礼拜堂书架'), shelves: [{ group: 'books', name: L('Skill Books', '技能书') }, { group: 'books-profession', name: L('Profession', '职业技能书') }] },
 ]
@@ -37,13 +37,15 @@ export const SHOPS: ShopDef[] = [
  * into her chapel, 2026-10-12: the First Dawn's is the chapel on Dawn Hill.) Its sign by the door, which an older save
  * moves here (game.ts).
  */
+const CHAPEL_TEXT = "EMBERWICK SHRINE. The Hearthshard and the altar of the five facets, kept by Sister Maren. Skill books at the bookstand within; ask Brother Anselm."
 export const CHAPEL_SIGN = {
   id: 'village.church.sign',
   at: [22, 12] as const,
   /** where it stood on the east road */
   was: [51, 17] as const,
-  text: "FIRSTLIGHT CHAPEL. The flame and Astra's altar, kept by Sister Ilse. Skill books at the bookstand within; ask Brother Anselm.",
-  text_zh: '初原村礼拜堂。圣火与阿斯特拉祭坛，由伊尔丝修女看守。堂内书架有技能书，请找安塞姆修士。',
+  text: CHAPEL_TEXT,
+  /** (English only in this fork: the sign reads the same in every language) */
+  text_zh: CHAPEL_TEXT,
 }
 
 const buy = (station: string, group: string, type: string, count: number, price = shelfPrice(type, count)): Recipe => ({

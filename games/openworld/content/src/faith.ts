@@ -58,7 +58,7 @@ export const FAITH_RULES: Rule[] = [
   rule({
     id: 'faith/wayshrine',
     label: L('Read and pray at {target}', '阅读并在{target}前祈祷'),
-    doc: 'A hand on a wayside shrine of the Five Sufferings: its carving is read, and one prays there — faith +2, once a day at each.',
+    doc: 'A hand on a beacon shrine of the five facets: its carving is read, and one prays there — faith +2, once a day at each.',
     host: { type: 'fixture/sacred/wayshrine' },
     on: 'impulse/handle',
     tree: prayed(2, [{ op: 'say', text: '@line' }]),

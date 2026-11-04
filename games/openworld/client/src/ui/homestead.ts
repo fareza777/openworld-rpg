@@ -27,7 +27,7 @@ type Page = 'today' | 'residents' | 'upgrades'
 const num = (v: unknown) => (typeof v === 'number' ? v : Number(v) || 0)
 
 /** The panel's title, and the story's facts it reads: how far the land goes, and the stock's (`<STOCK><type>`). */
-const TITLE = { en: 'The Held Ground', zh: '誓守之地 · 领地经营' }
+const TITLE = { en: 'Thornhold' }
 const SIZE = 'haven.size'
 const STOCK = 'haven.stock.'
 /** What the steward is asked (content haven.ts `haven/steward`): `say: haven`, choice `build:<id>` or `go:<id>`. */
@@ -140,7 +140,7 @@ class HomesteadPanel implements GamePanel {
           <div class="hs-level"><span>${zh ? '土地等级' : 'Land'}</span><b>${size}</b><small>/ ${lands}</small></div>
           <div class="hs-pips">${rows.filter((r) => r.u.track === 'land').map((r) => `<i class="${r.state === 'done' ? 'on' : ''}"></i>`).join('')}</div>
           <div class="hs-stock"><span class="hs-stock-title">${zh ? '领地库存' : 'Stock'}</span><div class="hs-stock-chips">${stockChips}</div></div>
-          <p class="hs-note">${zh ? '材料交给阿尔贝里克存进领地库存：把行囊里的材料拖到卡片的材料槽上，或直接点一下行囊里的材料。库存是同一份：每张卡片看的都是它，建造哪一项就从中取走哪一项要的材料。' : 'Hand materials to Alberic into the stock: drag from the pack onto a card\'s slot, or click a stack in the pack. The stock is one pile: every card counts the same stock, and building one takes what it asks from it.'}</p>
+          <p class="hs-note">${zh ? '材料交给 Gavrel 存进领地库存：把行囊里的材料拖到卡片的材料槽上，或直接点一下行囊里的材料。库存是同一份：每张卡片看的都是它，建造哪一项就从中取走哪一项要的材料。' : 'Hand materials to Gavrel into the stock: drag from the pack onto a card\'s slot, or click a stack in the pack. The stock is one pile: every card counts the same stock, and building one takes what it asks from it.'}</p>
         </div>
         <div class="hs-right">
           <div class="cx-tabs hs-tabs">${tabs}</div>
@@ -171,7 +171,7 @@ class HomesteadPanel implements GamePanel {
       const notice = !residence
         ? (zh ? '领地经营数据尚未配置。' : 'Residence work data is not configured.')
         : !residence.active || !residence.onMap
-          ? (zh ? '你已离开领地；工作总览暂停，返回后重新读取。' : 'Away from the Held Ground. The work overview is paused and will refresh when you return.')
+          ? (zh ? '你已离开领地；工作总览暂停，返回后重新读取。' : 'Away from Thornhold. The work overview is paused and will refresh when you return.')
           : !work
             ? (zh ? '此领地尚未配置实时经营数据。' : 'Live work data is not configured for this residence.')
             : ''
@@ -213,7 +213,7 @@ class HomesteadPanel implements GamePanel {
         ? (zh ? '领地居民与床位信息不可用。' : 'Residence data is unavailable.')
         : zh
           ? '居民按现有昼夜作息生活：21:00–07:00休息，白天活动。只有你在领地且时钟运行时岗位才会推进；关闭此面板才能继续时间。离开领地期间岗位暂停。'
-          : 'Residents keep their current routine and sleep from 21:00 to 07:00. Work advances only while you are on the Held Ground and the clock runs; close this panel to let time pass. Orders pause while you are away.'
+          : 'Residents keep their current routine and sleep from 21:00 to 07:00. Work advances only while you are in Thornhold and the clock runs; close this panel to let time pass. Orders pause while you are away.'
       const work = residence?.work
       const targetList = work?.crops?.targets ?? []
       const animals = work?.livestock?.animals ?? []
@@ -278,7 +278,7 @@ class HomesteadPanel implements GamePanel {
           ...(order?.kind === 'harvest' ? order.cells : []).filter((cell) => !targetKeys.has(`${cell.x},${cell.y}`)).map((cell) => `<label class="muted"><input type="checkbox" data-work-cell="${esc(person.id)}" value="${cell.x},${cell.y}" ${draft!.cells.has(`${cell.x},${cell.y}`) ? 'checked' : ''}> ${zh ? `已授权田块 (${cell.x}, ${cell.y})，当前空田` : `Authorized plot (${cell.x}, ${cell.y}) · currently empty`}</label>`),
         ].join('')
         const ownerLabel = (animal: typeof animals[number]) => {
-          const label = { mine: zh ? '玩家所有' : 'Player-owned', ours: zh ? '领地所有' : 'Held Ground-owned', nobody: zh ? '无归属，不可委任' : 'Unowned · unavailable', another: zh ? '他人所有，不可委任' : 'Owned by someone else · unavailable' }[animal.owner]
+          const label = { mine: zh ? '玩家所有' : 'Player-owned', ours: zh ? '领地所有' : 'Thornhold-owned', nobody: zh ? '无归属，不可委任' : 'Unowned · unavailable', another: zh ? '他人所有，不可委任' : 'Owned by someone else · unavailable' }[animal.owner]
           return !animal.selectable && (animal.owner === 'mine' || animal.owner === 'ours')
             ? `${label} · ${zh ? '当前不可委任' : 'unavailable for assignment'}`
             : label

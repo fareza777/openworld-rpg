@@ -149,7 +149,7 @@ export function bonusOf(s: SetDef, b: BonusDef): GearSetBonus {
 export const gearSetOf = (s: SetDef): GearSet => ({ id: s.id, name: { en: s.en, zh: s.zh }, pieces: s.pieces.length, bonuses: s.bonuses.map((b) => bonusOf(s, b)) })
 
 /** A piece (for the chapters' files): slot, form, names, words, where, and what it adds. */
-export const P = (slot: Slot, form: string, en: string, zh: string, text: string, textZh: string, from: From, props?: Record<string, number>, extra: Partial<PieceDef> = {}): PieceDef => ({ slot, form, en, zh, text, textZh, from, ...(props && { props }), ...extra })
+export const P = (slot: Slot, form: string, en: string, zh: string, text: string, textZh: string, from: From, props?: Record<string, number>, extra: Partial<PieceDef> = {}): PieceDef => ({ slot, form, en, zh: zh || en, text, textZh: textZh || text, from, ...(props && { props }), ...extra })
 
 /** The wearable forms the pieces are made of, by name, for the chapters' files. */
 export const F = {

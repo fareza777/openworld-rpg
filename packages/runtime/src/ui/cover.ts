@@ -396,7 +396,7 @@ export class Cover {
     const filter = game().worldFilter ? `<div class="opt"><span>${t('optFilter')}</span><button id="cvFilter">${t({ off: 'filterOff', light: 'filterLight', full: 'filterFull' }[prefs.filter()])}</button></div>` : ''
     const credit = cv.credit === false ? '' : `<div class="cv-credit">${cv.credit ? esc(tx(cv.credit)) : `${zh ? '美术与音乐：' : 'Art & music: '}<a href="https://pixel-boy.itch.io/ninja-adventure-asset-pack" target="_blank" rel="noopener">Ninja Adventure</a> (CC0)`}</div>`
     return `<div class="options cv-settings">
-      <div class="opt"><span>${t('language')}</span><button id="cvLang">${zh ? '中文 → English' : 'English → 中文'}</button></div>
+      ${(game().locales ?? ['en', 'zh']).length > 1 ? `<div class="opt"><span>${t('language')}</span><button id="cvLang">${zh ? '中文 → English' : 'English → 中文'}</button></div>` : ''}
       <div class="opt"><span>${t('sound')}</span><button id="cvSound">${this.on.muted() ? t('off') : t('on')}</button></div>
       ${volumeRows('cv')}
       ${filter}
@@ -419,7 +419,8 @@ export class Cover {
     this.keysPage.hide()
     if (this.panel === 'settings') {
       const host = $('#intro').querySelector<HTMLElement>('.cv-settings')!
-      $('#cvLang').onclick = () => (this.on.toggleLocale(), this.render())
+      const lang = document.getElementById('cvLang')
+      if (lang) lang.onclick = () => (this.on.toggleLocale(), this.render())
       $('#cvSound').onclick = () => (this.on.toggleSound(), this.render())
       wireVolumes(host, () => this.on.levels())
       document.querySelector<HTMLButtonElement>('#cvFilter')?.addEventListener('click', () => {

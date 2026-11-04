@@ -7,7 +7,7 @@
  * tooltip names and tells.
  */
 export const RELICS: Record<string, { en: string; zh: string; text: { en: string; zh: string } }> = {
-  crown: { en: 'None Cross That Do Not Kneel', zh: '不跪者不得过', text: { en: 'Your blows have a 20% chance to force the struck to their knees (1 second, unable to move).', zh: '你的攻击有 20% 几率令目标跪地（1 秒内无法移动）。' } },
+  crown: { en: 'None Cross for Solmere', zh: 'None Cross for Solmere', text: { en: 'Your blows have a 20% chance to force the struck to their knees (1 second, unable to move).', zh: '你的攻击有 20% 几率令目标跪地（1 秒内无法移动）。' } },
   nightfang: { en: 'Tooth of the Night', zh: '夜之牙', text: { en: '+25% critical chance at night.', zh: '入夜后暴击率 +25%。' } },
   mirrorshard: { en: 'Stolen Face', zh: '窃面', text: { en: 'A critical hit draws back 3 more health.', zh: '暴击时额外吸取 3 点生命。' } },
   oathbrand: { en: 'Oath Kept', zh: '守誓', text: { en: 'Below 30% health, the health it draws back is tripled.', zh: '生命低于 30% 时，吸取的生命变为三倍。' } },
@@ -32,7 +32,7 @@ export const RELICS: Record<string, { en: string; zh: string; text: { en: string
 export const VOWS: Record<string, { en: string; zh: string; text: { en: string; zh: string } }> = {
   vigil: { en: 'Vow of Vigil', zh: '守夜之誓', text: { en: 'At night: +20% critical chance and +15% movement speed.', zh: '入夜后：暴击率 +20%，移动速度 +15%。' } },
   dawn: { en: 'Vow of Dawn', zh: '黎明之誓', text: { en: 'By day: every blow that lands draws back 1 health, and you take 10% less harm.', zh: '白天：每次命中吸取 1 点生命，受到的伤害 −10%。' } },
-  holdfast: { en: 'Vow of the Held Ground', zh: '坚守之誓', text: { en: 'Standing your ground (no step this second): your blows deal 25% more, and you take 30% less.', zh: '站定不动满 1 秒：攻击伤害 +25%，受到的伤害 −30%。' } },
+  holdfast: { en: 'Vow of Thornhold', zh: 'Vow of Thornhold', text: { en: 'Standing your ground (no step this second): your blows deal 25% more, and you take 30% less.', zh: '站定不动满 1 秒：攻击伤害 +25%，受到的伤害 −30%。' } },
   thorn: { en: 'Vow of the Thorn', zh: '荆棘之誓', text: { en: 'Whoever strikes you hand to hand is pricked for 3.', zh: '近身击中你的敌人被荆棘刺伤，损失 3 点生命。' } },
   mercy: { en: 'Vow of Mercy', zh: '怜悯之誓', text: { en: 'A blow on a foe below a third of its health draws back 2 health.', zh: '击中生命不足三成的敌人时，吸取 2 点生命。' } },
   silence: { en: 'Vow of Silence', zh: '缄默之誓', text: { en: 'Sneaking slows you no more, and a blow struck while sneaking has +25% critical chance.', zh: '潜行不再减速；潜行中攻击的暴击率 +25%。' } },
@@ -54,7 +54,7 @@ export const SET_POWERS: Record<string, { en: string; zh: string; text: { en: st
   lamplight: { en: 'Lamplight', zh: '引魂灯', text: { en: '+30% damage against the undead.', zh: '对亡灵造成的伤害 +30%。' } },
   undertow: { en: 'Undertow', zh: '暗流', text: { en: 'A critical hit drags the struck to their knees for a second.', zh: '暴击会把目标拖得跪倒在地 1 秒。' } },
   shroudward: { en: 'Shroud-ward', zh: '裹尸布之护', text: { en: 'Below half health: skills rest 25% less, and you take 15% less harm.', zh: '生命低于一半时：技能冷却 −25%，受到的伤害 −15%。' } },
-  elect: { en: 'Chosen of the Road', zh: '道路所选', text: { en: '+10% damage for each relic of the Five Sufferings you carry.', zh: '你身上每带着一件五苦圣器，伤害 +10%。' } },
+  elect: { en: 'Chosen of the Road', zh: '道路所选', text: { en: '+10% damage for each of the five Regalia you carry.', zh: '+10% damage for each of the five Regalia you carry.' } },
   curia: { en: 'Doctrine', zh: '教义', text: { en: 'Your active skills strike 25% harder.', zh: '主动技能的伤害 +25%。' } },
   lastdoor: { en: 'Those Who Came This Far', zh: '走到这里的人', text: { en: '+30% damage against a boss.', zh: '对首领造成的伤害 +30%。' } },
   second: { en: 'Went Small', zh: '变小了', text: { en: 'With a companion at your side: dodge +10%, skills rest 15% less.', zh: '有同伴跟在身边时：闪避 +10%，技能冷却 −15%。' } },

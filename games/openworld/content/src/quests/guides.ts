@@ -81,20 +81,20 @@ const profession: QuestDef = {
   id: 'guide_profession',
   kind: 'guide',
   title: L('A Road of Your Own', '选一条路'),
-  summary: L('At level five, Bram the trainer in the drill yard of Firstlight Village will set you on a profession: assassin, warrior, ranger or mage. Each has its own weapon, skill-tree branch and gear sets; you can change later, but its branch starts over.', '到了五级，初原村操练场的导师布拉姆会让你选一个职业：刺客、战士、游侠或法师。每个职业有自己的武器、技能分支和套装；以后也能换，但那条分支要从头来过。'),
+  summary: L('At level five, Bram the trainer in the drill yard of Emberwick will set you on a profession: assassin, warrior, ranger or mage. Each has its own weapon, skill-tree branch and gear sets; you can change later, but its branch starts over.'),
   aliases: { pip: { id: LUMI_ID }, trainer: { id: TRAINER_ID, essential: true } },
   objectives: [
-    { id: 'trainer', text: L('Speak to Bram, the trainer, in the drill yard of Firstlight Village', '去初原村操练场找导师布拉姆说话'), target: 'trainer', talk: true, on: { talk: 'trainer' } },
+    { id: 'trainer', text: L('Speak to Bram, the trainer, in the drill yard of Emberwick'), target: 'trainer', talk: true, on: { talk: 'trainer' } },
     { id: 'choose', text: L('Choose a profession', '选择一个职业'), target: 'trainer', on: { step: 'guide_profession_chosen' } },
   ],
   stages: [
     {
       n: 10,
       show: ['trainer', 'choose'],
-      say: L('Level five! Bram said he takes people on at level five. His drill yard is in Firstlight, by the north-east cottage; look for the crossed blades over his head. Let\'s go and pick a profession!', '五级了！布拉姆说过，到了五级他就收人。他的操练场在初原村东北角那间小屋旁边，认准他头顶的交叉双剑。我们去选个职业吧！'),
+      say: L("Level five! Bram said he takes people on at level five. His drill yard is in Emberwick, by the north-east cottage; look for the crossed blades over his head. Let's go and pick a profession!"),
       by: 'pip',
-      hint: L('Bram is in the drill yard of Firstlight Village day and night, with crossed blades over his head. {key:hands} on him opens his panel: four professions, each with its weapon. The dagger strikes from behind, the sword and shield from the front, the bow from afar, and the staff from wherever you stand.', '布拉姆日夜都在初原村的操练场，头顶有交叉双剑。对他按 {key:hands} 打开面板：四个职业，各用各的武器。匕首从背后下手，剑盾正面迎敌，弓从远处射，法杖站在哪儿都能用。'),
-      log: L('Level five. Lumi says Bram will take me on now.', '五级了。露米说，布拉姆现在肯收我了。'),
+      hint: L('Bram is in the drill yard of Emberwick day and night, with crossed blades over his head. {key:hands} on him opens his panel: four professions, each with its weapon. The dagger strikes from behind, the sword and shield from the front, the bow from afar, and the staff from wherever you stand.'),
+      log: L('Level five. Kiri says Bram will take me on now.'),
     },
     {
       n: 20,
@@ -121,7 +121,7 @@ const fish: QuestDef = {
   id: 'guide_fish',
   kind: 'guide',
   title: L('The First Cast', '第一竿'),
-  summary: L('Any water with fish in it will do; the nearest is the pond south of Firstlight\'s square. Make a rod from two sticks and two tufts of grass ({key:craft}) or buy one at the general store, then stand on the bank, hold it and left click the water.', '有鱼的水都能钓，最近的是初原村广场南边的池塘。用两根树枝、两把草做一根鱼竿（{key:craft}），或者去杂货店买，然后站在岸边，拿着鱼竿左键点水。'),
+  summary: L("Any water with fish in it will do; the nearest is the pond south of Emberwick's square. Make a rod from two sticks and two tufts of grass ({key:craft}) or buy one at the general store, then stand on the bank, hold it and left click the water."),
   aliases: { pip: { id: LUMI_ID }, pond: { place: POND } },
   objectives: [
     { id: 'rod', text: L('Get a fishing rod ({key:craft}: two sticks and two tufts of grass; or the general store)', '弄一根鱼竿（{key:craft} 制作：两根树枝、两把草；或在杂货店买）'), on: { carry: ROD } },
@@ -134,7 +134,7 @@ const fish: QuestDef = {
       say: L('Look, a pond! Something just jumped. Make a rod from two sticks and two tufts of grass; you can do it by hand ({key:craft}). Then stand on the bank, hold it and left click the water.', '看，池塘！刚才有东西跳了一下。用两根树枝、两把草就能徒手做根鱼竿（{key:craft}）。然后站到岸边，拿着它左键点水。'),
       by: 'pip',
       hint: L('A rod is two sticks and two tufts of grass, made by hand ({key:craft}); the general store sells one too. On the bank, hold it and left click the water, and sometimes something bites. A cast stirs the water, so wait a moment before the next.', '鱼竿用两根树枝、两把草徒手做（{key:craft}），杂货店也有卖。站在岸边拿着它左键点水，有时会有鱼咬钩。甩一竿会惊动水面，等一会儿再甩下一竿。'),
-      log: L('There is a pond in the village. Lumi wants me to try fishing.', '村里有个池塘。露米让我试试钓鱼。'),
+      log: L('There is a pond in the village. Kiri wants me to try fishing.'),
     },
     {
       n: 20,
@@ -163,7 +163,7 @@ const farm: QuestDef = {
   id: 'guide_farm',
   kind: 'guide',
   title: L('A Lesson in the Garden', '菜圃的一课'),
-  summary: L('The supplies crate by the kitchen garden of Firstlight Village holds a hoe, a sickle, a bucket of water and seeds. Harvest a ripe crop with the sickle, sow a seed on the bare row and water it.', '初原村菜圃旁的工具箱里有锄头、镰刀、一桶水和种子。用镰刀收一株熟了的作物，在空着的那一行播一粒种子，再浇上水。'),
+  summary: L('The supplies crate by the kitchen garden of Emberwick holds a hoe, a sickle, a bucket of water and seeds. Harvest a ripe crop with the sickle, sow a seed on the bare row and water it.'),
   aliases: { pip: { id: LUMI_ID }, garden: { place: GARDEN }, crate: { id: 'ford.garden.supplies' } },
   objectives: [
     { id: 'hoe', text: L('Take the hoe from the garden supplies ({key:hands} on the crate)', '从菜圃工具箱里拿锄头（对箱子按 {key:hands}）'), target: 'crate', on: { carry: { type: 'item/tool/hoe' } } },
@@ -180,7 +180,7 @@ const farm: QuestDef = {
       say: L('This is the village garden! The crate at its corner has a hoe, a sickle, a bucket of water and seeds. Open it ({key:hands}) and take the hoe, the sickle and some seeds. We can borrow them.', '这是村里的菜圃！角上的箱子里有锄头、镰刀、一桶水和种子。打开它（{key:hands}），把锄头、镰刀和一些种子拿上。借来用用没关系的。'),
       by: 'pip',
       hint: L('The supplies crate stands at the garden\'s east corner. {key:hands} opens it; take the hoe, the sickle and some seeds (and the bucket of water, for later).', '工具箱在菜圃东边的角上。按 {key:hands} 打开，拿锄头、镰刀和一些种子（水桶也拿上，待会儿用）。'),
-      log: L('The village garden, with a crate of tools beside it. Lumi wants to teach me to grow things.', '村里的菜圃，旁边有一箱工具。露米想教我种地。'),
+      log: L('The village garden, with a crate of tools beside it. Kiri wants to teach me to grow things.'),
     },
     {
       n: 20,
@@ -214,7 +214,7 @@ const shrines: QuestDef = {
   id: 'guide_shrines',
   kind: 'guide',
   title: L('Offerings on the Road', '路边的供品'),
-  summary: L('Five wayside shrines stand along the Pilgrim\'s Road, one for each of the Five Sufferings, each on its square of flagstones. Hold what a shrine asks, face it and put it down ({key:put}): it takes the offering and lights. The words cut on it ({key:hands}) say what it asks.', '朝圣者之路上立着五座路边圣龛，五苦各一座，每座都立在一小块石板地上。拿着它要的东西，面对它放下（{key:put}），它就收下供品亮起来。石上刻的字（{key:hands}）写着它要什么。'),
+  summary: L("Five beacon shrines stand along the Old Crown Road, dead Sunshard beacons from Queen Isolde's day, each on its square of flagstones. Hold what a shrine asks, face it and put it down ({key:put}): it takes the offering and lights. The words cut on it ({key:hands}) say what it asks."),
   aliases: { pip: { id: LUMI_ID }, ...Object.fromEntries(WAYSHRINES.map((s) => [shrineAlias(s.id), { id: `way.shrine.${s.id}` }])) },
   objectives: WAYSHRINES.map((s) => ({
     id: s.id,
@@ -228,13 +228,13 @@ const shrines: QuestDef = {
       show: WAYSHRINES.map((s) => s.id),
       say: L('See the dark stone on the flagstones by the road? That\'s one of the shrines the priest talked about! Each one asks for something different; read the carving ({key:hands}) and it tells you. Hold what it asks, face the shrine and put it down ({key:put}). I\'ll mark all five for you.', '看见路边石板地上那块深色的石头了吗？那就是司铎说的圣龛！每座要的东西不一样，读一读上面刻的字（{key:hands}）就知道了。把它要的东西拿在手上，面对圣龛放下（{key:put}）。五座我都给你标出来了。'),
       by: 'pip',
-      hint: L('The five shrines, west to east: the Crown asks for something worn on the head (a hat, a hood, a helmet); the Pillar a rope or a cord (cut grass will do); the Scales something to eat; the Nails something made of metal (iron ore will do); the Lance a torch or a candle. The road itself holds one of each: a pilgrim\'s hat, a plaited cord, a loaf in the abandoned cart, a dented helm and a candle ({key:hands} picks them up). Hold the offering, face the shrine and press {key:put}. It will not take a relic, a keepsake, or anything that matters most.', '五座圣龛从西往东：荆棘冠之龛要戴在头上的（帽子、兜帽、头盔）；鞭刑柱之龛要一根绳索（干草也行）；饥刑之秤之龛要一样吃的；钉刑圣木之龛要金属的东西（铁矿石也行）；穿心圣枪之龛要火把或蜡烛。这条路上就各有一样：朝圣者的帽子、苦修者编的草绳、被丢下的推车里的面包、一顶凹陷的头盔、一支蜡烛（按 {key:hands} 捡起来）。拿着供品，面对圣龛按 {key:put}。遗物、纪念品和最要紧的东西，它不收。'),
-      log: L('Five shrines along the Pilgrim\'s Road, each asking its own offering. Lumi marked them for me.', '朝圣者之路上有五座圣龛，各要一样供品。露米替我标出来了。'),
+      hint: L("The five shrines, west to east, ask for: something worn on the head (a hat, a hood, a helmet); a rope or a cord (cut grass will do); something to eat; something made of metal (iron ore will do); a torch or a candle. The road itself holds one of each: a traveller's hat, a plaited cord, a loaf in the abandoned cart, a dented helm and a candle ({key:hands} picks them up). Hold the offering, face the shrine and press {key:put}. It will not take a relic, a keepsake, or anything that matters most."),
+      log: L('Five shrines along the Old Crown Road, each asking its own offering. Kiri marked them for me.'),
     },
     {
       n: 20,
       on: { any: WAYSHRINES.map((s) => ({ fact: { [shrineFact(s.id)]: 1 } })) },
-      say: L('It lit! See the little light in the carving? The others work the same way. Pilgrims left things all along this road; what the others ask for is lying about if you look.', '亮了！看见刻痕里那点小光了吗？别的几座也是这样。以前的朝圣者在这条路上丢下了不少东西，别的几座要的，仔细找找都能捡到。'),
+      say: L('It lit! See the little light in the carving? The others work the same way. Travellers left things all along this road; what the others ask for is lying about if you look.'),
       by: 'pip',
       hint: L('Hold the offering, face the shrine and press {key:put}. A shrine that asks for something else says what it wants. The markers show the ones still dark.', '拿着供品，面对圣龛按 {key:put}。献错了，圣龛会说它要什么。标记指着还没亮的那几座。'),
       log: L('The first shrine took my offering and lit.', '第一座圣龛收下供品，亮了。'),

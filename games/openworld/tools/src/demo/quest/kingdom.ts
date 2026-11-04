@@ -1,7 +1,7 @@
-// The Kingdom (docs/boss-rooms.md §4.1): the White Knight's arena, a map of its own behind his fog. Past the burned farm
-// his hedge of thorns closes the East Road from edge to edge; its one gate is the fog (maps.ts `buildEastRoad`), and
-// through it is his field — a sweep of dry grass ringed in his thorns, the kneeling stones of those who would not kneel
-// standing round it, his mended pennants on lance-shafts, the broken shrine at its head where he keeps his post. One comes
+// The Ring of Thorns (map `kingdom`, docs/boss-rooms.md §4.1): the White Knight's arena, a map of its own behind his fog.
+// Past the burned farm his hedge of thorns closes the Eastmarch Road from edge to edge; its one gate is the fog (maps.ts
+// `buildEastRoad`), and through it is his field — a sweep of dry grass ringed in his thorns, his mended pennants on
+// lance-shafts, the broken shrine at its head where he keeps his post. One comes
 // in at its west, sealed behind; the road goes on out of its east, sealed until he falls, back onto the East Road beyond
 // his hedge. Nobody lives here and no one's day leads here: the story sets its own on the stage.
 
@@ -28,9 +28,9 @@ export const HEDGE = { x: 34, west: 33, east: 36 } as const
 
 export function buildKingdom(): MapBuilder {
   const K = KINGDOM
-  const m = new MapBuilder('kingdom', L('The Kingdom of Thorns', '荆棘王国'), 'field', K.w, K.h, 'drygrass', 'kneelfield', 'outdoor', 'frostfang')
+  const m = new MapBuilder('kingdom', L('The Ring of Thorns'), 'field', K.w, K.h, 'drygrass', 'kneelfield', 'outdoor', 'frostfang')
   m.gearLevel = 4
-  // the field: dry grass, trodden bare in a wide ring where he has walked his round for three hundred years
+  // the field: dry grass, trodden bare in a wide ring where he has walked his round for nineteen years
   const [kx, ky] = K.knight
   for (let y = 0; y < m.h; y++)
     for (let x = 0; x < m.w; x++) {
@@ -56,8 +56,8 @@ export function buildKingdom(): MapBuilder {
   // the gates: a portal on each cell, the fog on it (sealed while he stands); back out onto the East Road either side of his hedge
   for (const y of K.rows) {
     for (const x of [K.west, K.east]) m.set(x, y, 'path')
-    m.portal(K.west, y, 'eastroad', HEDGE.west, y, L('The Sunrise Road', '朝阳大道'))
-    m.portal(K.east, y, 'eastroad', HEDGE.east, y, L('The Sunrise Road', '朝阳大道'))
+    m.portal(K.west, y, 'eastroad', HEDGE.west, y, L('The Eastmarch Road'))
+    m.portal(K.east, y, 'eastroad', HEDGE.east, y, L('The Eastmarch Road'))
     for (const x of [K.west, K.east]) m.fixture('fixture/fog', x, y, { name: L("The knight's fog", '骑士的雾门'), props: { boss: 'alberic' } })
   }
   m.anchors.arrive = [K.arrive[0], K.arrive[1]]

@@ -53,8 +53,8 @@ export const CH3_SETS: SetDef[] = [
     palette: ['#c0993c', '#5a4220', '#a23a3a', '#ecd8a0'],
     pieces: [
       P('head', F.hood, "Tithe Rider's Hood", '什一骑手兜帽',
-        'An ochre riding hood, the Church\'s seal of the five wounds on the brow. The riders took the Vale\'s tithe to the Holy City twice a year, and on the Chaff Road they were feared more than wolves. The carts stopped coming three seasons ago. This rider was on the last of them.',
-        '一顶赭色的骑行兜帽，额前缝着教会的五伤之印。骑手们一年两回把衡谷的什一税押往圣城，在糠路上，人们怕他们胜过怕狼。三季以前，车就不来了。这顶兜帽的主人在最后一趟车上。', 'map:chaffroad', { critChance: 0.02 }),
+        'An ochre riding hood, the Regent\'s sun-seal on the brow. The riders took the Reach\'s tithe to Solmere twice a year, and on the Chaff Road they were feared more than wolves. The carts stopped coming three seasons ago. This rider was on the last of them.',
+        '', 'map:chaffroad', { critChance: 0.02 }),
       P('shoulders', F.cloak, "Tithe Rider's Mantle", '什一骑手斗篷',
         'A riding mantle weighted at the hem with lead shot, so that the wind on the flats would not lift it. Whoever wore it lay down beside an empty cart, facing the way the cart had come.',
         '一件骑行斗篷，下摆缝着铅砂，平原上的风掀不起来。穿它的人躺在一辆空车旁边，脸朝着车来的方向。', 'map:chaffroad'),
@@ -104,8 +104,8 @@ export const CH3_SETS: SetDef[] = [
     palette: ['#393940', '#1e1e24', '#e2c070', '#7a7a88'],
     pieces: [
       P('head', F.hood, 'Black Balance Cowl', '黑衡兜帽',
-        'A black cowl stitched with gold wheat. The clerks of the Black Balance wore it at their desks, entering the Vale\'s grain and the Vale\'s hunger in the same hand. They are at their desks still.',
-        '一顶黑兜帽，用金线绣着麦穗。黑衡殿的书记们戴着它坐在桌前，用同一只手记下衡谷的粮食和衡谷的饥饿。他们现在还坐在桌前。', 'map:blackbalance.counting', { cdr: 0.02 }),
+        'A black cowl stitched with gold wheat. The clerks of the Black Balance wore it at their desks, entering the Reach\'s grain and the Reach\'s hunger in the same hand. They are at their desks still.',
+        '', 'map:blackbalance.counting', { cdr: 0.02 }),
       P('shoulders', F.cloak, 'Black Balance Stole', '黑衡圣带',
         'A stole of black silk embroidered with a pair of scales, worn by those who read the litany of the Measure. The gold of its last line is worn away: THE FLESH AT LAST WAS LIGHTER THAN SIN.',
         '一条黑绸圣带，绣着一架天秤，诵读衡量连祷的人披的。最后一句的金线已经磨掉了：其肉身终轻于罪。', 'map:blackbalance'),

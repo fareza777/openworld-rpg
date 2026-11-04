@@ -1,8 +1,8 @@
-// The homestead (docs/homestead.md): the Held Ground as a working place — Alberic's stall, its three shelves (farming,
+// The homestead (docs/homestead.md): Thornhold as a working place — Gavrel's stall, its three shelves (farming,
 // ranching, fishing) and what it buys back; and what the shelves sell does what it should, as Minecraft and Stardew
 // have it: seeds take root, fertilizer adds to a harvest, feed makes a beast fed for the day (a fed cow gives milk to a
 // bucket, once a day), a crated beast set down walks out, bait on a rod makes the fish bite more (its casts kept on
-// the rod). The coin is the Dawnmark, the Held Ground's own. Buying and selling are made at the stall as anything is
+// the rod). The coin is the Dawnmark, Thornhold's own. Buying and selling are made at the stall as anything is
 // made at a station: what one gives is used up, what one gets comes into one's bag (engine `craft`).
 
 import { TICKS_PER_DAY, type Cond, type Effect, type Recipe, type Rule, type Text, type Tree } from '@openworld/engine'
@@ -13,7 +13,7 @@ import { stackKey } from '@openworld/engine'
 
 const L = (en: string, zh: string = en): Text => ({ en, zh })
 
-/** The Held Ground's coin. */
+/** Thornhold's coin. */
 export const COIN = 'item/misc/thornmark'
 /** How long a beast fed stays fed, and a cow milked stays milked (a game day). */
 export const FED_FOR = TICKS_PER_DAY
@@ -108,7 +108,7 @@ export const HOMESTEAD_RULES: Rule[] = [
   story({
     id: 'home/stall',
     label: L('Trade at {target}', '在{target}交易'),
-    doc: 'A hand on the Held Ground\'s stall: its shelves and what it buys back are shown (the shop panel; buying and selling are made there).',
+    doc: 'A hand on Thornhold\'s stall: its shelves and what it buys back are shown (the shop panel; buying and selling are made there).',
     host: { type: 'fixture', tags: ['stall'] },
     on: 'impulse/handle',
     tree: { do: [{ op: 'panel', panel: 'shop' }] },

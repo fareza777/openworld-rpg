@@ -81,7 +81,7 @@ export const PROLOGUE_BEATS: StepDef[] = [
   {
     id: 'tut_wake',
     when: { map: 'tutorial', statuses: { out_cold: false }, quest: { awakening: { lt: 10 } } },
-    say: L("Hey! You're awake at last! I'm Lumi. I'm a fairy, and from today I go where you go.", '嘿！你总算醒了！我叫露米，是个精灵。从今天起，你去哪儿，我就跟到哪儿。'),
+    say: L("Hey! You're awake at last! I'm Kiri. I'm a— I think I'm a star-sprite? I found you asleep out here, and from today I go where you go."),
   },
   {
     id: 'tut_ate',
@@ -128,13 +128,13 @@ export const PROLOGUE_BEATS: StepDef[] = [
   {
     id: 'tut_out',
     when: { map: 'foot', quest: { awakening: TUTORIAL_DONE * 10 } },
-    say: L('The foot of the mountain! See the old stone in the flowers down there?', '到伤石山麓了！你看，下面花丛里有块旧石头。'),
+    say: L('Shardstone Foot! See the old stone in the flowers down there?'),
   },
   {
     // a new game: one comes round on Cloudtop (the tutorial run has its own line)
     id: 'summit_wake',
     when: { map: 'summit', facts: { [TUTORIAL_OPEN]: 0 }, quest: { descent: { lt: 20 } } },
-    say: L("You're awake! I'm Lumi. I'm a fairy, and from today I go where you go. We're on Cloudtop, at the very top of the mountain. The only way down is through the cut in the rocks to the south.", '你醒啦！我叫露米，是个精灵。从今天起，你去哪儿，我就跟到哪儿。这里是云顶台地，在山的最高处。下山的路只有一条，就是南边岩壁上那道豁口。'),
+    say: L("You're awake! I'm Kiri. I'm a— I think I'm a star-sprite? I found you in the snow. You were holding that locket so tight I couldn't open your hand. We're on Cloudtop, at the very top of the mountain. The only way down is through the cut in the rocks to the south."),
   },
   {
     // the first waypoint statue in view, whenever that is
@@ -145,18 +145,18 @@ export const PROLOGUE_BEATS: StepDef[] = [
   {
     id: 'relic',
     when: { map: 'foot', region: 'relic', quest: { descent: { lt: 20 } } },
-    say: L("It's cold near it. I don't like it. I don't know why I don't like it. ...Try doing something to it, anything. Whatever you do, the world will answer.", '它旁边好冷。我不喜欢它。我也不知道为什么不喜欢。……你对它做点什么试试，做什么都行。不管你做什么，世界都会回应的。'),
+    say: L("It's colder near it. Like it's... going out. ...Try doing something to it, anything. Whatever you do, the world will answer."),
   },
   {
     id: 'tried',
     // after the stone was seen: an experiment anywhere before it is not the stone's lesson
     when: { after: 'relic', facts: { 'world.experiments': { gte: 1 } }, quest: { descent: { lt: 30 } } },
-    say: L('Did you see that? It answered! Whatever the world learns is kept in the Threadbook: {key:journal}. Come on, down to Vesper Ford!', '你看到了吗？它回应了！世界学会的东西都记在织线簿里，按 {key:journal} 就能看。走吧，下山去晚祷渡！'),
+    say: L('Did you see that? It answered! Whatever the world learns is kept in the Threadbook: {key:journal}. Come on, down to Greywater Ford!'),
   },
   {
     // however they got here, the Ford ends the prologue
     id: 'ford',
     when: { map: 'ford', quest: { descent: { lt: 40 } } },
-    say: L("That's Vesper Ford! Someone down there looks like they need help.", '是晚祷渡！下面那个人好像遇到麻烦了。'),
+    say: L("That's Greywater Ford! Someone down there looks like they need help."),
   },
 ]

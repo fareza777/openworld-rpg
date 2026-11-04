@@ -117,8 +117,10 @@ export const CLIENT_GAME: ClientGame = {
     light: { desat: 0.22, sage: 0.15, tone: 0.25, warm: 0.5, contrast: 0.15, ink: 0.6, paper: 0.5, vignette: 0.1, hatch: 0 },
     full: { desat: 0.35, sage: 0.25, tone: 0.45, warm: 0.8, contrast: 0.25, ink: 1, paper: 1, vignette: 0.18, hatch: 1 },
   },
+  // the fork speaks English only (docs/sunshard/LEXICON.md): the options offer no other language
+  locales: ['en'],
   cover: {
-    title: 'OpenWorld',
+    title: 'Sunshard',
     tutorial: true,
     // the world behind the title, the Holy City's six showcase places one after another (docs/showcase.md), each from
     // where its own vista looks and at an hour that suits it: the abbey's front at dusk, the North Gate at dawn, the Bell
@@ -135,15 +137,16 @@ export const CLIENT_GAME: ClientGame = {
   },
   // the interface's words about the Ford's own people: the trainer, the fairy who carries the seals' powers
   texts: {
-    skillNoProfession: { en: 'No profession yet. At level 5, Bram the trainer sets you on one in the drill yard of Firstlight Village (crossed blades over his head): assassin, warrior, ranger or mage.', zh: '还没有职业。到 5 级后，去初原村操练场找职业导师布拉姆（头顶有交叉双剑标记）选择：刺客、战士、游侠或法师。' },
-    boonTitle: { en: "Lumi's Powers", zh: '露米的力量' },
-    boonSealedDoc: { en: "Lumi takes up part of a seal's power when its bearer falls.", zh: '击败持印者后，露米会接住其圣印的一部分力量。' },
-    boonOne: { en: 'Lumi carries one power at a time.', zh: '露米一次只能携带一种力量。' },
-    boonGained: { en: "Lumi takes up the seal's power", zh: '露米接住了圣印之力' },
+    skillNoProfession: { en: 'No profession yet. At level 5, Bram the trainer sets you on one in the drill yard of Emberwick (crossed blades over his head): assassin, warrior, ranger or mage.' },
+    boonTitle: { en: "Kiri's Gifts" },
+    boonSealedDoc: { en: "Kiri catches part of a Regalia's light when its Warden falls." },
+    boonOne: { en: 'Kiri carries one gift at a time.' },
+    boonGained: { en: "Kiri catches the Regalia's light" },
+    boonSealN: { en: 'Regalia {n}' },
     // a monster's own piece of gear (content trophies.ts), and the two tiers the story names (content items.ts QUALITIES)
     tipTrophy: { en: 'Trophy', zh: '专属装备' },
     'tier:vowed': { en: 'Vowbound — left by one who swore a vow. It still remembers.', zh: '遗誓——立誓之人留下的东西。它还记得那个誓言。' },
-    'tier:legendary': { en: "Stigmatic — it bears one of the First Martyr's five wounds. Suffering brings one nearer to God.", zh: '圣痕——它带着初殉者五道伤痕中的一道。苦难使人接近神。' },
+    'tier:legendary': { en: 'Regal — it carries the light of one of the five Regalia. It asks something back.' },
   },
   // a wilderness is made from the world's seed and its cell (world-model.md §5.7); the rest is fetched
   wild: wildChunkFor,
@@ -231,11 +234,11 @@ export const CLIENT_GAME: ClientGame = {
     const body = createBoss(kit, at, id)
     // the campaign's knight as Chapter 1 sets him (tools quest/chapter1.ts)
     if (kit === 'alberic') body.props = { ...ALBERIC_CAMPAIGN }
-    return { body, say: { en: 'The White Knight stands in his field again.', zh: '白骑士再次站在了他的田野上。' } }
+    return { body, say: { en: 'Ser Gavrel stands in his field again.' } }
   },
   dev: {
     shortcuts: [
-      { label: 'Emberfall, by the lit forge', debug: { op: 'teleport', map: 'emberfall', x: 31, y: 8 } },
+      { label: 'Cinderholt, by the lit forge', debug: { op: 'teleport', map: 'emberfall', x: 31, y: 8 } },
       { label: '召唤白骑士 · Summon the White Knight (the Kingdom)', debug: { op: 'summon', kit: 'alberic', map: 'kingdom', x: 18, y: 12, from: [3, 11] } },
       // Chapter 2's road opens with the Crown home (docs/chapter-2.md §12); Part Two, the whole continent east of the river
       { label: '开启第二章 · Open Chapter 2', debug: { op: 'fact', key: CHAPTER_TWO, value: 1 } },
@@ -250,7 +253,7 @@ export const CLIENT_GAME: ClientGame = {
       // the advancements (docs/advancement.md): the levels the second and third ask
       { label: '等级 10 · Level 10 (second advancement)', debug: { op: 'level', level: 10 } },
       { label: '等级 16 · Level 16 (third advancement)', debug: { op: 'level', level: 16 } },
-      { label: 'The Most Holy Hall (Finale)', debug: { op: 'teleport', map: 'holyhall', x: 25, y: 80 } },
+      { label: 'The Crown Chapel (Finale)', debug: { op: 'teleport', map: 'holyhall', x: 25, y: 80 } },
       { label: '开启第二部 · Open Part Two', debug: { op: 'fact', key: PART_TWO, value: 1 } },
     ],
   },

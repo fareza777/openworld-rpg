@@ -78,7 +78,7 @@ export function villageTown(m: MapBuilder): void {
   for (const [x, y] of [[45, 20], [56, 16]] as const) m.fixture('fixture/light/lamppost', x, y, { id: `village.lamp.${x}`, statuses: { lit: -1 } })
   // the way in from the Ford: the village's green banners either side of the road, and its name
   for (const [x, y] of [[57, 16], [57, 21]] as const) m.scenery('banner_green', x, y)
-  m.fixture('fixture/sign', 55, 21, { id: 'village.gate.sign', props: { text: 'FIRSTLIGHT VILLAGE. West, the square and the chapel; Vesper Ford behind you.', text_zh: '初原村。往西是广场和礼拜堂；身后是晚祷渡。' } })
+  m.fixture('fixture/sign', 55, 21, { id: 'village.gate.sign', props: { text: 'EMBERWICK. West, the square and the shrine; Greywater Ford behind you.' } })
 }
 
 /** The cells the village keeps open whatever is piled about: the square, the roads' crowns, every door's step. */
@@ -382,10 +382,10 @@ export function villageInteriors(): Interior[] {
   }
   // Sister Ilse's chapel: the nave (the five wounds round Astra, candles, the pews, the bookstand of skill books and
   // Brother Anselm beside it), and the two cells either side of it where the sister and the brother sleep
-  const { m: church, P: CH } = flHouse('flchurch', 'meadow.church', 'Firstlight Chapel', '初原村礼拜堂', 'floor_stone', ['nave', 'cellW', 'cellE'], { music: 'temple' })
+  const { m: church, P: CH } = flHouse('flchurch', 'meadow.church', 'Emberwick Shrine', 'Emberwick Shrine', 'floor_stone', ['nave', 'cellW', 'cellE'], { music: 'temple' })
   {
     const N = CH.nave
-    church.fixture('fixture/sacred/altar', N.x + 6, N.y, { name: L('The five wounds', '五道圣伤'), tags: ['readable'], props: { text: 'A figure of Astra, the First Martyr, carved in the stone, and round it his five wounds: the crown, the scourge, the scales, the nails, the lance. The flags before it are worn hollow where the village kneels to give thanks for the flame outside.', text_zh: '石壁上刻着初殉者阿斯特拉的像，四周是五道圣伤：荆棘冠、鞭刑柱、天平、圣钉、圣枪。像前的石板磨出了浅坑，村里人常跪在这里，为门外的圣火谢恩。' } })
+    church.fixture('fixture/sacred/altar', N.x + 6, N.y, { name: L('The five facets'), tags: ['readable'], props: { text: 'A falling star cut in the stone, and round it a crown of five points, each set with a chip of dull glass where a shard once sat: the five facets of the Dawn Crown. Under it the words AUREX FELL SO THAT WE MIGHT RISE. The flags before it are worn hollow where the village kneels to give thanks for the Hearthshard.' } })
     for (const x of [N.x + 4, N.x + 8]) church.fixture('fixture/light/candles', x, N.y, { statuses: { lit: -1 } })
     rug(church, N.x + 5, N.y + 1, 3, N.h - 1)
     for (const y of [N.y + 4, N.y + 6, N.y + 8]) for (const x of [N.x + 2, N.x + 10]) church.fixture('fixture/furniture/bench/log', x, y)

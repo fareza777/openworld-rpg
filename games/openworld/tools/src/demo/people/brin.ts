@@ -31,6 +31,6 @@ export const brin: PersonDef = {
     line('default', 'Every dusk the whole herd goes down on its knees, all facing east. My gran kept cows all her life and never once saw one kneel.', '每天天一黑，整群牛就跪下来，全都朝着东边。我奶奶养了一辈子牛，从没见过牛下跪。'),
     line('default', 'The grass is thin this year. The days are short, so the grass is short. I tell myself that\'s all it is.', '今年的草长得稀。白天短了，草也就长不高。我跟自己说，就是这么回事。'),
     line('hour:evening', 'Here it comes — watch them. ...There. Down they go. East.', '来了，你看着它们。……看，跪下去了。朝着东边。'),
-    line('fact:ch1.crown', 'They stopped kneeling. The day you came back with that crown, they stopped. ...Now they just stand there and look east.', '它们不跪了。你带着那顶冠回来的那天就不跪了。……现在它们只是站在那儿，朝东边看。', { once: true }),
+    line('fact:ch1.crown', 'They stopped kneeling. The day you came back with that Diadem, they stopped. ...Now they just stand there and look east.', { once: true }),
   ],
 }

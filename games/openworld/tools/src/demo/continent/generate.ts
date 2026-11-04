@@ -89,17 +89,17 @@ const SEATS: Record<string, Name> = {
   palefen: { en: "The Pale Rider's Ossuary", zh: '执辔者骨堂' },
   altar: { en: 'The Altar Beneath', zh: '祭坛之下' },
 }
-const HALL: Name = { en: 'The Most Holy Hall', zh: '至圣大殿' }
+const HALL: Name = { en: 'The Crown Chapel', zh: 'The Crown Chapel' }
 /** The Holy City's quarters, round the Hall (north first, then clockwise). */
 const QUARTERS: Name[] = [
-  { en: 'Holy City — North Gate', zh: '圣城·北门区' },
-  { en: 'Holy City — Bell Ward', zh: '圣城·钟楼区' },
-  { en: 'Holy City — Market', zh: '圣城·市集区' },
-  { en: 'Holy City — Lamp Ward', zh: '圣城·灯区' },
-  { en: 'Holy City — Lower Town', zh: '圣城·下城区' },
-  { en: "Holy City — Pilgrims' Quarter", zh: '圣城·朝圣者区' },
-  { en: 'Holy City — Old Wall', zh: '圣城·旧墙区' },
-  { en: 'Holy City — Cloister', zh: '圣城·修院区' },
+  { en: 'Solmere — North Gate', zh: 'Solmere — North Gate' },
+  { en: 'Solmere — Bell Ward', zh: 'Solmere — Bell Ward' },
+  { en: 'Solmere — Market', zh: 'Solmere — Market' },
+  { en: 'Solmere — Lamp Ward', zh: 'Solmere — Lamp Ward' },
+  { en: 'Solmere — Lower Town', zh: 'Solmere — Lower Town' },
+  { en: "Solmere — Pilgrims' Quarter", zh: "Solmere — Pilgrims' Quarter" },
+  { en: 'Solmere — Old Wall', zh: 'Solmere — Old Wall' },
+  { en: 'Solmere — Cloister', zh: 'Solmere — Cloister' },
 ]
 const AROUND: [number, number][] = [[0, -1], [1, -1], [1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1]]
 

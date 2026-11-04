@@ -451,7 +451,7 @@ const actorTypes: TypeDef[] = [
   // (it keeps two tiles off its leader, engine companion.ts, and is spoken to from as far)
   P('actor/companion', 'companion', '同伴', { tags: ['companion', 'living', 'airborne', 'essential'], props: { hp: 10, maxHp: 10, atk: 0, def: 0, speed: 2, sight: 8, handsRange: 2 } }),
   // Lumi: a fairy, a small winged girl (the project's own art, tools/src/art/fairy.ts)
-  P('actor/companion/fairy', 'fairy', '精灵', { tags: ['fairy', 'winged'], sprite: 'creature:fairy' }),
+  P('actor/companion/fairy', 'star-sprite', 'star-sprite', { tags: ['fairy', 'winged'], sprite: 'creature:fairy' }),
   // the meadow's animals: passive, they run when struck, and leave food behind (drop × drops)
   P('actor/creature/animal', 'animal', '动物', { tags: ['animal'], props: { behaviour: 'passive', temper: 'wary', sight: 4 } }),
   P('actor/creature/animal/cow', 'cow', '牛', { tags: ['livestock', 'furry'], sprite: 'creature:cow', props: { hp: 10, maxHp: 10, atk: 0, speed: 7, babyType: 'actor/creature/animal/calf', meat: 'item/food/meat/raw', hide: 'item/material/leather' }, makeup: [{ type: 'item/food/meat/raw', count: 4 }] }),
@@ -632,7 +632,7 @@ const fixtureTypes: TypeDef[] = [
   F('fixture/sacred/sword', 'planted sword', '插在地上的长剑', ['metal', 'conductive'], { sprite: 'fixture:planted_sword' }),
   F('fixture/sacred/statue', 'statue', '雕像', []),
   // Astra the First Martyr in bronze, the sun held up in his hands, on the squares of the Holy City (docs/lore.md §1)
-  F('fixture/sacred/statue/martyr', 'statue of Astra the First Martyr', '初殉者阿斯特拉像', ['metal', 'conductive', 'holy'], { sprite: 'fixture:martyr_statue' }),
+  F('fixture/sacred/statue/martyr', 'statue of Aurex, the Fallen Star', 'statue of Aurex, the Fallen Star', ['metal', 'conductive', 'holy'], { sprite: 'fixture:martyr_statue' }),
   // what a square of the Holy City is furnished with (docs/showcase.md §3.4): clipped evergreens and urns of flowers in
   // stone, balustrades along its terraces, the city's standards
   F('fixture/garden', 'garden ornament', '园饰', ['stone'], { solid: true, props: { material: 'stone', maxHp: 12, hp: 12 }, makeup: [{ type: 'item/material/stone', count: 2 }] }),
@@ -656,7 +656,7 @@ const fixtureTypes: TypeDef[] = [
   F('fixture/sacred/cross', 'processional cross', '十字杖架', ['holy', 'metal', 'conductive'], { sprite: 'fixture:standing_cross' }),
   F('fixture/sacred/gravestone', 'gravestone', '墓碑', ['readable']),
   // a wayside shrine of the Five Sufferings: five carved wounds, the first cracked and weeping black (docs/chapter-1.md)
-  F('fixture/sacred/seal_stone', 'five-wound shrine stone', '五伤路碑', ['ancient', 'runic', 'holy']),
+  F('fixture/sacred/seal_stone', 'Sunshard waystone', 'Sunshard waystone', ['ancient', 'runic', 'holy']),
   F('fixture/sacred/waypoint', 'waypoint statue', '传送雕像', ['ancient', 'runic', 'waypoint']),
   // Pell's chalk drawings (docs/chapter-1.md §7): flat on the ground, read with a hand; each where the grey man was
   F('fixture/chalk', 'chalk drawing', '粉笔画', ['readable', 'chalk'], { solid: false, props: { handsRange: 1 } }),

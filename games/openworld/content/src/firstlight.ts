@@ -1,7 +1,7 @@
 // Shared authored coordinates. Keep the old meadow map id for portals and saves.
 export const FIRSTLIGHT = {
   map: 'meadow',
-  name: { en: 'Firstlight Village', zh: '初原村' },
+  name: { en: 'Emberwick' },
   cart: [30, 15] as const,
   cartStand: [31, 15] as const,
   tobinStand: [30, 17] as const,

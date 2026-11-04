@@ -1,10 +1,10 @@
-// The Pilgrim's Road (docs/chapter-1.md §14, 2026-10-12): between the Ford and the White Knight, the pilgrimage begins
-// as the Church means it to — the oath at the Pilgrims' Rest, five wayside shrines of the Five Sufferings along the
-// road, each lit by what its suffering asks, the ruined Abbey of the Thorn where Alberic was made a knight (his roll,
-// his cell, the writ that should have relieved him and never went out, the Order's seal its last keeper guards), and
-// the Kneeling Field, where pilgrims knelt to pray before they went on, and the stones of those who would not kneel to
-// him. The maps and scenes are the demo's (tools/src/demo/quest/pilgrimage.ts); here are the facts, the shrines, and
-// how a shrine takes its offering.
+// The Old Crown Road (docs/sunshard/CHAPTER-1.md; mechanics docs/chapter-1.md §14): between the Ford and the White
+// Knight, the Crownseeking begins as Solmere means it to — the Regent's oath at the Wardens' Rest, five dead beacon
+// shrines of Queen Isolde's road, each named for one of the five Regalia and lit by what is cut on it, the ruined
+// Briarmoor Abbey of the Briar Knights where Gavrel was made a knight (his roll, his cell, Solmere's writ of recall that
+// he never answered, the order's seal its last keeper guards), and the Field of Oaths, the stones of the knights who
+// swore to hold the river with him. The maps and scenes are the demo's (tools/src/demo/quest/pilgrimage.ts); here are
+// the facts, the shrines, and how a shrine takes its offering.
 
 import type { Effect, Rule, Selector, Tree, TypeDef } from '@openworld/engine'
 
@@ -22,14 +22,14 @@ export const PILGRIMAGE = {
   field: 'ch1.kneelfield',
 } as const
 
-/** The Order of the Thorn's last keeper, in the abbey's crypt: he keeps the Order's seal. */
+/** Briarmoor Abbey's last keeper, in the abbey's crypt: he keeps the Briar Knights' seal. */
 export const ABBOT_ID = 'abbey.abbot'
 export const ORDER_SEAL = 'item/valuable/order_seal'
 export const WRIT = 'item/document/writ_of_relief'
-/** The pilgrim's own scallop, given at the Rest for the oath: not the scallop of the pilgrim before (the errand's). */
+/** The Crownseeker's own scallop, given at the Rest for the oath: not the scallop of the one before (the errand's). */
 export const SWORN_SCALLOP = 'item/valuable/scallop/sworn'
 
-/** One of the five wayside shrines: the suffering it keeps, what it asks to be laid on it, what is cut on it. */
+/** One of the five beacon shrines: the Regalia it is named for, what it asks to be laid on it, what is cut on it. */
 export interface Wayshrine {
   id: string
   name: Words
@@ -41,9 +41,9 @@ export interface Wayshrine {
 }
 
 /**
- * What a shrine never takes, whatever it asks: a relic (the Crown of Thorns is worn on the head), what matters most (the
- * Order's seal is metal), what is bound to one, and a keepsake (Mia's ring, a pilgrim's scallop). Laid on a shrine, it is
- * refused and stays the pilgrim's. (Tags a thing carries, never the derived ones a quest gives: the validator knows only
+ * What a shrine never takes, whatever it asks: a relic (the Briar Diadem is worn on the head), what matters most (the
+ * order's seal is metal), what is bound to one, and a keepsake (Mia's ring, a scallop). Laid on a shrine, it is
+ * refused and stays the player's. (Tags a thing carries, never the derived ones a quest gives: the validator knows only
  * what some type carries.)
  */
 export const KEPT = ['relic', 'important', 'bound', 'keepsake']
@@ -51,39 +51,39 @@ const offering = (sel: Selector): Selector => ({ ...sel, notTags: [...(sel.notTa
 
 export const WAYSHRINES: Wayshrine[] = [
   {
-    id: 'crown', name: L('Shrine of the Crown', '荆棘冠之龛'), takes: offering({ tags: ['wearable'], props: { slot: 'head' } }), asks: L('something worn on the head', '一件戴在头上的东西'),
-    text: L('THE FIRST SUFFERING: THE CROWN. They pressed the thorns into his brow, and he did not lift his hand. Pilgrim, lay down what you wear upon your head, and your pride with it.', '第一苦：戴冠。荆棘刺入他的额头，他不曾抬手。朝圣者，卸下你头上所戴之物，一并放下你的骄傲。'),
+    id: 'crown', name: L('Beacon of the Diadem'), takes: offering({ tags: ['wearable'], props: { slot: 'head' } }), asks: L('something worn on the head', '一件戴在头上的东西'),
+    text: L('THE FIRST BEACON OF QUEEN ISOLDE\'S ROAD. ITS FACET: THE DIADEM, FOR THE EASTMARCH. The glass in its cup is dark and cracked. Cut under it in a later hand: Traveller, lay in the cup what you wear on your head, and it will take light again.'),
   },
   {
-    id: 'scourge', name: L('Shrine of the Pillar', '鞭刑柱之龛'), takes: offering({ tags: ['fiber'] }), asks: L('a rope or a cord', '一根绳索'),
-    text: L('THE SECOND SUFFERING: THE SCOURGE. Bound to the pillar, he bled for every one of us. Pilgrim, lay down a cord: the scourge that was spared you.', '第二苦：受鞭。他缚于刑柱之上，为众人流尽鲜血。朝圣者，献上一根绳索，那是你得以免受的鞭笞。'),
+    id: 'scourge', name: L('Beacon of the Chain'), takes: offering({ tags: ['fiber'] }), asks: L('a rope or a cord', '一根绳索'),
+    text: L('THE SECOND BEACON OF QUEEN ISOLDE\'S ROAD. ITS FACET: THE CHAIN, FOR THE SCARRED MARCH. The glass in its cup is dark. Cut under it in a later hand: Lay a rope in the cup. The miners of that March go down on ropes.'),
   },
   {
-    id: 'scales', name: L('Shrine of the Scales', '饥刑之秤之龛'), takes: offering({ tags: ['edible'] }), asks: L('something to eat', '一样吃的'),
-    text: L('THE THIRD SUFFERING: HUNGER. He took no food, and was weighed upon the scales. His flesh at last weighed less than sin. Pilgrim, lay down a meal you will not eat.', '第三苦：受饥。他断绝饮食，置身天平之上。他的肉身最终轻于罪。朝圣者，献上一餐，今日不食。'),
+    id: 'scales', name: L('Beacon of the Scales'), takes: offering({ tags: ['edible'] }), asks: L('something to eat', '一样吃的'),
+    text: L('THE THIRD BEACON OF QUEEN ISOLDE\'S ROAD. ITS FACET: THE SCALES, FOR THE GOLDEN REACH. The glass in its cup is dark. Cut under it in a later hand: Lay a meal in the cup, one you will not eat.'),
   },
   {
-    id: 'nails', name: L('Shrine of the Nails', '钉刑圣木之龛'), takes: offering({ tags: ['metal'] }), asks: L('something made of metal', '一件金属的东西'),
-    text: L('THE FOURTH SUFFERING: THE NAILS. Nailed by his hands and feet to the holy wood, he accepted death. Pilgrim, lay down metal, as he laid down his life.', '第四苦：受钉。圣钉贯穿他的手足，将他钉于圣木之上，他接受了死亡。朝圣者，献上金属，如他献上生命。'),
+    id: 'nails', name: L('Beacon of the Heights'), takes: offering({ tags: ['metal'] }), asks: L('something made of metal', '一件金属的东西'),
+    text: L('THE FOURTH BEACON OF QUEEN ISOLDE\'S ROAD. ITS FACET: (the name has been chiselled off), FOR THE SILVERSPIRE HEIGHTS. The glass in its cup is dark. Cut under it in a later hand: Lay a piece of metal in the cup.'),
   },
   {
-    id: 'lance', name: L('Shrine of the Lance', '穿心圣枪之龛'), takes: offering({ tags: ['light'] }), asks: L('a torch or a candle', '火把或蜡烛'),
-    text: L('THE FIFTH SUFFERING: THE LANCE. The lance pierced his heart, and the sun rose. Pilgrim, lay down a light, and the dawn will remember you.', '第五苦：受枪。圣枪穿透他的心，太阳于是升起。朝圣者，献上一点光，黎明将记得你。'),
+    id: 'lance', name: L('Beacon of the Lantern'), takes: offering({ tags: ['light'] }), asks: L('a torch or a candle', '火把或蜡烛'),
+    text: L('THE FIFTH BEACON OF QUEEN ISOLDE\'S ROAD. ITS FACET: THE LANTERN, FOR THE MIREWOOD. The glass in its cup is dark. Cut under it in a later hand: Lay a light in the cup, and the road will see you to its end.'),
   },
 ]
 
 /** A shrine's own fact: lit. */
 export const shrineFact = (id: string) => `${PILGRIMAGE.shrines}.${id}`
 
-/** The wayside shrines as kinds of thing: carved stones of the Five Sufferings (the seal stone's look), each its own. */
+/** The beacon shrines as kinds of thing: dead Sunshard beacons of Queen Isolde's road (the seal stone's look), each its own. */
 export const PILGRIMAGE_TYPES: TypeDef[] = [
-  { id: 'fixture/sacred/wayshrine', name: L('wayside shrine', '路边圣龛'), tags: ['holy', 'stone', 'readable', 'wayshrine', 'surface'], sprite: 'fixture:seal_stone', props: { material: 'stone', maxHp: 40, hp: 40, handsRange: 1 }, makeup: [{ type: 'item/material/stone', count: 2 }] },
+  { id: 'fixture/sacred/wayshrine', name: L('beacon shrine'), tags: ['holy', 'stone', 'readable', 'wayshrine', 'surface'], sprite: 'fixture:seal_stone', props: { material: 'stone', maxHp: 40, hp: 40, handsRange: 1 }, makeup: [{ type: 'item/material/stone', count: 2 }] },
   ...WAYSHRINES.map((s): TypeDef => ({ id: `fixture/sacred/wayshrine/${s.id}`, name: s.name, tags: [], sprite: 'fixture:seal_stone', props: { text: s.text.en, text_zh: s.text.zh, suffering: s.id }, makeup: [{ type: 'item/material/stone', count: 2 }] })),
 ]
 
 const lit = 'lit'
 /**
- * A shrine given what its suffering asks: the offering is taken (gone), it lights, and the story keeps it. What must not
+ * A shrine given what is cut on it: the offering is taken (gone), it lights, and the story keeps it. What must not
  * be given away is refused first, whatever the shrine asks (`KEPT`), and is not taken.
  */
 const OFFERED = (s: Wayshrine): Tree => ({
@@ -101,7 +101,7 @@ const OFFERED = (s: Wayshrine): Tree => ({
           { op: 'vfx', fx: 'sparkle' },
           { op: 'log', text: L(`You lay {item} on {host}. A light kindles in the carving.`, `你把{item}放在{host}上。刻痕里亮起了一点光。`) },
           { op: 'emit', impulse: 'notify', to: 'story', params: { what: 'facts', [`fact.${shrineFact(s.id)}`]: 1 } },
-          // an offering made as the Church asks: the one who made it keeps the faith a little more
+          // an offering made as the Order asks: the one who made it keeps the faith a little more
           { op: 'emit', impulse: 'notify', to: 'actor', params: { what: 'faith', delta: 5 } },
         ] as Effect[],
       },
@@ -113,7 +113,7 @@ const OFFERED = (s: Wayshrine): Tree => ({
 export const PILGRIMAGE_RULES: Rule[] = WAYSHRINES.map((s) =>
   story({
     id: `pilgrim/shrine-${s.id}`,
-    doc: `The ${s.id} shrine on the Pilgrim's Road: laid ${s.asks.en} (G), it takes it, lights (lit), tells the story (${shrineFact(s.id)}) and the one who laid it (faith +5); laid a relic, something important or bound, or a keepsake, it refuses it and does not take it; laid anything else, it says what it asks; lit, it stays lit.`,
+    doc: `The ${s.id} beacon shrine on the Old Crown Road: laid ${s.asks.en} (G), it takes it, lights (lit), tells the story (${shrineFact(s.id)}) and the one who laid it (faith +5); laid a relic, something important or bound, or a keepsake, it refuses it and does not take it; laid anything else, it says what it asks; lit, it stays lit.`,
     host: { type: `fixture/sacred/wayshrine/${s.id}` },
     on: 'impulse/receive',
     tree: OFFERED(s),

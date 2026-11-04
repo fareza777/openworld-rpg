@@ -33,11 +33,11 @@ export const edda: PersonDef = {
     line('chat', 'I still wake at the hour the rooster used to crow. There is no rooster now. I wake anyway.', '我每天还是在公鸡打鸣的时辰醒过来。公鸡早就没了，可我还是会醒。'),
     line('chat', 'Sorry — I jump at every sound. Since the night they came, I can\'t sleep unless my back is to a wall.', '对不起，一点动静我就吓一跳。自从那天夜里它们来过，我不背靠着墙就睡不着。'),
     // the news the story spreads (its topics), said once while fresh
-    line('topic:crown', "The crown is in the village now. I went to look at it. It's only thorns. I thought it would look like... more.", "荆棘冠现在放在村里了。我去看过一眼，就是一圈荆棘。我还以为它会更……更了不得一点。"),
+    line('topic:crown', "The Diadem is in the village now. I went to look at it. It's only briars. I thought it would look like... more."),
     line('greeting:first', 'Stay back! ...You\'re not one of them. Sorry. I haven\'t seen a living face out here in a long while.', '别过来！……你不是那些东西。对不起。这一带我好久没见过活人了。'),
     line('default', 'The days got too short for the wheat to ripen. Then the night things came for what was left. The house is all I kept.', '白天短得麦子都熟不了。后来夜里那些东西来了，把剩下的也糟蹋了。我就只保住了这间屋子。'),
     line('default', 'There\'s a knight up the road, all in white. He took my husband\'s ring off the gatepost. He took everything that shone.', '路那头有个骑士，一身白。他把我丈夫的戒指从门柱上拿走了。凡是会发亮的东西，他都拿走了。'),
     line('fact:ch1.flame_stolen', 'A man in grey came through, the night of the fire. He pulled me out of the smoke. Don\'t tell anyone in the village I said so.', '起火那天夜里，有个穿灰衣服的人路过，是他把我从烟里拖出来的。你别跟村里人说是我讲的。'),
-    line('fact:sins.defeated.alberic', 'The road\'s gone quiet again. I\'ll go to Firstlight. There\'s nothing left for me here but ash.', '路上又安静下来了。我要去初原村。这里除了一地灰，什么也不剩了。', { once: true }),
+    line('fact:sins.defeated.alberic', "The road's gone quiet again. I'll go to Emberwick. There's nothing left for me here but ash.", { once: true }),
   ],
 }

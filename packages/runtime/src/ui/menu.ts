@@ -995,7 +995,7 @@ export class Menu {
 
   private optionsHtml(): string {
     return `<div class="options">
-      <div class="opt"><span>${t('language')}</span><button id="oLang">${locale.value === 'zh' ? '中文 → English' : 'English → 中文'}</button></div>
+      ${(game().locales ?? ['en', 'zh']).length > 1 ? `<div class="opt"><span>${t('language')}</span><button id="oLang">${locale.value === 'zh' ? '中文 → English' : 'English → 中文'}</button></div>` : ''}
       <div class="opt"><span>${t('sound')}</span><button id="oSound">${this.muted ? t('off') : t('on')}</button></div>
       ${volumeRows('o')}
       <div class="opt"><span>${t('optTracker')}</span><button id="oTracker">${prefs.get('tracker') ? t('on') : t('off')}</button></div>
@@ -1009,7 +1009,8 @@ export class Menu {
   }
 
   private wireOptions(): void {
-    $('#oLang').onclick = () => (this.send.toggleLocale(), this.render())
+    const lang = document.getElementById('oLang')
+    if (lang) lang.onclick = () => (this.send.toggleLocale(), this.render())
     $('#oSound').onclick = () => (this.send.toggleSound(), (this.muted = !this.muted), this.render())
     wireVolumes($('#menuSheet'), () => this.send.levels())
     $('#oTracker').onclick = () => (prefs.set('tracker', !prefs.get('tracker')), this.render())

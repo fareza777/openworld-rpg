@@ -175,6 +175,8 @@ export class Story {
   /** The player has advanced past what was said. */
   advance(): void {
     const s = this.eng.world.scene
+    // a choice advanced past (a headless run, a test) takes its first answer: the default path
+    if (s?.choice) return this.choose(0)
     if (s?.waiting === 'advance') {
       s.waiting = undefined
       s.line = undefined
@@ -185,7 +187,7 @@ export class Story {
   /** The player has chosen an answer of the scene's choice: its facts are set, and the scene goes on. */
   choose(index: number): void {
     const s = this.eng.world.scene
-    if (s?.waiting !== 'choose') return
+    if (!s?.choice) return
     const cmd = this.defs.get(s.id)?.script?.[s.step]
     const option = cmd && 'choose' in cmd ? cmd.options[index] : undefined
     if (!option) return
@@ -225,7 +227,7 @@ export class Story {
         s.step++
         continue
       }
-      if (s.waiting === 'advance' || s.waiting === 'choose') return
+      if (s.waiting === 'advance') return
       if (s.waiting === 'move') {
         if (!this.moveStep()) return
         s.waiting = undefined
@@ -365,9 +367,9 @@ export class Story {
     } else if ('tell' in c) {
       this.story([{ op: 'emit', impulse: 'notify', to: 'target', params: c.params }], { e: c.tell })
     } else if ('choose' in c) {
+      // it waits as a line does (whatever advances a scene takes its first answer); the view asks it from `choice`
       s.choice = { text: c.choose, options: c.options.map((o) => o.text) }
-      s.line = { who: w.state.player, text: c.choose }
-      s.waiting = 'choose'
+      s.waiting = 'advance'
     } else if ('branch' in c) {
       const v = w.fact(c.branch)
       if (c.is === undefined ? !v : v !== c.is) s.step += c.skip

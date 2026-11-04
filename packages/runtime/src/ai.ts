@@ -27,7 +27,7 @@ export interface AiPlugin {
 
 const found = import.meta.glob<AiPlugin>('../../ai/src/player/index.ts', { eager: true, import: 'default' })
 
-/** The AI's plugin, or undefined in a build without it. */
-export const ai: AiPlugin | undefined = Object.values(found)[0]
+/** The AI's plugin, or undefined in a build without it (or one made with VITE_NO_AI=1: the offline Android build). */
+export const ai: AiPlugin | undefined = import.meta.env.VITE_NO_AI === '1' ? undefined : Object.values(found)[0]
 
 export const providerOf = (id: string): ProviderInfo | undefined => ai?.providers.find((p) => p.id === id)

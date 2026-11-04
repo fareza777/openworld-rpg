@@ -1,5 +1,5 @@
-// Nessa Quill, an almanac-maker stranded by the bridge (docs/chapter-1.md §7): she measures the sky
-// for the Church's almanacs; every month the sun sets earlier, on a curve an old almanac also drew.
+// Nessa Quill, an almanac-maker stranded by the bridge (docs/sunshard/CHAPTER-1.md): she measures the sky
+// for the Radiant Order's almanacs; every month the sun sets earlier, and she keeps a table of every sunset.
 
 import { line, type PersonDef } from '../person.ts'
 
@@ -43,10 +43,11 @@ export const nessa: PersonDef = {
   lines: [
     // a chat (the talk's `chat` verb, docs/npc-sandbox.md §2.15): small talk in their own voice; what they like best is said beside these
     line('chat', 'I have four pens and I lose them in the same order every week. There is a pattern. I have not found it.', '我有四支笔，每周都按同样的顺序弄丢。这里面有规律。我还没找到。'),
-    line('chat', 'The stars do not care what the Church prints about them. That is rather restful, after a day of almanacs.', '星星不在乎教会印了它们什么。编了一天历书之后，这一点倒挺让人歇心。'),
-    line('greeting:first', 'Hello. I am Nessa Quill; I make the almanacs for the Holy City. I have been stuck here since the bridge went. Do you know what time it is? Exactly, I mean. To the minute.', '你好。我叫奈莎·奎尔，给圣城编历书的。桥断了以后，我就困在这里了。你知道现在几点吗？我是说，精确到分钟。'),
+    line('chat', 'The stars do not care what the Order prints about them. That is rather restful, after a day of almanacs.'),
+    line('chat', 'My sunset table is pinned up in the market shelter. One row for every evening, and the minute the sun touched the trees. You may look at it. Please do not touch it.'),
+    line('greeting:first', 'Hello. I am Nessa Quill; I make the almanacs for Solmere. I have been stuck here since the bridge went. Do you know what time it is? Exactly, I mean. To the minute.'),
     line('default', 'Every month the sun sets earlier. Four minutes, five, six. I write it all down. The numbers make a curve, and I do not like where it goes.', '太阳每个月都落得更早。四分钟、五分钟、六分钟。我全都记下来了。这些数字连成一条曲线，它往哪儿走，我不喜欢。'),
-    line('default', 'Tobin sold me an almanac from before the First Night. Its curve matches mine. Exactly.', '托宾卖给我一本初夜之前的旧历书。它的曲线和我的一模一样。分毫不差。'),
+    line('default', 'Tobin sold me an almanac from the year Queen Isolde was crowned. Every sunset in it is later than mine. Every one.'),
     line('hour:evening', 'Hush — the sun is touching the trees. Fourteen. Fifteen. There.', '嘘——太阳碰到树梢了。十四。十五。好了。'),
     line('fact:world.fin', 'I deliver the almanacs here every year. This year I brought the table instead. They took it, and thanked me, and put it in a drawer.', '每年我都把历书送到这里来。今年我带来的是那张表。他们收下了，谢过我，放进了抽屉。'),
     line('fact:fin.end', 'Sunrise at five. Sunset tonight at nine. ...I wrote it down twice. I could not believe it the first time.', '日出，五点。今晚日落，九点。……我记了两遍。头一遍，我自己都不敢信。', { mood: 'happy' }),
@@ -55,6 +56,7 @@ export const nessa: PersonDef = {
     line('fact:ch4.end', 'Five o\'clock. I measured it from the landing while the boat went out. I will measure the next one too, wherever I am.', '五点。船开出去的时候，我在渡口量的。下一次我也会量，不管我在哪儿。', { once: true }),
     line('fact:world.ch3', 'The flattest horizon in the Five Lands. If the sun is cheating, this is where I will catch it.', '五印之地最平的地平线。太阳要是在耍花样，我就在这儿逮住它。'),
     line('fact:ch3.scale', 'Six o\'clock tonight. Six. I am going south tomorrow, to the Fens. Something there does not let the dusk lift, and I want to see it.', '今晚六点。六点。我明天就往南，去林沼。那边有什么东西不让黄昏散去，我想亲眼看看。', { once: true }),
-    line('fact:ch1.crown', 'Four minutes. The sun set four minutes early tonight, on the day the first seal fell. I am sure it means nothing.', '四分钟。今晚太阳早落了四分钟，偏偏是第一道印倒下的那天。我相信这什么都不代表。', { once: true }),
+    line('fact:ch1.crown', 'Four minutes. The sun set four minutes early tonight, on the day the first Warden fell. I am sure it means nothing.', { once: true }),
+    line('fact:choice.ch1.light', 'I have added a column to my table: what was done that day, and what the sun did after. One row tells nothing. I will keep adding rows.', { once: true }),
   ],
 }

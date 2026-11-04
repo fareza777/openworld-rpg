@@ -243,7 +243,7 @@ describe('the main line when the road runs ahead of it', () => {
     ticks(eng, 2)
     expect(w.num(w.get('quest.first_seal')!, 'stage')).toBe(40)
     const log = q.journal().find((j) => j.id === 'quest.first_seal')!.log.map((l) => JSON.stringify(l.text))
-    expect(log.some((l) => l.includes('朝圣令'))).toBe(true)
+    expect(log.some((l) => l.includes('Crownseeker'))).toBe(true)
     // the knight falls with the vigil still open, all three brought: paid, the oil and dawnbloom taken
     eng.author(() => w.setFact(CH1.knight, 1))
     ticks(eng, 3)
@@ -319,7 +319,7 @@ describe("the fairy's guides", () => {
     eng.author(() => w.setProp(w.player, 'level', 5))
     ticks(eng, 6)
     expect(state(eng, 'guide_profession')).toBe('active')
-    expect(lumiSaid(eng, '布拉姆')).toBe(true)
+    expect(lumiSaid(eng, 'Bram')).toBe(true)
     // the trainer is the one to speak to, in the drill yard
     expect(eng.quests.mark('npc.bram')).toBe('?')
     eng.controls.track('quest.guide_profession')
@@ -424,7 +424,7 @@ describe("the fairy's guides", () => {
     ticks(eng, 3)
     expect(w.hasStatus({ e: 'way.shrine.nails' }, 'lit')).toBe(true)
     expect(eng.quests.stage('guide_shrines')).toBe(20)
-    expect(lumiSaid(eng, '亮了')).toBe(true)
+    expect(lumiSaid(eng, 'It lit')).toBe(true)
     expect(eng.quests.targets()).toHaveLength(4)
     // the other four lit: done
     eng.author(() => { for (const s of WAYSHRINES) w.setFact(shrineFact(s.id), 1) })

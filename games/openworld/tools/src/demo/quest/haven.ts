@@ -1,5 +1,5 @@
-// The Held Ground (誓守之地, docs/chapter-1.md §12; content haven.ts): the camp the Oath-Thorn opens. A field round a
-// planted sword, Alberic's pavilion and post beside it, a little tilled earth (no beasts: they are bought, crated, at the
+// Thornhold (map `haven`, docs/chapter-1.md §12; docs/sunshard/CHAPTER-1.md; content haven.ts): the camp the Warden's
+// Thorn opens. A field round a planted sword, Gavrel's pavilion and post beside it, a little tilled earth (no beasts: they are bought, crated, at the
 // stall), a pond — and three rings of mist, each lifting when the steward widens the ground. Beyond each ring there is
 // more: a grove and stones, then a meadow and water, then the old boundary stones and iron in the rock. It lies nowhere
 // on the overworld.
@@ -19,7 +19,7 @@ import { noise, woods } from './country.ts'
 const grassy = (t: string) => t === 'grass' || t === 'flowers' || t === 'drygrass'
 
 export function buildHaven(): MapBuilder {
-  const m = new MapBuilder(HAVEN.map, L('The Held Ground', '誓守之地'), 'village', HAVEN.w, HAVEN.h, 'grass', 'haven', 'outdoor', 'frostfang')
+  const m = new MapBuilder(HAVEN.map, L('Thornhold'), 'village', HAVEN.w, HAVEN.h, 'grass', 'haven', 'outdoor', 'frostfang')
   m.zone = 'peaceful'
   const [hx, hy] = HAVEN.heart
   const dist = (x: number, y: number) => Math.hypot(x - hx, (y - hy) * 1.15)
@@ -72,16 +72,16 @@ export function buildHaven(): MapBuilder {
     id: 'haven.heart',
     name: L('The planted sword', '插在地上的长剑'),
     tags: ['readable', 'haven-heart'],
-    props: { text: 'Alberic\'s longsword, driven point down into the earth, a little crooked. Its grip is wrapped in new cloth.', text_zh: '阿尔贝里克的长剑，剑尖朝下插在土里，有点歪。剑柄上缠着新换的布。' },
+    props: { text: 'Gavrel\'s longsword, driven point down into the earth, a little crooked. Its grip is wrapped in new cloth.' },
   })
   // the steward's pavilion and post, a chest for what is kept here
-  m.fixture('fixture/tent/pavilion', hx - 4, hy - 3, { name: L("Alberic's tent", '阿尔贝里克的帐篷') })
+  m.fixture('fixture/tent/pavilion', hx - 4, hy - 3, { name: L("Gavrel's tent") })
   m.anchor('alberic.bed', hx - 4, hy - 1)
   m.anchor('alberic.post', hx + 1, hy + 1)
   // the knight's forge: he was a smith's son before he was a knight; here he keeps the fire and works the anvil by
   // day, and both are the steward's to lend (wiki 锻造)
-  m.fixture('fixture/craft/forge', hx + 6, hy - 2, { id: 'haven.forge', name: L("Alberic's forge", '阿尔贝里克的熔炉'), statuses: { lit: -1, fireproof: -1 } })
-  m.fixture('fixture/craft/anvil', hx + 6, hy, { id: 'haven.anvil', name: L("Alberic's anvil", '阿尔贝里克的铁砧') })
+  m.fixture('fixture/craft/forge', hx + 6, hy - 2, { id: 'haven.forge', name: L("Gavrel's forge"), statuses: { lit: -1, fireproof: -1 } })
+  m.fixture('fixture/craft/anvil', hx + 6, hy, { id: 'haven.anvil', name: L("Gavrel's anvil") })
   m.anchor('alberic.anvil', hx + 5, hy - 1)
   // the beds of those who come to live here (content social.ts residence): one by the camp from the first, two in front
   // of each residents' tent once it stands (its plot: HAVEN_UPGRADES lodge1–3); a day spent by the fire
@@ -92,16 +92,16 @@ export function buildHaven(): MapBuilder {
     m.anchor(`home.${u.id}.a`, x - 1, y + 1)
     m.anchor(`home.${u.id}.b`, x + 1, y + 1)
   }
-  m.fixture('fixture/container/chest', hx + 3, hy - 3, { id: 'haven.chest', statuses: { open: -1 }, name: L('The Held Ground\'s chest', '誓守之地的箱子') })
-  // no beasts of its own: a cow, a calf, hens are bought crated at Alberic's stall and set down here
+  m.fixture('fixture/container/chest', hx + 3, hy - 3, { id: 'haven.chest', statuses: { open: -1 }, name: L('Thornhold\'s chest') })
+  // no beasts of its own: a cow, a calf, hens are bought crated at Gavrel's stall and set down here
   // the fish pond (homestead.ts): cast a line in it (a rod is made at hand; bait from the stall makes them bite);
   // fish shadows glide in the water now and then, to say so
   m.fish = true
   m.organic(hx + 1, hy - 6, 3.2, 1.6, 'water', { only: (t) => t === 'grass' || t === 'dirt' })
   m.fixture('fixture/sign', hx - 3, hy - 6, { props: { text: 'FISH POND — make a rod from two sticks and two grass, or buy one with bait at the stall. Sell your catch there. The farming shelf has seeds and buckets; fill a bucket here for the fields. Seeds say how long they grow.', text_zh: '鱼塘——两根树枝加两把草能做鱼竿，货摊也卖鱼竿、鱼饵并收鱼。农业页有种子和水桶，在这里装水就能浇地。种子说明里写着生长时间。' } })
-  // Alberic's stall: three shelves (farming, ranching, fishing) and what it buys back (homestead.ts)
-  // the Held Ground's only trade: fire does not take it (gone, it would be gone for good)
-  m.fixture('fixture/furniture/stall/trade', hx + 3, hy + 1, { id: 'haven.stall', name: L("Alberic's stall", '阿尔贝里克的货摊'), statuses: { fireproof: -1 } })
+  // Gavrel's stall: three shelves (farming, ranching, fishing) and what it buys back (homestead.ts)
+  // Thornhold's only trade: fire does not take it (gone, it would be gone for good)
+  m.fixture('fixture/furniture/stall/trade', hx + 3, hy + 1, { id: 'haven.stall', name: L("Gavrel's stall"), statuses: { fireproof: -1 } })
   // the rings of mist: each a bank all round, lifting when the ground is widened past it (its `ring`)
   m.regions.held = [hx - 8, hy - 7, 17, 15]
   for (const [i, r] of HAVEN.rings.entries())
@@ -127,9 +127,9 @@ export function buildHaven(): MapBuilder {
   return m
 }
 
-// ------------------------------------------------------------------ the Held Ground's grounds (opened by its steward)
+// ------------------------------------------------------------------ Thornhold's grounds (opened by its steward)
 
-/** A ground of the Held Ground: a place of its own, ringed in old trees, a way back at its south edge. */
+/** A ground of Thornhold: a place of its own, ringed in old trees, a way back at its south edge. */
 function ground(id: string, en: string, zh: string, fill: string, music = 'field', seed = 1): MapBuilder {
   const m = new MapBuilder(id, L(en, zh), 'field', 32, 24, fill, music, 'outdoor', 'frostfang')
   m.zone = 'peaceful'
@@ -138,7 +138,7 @@ function ground(id: string, en: string, zh: string, fill: string, music = 'field
   // the way back to the heart: a gap in the south edge, a path up from it
   for (let x = 15; x <= 17; x++) {
     for (let y = m.h - 2; y < m.h; y++) m.set(x, y, 'path')
-    m.portal(x, m.h - 1, HAVEN.map, HAVEN.arrive[0] - 16 + x, HAVEN.arrive[1], L('The Held Ground', '誓守之地'))
+    m.portal(x, m.h - 1, HAVEN.map, HAVEN.arrive[0] - 16 + x, HAVEN.arrive[1], L('Thornhold'))
   }
   m.path([[16, m.h - 2], [16, 17]], 'path', 2, { edge: 'dirt', edgeP: 0.1 })
   m.anchor('arrive', 16, 18)
@@ -161,7 +161,7 @@ function buildQuarry(): MapBuilder {
   for (const [x, y] of [[13, 4], [19, 4], [26, 15]] as const) (m.set(x, y, 'gravel'), m.fixture('fixture/nature/vein/coal', x, y))
   m.set(16, 4, 'gravel')
   m.fixture('fixture/nature/vein/gold', 16, 4)
-  m.fixture('fixture/sign', 14, 18, { props: { text: 'THE OATHSTONE QUARRY — the Order cut its kneeling stones here. Stone for building; take what you need.', text_zh: '誓石采石场——骑士团当年在这里凿出跪石。盖房砌墙的石头，用多少，取多少。' } })
+  m.fixture('fixture/sign', 14, 18, { props: { text: 'THE OATHSTONE QUARRY — the Briar Knights cut their oath stones here. Stone for building; take what you need.' } })
   for (const [name, x, y] of [['decor_stones', 9, 11], ['decor_stones', 21, 10], ['decor_stones', 18, 13], ['decor_cart', 19, 17], ['decor_crates', 12, 17], ['decor_stones', 6, 10]] as [string, number, number][]) if (m.free(x, y)) m.building(name, x, y)
   wildFloor(m, 1.2, (x, y) => x >= 15 && x <= 17 && y >= 17)
   m.appear = [appears('item/material/stone', ['dirt', 'gravel'], 10)]
@@ -184,7 +184,7 @@ function buildTimber(): MapBuilder {
   m.fixture('fixture/nature/mushroom_ring', 22, 9)
   for (const [x, y] of [[8, 8], [24, 14], [10, 15]] as const) (m.set(x, y, 'grass'), m.item('item/food/berries', x, y))
   m.set(22, 9, 'grass')
-  m.fixture('fixture/sign', 14, 18, { props: { text: 'THE WARDWOOD — the Order kept these woods. Fell what you need; the trees grow back.', text_zh: '守林——骑士团守过的林子。要多少就砍多少，砍了还会长回来。' } })
+  m.fixture('fixture/sign', 14, 18, { props: { text: 'THE WARDWOOD — the Briar Knights kept these woods. Fell what you need; the trees grow back.' } })
   for (const [name, x, y] of [['decor_firewood', 19, 15], ['decor_firewood', 11, 13], ['decor_cart', 20, 17]] as [string, number, number][]) if (m.free(x, y)) m.building(name, x, y)
   m.sprinkle('fixture/nature/leaves', 0.2, (x, y, t) => t === 'grass' && m.near(x, y, (u) => u === 'tree' || u === 'pine'))
   wildFloor(m, 1.2, (x, y) => x >= 15 && x <= 17 && y >= 17)
@@ -234,7 +234,7 @@ function buildSprings(): MapBuilder {
   return m
 }
 
-/** The Held Ground's grounds, each a place of its own its steward opens (HAVEN_UPGRADES' zones). */
+/** Thornhold's grounds, each a place of its own its steward opens (HAVEN_UPGRADES' zones). */
 export function buildHavenGrounds(): MapBuilder[] {
   return [buildQuarry(), buildTimber(), buildLake(), buildSprings()]
 }

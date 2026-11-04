@@ -1,4 +1,4 @@
-// Sunwell Abbey (docs/showcase.md §4.1): the great church of the Holy City's abbey and its close — the showcase of a
+// Sunwell Abbey (docs/showcase.md §4.1): the great church of Solmere's abbey and its close — the showcase of a
 // gothic cathedral without and within. One comes in by the close's gate, up a lime avenue onto the parvis, and the west
 // front fills the sky (the view draws back and looks up at it, MapData.vistas); round the church its close: the
 // cloister against the nave's east flank, the library and scriptorium over the chapter house north of it, the
@@ -203,7 +203,7 @@ export function abbeyClose(p: Place): MapBuilder[] {
   nave.building('nave_shell', 0, 0)
   // the apse: the organ before the great window, the high altar before it, the bishop's chair and the cantor's, candelabra, crosses, saints
   nave.fixture('fixture/sacred/organ', AX, dais)
-  nave.fixture('fixture/sacred/altar/high', AX, dais + 3, { props: { text: 'To the Light, and to Astra, who bore the Night for us.', text_zh: '献给光，献给为我们承受黑夜的阿斯特拉。' } })
+  nave.fixture('fixture/sacred/altar/high', AX, dais + 3, { props: { text: 'To the Light, and to Aurex, who fell so that we might rise.' } })
   nave.fixture('fixture/sacred/reliquary', AX, dais + 1)
   for (const k of [-1, 1]) {
     nave.fixture('fixture/light/candelabrum', AX + k * 3, dais + 3, { statuses: { lit: -1 } })

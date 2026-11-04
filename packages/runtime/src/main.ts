@@ -31,6 +31,7 @@ import { PeoplePanels } from './ui/people.ts'
 import { SkillBar } from './ui/skillbar.ts'
 import { Tooltip, setLearnedStatuses, type TipContext } from './ui/tooltip.ts'
 import { Minimap } from './ui/worldmap.ts'
+import { TouchControls, isTouchScreen } from './ui/touch.ts'
 import { AfterSave } from './afterSave.ts'
 import { FrameDecoder } from './frameDelta.ts'
 // the title's wordmark (and the map's marks) in Pixelify Sans, bundled: no font is asked of another site
@@ -40,8 +41,14 @@ import './ui/game.css'
 import './ui/polish.css'
 import './ui/fishing.css'
 import './ui/research.css'
+import './ui/touch.css'
 
 const PARAMS = new URLSearchParams(location.search)
+// a game written in fewer languages is played in one of its own (the remembered choice may be another game's)
+{
+  const own = game().locales
+  if (own && !own.includes(locale.value)) locale.set(own[0])
+}
 /** Where this game's saves are kept (its own, beside other games' on the same page). */
 const WORLD = savesKey()
 /** The modder service: ?modder=<url> (or =off), else VITE_MODDER_URL, else a local one in development. */
@@ -1107,6 +1114,10 @@ document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden' && slot && !cover.open) (quietSave = true), send({ t: 'save' })
   else resumeFishingBlurPause()
 })
+// a host that knows the page is leaving before the page does (the Android app paused, docs/sunshard/ANDROID.md) asks for the same quiet save
+window.addEventListener('lsw:save', () => {
+  if (slot && !cover.open) (quietSave = true), send({ t: 'save' })
+})
 
 
 // ------------------------------------------------------------------ mouse: aim at the pointed tile (as far as an input reaches); left = the primary act, right = the action
@@ -1200,6 +1211,38 @@ gameEl.addEventListener('mousedown', (e) => {
   if (sets) handDrag = handCell(tile!)
   send({ t: 'key', key: 'secondary', ...(tile && { tile }), ...(sets && handUp && { layer: CEILING }) })
 })
+// a touch screen (docs/sunshard/ANDROID.md): a tap on the world is the left click there, a long press the right click;
+// the stick and the buttons are ui/touch.ts's
+const touch = isTouchScreen() ? new TouchControls({ primary: (on) => setSwing(on, undefined), secondary: () => send({ t: 'key', key: 'secondary' }) }) : undefined
+const TOUCH_LONG_MS = 450
+let touchHold: ReturnType<typeof setTimeout> | undefined
+let touchLong = false
+gameEl.addEventListener('pointerdown', (e) => {
+  if (e.pointerType !== 'touch') return
+  // no mouse events after it: this is the touch's own answer
+  e.preventDefault()
+  if (hud.chooserOpen) return hud.closeChooser()
+  if (hud.questionShown) return
+  if (hud.dialogOpen) return hud.advanceDialog()
+  if (menu.anyOpen || dev.open) return
+  mouseAt = { x: e.clientX, y: e.clientY }
+  pointerStill = false
+  reaim()
+  const tile = scene.aimAtScreen(e.clientX, e.clientY)
+  if (building.open) return void (tile && building.press(tile))
+  touchLong = false
+  clearTimeout(touchHold)
+  touchHold = setTimeout(() => ((touchLong = true), send({ t: 'key', key: 'secondary', ...(tile && { tile }) })), TOUCH_LONG_MS)
+})
+gameEl.addEventListener('pointerup', (e) => {
+  if (e.pointerType !== 'touch') return
+  if (building.open) return building.release()
+  clearTimeout(touchHold)
+  if (touchLong || menu.anyOpen || dev.open || hud.dialogOpen) return
+  if (fishingIsActive()) return void (fishingPress('mouse'), fishingRelease('mouse'))
+  setSwing(true, mouseTile)
+  setSwing(false)
+})
 window.addEventListener('mouseup', (e) => {
   if (e.button === 0) building.release()
   if (e.button === 2) handDrag = undefined
@@ -1234,6 +1277,7 @@ function raf(now: number) {
   cursor.tick()
   building.tick()
   building.hand(handUp)
+  touch?.show(!cover.open && !death.open && !menu.anyOpen && !dev.open)
   requestAnimationFrame(raf)
 }
 requestAnimationFrame(raf)

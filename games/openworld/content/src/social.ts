@@ -54,7 +54,7 @@ export const DEEDS: DeedDef[] = [
 
 /** The watches: who keeps the law where (a map's `law`), where its jail is, and what it will not pardon. */
 export const LAWS: Record<string, LawDef> = {
-  firstlight: { id: 'firstlight', name: L('the Firstlight watch', '初原村守卫'), jail: { map: 'meadow', anchor: 'cells' }, unpardonable: 1000 },
+  firstlight: { id: 'firstlight', name: L('the Emberwick watch'), jail: { map: 'meadow', anchor: 'cells' }, unpardonable: 1000 },
 }
 
 // ------------------------------------------------------------------ the numbers (§2.4, §2.5, §2.10)
@@ -116,8 +116,8 @@ export const SOCIAL: SocialParams = {
       { from: 21, to: 7, at: 'bed', activity: 'sleep' },
       { from: 7, to: 21, at: 'day', activity: 'live' },
     ],
-    yes: L("...Live there? With you? — Yes. Give me a moment to pack. I'll see you in the Held Ground.", '……搬去那儿住？和你一起？——好。让我收拾一下东西。我们誓守之地见。'),
-    full: L("I'd like that. But you've no bed for me there yet — ask Alberic to raise another tent.", '我很想去。可你那儿还没有我的床位——去找阿尔贝里克再搭一顶营帐吧。'),
+    yes: L("...Live there? With you? — Yes. Give me a moment to pack. I'll see you in Thornhold."),
+    full: L("I'd like that. But you've no bed for me there yet — ask Ser Gavrel to raise another tent."),
   },
 }
 
@@ -196,7 +196,7 @@ export const TALK: TalkVerb[] = [
   // dealings: a merchant's trade, the trainer's professions, the Held Ground's steward (haven.ts), an invitation to live there
   { id: 'trade', group: 'deal', label: L("Let's trade.", '做点买卖吧。'), when: { is: { role: 'host', sel: MERCHANT } } },
   { id: 'profession', group: 'deal', label: L('About professions…', '关于职业……'), when: { is: { role: 'host', sel: { type: 'actor/person/trainer' } } } },
-  { id: 'haven', group: 'deal', label: L('The Held Ground…', '领地扩建……'), when: { is: { role: 'host', sel: { tags: ['haven-steward'] } } } },
+  { id: 'haven', group: 'deal', label: L('Thornhold…'), when: { is: { role: 'host', sel: { tags: ['haven-steward'] } } } },
   // the dresser (dresser.ts): one's look changed, for coin and wildflowers
   { id: 'restyle', group: 'deal', label: L('Could you do something with my look?', '帮我改改样子吧。'), when: { is: { role: 'host', sel: { tags: ['dresser'] } } } },
   // one held in full regard, free to leave, asked to come and live in the Held Ground (once it is one's own)

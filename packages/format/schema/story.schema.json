@@ -614,6 +614,44 @@
             "music"
           ],
           "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "choose": {
+              "$ref": "#/definitions/Text"
+            },
+            "options": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SceneOption"
+              }
+            }
+          },
+          "required": [
+            "choose",
+            "options"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "branch": {
+              "type": "string"
+            },
+            "is": {
+              "$ref": "#/definitions/PropValue"
+            },
+            "skip": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "branch",
+            "skip"
+          ],
+          "additionalProperties": false
         }
       ]
     },
@@ -661,6 +699,25 @@
         "left",
         "right"
       ]
+    },
+    "SceneOption": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "$ref": "#/definitions/Text"
+        },
+        "facts": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/PropValue"
+          }
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "additionalProperties": false,
+      "description": "One answer of a scene's choice: its words and the facts it sets."
     },
     "Invariant": {
       "type": "object",

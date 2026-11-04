@@ -1,8 +1,8 @@
-// Severin, the Greyvowed (docs/chapter-1.md §5): last of the Ashen Watch, the youngest of the brothers the Church named
-// heretics ten years ago; a foundling Sister Ilse raised. He believes Astra is the monster and works against the
-// pilgrimage; he never harms anyone and never fights the player. He appears only in the story's scenes (placed, then
-// gone): he lives nowhere the player can visit yet. His portrait (docs/cast/severin.md): dark hair, gold eyes, the hood up,
-// the lantern.
+// Corvin, the Ashen Wanderer, the man in grey (docs/sunshard/STORY.md §4, CHAPTER-1.md): the last brother of the Ashen
+// Covenant, the Queen's old keepers of the shard-flames, outlawed and hunted; a foundling Sister Maren raised. He lifts the
+// Hearthshard's flame the night before the Regent's Herald comes for it; he never harms anyone and never fights the player. He
+// appears only in the story's scenes (placed, then gone): he lives nowhere the player can visit yet. His portrait
+// (docs/cast/severin.md): dark hair, gold eyes, the hood up, the hooded brass lantern.
 
 import { line, type PersonDef } from '../person.ts'
 
@@ -12,7 +12,7 @@ export const severin: PersonDef = {
   tags: ['storybound'],
   role: 'stranger',
   essential: true,
-  name: { en: 'The Grey Man', zh: '灰衣人' },
+  name: { en: 'Corvin' },
   gender: 'male',
   look: { parts: { face: 'face.keen', outfit: 'outfit.cloak', hat: 'hat.hood', beard: 'beard.stubble', hair: 'hair.short' }, colors: { hair: 'black', eyes: '#d4a84a', skin: 'light', 'outfit.1': 'charcoal', 'outfit.2': 'slate', 'hat.1': 'charcoal' } },
   age: 30,
@@ -45,6 +45,7 @@ export const severin: PersonDef = {
     // a chat (the talk's `chat` verb, docs/npc-sandbox.md §2.15): small talk in their own voice; what they like best is said beside these
     line('chat', 'Do not follow me. What I am doing has nothing to do with you.', '别跟着我。我做的事，跟你没有关系。'),
     line('chat', 'The ash on my hands does not wash off. It never did, for any of us who kept the flames.', '我手上的灰洗不掉。以前守火的人，都是这样。'),
+    line('fact:choice.ch1.light', 'The light is out of the Diadem now. Where it went was your choice, and I will not argue it. Watch the sun go down tonight, and count.', { once: true }),
     line('default', '...', '……'),
   ],
 }

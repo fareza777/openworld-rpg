@@ -24,9 +24,8 @@ import { useStyle } from './style.ts'
 /** How many powers the journey holds: one for each seal. */
 const SEALS = 5
 const ROMAN = ['I', 'II', 'III', 'IV', 'V']
-const ORDINAL = ['一', '二', '三', '四', '五']
-/** Each seal's instrument (docs/lore.md §4, the Five Sufferings). */
-const RELIC: [string, string][] = [['the Crown of Thorns', '荆棘冠'], ['the Scourging Post', '鞭刑柱'], ['the Scales of Hunger', '饥刑之秤'], ['the Nailing Tree', '钉刑圣木'], ['the Heart-Piercing Lance', '穿心圣枪']]
+/** Each of the five Regalia (docs/sunshard/STORY.md: the Dawn Crown broken into five). */
+const RELIC: string[] = ['the Briar Diadem', 'the Ember Chain', 'the Golden Scales', 'the Starfall Wood', 'the Vigil Lance']
 /**
  * How each seal stirs her (the powers page: the seal carried, or the one pointed at) — a suffering, never a joy: the
  * Crown wears the self's borders thin, and she goes blank, far away; the Scourging Post hurts; the Scales of Hunger
@@ -35,7 +34,7 @@ const RELIC: [string, string][] = [['the Crown of Thorns', '荆棘冠'], ['the S
  */
 const SEAL_MOOD: Mood[] = ['neutral', 'sad', 'shy', 'angry', 'surprised']
 /** The word under her name. */
-const EPITHET = { en: 'your little fairy', zh: '随行的小精灵' }
+const EPITHET = { en: 'your star-sprite' }
 
 export type CompanionTab = 'guide' | 'powers' | 'knowledge'
 
@@ -81,7 +80,7 @@ class CompanionPanel implements GamePanel {
     this.sig = sig
     const zh = locale.value === 'zh'
     const me = f.entities.find((e) => e.tags.includes('companion'))
-    const name = me?.name ? tx(me.name) : zh ? '露米' : 'Lumi'
+    const name = me?.name ? tx(me.name) : 'Kiri'
     const set = me ? catalog().portraits?.[me.id] : undefined
     this.own = set?.panel ? set : undefined
     const epithet = tx(EPITHET)
@@ -99,7 +98,7 @@ class CompanionPanel implements GamePanel {
       </aside>
       <section class="lm-main">
         <div class="lm-head">
-          <div class="lm-tabs">${tab('guide', '✦', 'The Road', '主线指引')}${tab('powers', '✧', "The Seals' Powers", '印之力量')}${tab('knowledge', '▤', 'Knowledge', '知识')}</div>
+          <div class="lm-tabs">${tab('guide', '✦', 'The Road', '主线指引')}${tab('powers', '✧', "Kiri's Gifts", "Kiri's Gifts")}${tab('knowledge', '▤', 'Knowledge', '知识')}</div>
         </div>
         <div class="lm-body">${this.tab === 'guide' ? this.guide(road, name) : this.tab === 'powers' ? this.powers(f) : this.readKnowledge()}</div>
       </section>
@@ -142,7 +141,7 @@ class CompanionPanel implements GamePanel {
       <article class="lm-kb-article" aria-labelledby="lm-kb-title">
         <header class="lm-kb-heading"><span>${esc(tx(KNOWLEDGE_GROUPS.find((g) => g.id === current.group)!.title))}</span><h3 id="lm-kb-title">${esc(tx(current.title))}</h3><p>${esc(tx(current.summary))}</p></header>
         ${sections}
-        <aside class="lm-kb-tip"><b>${zh ? '露米的小建议' : 'A little tip from Lumi'}</b><p>${esc(tx(current.tip))}</p></aside>
+        <aside class="lm-kb-tip"><b>A little tip from Kiri</b><p>${esc(tx(current.tip))}</p></aside>
       </article>
     </div>`
   }
@@ -152,12 +151,11 @@ class CompanionPanel implements GamePanel {
     if (this.own) for (const m of SEAL_MOOD) new Image().src = this.ownUrl(m)
     else for (const m of SEAL_MOOD) void preparePortrait(COMPANION_LOOK, m)
     const under = this.host.querySelector<HTMLElement>('.lm-plate small')
-    const zh = locale.value === 'zh'
     this.host.querySelectorAll<HTMLElement>('[data-seal]').forEach((el) => {
       const i = Number(el.dataset.seal)
       el.onmouseenter = () => {
         this.drawBust(SEAL_MOOD[i])
-        if (under) under.textContent = zh ? `第${ORDINAL[i]}印 · ${RELIC[i][1]}` : `Seal ${ROMAN[i]} · ${RELIC[i][0]}`
+        if (under) under.textContent = `Regalia ${ROMAN[i]} · ${RELIC[i]}`
         this.host.querySelector('.lm-plate')?.classList.add('stirred')
       }
       el.onmouseleave = () => {
@@ -270,7 +268,7 @@ class CompanionPanel implements GamePanel {
     const spoken = guides.find((q) => q.tracked) ?? main ?? guides[0]
     const open = spoken.objectives.filter((o) => o.state === 'open' && !o.optional)
     const words = spoken.hint ? tx(spoken.hint) : open[0] ? tx(open[0].text) : tx(spoken.summary)
-    const cards = [...(main ? [this.card(main, zh ? '主线' : 'Main quest', '')] : []), ...guides.map((q) => this.card(q, zh ? '指引 · 露米的教学' : 'Guide · a lesson of Lumi’s', 'guide', q === spoken ? undefined : q.hint))]
+    const cards = [...(main ? [this.card(main, zh ? '主线' : 'Main quest', '')] : []), ...guides.map((q) => this.card(q, 'Guide · a lesson of Kiri’s', 'guide', q === spoken ? undefined : q.hint))]
     return `<div class="lm-say"><span class="lm-who">${esc(name)}</span><p>${esc(words)}</p></div>${cards.join('')}`
   }
 
@@ -297,7 +295,6 @@ class CompanionPanel implements GamePanel {
 
   /** The five seals' powers: found and carried, found, or still sealed. */
   private powers(f: Frame): string {
-    const zh = locale.value === 'zh'
     const b = f.player.boons
     const unlocked = b?.unlocked ?? []
     // each power in its seal's place (a boon names its seal; one that does not, the next free place)
@@ -308,7 +305,7 @@ class CompanionPanel implements GamePanel {
     }
     const cards = Array.from({ length: SEALS }, (_, i) => {
       const def = BOON_BY_ID[at[i] ?? '']
-      const seal = zh ? `第${ORDINAL[i]}印 · ${RELIC[i][1]}` : `Seal ${ROMAN[i]} · ${RELIC[i][0]}`
+      const seal = `Regalia ${ROMAN[i]} · ${RELIC[i]}`
       if (!def)
         return `<div class="lm-seal sealed" data-seal="${i}"><div class="lm-medal"><b>${ROMAN[i]}</b><i>🔒︎</i></div>
           <div class="lm-seal-body"><small>${seal}</small><b>${t('boonSealed')}</b></div></div>`

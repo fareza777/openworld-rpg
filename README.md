@@ -1,3 +1,22 @@
+# SUNSHARD: The Sundered Crown
+
+A 2D pixel-art open-world RPG for Android (and the browser), forked from
+[SihanXU/openworld](https://github.com/SihanXU/openworld) and given an original story, world, cast and lore.
+
+- **Story:** [docs/sunshard/STORY.md](docs/sunshard/STORY.md) — the kingdom of Valdoria, the fallen god-star Aurex,
+  the five Regalia of the broken Dawn Crown, the Regent, the Wardens and the Ashen Covenant; ten chapters, layered
+  twists, choices the world remembers.
+- **Chapter 1, The Ember Letter** (playable now): [docs/sunshard/CHAPTER-1.md](docs/sunshard/CHAPTER-1.md).
+  Chapters 2–10 are designed and arrive one per update; their roads stay sealed until then.
+- **Android:** [docs/sunshard/ANDROID.md](docs/sunshard/ANDROID.md) — Capacitor shell in `mobile/`, touch controls,
+  offline play, autosave, debug APK.
+- **Assets and licenses:** [docs/sunshard/AUDIT.md](docs/sunshard/AUDIT.md). Code MIT; art and audio CC0; fonts OFL.
+- **Words:** [docs/sunshard/LEXICON.md](docs/sunshard/LEXICON.md) maps upstream's names to this story's.
+
+Everything below is upstream's README, kept for the engine, editor and tools, which this fork uses unchanged.
+
+---
+
 # OpenWorld RPG
 
 [![check](https://github.com/SihanXU/openworld/actions/workflows/check.yml/badge.svg)](https://github.com/SihanXU/openworld/actions/workflows/check.yml)

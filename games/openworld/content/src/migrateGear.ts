@@ -18,6 +18,7 @@ export const VOWS_LAYOUT = 'content.gear-vows-v1'
 export const NAMED_VOWS: Record<string, string> = {
   "Brother Odo's Pauldrons": 'holdfast',
   "Sister Maren's Ring": 'mercy',
+  "Sister Agna's Ring": 'mercy',
   "Tomas's Belt of Vigil": 'vigil',
   "Fennick's Squire Helm": 'ward',
   "Cassian's Prayer Cord": 'dawn',

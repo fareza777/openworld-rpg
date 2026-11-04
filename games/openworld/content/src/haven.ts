@@ -1,7 +1,8 @@
-// The Held Ground (誓守之地, docs/chapter-1.md §12): the White Knight's kingdom, kept in a single thorn. Felled, freed of
-// the crown, Alberic keeps his vow another way — "I will hold until I am relieved": he gives the one who relieved him the
-// Oath-Thorn, and holds for them a place they carry. Used on oneself it takes one there and back. It is the player's camp:
-// build a home, farm, keep animals. Alberic, its steward, grows it three ways (his talk's "The Held Ground…", the haven
+// Thornhold (map `haven`, docs/chapter-1.md §12; docs/sunshard/CHAPTER-1.md): the White Knight's ground, kept in a single
+// thorn. Felled, freed of the Diadem, Gavrel's shade keeps his oath another way — "I swore to hold until I was relieved.
+// You relieved me.": he gives the one who relieved him the Warden's Thorn, and holds for them a place they carry. Used on
+// oneself it takes one there and back. It is the player's camp: build a home, farm, keep animals. Gavrel, its steward,
+// grows it three ways (his talk's "Thornhold…", the haven
 // panel): the LAND (rings of mist lifted: the story's `haven.size`), new GROUNDS (places of their own beyond a way he
 // opens: a quarry, a timberland, a lake, hot springs — `haven.zone.<id>`), and BUILDINGS (a plot staked out at the
 // heart that becomes a workshop, a storehouse… — `haven.build.<id>`; a building's `recipes` are made anywhere once it
@@ -11,10 +12,10 @@
 import type { Cond, Effect, Rule, Text, Tree } from '@openworld/engine'
 
 const L = (en: string, zh: string = en): Text => ({ en, zh })
-/** Words in both languages, kept as such (to be quoted into others). */
-const W = (en: string, zh: string) => ({ en, zh })
+/** Words in both languages, kept as such (to be quoted into others); a rewritten line is English only. */
+const W = (en: string, zh: string = en) => ({ en, zh })
 
-/** The Held Ground's map and its places. */
+/** Thornhold's map and its places. */
 export const HAVEN = {
   map: 'haven',
   w: 48,
@@ -26,7 +27,7 @@ export const HAVEN = {
   rings: [8.5, 12.5, 16.5] as const,
 } as const
 
-/** One way the Held Ground grows. */
+/** One way Thornhold grows. */
 export interface HavenUpgrade {
   id: string
   track: 'land' | 'zone' | 'building'
@@ -40,7 +41,7 @@ export interface HavenUpgrade {
   fact: string
   value: number
   coins: number
-  /** What Alberic says as it is done. */
+  /** What Gavrel says as it is done. */
   done: { en: string; zh: string }
   /** A ground: its map, and where one comes into it. */
   map?: string
@@ -77,7 +78,7 @@ export const HAVEN_UPGRADES: HavenUpgrade[] = [
   { id: 'land3', track: 'land', name: L('The Old Bounds', '古老界石'), land: 2, fact: 'haven.size', value: 3, coins: 60,
     unlocks: [L('The last ring of mist lifts', '最后一圈迷雾散去'), L('The old boundary stones, iron in the rock', '古老界石，岩石里的铁矿脉'), L('The whole of the ground', '整片土地')],
     needs: [n(PLANK, 30, 'Planks', '木板'), n(STONE, 30, 'Stones', '石块'), n('item/material/gold_ore', 3, 'Gold ore', '金矿石')],
-    done: W('That is all the ground there is. ...It is more than I held before, and no one here kneels to me.', '这就是全部的地了。……比我从前守的还要大。而这里，没有人向我下跪。') },
+    done: W('That is all the ground there is. ...It is more than I held before, and I need not hold it against anyone.') },
   // new grounds: places of their own, each with what its ground is good for
   { id: 'quarry', track: 'zone', name: L('The Oathstone Quarry', '誓石采石场'), land: 1, fact: 'haven.zone.quarry', value: 1, coins: 0, map: 'haven.quarry', at: [16, 18],
     unlocks: [L('Boulders to break for stone', '可以凿开的巨石'), L('Iron and coal veins, and one of gold', '铁矿脉、煤矿脉和一处金矿脉'), L('Stone underfoot that comes back', '地上会重新冒出石块')],
@@ -86,7 +87,7 @@ export const HAVEN_UPGRADES: HavenUpgrade[] = [
   { id: 'timber', track: 'zone', name: L('The Wardwood', '守林'), land: 1, fact: 'haven.zone.timber', value: 1, coins: 0, map: 'haven.timber', at: [16, 18],
     unlocks: [L('Dense woods to fell, that grow back', '能砍、也会长回来的密林'), L('Mushrooms and berries under the trees', '树下的蘑菇和浆果'), L('Sticks and grass on the ground', '地上的树枝和干草')],
     needs: [n(LOG, 15, 'Logs', '木头'), n(STONE, 5, 'Stones', '石块')],
-    done: W('Trees, and old ones. They stood here before ever I wore the crown.', '是树，还是老树。在我戴上那顶冠之前，它们就在这里了。') },
+    done: W('Trees, and old ones. They stood here before ever I wore the Diadem.') },
   { id: 'lake', track: 'zone', name: L('Stillmere', '静镜湖'), land: 2, fact: 'haven.zone.lake', value: 1, coins: 0, map: 'haven.lake', at: [16, 18],
     unlocks: [L('A deep lake with pike, eels and carp', '一片深湖，有狗鱼、鳗鱼和鲤鱼'), L('Reeds and sand along the shore', '岸边的芦苇和沙滩'), L('Water for the fields', '浇地的水')],
     needs: [n(STONE, 20, 'Stones', '石块'), n(PLANK, 10, 'Planks', '木板')],
@@ -159,7 +160,7 @@ export const HAVEN_UPGRADES: HavenUpgrade[] = [
 /** What a building's recipes wait for (a type's or a recipe's `unlockedBy`): the fact that stands for it, at its level, and its name. */
 export const unlockedBy = (id: string): { fact: string; name: Text; level?: number } => {
   const u = HAVEN_UPGRADES.find((x) => x.id === id)
-  if (!u) throw new Error(`no upgrade of the Held Ground is "${id}"`)
+  if (!u) throw new Error(`no upgrade of Thornhold is "${id}"`)
   return { fact: u.fact, name: u.name, ...(u.value > 1 && { level: u.value }) }
 }
 
@@ -167,14 +168,14 @@ export const unlockedBy = (id: string): { fact: string; name: Text; level?: numb
 export const HAVEN_MATERIALS = [...new Set(HAVEN_UPGRADES.flatMap((u) => u.needs.map((x) => x.type)))]
 /** The ground's stock of one thing (on the steward; the story keeps a copy under `haven.` for the panel). */
 export const stockKey = (type: string) => `haven.stock.${type}`
-/** The steward of the Held Ground (his talk's "The Held Ground…"). */
+/** The steward of Thornhold (his talk's "Thornhold…"). */
 export const HAVEN_STEWARD = { type: 'actor/person/steward', tag: 'haven-steward' } as const
 
 const STEWARD = { type: HAVEN_STEWARD.type, tags: [HAVEN_STEWARD.tag] }
 const param = (key: string, value: string): Cond => ({ param: { key, cmp: value } })
 const storyAtLeast = (key: string, v: number): Cond => ({ prop: { role: 'story', key, cmp: { gte: v }, default: 0 } })
 const hostAtLeast = (key: string, v: number): Cond => ({ prop: { role: 'host', key, cmp: { gte: v }, default: 0 } })
-const logLine = (en: string, zh: string): Effect => ({ op: 'log', text: L(en, zh) })
+const logLine = (en: string, zh: string = en): Effect => ({ op: 'log', text: L(en, zh) })
 /** The story keeps a copy of a count the steward keeps (for the panel). */
 const copy = (key: string): Effect => ({ op: 'emit', impulse: 'notify', to: 'story', params: { what: 'facts', [`fact.${key}`]: { prop: key, of: 'host' } } })
 /** Keep each reward spawn within the engine's default per-effect limit. */
@@ -244,14 +245,11 @@ const story = (r: Omit<Rule, 'source'>): Rule => ({ ...r, source: { origin: 'bas
 const mistText = (text: Text, language: 'en' | 'zh') => typeof text === 'string' ? text : text[language] ?? text.en
 const MIST_GUIDANCE: Tree = HAVEN_UPGRADES.filter((u) => u.track === 'land').reduceRight<Tree>((rest, u) => {
   const materialsEn = u.needs.map((x) => `${x.count} ${mistText(x.text, 'en')}`).join(', ')
-  const materialsZh = u.needs.map((x) => `${x.count}${mistText(x.text, 'zh')}`).join('、')
   const prerequisiteEn = u.land ? `Land level ≥ ${u.land}` : 'none'
-  const prerequisiteZh = u.land ? `先完成第${u.land}圈扩建` : '无'
   return {
     if: { prop: { role: 'host', key: 'ring', cmp: u.value } },
     then: { do: [logLine(
-      `Ring ${u.value} of mist. Find Alberic → The Held Ground… → Land → ${mistText(u.name, 'en')}. Prerequisite: ${prerequisiteEn}; materials: ${materialsEn}; completion reward: ${u.coins} Dawnmarks.`,
-      `第${u.value}圈迷雾。找阿尔贝里克 → 领地扩建…… → 土地 → ${mistText(u.name, 'zh')}。前置：${prerequisiteZh}；材料：${materialsZh}；建成奖励：${u.coins}晨辉币。`,
+      `Ring ${u.value} of mist. Find Gavrel → Thornhold… → Land → ${mistText(u.name, 'en')}. Prerequisite: ${prerequisiteEn}; materials: ${materialsEn}; completion reward: ${u.coins} Dawnmarks.`,
     )] },
     else: rest,
   }
@@ -265,24 +263,24 @@ const MIST_HANDS_ONLY: Cond[] = [
 export const HAVEN_RULES: Rule[] = [
   story({
     id: 'haven/oath-thorn',
-    label: L('Enter the Held Ground', '进入誓守之地'),
-    doc: 'The Oath-Thorn used on oneself: one steps into the Held Ground (or, in it, back out where one stood) — told so, one goes oneself. Not in the middle of a fight: the thorn does not open while something is after one, nor take the fight in with one.',
+    label: L('Enter Thornhold'),
+    doc: 'The Warden\'s Thorn used on oneself: one steps into Thornhold (or, in it, back out where one stood) — told so, one goes oneself. Not in the middle of a fight: the thorn does not open while something is after one, nor take the fight in with one.',
     host: { type: 'item/relic/oath_thorn' },
     on: 'act/use',
     tree: {
       if: { same: ['actor', 'target'] },
       then: {
         if: { fighting: 'actor' },
-        then: { do: [{ op: 'say', text: L('Not now, not in the middle of a fight.', '现在不行，还在打着呢。'), who: 'actor' }], label: L('Enter / leave the Held Ground', '进入 / 离开誓守之地') },
-        else: { do: [{ op: 'emit', impulse: 'notify', to: 'actor', params: { what: 'pocket', map: HAVEN.map, x: HAVEN.arrive[0], y: HAVEN.arrive[1] } }], label: L('Enter / leave the Held Ground', '进入 / 离开誓守之地') },
+        then: { do: [{ op: 'say', text: L('Not now, not in the middle of a fight.', '现在不行，还在打着呢。'), who: 'actor' }], label: L('Enter / leave Thornhold') },
+        else: { do: [{ op: 'emit', impulse: 'notify', to: 'actor', params: { what: 'pocket', map: HAVEN.map, x: HAVEN.arrive[0], y: HAVEN.arrive[1] } }], label: L('Enter / leave Thornhold') },
       },
       else: 'inherit',
     },
   }),
   story({
     id: 'haven/steward',
-    label: L('The Held Ground…', '领地扩建……'),
-    doc: 'The steward spoken to about the ground (his talk\'s "The Held Ground…"): its panel (the land, its grounds, its buildings, the stock); asked to build one (choice build:<id>), he builds it from the stock if the land is ready for it and the stock holds all it asks; asked to go to a ground (choice go:<id>), he sends one there once it is opened.',
+    label: L('Thornhold…'),
+    doc: 'The steward spoken to about the ground (his talk\'s "Thornhold…"): its panel (the land, its grounds, its buildings, the stock); asked to build one (choice build:<id>), he builds it from the stock if the land is ready for it and the stock holds all it asks; asked to go to a ground (choice go:<id>), he sends one there once it is opened.',
     host: STEWARD,
     on: 'impulse/handle',
     tree: { if: param('say', 'resident-work'), then: { do: [{ op: 'residentWork/order' }] }, else: { if: param('say', 'haven'), then: { if: { param: { key: 'choice', cmp: { ne: '' } } }, then: { if: { any: [...HAVEN_UPGRADES.map((u) => param('choice', `build:${u.id}`))] }, then: BUILD, else: GO }, else: { do: [{ op: 'panel', panel: 'haven' }] } }, else: 'inherit' } },
@@ -296,14 +294,14 @@ export const HAVEN_RULES: Rule[] = [
   }),
   story({
     id: 'haven/consumed',
-    doc: 'A thing told it is used up (handed into the Held Ground\'s stock): it is gone.',
+    doc: 'A thing told it is used up (handed into Thornhold\'s stock): it is gone.',
     host: { type: 'item' },
     on: 'impulse/notify',
     tree: { if: param('what', 'consumed'), then: { do: [{ op: 'destroy' }] }, else: 'inherit' },
   }),
   story({
     id: 'haven/mist-guidance',
-    doc: 'A bare hand on a ring of the Held Ground\'s mist points to its land upgrade in the steward\'s panel. Other handles, including uses of tools, remain unanswered.',
+    doc: 'A bare hand on a ring of Thornhold\'s mist points to its land upgrade in the steward\'s panel. Other handles, including uses of tools, remain unanswered.',
     host: { type: 'fixture/nature/mist' },
     on: 'impulse/handle',
     tree: { if: { all: MIST_HANDS_ONLY }, then: MIST_GUIDANCE, else: 'inherit' },
@@ -320,7 +318,7 @@ export const HAVEN_RULES: Rule[] = [
   ),
   story({
     id: 'haven/mist-lifts',
-    doc: 'A bank of mist at the Held Ground\'s edge looks now and then (its period) whether the ground has grown past it: when the story\'s haven.size reaches its ring, it lifts.',
+    doc: 'A bank of mist at Thornhold\'s edge looks now and then (its period) whether the ground has grown past it: when the story\'s haven.size reaches its ring, it lifts.',
     host: { type: 'fixture/nature/mist' },
     on: 'time/period',
     tree: { if: { prop: { role: 'story', key: 'haven.size', bounds: { gte: { prop: 'ring', of: 'host' } }, default: 0 } }, then: { do: [{ op: 'vfx', fx: 'poof' }, { op: 'destroy' }] }, else: { do: [] } },

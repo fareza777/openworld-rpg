@@ -1,5 +1,6 @@
-// The Church's courier (docs/chapter-1.md §6, the Letter): a rider from the Holy City who brings the
-// proclamation of the pilgrimage, stares at the fairy, and rides on. In the story's scenes only.
+// The Regent's Herald (docs/sunshard/CHAPTER-1.md, the letter): a rider from Solmere who comes at dawn to take the
+// Hearthshard for the capital, finds the shrine cold, reads the Regent's proclamation, stares at the star-sprite, and rides on.
+// In the story's scenes only.
 
 import { line, type PersonDef } from '../person.ts'
 
@@ -9,7 +10,7 @@ export const courier: PersonDef = {
   tags: ['storybound', 'devout'],
   role: 'priest',
   essential: true,
-  name: { en: 'Church Courier', zh: '圣教信使' },
+  name: { en: "the Regent's Herald" },
   gender: 'male',
   look: { parts: { hair: 'hair.swept', face: 'face.keen', outfit: 'outfit.vestment', beard: null, hat: null }, colors: { hair: 'honey', eyes: 'sky', skin: 'fair', 'outfit.1': 'ivory', 'outfit.2': 'indigo' } },
   age: 27,
@@ -25,6 +26,6 @@ export const courier: PersonDef = {
     // a chat (the talk's `chat` verb, docs/npc-sandbox.md §2.15): small talk in their own voice; what they like best is said beside these
     line('chat', 'The roads east take longer than the maps say. Each month I must set out earlier to arrive before dark.', '往东的路，实际走起来比地图上标的要久。我每个月都得比上个月早些动身，才能赶在天黑前到。'),
     line('chat', 'I ride, I deliver, and I ride on. Please do not ask me what the letters say. I am not permitted to read them.', '我只管骑马送信，送到了就走。请不要问我信里写了什么，我无权拆阅。'),
-    line('default', 'Suffering is not God\'s abandonment.', '苦难并非神的遗弃。'),
+    line('default', 'Aurex fell so that we might rise. When the Crown is whole again, the whole realm will rise with it.'),
   ],
 }

@@ -19,3 +19,7 @@ games/openworld/project/
 packages/editor/desktop/release/
 
 # the project page's media, made by site/tools/media.mjs
+
+# the Android shell's installs and the web build Capacitor copies in
+mobile/node_modules/
+mobile/android/app/src/main/assets/public/

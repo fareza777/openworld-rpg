@@ -76,7 +76,7 @@ describe('Lumi leads the way', () => {
     const spot = eng.companions.pointing()
     expect(spot, 'she shows a spot').toBeDefined()
     expect(VIGIL.bloom.some(([x, y]) => spot!.x === x && spot!.y === y)).toBe(true)
-    expect(said.join('')).toContain('晨光花')
+    expect(said.join('')).toContain('beaconbloom')
     expect(far(w.posOf(w.get('pip')!)!, spot!)).toBeLessThanOrEqual(1)
   })
 

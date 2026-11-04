@@ -3,7 +3,7 @@
 // three kilns and his coppice, boars in the undergrowth — and the roost oak the forest's birds all fled to the night
 // the bridge came down (why the forest is quiet). East, down the clearing's trail, the Reed Bend: the Ford's river
 // bending south, Hilde the fisher's cabin and jetty, the spit where her husband's boat bell lies among water slimes, a
-// drowned stone older than the Church. Both are combat zones; both lie on the overworld (the bend on the river's own
+// drowned stone older than the Order. Both are combat zones; both lie on the overworld (the bend on the river's own
 // cell, a camp on the near bank one reaches only through the forest: the river stays the barrier it is, D22).
 //
 // Drawn by hand for release 1 (2026-10-21, docs/release-1.md): the ground of each is its layout file (maps/charcoal.txt,
@@ -188,13 +188,12 @@ export function buildBend(): MapBuilder {
   m.fixture('fixture/light/campfire', 22, 16, { name: L("Hilde's smoke-fire", '熏鱼的火堆'), statuses: { lit: -1 } })
   each(m, 'fixture/furniture/rack/fish', [[20, 16], [24, 16]], { name: L('Fish drying', '晾着的鱼') })
   m.regions.camp = [17, 7, 12, 11]
-  // the drowned stone, half in the water north of the jetty: older than the village, older than the Church
+  // the drowned stone, half in the water north of the jetty: older than the village, older than the Order
   const [tx, ty] = FAT.stone
   m.fixture('fixture/sacred/gravestone', tx, ty, {
     name: L('A drowned stone', '沉在水边的石头'),
     props: {
-      text: 'A standing stone, tilted, the river up to its waist. The carving is worn soft: a boat, and a figure in it handing a fish down to a child on the bank. The five wounds are nowhere on it.',
-      text_zh: '一块歪斜的立石，河水没到它的腰间。刻纹已经磨圆了：一条船，船上的人弯下腰，把一条鱼递给岸上的孩子。石头上哪里都找不到五道圣伤。',
+      text: 'A standing stone, tilted, the river up to its waist. The carving is worn soft: a boat, and a figure in it handing a fish down to a child on the bank. There is no star on it, and no crown.',
     },
   })
   m.regions.stone = [tx - 2, ty - 2, 5, 5]
@@ -292,10 +291,10 @@ export const FLANKS_STORY: StepDef[] = [
     // The bend, first time: the Ford's river again, quiet.
     id: 'bend_first',
     when: { map: 'reedbend' },
-    say: L('The river! It\'s the same one as at Vesper Ford. It bends round this way.', '是那条河！和晚祷渡那条是同一条，它在这里拐了个弯。'),
+    say: L('The river! It\'s the same one as at Greywater Ford. It bends round this way.'),
   },
   {
-    // The drowned stone: a carving with no suffering in it.
+    // The drowned stone: a carving with no star and no crown in it.
     id: 'drowned_stone',
     when: { map: 'reedbend', region: 'stone' },
     script: [

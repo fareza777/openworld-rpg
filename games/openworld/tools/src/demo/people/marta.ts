@@ -29,7 +29,7 @@ export const marta: PersonDef = {
     // the news the story spreads (its topics), said once while fresh
     line('topic:dragon_slain', "You killed a dragon, and you still come back for my stew! Sit down. Today you get two bowls.", '杀了一条龙，还记得回来喝我的汤！坐，今天给你盛两碗。'),
     line('topic:crossed', "You've been across the river already? Eat first, then. Nobody over there will cook for you.", '你已经过了河了？那先吃饭。对岸可没人给你做饭。'),
-    line('topic:flame_stolen', "The Firstlight's gone. I still lit my fire this morning and cooked like always, but I've felt uneasy all day.", '圣火没了。我早上照样生火做饭，可这一整天心里都不踏实。'),
+    line('topic:flame_stolen', "The Hearthshard's gone cold. I still lit my fire this morning and cooked like always, but I've felt uneasy all day."),
     line('default', "Since the storm nothing's come in from the fields or up the road. The stew gets thinner every day.", '起了风暴以后，地里的东西收不上来，路上的货也进不来。我这锅汤一天比一天稀。'),
     line('hour:evening', "Sit, eat. It isn't much, but it's hot.", '坐下吃吧。东西不多，但是热乎。'),
     line('default', 'Pell and his grey man again. Stories all day long. He gets that from his father, who went east and never wrote.', '佩尔又在说他那个灰衣人，整天编故事。这毛病随他爹——他爹往东去了，一封信也没寄回来过。'),

@@ -1528,7 +1528,7 @@ req('W6b', 'the places beyond the White Knight are Chapter 2\'s, sealed on the w
   stand(f, at.x - d[0], at.y - d[1], dir, OVERWORLD)
   w.fx = []
   expect(walk(f, dir)).toMatchObject({ map: OVERWORLD, x: at.x - d[0], y: at.y - d[1] })
-  expect(w.fx.filter((x) => x.t === 'log').map((x) => textOf((x as unknown as { text: { en: string; zh: string } }).text))).toContain('The road on east to Emberfall opens once the Crown of Thorns is home in Firstlight.')
+  expect(w.fx.filter((x) => x.t === 'log').map((x) => textOf((x as unknown as { text: { en: string; zh: string } }).text))).toContain('The road on east to Cinderholt is not open yet. Chapter Two waits there, in the next update.')
   stand(f, at.x, at.y, 'down', OVERWORLD)
   const plan = f.eng.controls.plan('hands')!
   expect(textOf(plan.label)).toMatch(/^Sealed: /)
@@ -1981,7 +1981,7 @@ req('F17', 'Firstlight Village is the former meadow: homes, a well, a lit square
   expect(bucket.type).toBe('item/vessel/bucket/water')
   expect(w.hasStatus({ e: 'village.campfire' }, 'lit')).toBe(true)
   expect(w.hasStatus({ e: 'village.lamp.25' }, 'lit')).toBe(true)
-  expect(w.get('village.notice')?.props?.text).toContain('FIRSTLIGHT VILLAGE')
+  expect(w.get('village.notice')?.props?.text).toContain('EMBERWICK')
 })
 
 /** What a household lives with and the village keeps in its yards (docs/release-1.md): F18's. */
@@ -2548,15 +2548,15 @@ req('PR1', "the Pilgrim's Road (docs/chapter-1.md §14), played through the play
   // the Rest: Father Caius greets the pilgrim the letter named; Maud and her daughter, who stopped here
   expect(ticks(f, 400, () => w.fact('ch1.rest') === 1 && !w.scene)).toBe(true)
   for (const id of ['npc.caius', 'npc.maud', 'npc.wynn']) expect([id, ['waystation', 'waystation.chapel', 'waystation.hostel'].includes(w.posOf(w.get(id)!)!.map)]).toEqual([id, true])
-  expect(talkTo(f, 'npc.maud')).toContain('骑士')
-  expect(talkTo(f, 'npc.wynn')).toContain('童谣')
+  expect(talkTo(f, 'npc.maud')).toContain('knight')
+  expect(talkTo(f, 'npc.wynn')).toContain('rhyme')
   // the Holy See's notice: the pilgrimage as proclaimed — seek out the Seal-bearers, overcome them, bring the instruments home
   const notice = read(things('waystation', 'fixture/sign/noticeboard')[0])
-  expect(notice).toContain('胜之')
-  expect(notice).not.toContain('下跪')
+  expect(notice).toContain('overcome them')
+  expect(notice).not.toContain('kneel')
   // into the chapel of the Five: the litany on its bookstand, read (E)
   expect(door('waystation', 'waystation.chapel')).toBe('waystation.chapel')
-  expect(read(things('waystation.chapel', 'fixture/furniture/bookstand')[0])).toContain('极夜便不会归来')
+  expect(read(things('waystation.chapel', 'fixture/furniture/bookstand')[0])).toContain('the Dimming shall end')
   // the oath at the altar of the five wounds; the pilgrim's own scallop
   enter('waystation.chapel', w.map('waystation.chapel')!.regions!.altar, 'pilgrim_oath')
   expect(w.fact('ch1.oath')).toBe(1)
@@ -2569,7 +2569,7 @@ req('PR1', "the Pilgrim's Road (docs/chapter-1.md §14), played through the play
   expect(cross(f, 'waystation', PILGRIM.rest.w - 2, PILGRIM.rest.east[1], 'right')).toBe('pilgrimway')
   ticks(f, 3)
   expect(played('way_first')).toBe(true)
-  expect(read(things('pilgrimway', 'fixture/sign').find((e) => textOf(e.name!) === 'A thorn-bound signpost')!)).toContain('不跪者')
+  expect(read(things('pilgrimway', 'fixture/sign').find((e) => textOf(e.name!) === 'A thorn-bound signpost')!)).toContain('NONE CROSS FOR SOLMERE')
   // what the road holds, taken (F): a hat, a plaited cord, a loaf from the abandoned cart, a dented helm, a candle
   const named = (type: string, en: string) => things('pilgrimway', type).find((e) => textOf(e.name ?? { en: '', zh: '' }) === en)
   const hat = pick(named('item/clothing/hat', "A pilgrim's hat")!)
@@ -2605,13 +2605,13 @@ req('PR1', "the Pilgrim's Road (docs/chapter-1.md §14), played through the play
   expect(cross(f, 'pilgrimway', 27, 1, 'up')).toBe('abbey')
   enter('abbey', [10, 6, 20, 14], 'abbey_yard')
   expect(door('abbey', 'abbey.hall')).toBe('abbey.hall')
-  expect(read(things('abbey.hall', 'fixture/furniture/table').find((e) => textOf(e.name ?? { en: '', zh: '' }) === 'The Roll of the Order')!)).toContain('四十一个名字')
+  expect(read(things('abbey.hall', 'fixture/furniture/table').find((e) => textOf(e.name ?? { en: '', zh: '' }) === 'The Roll of the Briar Knights')!)).toContain('forty-one names')
   enter('abbey.hall', w.map('abbey.hall')!.regions!.cell, 'alberic_cell')
   const leaf = pick(things('abbey.hall', 'item/document/letter').find((e) => textOf(e.name!).endsWith('Leaf II'))!)
   hold(f, leaf)
   w.fx = []
   c.run(c.plan('self')!, true)
-  expect(w.fx.some((x) => x.t === 'log' && JSON.stringify(x.text).includes('我兄弟休说这是刑罚'))).toBe(true)
+  expect(w.fx.some((x) => x.t === 'log' && JSON.stringify(x.text).includes('My brother Hugh says it is a sentence'))).toBe(true)
   // the writ of relief on the scriptorium's desk, never sent: taken (F)
   const writ = things('abbey.hall', 'item/document/writ_of_relief')[0]
   expect(writ).toBeTruthy()
@@ -2661,8 +2661,8 @@ req('PR1', "the Pilgrim's Road (docs/chapter-1.md §14), played through the play
   expect(ticks(f, 600, () => w.fact('ch1.kneelfield') === 1 && !w.scene)).toBe(true)
   ticks(f, 2)
   expect(stage()).toBe(80)
-  expect(read(things('kneelfield', 'fixture/sacred/gravestone')[0])).toContain('不肯下跪')
-  expect(read(things('kneelfield', 'fixture/scarecrow')[0])).toContain('脸朝东')
+  expect(read(things('kneelfield', 'fixture/sacred/gravestone')[0])).toContain('swore to hold the river')
+  expect(read(things('kneelfield', 'fixture/scarecrow')[0])).toContain('faces east')
 })
 
 req('T1', 'the tutorial, offline and through the player\'s own inputs, lesson by lesson (each one thing, the keys it does not teach locked in the first ones): one comes round in a clearing, walks, eats, opens the bag, gathers, makes an axe, fells a tree and splits planks, lights a fire, builds a house on the outline with a door, a bed and a ceiling, knocks the training dummy down and gets through a night while the dead walk; the way out opens only on the first morning after the house, and nothing leads back', [
@@ -3062,7 +3062,7 @@ req('P1', "the prologue's end, offline: from Cloudtop (where a new game begins) 
   expect(ticks(f, 400, () => w.fact('village.sent') === 1 && !w.scene)).toBe(true)
   expect(w.posOf(pip())?.map).toBe('ford')
   // past the prologue, Lumi tells the main story's next step: the village first (docs/quests.md)
-  expect(askPip()).toContain('往西到初原村')
+  expect(askPip()).toContain('Go west to Emberwick')
   // the world map: the foot above the Ford, and the woken statue takes you back up
   const at = new Map(index.maps.map((m) => [m.id, m.at]))
   expect(at.get('ford')).toEqual({ x: 0, y: 0 })
@@ -3281,7 +3281,7 @@ function talkTo(f: Ford, id: string): string {
   w.fx.length = 0
   f.eng.interact('interact', 'player', { e: id }, { instrument: null })
   const said = w.fx.find((x) => x.t === 'say' && x.who === id)
-  return said && said.t === 'say' && typeof said.text === 'object' ? said.text.zh ?? '' : ''
+  return said && said.t === 'say' && typeof said.text === 'object' ? said.text.zh ?? said.text.en : ''
 }
 /** Fell a creature beside the player, as the player does: a bare-handed blow (it is left with one health). */
 function fell(f: Ford, e: Entity): void {
@@ -3366,7 +3366,7 @@ req('P3', "the main line never breaks: Rowan's rescue begins by itself at the we
   // all the experience one has had: what each level took (20, 40, 60 …) and what is carried toward the next
   const total = () => w.num(w.player, 'xp') + Array.from({ length: w.num(w.player, 'level', 1) - 1 }, (_, i) => xpToNext(i + 1)).reduce((a, b) => a + b, 0)
   const xp = total()
-  expect(talkTo(f, 'npc.rowan')).toContain('在圣火前为他们感恩')
+  expect(talkTo(f, 'npc.rowan')).toContain('give thanks for them at the Hearthshard')
   ticks(f, 2)
   expect(qs(f, 'rescue')).toBe('done')
   expect(w.fact('rescue.lina')).toBe(1)
@@ -3377,7 +3377,7 @@ req('P3', "the main line never breaks: Rowan's rescue begins by itself at the we
   author(f, () => (q.put('vigil', 'done'), w.setFact('ch1.vigil', 1)))
   ticks(f, 20)
   expect(underWay(f)).toEqual([['first_seal', 'main']])
-  expect(q.def('first_seal')!.objectives!.at(-1)!.text).toMatchObject({ zh: '在朝阳大道打倒白骑士阿尔贝里克' })
+  expect(q.def('first_seal')!.objectives!.at(-1)!.text).toMatchObject({ en: 'Bring down the White Knight on the Eastmarch Road' })
   // the journal keeps what was done, and the log of each: the rescue's lines in order
   const rescue = q.journal().find((j) => j.quest === 'rescue')!
   expect(rescue.state).toBe('done')
@@ -3412,7 +3412,7 @@ req('P4', 'the villagers\' errands: three side quests (stew, a lost ring, cleari
   for (const id of ['npc.marta', 'npc.mia', 'npc.gus']) expect(markOf(f, id)).toBe('!')
   expect(markOf(f, 'npc.holt')).toBeUndefined() // the hollow is for level 2
   // spoken to, she offers it; turned down it stays on offer, taken on it begins
-  expect(talkTo(f, 'npc.marta')).toContain('三块牛肉')
+  expect(talkTo(f, 'npc.marta')).toContain('three cuts of beef')
   f.eng.controls.talk('npc.marta', 'quest:stew:decline')
   expect([qs(f, 'stew'), markOf(f, 'npc.marta')]).toEqual([undefined, '!'])
   take(f, 'npc.marta', 'stew')
@@ -3639,9 +3639,9 @@ req('C1', 'Chapter 1, offline: the night of the flame (the grey man takes it), t
   // Sister Ilse: the pilgrim's road — Fennick on the knight, Joss on the bridge, Hesper on what she saw
   expect(markOf(f, 'npc.ilse')).toBe('!')
   take(f, 'npc.ilse', 'pilgrim')
-  expect(talkTo(f, 'npc.fennick')).toContain('荆棘')
+  expect(talkTo(f, 'npc.fennick')).toContain('thorns')
   talkTo(f, 'npc.joss')
-  expect(talkTo(f, 'npc.hesper')).toContain('荆棘冠')
+  expect(talkTo(f, 'npc.hesper')).toContain('crown of briars')
   expect(markOf(f, 'npc.ilse')).toBe('?')
   talkTo(f, 'npc.ilse')
   ticks(f, 2)
@@ -3701,11 +3701,14 @@ req('C1', 'Chapter 1, offline: the night of the flame (the grey man takes it), t
   const cards: { text: { en: string } }[] = []
   expect(ticks(f, 900, () => { cards.push(...(w.fx.filter((x) => x.t === 'card') as unknown as { text: { en: string } }[])); w.fx = []; return w.fact('ch1.end') === 1 && !!w.fact('seen.chapter_end') && !w.scene })).toBe(true)
   expect(cards.length).toBe(1)
-  expect(cards[0].text.en).toMatch(/^CHAPTER ONE · THE FIRST SEAL[\s\S]*The road east to Emberfall is open\./)
-  expect(w.fact(CHAPTER_TWO)).toBe(1)
+  expect(cards[0].text.en).toMatch(/^CHAPTER ONE · THE EMBER LETTER[\s\S]*Chapter Two · Ashes of Cinderholt/)
+  // the player's answers are the story's (advanced past, each takes its first: Kiri holds the light; the truth told)
+  expect([w.fact('choice.ch1.light'), w.fact('choice.ch1.tale')]).toEqual(['kiri', 'truth'])
+  // this fork seals Chapter Two for the next update: the road east stays shut, the Dragon Road unbegun
+  expect(w.fact(CHAPTER_TWO)).toBeFalsy()
   ticks(f, 20)
   expect(f.eng.quests.isDone('crown_home')).toBe(true)
-  expect(ticks(f, 60, () => f.eng.quests.stage('dragon_road') === 10)).toBe(true)
+  expect(ticks(f, 60, () => f.eng.quests.stage('dragon_road') === 10)).toBe(false)
 })
 
 req('C2', "Chapter 1's errands: Pell's drawings (four, where the grey man was), Nessa's measure of days (three statues), Fennick's old templar (three of the dead), Joss's ninth nail and Edda's ring (both in the knight's kingdom)", [
@@ -3727,7 +3730,7 @@ req('C2', "Chapter 1's errands: Pell's drawings (four, where the grey man was), 
   ticks(f, 2)
   expect([qs(f, 'drawings'), c.count('item/misc/warm_ember')]).toEqual(['done', 1])
   // the marked loaf the grey man left in the barrow
-  expect(Object.values(w.state.entities).some((e) => e.type === 'item/food/bread' && typeof e.name === 'object' && e.name.zh === '印着灰痕的面包')).toBe(true)
+  expect(Object.values(w.state.entities).some((e) => e.type === 'item/food/bread' && typeof e.name === 'object' && e.name.en === 'Loaf marked with an ash sun')).toBe(true)
   // Nessa's measure: three statues woken
   take(f, 'npc.nessa', 'measure')
   for (const id of ['wp.village', 'wp.ford', 'wp.eastroad']) touch(f, id)
@@ -3837,18 +3840,18 @@ req('C6', "Chapter 1's gear: worn pieces lie along the whole road to the knight 
   const f = fresh()
   const w = W(f)
   const c = f.eng.controls
-  const named = (zh: string) => Object.values(w.state.entities).find((e) => typeof e.name === 'object' && e.name.zh === zh)
+  const named = (en: string) => Object.values(w.state.entities).find((e) => typeof e.name === 'object' && e.name.en === en)
   const tier = (e: Entity | undefined) => (e?.tags ?? []).find((t) => t.startsWith('quality:'))?.slice(8) ?? 'common'
   // found along the road: each where the story put it, in its tier
-  for (const [zh, map, q] of [
-    ['守夜人的斗篷', 'summit', 'fine'], ['猎人的手套', 'foot', 'common'], ['防刺长靴', 'hollow', 'fine'], ['生锈的荆棘骑士团头盔', 'barrow', 'crude'],
-    ['奥多修士的护肩', 'ossuary', 'vowed'], ['玛伦修女的戒指', 'ossuary', 'vowed'], ['跪石旁的朝圣耳环', 'kingdom', 'fine'], ['白骑士扈从的护手', 'kingdom', 'masterwork'],
+  for (const [en, map, q] of [
+    ["Watchman's Cloak", 'summit', 'fine'], ["Hunter's Gloves", 'foot', 'common'], ['Thornproof Boots', 'hollow', 'fine'], ['Rusted Helm of the Briar', 'barrow', 'crude'],
+    ["Brother Odo's Pauldrons", 'ossuary', 'vowed'], ["Sister Agna's Ring", 'ossuary', 'vowed'], ["A Fallen Seeker's Earring", 'kingdom', 'fine'], ['Gauntlets of the Briar Knights', 'kingdom', 'masterwork'],
   ] as const) {
-    const e = named(zh)
-    expect([zh, w.posOf(e!)?.map, tier(e), typeof w.prop(e!, 'slot')]).toEqual([zh, map, q, 'string'])
+    const e = named(en)
+    expect([en, w.posOf(e!)?.map, tier(e), typeof w.prop(e!, 'slot')]).toEqual([en, map, q, 'string'])
   }
   // the warden carries the belt of its vigil, and leaves it where it falls
-  const belt = named('托马斯的守夜腰带')!
+  const belt = named("Tomas's Belt of Vigil")!
   expect([belt.place.on, tier(belt)]).toEqual(['inside', 'vowed'])
   fell(f, w.get('barrow.warden')!)
   ticks(f, 30)
@@ -3863,7 +3866,7 @@ req('C6', "Chapter 1's gear: worn pieces lie along the whole road to the knight 
   for (let i = 0; i < 3; i++) (fell(f, author(f, () => w.create('actor/creature/undead/zombie', { on: 'tile', map: 'pasture', x: 20, y: 12 }))), ticks(f, 1))
   talkTo(f, 'npc.fennick')
   ticks(f, 2)
-  const helm = Object.values(w.state.entities).find((e) => (e.place.on === 'inside' || e.place.on === 'hand') && e.place.holder === 'player' && typeof e.name === 'object' && e.name.zh === '芬尼克的侍从头盔')
+  const helm = Object.values(w.state.entities).find((e) => (e.place.on === 'inside' || e.place.on === 'hand') && e.place.holder === 'player' && typeof e.name === 'object' && e.name.en === "Fennick's Squire Helm")
   expect([tier(helm), w.prop(helm!, 'slot'), c.count('item/armor/helmet')]).toEqual(['vowed', 'head', 1])
 })
 
@@ -3940,7 +3943,7 @@ req('H1',"the Held Ground: once the knight falls, a thorn of his crown is the Oa
   ticks(f, 2)
   expect(f.eng.quests.stage('held_ground')).toBe(20)
   expect(markOf(f, 'npc.alberic')).toBe('?')
-  expect(talkTo(f, 'npc.alberic')).toContain('领地扩建')
+  expect(talkTo(f, 'npc.alberic')).toContain('Ask me of Thornhold')
   ticks(f, 2)
   expect(f.eng.quests.stage('held_ground')).toBe(30)
   expect(held().objectives.find((o) => o.id === 'out')?.state).toBe('open')
@@ -4061,7 +4064,7 @@ req('V1', "Firstlight's vigil (the main line between the rescue and the night of
   // Dawn Hill, north: the dawnbloom, and the chapel on the top
   go('dawnhill', 20, 26)
   waitFor('hill_first')
-  takeAll('dawnhill', '晨光花')
+  takeAll('dawnhill', 'Beaconbloom')
   expect(c.count('item/material/herb')).toBeGreaterThanOrEqual(3)
   through('dawnhill', 'chapel')
   expect(Object.values(w.state.entities).some((e) => e.type === 'fixture/light/candles' && w.posOf(e)?.map === 'chapel')).toBe(true)

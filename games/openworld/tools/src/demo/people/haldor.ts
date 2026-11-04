@@ -34,7 +34,7 @@ export const haldor: PersonDef = {
     line('greeting:first', 'A new face! I\'m Haldor, the smith. The forge is lit and the anvil is free. Bring ore and coal, carry a hammer, and you can make your own. I sell the hammer.', '新面孔啊！我叫哈尔多，这里的铁匠。炉子生着火，铁砧也空着。你带矿石和煤来，手里拿把锻锤，就能自己打东西。锻锤我这儿有卖。', { once: true }),
     line('default', 'Two ore and a lump of coal in the forge make two bars. Then the anvil: a dagger, a spear, a helmet. Start small.', '炉子里放两块矿石、一块煤，能炼出两块铁锭。然后上铁砧打：匕首、长矛、头盔都行。先从小件打起。'),
     line('default', 'The better you know the craft, the better what you make. Nobody makes masterwork on their first day.', '手艺越熟，打出来的东西越好。没有人头一天就能打出精品。'),
-    line('default', 'Garrick taught me in Emberfall. If he saw my welds now he\'d say I\'d got lazy, and he\'d be right.', '我是在余烬镇跟加里克学的手艺。他要是看到我现在的焊口，准说我偷懒了。他说得也没错。'),
+    line('default', "Garrick taught me in Cinderholt. If he saw my welds now he'd say I'd got lazy, and he'd be right."),
     line('hour:evening', 'Last heat of the day. Then supper.', '今天最后一火了。打完就吃饭。'),
     line('weather:rain', 'Rain on hot iron. Listen to it hiss.', '雨点落在热铁上，你听，滋滋地响。'),
     line('given', 'Thanks. If I can\'t use it as it is, I\'ll melt it down. Nothing goes to waste in a smithy.', '谢了。能直接用就用，用不上我就拿去回炉。铁匠铺里没有浪费的东西。'),

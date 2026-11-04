@@ -1,0 +1,117 @@
+/* Touch controls (ui/touch.ts): the stick bottom left, the acts bottom right, over the world and under the panels. */
+
+.touch-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+.touch-layer.hidden {
+  display: none;
+}
+
+.t-stick {
+  position: absolute;
+  left: max(18px, env(safe-area-inset-left));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 240, 210, 0.16) 0 55%, rgba(255, 240, 210, 0.08) 56% 100%);
+  border: 2px solid rgba(255, 236, 200, 0.35);
+  pointer-events: auto;
+  touch-action: none;
+}
+.t-knob {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 58px;
+  height: 58px;
+  margin: -29px 0 0 -29px;
+  border-radius: 50%;
+  background: rgba(255, 236, 200, 0.55);
+  border: 2px solid rgba(80, 50, 20, 0.55);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.t-buttons {
+  position: absolute;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  width: 210px;
+  height: 190px;
+  pointer-events: none;
+}
+.t-btn {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2px solid rgba(80, 50, 20, 0.7);
+  background: rgba(250, 230, 190, 0.78);
+  color: #3b2412;
+  font: 700 22px/1 'Pixelify Sans', system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  touch-action: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  padding: 0;
+}
+.t-btn small {
+  font-size: 8px;
+  line-height: 1;
+  margin-top: 2px;
+  opacity: 0.8;
+}
+.t-btn.on {
+  background: rgba(255, 210, 120, 0.95);
+  transform: scale(0.94);
+}
+.t-btn.big {
+  width: 78px;
+  height: 78px;
+  font-size: 30px;
+}
+.t-btn.small {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+}
+.t-btn.small small {
+  display: none;
+}
+/* the cluster: the attack under the thumb, the rest round it */
+#tAttack { right: 4px; bottom: 4px; }
+#tHands { right: 92px; bottom: 8px; }
+#tUse { right: 24px; bottom: 92px; }
+#tOn { right: 88px; bottom: 74px; }
+#tDash { right: 150px; bottom: 60px; }
+#tPut { right: 160px; bottom: 4px; }
+#tDraw { right: 150px; bottom: 124px; }
+
+/* on a touch screen the panels' corner buttons stand in one row along the top, between the minimap and the clock, clear
+   of the thumbs and of the quest tracker */
+body.touch .corner {
+  top: max(6px, env(safe-area-inset-top)) !important;
+  bottom: auto !important;
+  right: auto !important;
+  left: 50% !important;
+  transform: translateX(-50%);
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  max-width: none !important;
+  max-height: none !important;
+  gap: 6px;
+}
+body.touch .cbtn { width: 40px; height: 40px; }
+body.touch .cbtn .cb-icon { width: 24px; height: 24px; }
+
+/* a line or a choice stands over everything of the HUD (on a short landscape screen it reaches the minimap) */
+body.touch .dialog { z-index: 5; }

@@ -95,6 +95,45 @@ describe('the starter, on the kernel alone', () => {
     expect(snapshot(eng).scene).toBeUndefined()
   })
 
+  it('a scene asks a choice: the answer sets its facts, a branch plays only on its answer, and advancing past takes the first', () => {
+    const scene = {
+      id: 'fork',
+      manual: true,
+      script: [
+        { choose: 'Which way?', options: [{ text: 'Left', facts: { 'way.picked': 'left' } }, { text: 'Right', facts: { 'way.picked': 'right' } }] },
+        { branch: 'way.picked', is: 'left', skip: 1 },
+        { say: 'player', text: 'Went left.' },
+        { branch: 'way.picked', is: 'right', skip: 1 },
+        { say: 'player', text: 'Went right.' },
+        { say: 'player', text: 'Either way.' },
+      ],
+    } as const
+    const lines = (answer: number | 'advance'): (string | undefined)[] => {
+      const eng = played().engine
+      eng.story.defs.set('fork', structuredClone(scene) as never)
+      expect(eng.story.start('fork')).toBe(true)
+      const frame = () => snapshot(eng).scene
+      const next = () => { for (let i = 0; i < 20 && frame()?.waiting !== 'advance'; i++) eng.tick() }
+      eng.tick()
+      next()
+      // the choice waits as a line does, its answers in the frame for the view
+      expect(frame()?.choice).toEqual({ text: 'Which way?', options: ['Left', 'Right'] })
+      if (answer === 'advance') eng.story.advance()
+      else eng.story.choose(answer)
+      const said: (string | undefined)[] = [eng.world.fact('way.picked') as string]
+      for (let i = 0; i < 5 && eng.world.scene; i++) {
+        next()
+        const t = frame()?.line?.text
+        if (t) (said.push(t as string), eng.story.advance())
+        eng.tick()
+      }
+      return said
+    }
+    expect(lines(1)).toEqual(['right', 'Went right.', 'Either way.'])
+    expect(lines(0)).toEqual(['left', 'Went left.', 'Either way.'])
+    expect(lines('advance')).toEqual(['left', 'Went left.', 'Either way.'])
+  })
+
   it('a fade out not yet faded in is kept in the scene: a reload stays dark', () => {
     const game = played()
     const eng = game.engine

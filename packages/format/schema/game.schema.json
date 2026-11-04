@@ -2589,6 +2589,26 @@
             "move"
           ]
         },
+        "choice": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "$ref": "#/definitions/Text"
+            },
+            "options": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Text"
+              }
+            }
+          },
+          "required": [
+            "text",
+            "options"
+          ],
+          "additionalProperties": false,
+          "description": "the choice waiting to be made (a `choose` command; it waits as a line does): its question and its answers' words"
+        },
         "mover": {
           "type": "object",
           "properties": {

@@ -1,5 +1,5 @@
 // Chapter 2's first half (docs/chapter-2.md §6; docs/main-quest.md): the burned farm on the road, the arrival in
-// Emberfall, the elder's council, the village's send-off, the lair's mouth and the dragon's fall, which opens the way
+// Cinderholt (map `emberfall`), the elder's council, the village's send-off, the lair's mouth and the dragon's fall, which opens the way
 // down off the pass into the Scarred March (quest/chapter2.ts).
 
 import type { StepDef } from '@openworld/engine'
@@ -19,11 +19,11 @@ export const QUEST_SCENES: StepDef[] = [
     ],
   },
   {
-    // Chapter 2 begins: the road comes into Emberfall.
+    // Chapter 2 begins: the road comes into Cinderholt.
     id: 'emberfall_arrival',
     when: { map: 'emberfall', region: 'gate' },
     script: [
-      say('player', '(Emberfall. Half its roofs are new thatch; the rest are still black.)', '（余烬镇。一半的屋顶铺着新茅草，另一半还是焦黑的。）'),
+      say('player', '(Cinderholt. Half its roofs are new thatch; the rest are still black.)'),
       say('player', '(Iron is stacked in the yard by the smithy, more than the town could use. A cart stands by the well with nothing in its shafts.)', '（铁匠铺旁的院子里堆着铁，多得镇上根本用不完。井边停着一辆大车，车辕空着。）'),
     ],
   },
@@ -34,7 +34,7 @@ export const QUEST_SCENES: StepDef[] = [
     manual: true,
     script: [
       { face: 'npc.mara', dir: 'down' },
-      say('npc.mara', 'You came up the Sunrise Road. Then you saw the farm.', '你是从朝阳大道上来的。那你看见那座农庄了。'),
+      say('npc.mara', 'You came up the Eastmarch Road. Then you saw the farm.'),
       say('npc.mara', 'A dragon came down onto Cinder Peak two winters ago, when the nights began to lengthen. It burns what it likes, and it sits over the pass east of here.', '两年前的冬天，夜晚开始变长的时候，一头魔龙落到了烬峰上。它想烧什么就烧什么，就盘在镇东那条山道的上头。'),
       say('npc.mara', 'That pass goes over to the Scarred March. We sold our iron to the Red Host over there. No cart has gone over since the dragon came.', '那条山道翻过去，就是赤痕边境。我们的铁一向卖给那边的赤军。魔龙来了以后，一辆车也没过去过。'),
       say('npc.mara', 'If you are going over, the dragon goes first. Garrick the smith has a pattern for a blade that can cut its hide. He needs iron and coal from the Embervein Mine.', '你要是想翻过去，就得先除掉魔龙。铁匠加里克手上有一张剑的图样，打出来能砍穿龙皮。他缺铁和煤，烬脉旧矿里有。'),

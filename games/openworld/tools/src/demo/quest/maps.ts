@@ -1,4 +1,4 @@
-// The main quest's maps (docs/main-quest.md), east of the Ford: the East Road, Emberfall, the
+// The main quest's maps (docs/main-quest.md), east of the Ford: the Eastmarch Road, Cinderholt (map `emberfall`), the
 // Old Mine north of it, Cinder Pass east of it, and the Dragon's Lair at the top of the pass.
 // Each is built from its own seed (world.ts), linked edge to edge, and every placed thing
 // witnesses a requirement in tools/test/demo.test.ts.
@@ -34,16 +34,16 @@ const hunters = (type: string, max: number, every: number, on: string[], ai: Par
 export const EAST_ROAD = { w: 48, h: 24, west: [11, 12, 13], east: [10, 11, 12], fordEast: [12, 13, 14] } as const
 
 /**
- * The East Road (the redo of 2026-10-27): the road on from the Kneeling Field past a burned farm — the farmhouse black
+ * The Eastmarch Road (the redo of 2026-10-27): the road on from the Field of Oaths past a burned farm — the farmhouse black
  * and open to the sky, the barn a frame of charred posts where Edda hides, the yard and the orchard ash, the hay still
  * smouldering, its fields south of the road burned in their strips behind a broken rail — past the trodden clearing off
  * the road to the knight's hedge, its one gate his fog into his arena (quest/kingdom.ts, docs/boss-rooms.md); beyond the
- * hedge the road goes on east to Emberfall, reached only out of the arena. Woods close it but for the road.
+ * hedge the road goes on east to Cinderholt, reached only out of the arena. Woods close it but for the road.
  */
 export const EAST_FARM = { house: [24, 5] as const, barn: [17, 5] as const }
 
 export function buildEastRoad(): MapBuilder {
-  const m = new MapBuilder('eastroad', L('The Sunrise Road', '朝阳大道'), 'wild', EAST_ROAD.w, EAST_ROAD.h, 'grass', 'field', 'outdoor', 'frostfang')
+  const m = new MapBuilder('eastroad', L('The Eastmarch Road'), 'wild', EAST_ROAD.w, EAST_ROAD.h, 'grass', 'field', 'outdoor', 'frostfang')
   m.gearLevel = 4
   // meadow gone rank, dry where the noise swells; the knight's field a wide sweep of dry grass
   for (let y = 0; y < m.h; y++) for (let x = 0; x < m.w; x++) if (noise(x, y, 6, 451) > 0.63) m.set(x, y, 'drygrass')
@@ -61,7 +61,7 @@ export function buildEastRoad(): MapBuilder {
   m.fence('rail', [31, 3], [31, 8], [[31, 5], [31, 6]])
   m.fixture('fixture/nature/haystack', 15, 9, { statuses: { lit: -1 } })
   m.regions = { farmstead: [17, 2, 15, 8] }
-  m.fixture('fixture/sign', 4, 10, { props: { text: 'Emberfall →', text_zh: '余烬镇 →' } })
+  m.fixture('fixture/sign', 4, 10, { props: { text: 'Cinderholt →' } })
   // its fields south of the road, burned in their strips behind a broken rail
   m.fence('rail', [3, 16], [14, 16], [[6, 16], [10, 16]])
   for (const y of [17, 19, 21]) for (let x = 4; x < 14; x++) if (m.get(x, y) !== 'tree') m.set(x, y, 'dirt')
@@ -71,7 +71,7 @@ export function buildEastRoad(): MapBuilder {
     for (const x of [HEDGE.x, HEDGE.x + 1]) if (!(KINGDOM.rows as readonly number[]).includes(y)) m.set(x, y, 'thornhedge')
   m.rect(HEDGE.x - 2, KINGDOM.rows[0], 5, KINGDOM.rows.length, 'path')
   for (const y of KINGDOM.rows) {
-    m.portal(HEDGE.x, y, 'kingdom', KINGDOM.arrive[0], y, L('The Kingdom of Thorns', '荆棘王国'))
+    m.portal(HEDGE.x, y, 'kingdom', KINGDOM.arrive[0], y, L('The Ring of Thorns'))
     m.fixture('fixture/fog', HEDGE.x, y, { name: L("The knight's fog", '骑士的雾门'), props: { boss: 'alberic', interior: 'kingdom', interiorX: KINGDOM.arrive[0], interiorY: y } })
   }
   for (let y = 1; y < m.h - 1; y += 2) if (m.free(HEDGE.x - 1, y) && Math.abs(y - KINGDOM.rows[1]) > 2) m.fixture('fixture/nature/briar', HEDGE.x - 1, y, { name: L("The knight's thorns", '骑士的荆棘') })
@@ -109,7 +109,7 @@ export function buildEastRoad(): MapBuilder {
 export const EMBERFALL = { w: 40, h: 30, west: [14, 15, 16], north: [19, 20, 21], east: [8, 9, 10] } as const
 
 export function buildEmberfall(): MapBuilder {
-  const m = new MapBuilder('emberfall', L('Emberfall', '余烬镇'), 'village', EMBERFALL.w, EMBERFALL.h, 'grass', 'village', 'outdoor', 'frostfang')
+  const m = new MapBuilder('emberfall', L('Cinderholt'), 'village', EMBERFALL.w, EMBERFALL.h, 'grass', 'village', 'outdoor', 'frostfang')
   m.gearLevel = 4
   const has = (xs: readonly number[], v: number) => xs.includes(v)
   // the mountain to the north, its mine mouth; woods west, south and east, with the roads' gaps

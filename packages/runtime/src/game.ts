@@ -137,6 +137,8 @@ export interface ClientGame extends GameDef {
   itemContextAction?(key: 'use' | 'put', instrument: ItemInfo, target: ItemInfo): Text | false | undefined
   /** Sprites, sounds and music by the content's keys. */
   catalog: Catalog
+  /** The languages its words are written in, the first the default (omitted: English and Chinese). With one, the options offer no other. */
+  locales?: ('en' | 'zh')[]
   /** Where its pictures and sounds are (default: the page's `assets/`), and its world files (default: the page's `world/`). */
   assets?: string
   world?: string

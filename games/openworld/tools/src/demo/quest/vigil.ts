@@ -1,7 +1,7 @@
-// Firstlight's own country (docs/chapter-1.md §13): what the village's vigil asks for, after the rescue and before the
-// night of thanks — Millbrook to the west (the miller's press, its cellar, where the vigil oil is kept) and Dawn Hill to
-// the north (where the first dawn after the First Night was seen: dawnbloom on its slopes, the ruined Chapel of the
-// First Dawn on its top, and the bell that was rung that morning) — and, dug into the hill's western flank, the Dawn
+// Emberwick's own country (docs/chapter-1.md §13; docs/sunshard/CHAPTER-1.md): what the vigil of the Hearthshard asks
+// for, after the rescue and before the night of thanks — Millbrook to the west (the miller's press, its cellar, where
+// the vigil oil is kept) and Beacon Hill to the north (where Halvard's first shard-fire was lit: beaconbloom on its
+// slopes, the ruined Beacon Chapel on its top, and its old bell) — and, dug into the hill's western flank, the Beacon
 // Hill Mine: the first chapter's ore for the smithy, its veins growing back in a day where they were mined.
 
 import type { AiData } from '@openworld/engine'
@@ -79,7 +79,7 @@ export function buildMillbrook(): MapBuilder {
   for (const [x, y] of [[35, 6], [35, 9]] as const) m.fixture('fixture/nature/haystack', x, y)
   // a log bench on the pond's bank by the lane
   m.fixture('fixture/furniture/bench/log', 17, 5)
-  m.fixture('fixture/sign', 34, 16, { props: { text: 'MILLBROOK — flour and lamp oil for Firstlight.', text_zh: '水车磨坊——为初原村供应面粉和灯油。' } })
+  m.fixture('fixture/sign', 34, 16, { props: { text: 'MILLBROOK — flour and lamp oil for Emberwick.' } })
   // reeds at the water, flowers along the road and in the meadow, tufts in the open, leaves under the woods
   m.sprinkle('fixture/nature/reeds', 0.4, (x, y, t) => grass(t) && m.near(x, y, water) && !m.near(x, y, road, 0))
   m.sprinkle('fixture/nature/flowers', 0.12, (x, y, t) => grass(t) && m.near(x, y, road, 1) && !m.near(x, y, tree, 2))
@@ -171,7 +171,7 @@ export function buildMillCellar(): MapBuilder {
  * (buildHillMine). Pines on the flanks, woods round the foot.
  */
 export function buildDawnHill(): MapBuilder {
-  const m = new MapBuilder('dawnhill', L('Dawn Hill', '晨光丘'), 'wild', 40, 30, 'grass', 'field', 'outdoor', 'frostfang')
+  const m = new MapBuilder('dawnhill', L('Beacon Hill'), 'wild', 40, 30, 'grass', 'field', 'outdoor', 'frostfang')
   m.gearLevel = 2
   m.paint('dawnhill')
   m.lift('dawnhill.heights')
@@ -182,11 +182,11 @@ export function buildDawnHill(): MapBuilder {
   m.building('dh_chapel', ...CHAPEL_AT, ['chapel'])
   m.yard(13, 1, 5, 5, 'stonewall', [[17, 3], [13, 2], [15, 5], [16, 5]])
   for (const [x, y] of [[14, 3], [16, 3], [15, 2]] as const) m.fixture('fixture/sacred/gravestone', x, y, { name: L('A keeper of the chapel', '礼拜堂的守护人'), props: { text: 'The name is worn away. Under it, a small sun, rising.', text_zh: '名字已经磨平了。下面刻着一个小小的、正在升起的太阳。' } })
-  // the stone where the first dawn was seen, on the crown's east brow, and dawnbloom on the east-facing slope below it
-  m.fixture('fixture/sacred/seal_stone', ...VIGIL.stone, { name: L('The Dawnstone', '晨光石'), tags: ['readable'], props: { text: 'Cut deep, and old: HERE THE SUN ROSE AGAIN. Below, newer: five small wounds, and a flame.', text_zh: '刻得很深，也很古老：太阳在此重新升起。下面是较新的刻痕：五道小伤痕，和一团火。' } })
-  for (const [x, y] of VIGIL.bloom) m.item({ form: 'item/material/herb', name: L('Dawnbloom', '晨光花') }, x, y)
+  // the stone where the first shard-fire was lit, on the crown's east brow, and beaconbloom on the east-facing slope below it
+  m.fixture('fixture/sacred/seal_stone', ...VIGIL.stone, { name: L('The Beaconstone'), tags: ['readable'], props: { text: 'Cut deep, and old: HERE HALVARD LIT THE FIRST FIRE. Below, newer: a crown of five points, and a flame.' } })
+  for (const [x, y] of VIGIL.bloom) m.item({ form: 'item/material/herb', name: L('Beaconbloom') }, x, y)
   // the statue at the head of the first stair, beside the road
-  m.fixture('fixture/sacred/waypoint', ...VIGIL.statue, { id: 'wp.dawnhill', name: L('Dawn Hill statue', '晨光丘传送雕像') })
+  m.fixture('fixture/sacred/waypoint', ...VIGIL.statue, { id: 'wp.dawnhill', name: L('Beacon Hill statue') })
   // wolves on the shoulder's west and at the foot's east woods
   for (const [x, y] of [[6, 10], [33, 24]] as const) m.creature('beast/wolf', x, y, HUNT(5))
   // up on the open top, where the storms break first: spark slimes, charged by them (docs/creatures.md §3.4); out at its
@@ -224,7 +224,7 @@ export const HILL_MINE = { w: 30, h: 22, east: [11, 12], hillWest: [18, 19] } as
  * about and comes back. No gold: that is the Old Mine's and the quarry's.
  */
 export function buildHillMine(): MapBuilder {
-  const m = new MapBuilder('hillmine', L('Dawn Hill Mine', '晨光丘矿洞'), 'dungeon', HILL_MINE.w, HILL_MINE.h, 'cave_wall', 'cave', 'dark', 'frostfang')
+  const m = new MapBuilder('hillmine', L('Beacon Hill Mine'), 'dungeon', HILL_MINE.w, HILL_MINE.h, 'cave_wall', 'cave', 'dark', 'frostfang')
   m.gearLevel = 2
   // the rock and its floor drawn by hand (maps/hillmine.txt): the adit, the miners' store off it, the hall with the
   // rock left standing in it, the north chamber up its gallery, the coal chamber down the other
@@ -261,20 +261,20 @@ export function buildHillMine(): MapBuilder {
 
 
 /**
- * The Chapel of the First Dawn: roofless, cold, its bell still hanging in the tower. The nave (the first hearth at its
+ * The Beacon Chapel: roofless, cold, its bell still hanging in the tower. The nave (the first hearth at its
  * head between two candles gone out, what is left of the benches, weeds come up through the flags where the roof fell
  * in, a fallen stone) and, through a doorway at its head, the foot of the bell tower, the rope hanging in it.
  */
 export function buildChapel(): MapBuilder {
   // (a hall of its plan, plans.ts dhchapel: the nave, the apse at its head, the tower's foot through the arch east; its
   // walls broken off where the roof went, halls.ts `ruined`)
-  const { m, P } = flHouse('dhchapel', 'chapel', 'Chapel of the First Dawn', '初晓礼拜堂', 'floor_stone', ['tower'], { music: 'temple' })
+  const { m, P } = flHouse('dhchapel', 'chapel', 'The Beacon Chapel', 'The Beacon Chapel', 'floor_stone', ['tower'], { music: 'temple' })
   const A = P.apse
   const N = P.nave
   const T = P.tower
   // (the apse and the nave one room: the apse opens on the nave its whole width, no doorway between them)
   m.rooms.push({ style: 'shell', x: N.x - 1, y: A.y - 1, w: N.w + 2, h: N.y + N.h - A.y + 2 })
-  // the first hearth in the apse, where the Firstlight was kindled: a ring of stones round old ash (its own picture,
+  // the first hearth in the apse, where Halvard's first shard-fire was lit: a ring of stones round old ash (its own picture,
   // art/arch/buildings/chapter1.ts), candles either side
   m.fixture('fixture/sacred/altar/hearth', A.x + 2, A.y, { name: L('The first hearth', '最初的火坛'), tags: ['readable'], props: { text: 'The chapel\'s first hearth, a ring of stone, cold for centuries. Old soot is still packed deep in its cracks.', text_zh: '礼拜堂最早的火坛，一圈石头砌成，已经冷了几百年。裂缝深处还塞着陈年的烟灰。' } })
   for (const x of [A.x, A.x + 4]) m.fixture('fixture/light/candles', x, A.y)

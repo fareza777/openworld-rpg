@@ -34,8 +34,8 @@ export const CH5_SETS: SetDef[] = [
     palette: ['#6f7480', '#3c3f48', '#b5a585', '#b9bec8'],
     pieces: [
       P('head', F.hood, 'Hood of One Who Turned Back', '回头者的兜帽',
-        'A grey pilgrim\'s hood. The scallop has been unpicked from it; the holes of the stitches are still there. Ysolde wore it as far as the third seal, and keeps it in the chest under her cot.',
-        '一顶灰色的朝圣者兜帽。上面的扇贝被拆掉了，针脚留下的孔还在。伊索尔德戴着它走到了第三道印，如今把它收在床底的箱子里。', 'map:whitestair', { dodge: 0.02 }),
+        'A grey pilgrim\'s hood. The scallop has been unpicked from it; the holes of the stitches are still there. Ysolde wore it as far as the third March, and keeps it in the chest under her cot.',
+        '', 'map:whitestair', { dodge: 0.02 }),
       P('shoulders', F.cloak, 'Cloak of One Who Turned Back', '回头者的斗篷',
         'A travelling cloak worn the wrong way round, as the old tales say pilgrims wore them who gave up the road, so that the road would not know them going home. Its wearer lies facing downhill.',
         '一件反过来披的旅行斗篷。老故事里说，放弃朝圣的人要这样披，好让道路认不出回家的他们。穿它的人躺在那里，脸朝着山下。', 'map:whitestair', { dodge: 0.02 }),

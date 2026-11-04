@@ -12,7 +12,8 @@ describe('names', () => {
     expect(statues.length).toBeGreaterThan(5)
     for (const s of statues) {
       expect(textOf(s.name, 'en'), s.id).toMatch(/statue$/)
-      expect(textOf(s.name, 'zh'), s.id).toMatch(/传送雕像$/)
+      // (English only in this fork: a renamed place's statue reads the same in both languages)
+      expect(textOf(s.name, 'zh'), s.id).toMatch(/(传送雕像|statue)$/)
     }
   })
 })

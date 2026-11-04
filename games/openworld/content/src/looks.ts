@@ -164,7 +164,7 @@ export const LOOK_PARTS: Record<string, LookPart> = {
 
   // what is only worn (an item's `look`, docs/looks.md §5): never drawn by chance
   'hat.circlet': { slot: 'hat', name: T('circlet', '头冠'), bodies: ADULTS, colors: { 1: 'gold' }, tags: [LOOK_TAG + 'crowned'], say: T('a {c} circlet', '{c}头冠'), gen: { w: 0, worn: true } },
-  'hat.thorns': { slot: 'hat', name: T('crown of thorns', '荆棘冠'), bodies: ADULTS, colors: { 1: 'bronze' }, tags: [LOOK_TAG + 'crowned', LOOK_TAG + 'thorn-crowned'], say: T('a crown of thorns', '一顶荆棘冠'), gen: { w: 0, worn: true } },
+  'hat.thorns': { slot: 'hat', name: T('briar diadem', 'briar diadem'), bodies: ADULTS, colors: { 1: 'bronze' }, tags: [LOOK_TAG + 'crowned', LOOK_TAG + 'thorn-crowned'], say: T('a briar diadem', 'a briar diadem'), gen: { w: 0, worn: true } },
   'armour.plate': { slot: 'armour', name: T('breastplate', '胸甲'), bodies: ADULTS, colors: { 1: 'iron' }, tags: [LOOK_TAG + 'armoured'], say: T('an {c} breastplate', '{c}胸甲'), gen: { w: 0, worn: true } },
   'cloak.cloak': { slot: 'cloak', name: T('cloak', '斗篷'), bodies: ADULTS, colors: { 1: 'undyed' }, tags: [LOOK_TAG + 'cloaked'], say: T('a {c} cloak', '{c}色斗篷'), gen: { w: 0, worn: true } },
   'cloak.pauldrons': { slot: 'cloak', name: T('pauldrons', '护肩'), bodies: ADULTS, colors: { 1: 'iron' }, tags: [LOOK_TAG + 'armoured'], say: T('{c} pauldrons', '{c}护肩'), gen: { w: 0, worn: true } },

@@ -111,7 +111,7 @@ describe("the Pilgrims' Rest after the knight", () => {
     const said = f.w.fx.find((x) => x.t === 'say' && x.who === caius.id) as { text: { en: string; zh: string } } | undefined
     expect(said).toBeTruthy()
     expect(said!.text.en).not.toMatch(/kneel|Seal-bearer will/i)
-    expect(said!.text.zh).not.toContain('跪')
+    expect(said!.text.zh ?? '').not.toContain('跪')
   })
 
   it('before the knight, the welcome and the oath play as ever', () => {
@@ -137,12 +137,12 @@ describe("the Rest's chapel", () => {
     teleport(f, at.map, at.x, at.y + 1)
     f.w.player.facing = 'up'
     // what E says it will do there: read it
-    expect(textOf(f.eng.controls.plan('hands', { x: at.x, y: at.y })?.label)).toBe('Read The Litany of the Five')
+    expect(textOf(f.eng.controls.plan('hands', { x: at.x, y: at.y })?.label)).toBe('Read The Litany of the Crown')
     f.w.fx = []
     f.eng.act('hands', 'player', { e: litany.id }, { instrument: null })
     ticks(f, 2)
     expect(f.w.fx.some((x) => x.t === 'panel')).toBe(false)
-    expect(JSON.stringify(f.w.fx.filter((x) => x.t === 'say'))).toContain('极夜便不会归来')
+    expect(JSON.stringify(f.w.fx.filter((x) => x.t === 'say'))).toContain('the Dimming shall end')
     // the chapel's stand in Firstlight still opens its shelves
     const books = f.w.posOf(f.w.get('church.books')!)!
     teleport(f, books.map, books.x, books.y + 1)
@@ -218,9 +218,9 @@ describe("Firstlight's chapel", () => {
     const door = f.w.map('meadow')!.portals.find((p) => p.to === 'meadow.church')!
     const altar = f.w.posOf(f.w.get('village.astra')!)!
     expect([door.x, door.y + 2]).toEqual([altar.x, altar.y])
-    expect(f.w.map('meadow.church')!.name).toEqual({ en: 'Firstlight Chapel', zh: '初原村礼拜堂' })
+    expect(f.w.map('meadow.church')!.name).toEqual({ en: 'Emberwick Shrine', zh: 'Emberwick Shrine' })
     expect(f.w.posOf(f.w.get('church.books')!)!.map).toBe('meadow.church')
-    expect(f.w.map('chapel')!.name).toEqual({ en: 'Chapel of the First Dawn', zh: '初晓礼拜堂' })
+    expect(f.w.map('chapel')!.name).toEqual({ en: 'The Beacon Chapel', zh: 'The Beacon Chapel' })
     const sign = f.w.get(CHAPEL_SIGN.id)!
     expect(f.w.posOf(sign)).toMatchObject({ map: 'meadow', x: CHAPEL_SIGN.at[0], y: CHAPEL_SIGN.at[1] })
   })

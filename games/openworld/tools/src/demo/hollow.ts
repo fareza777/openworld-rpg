@@ -128,11 +128,11 @@ export function buildBarrow(): MapBuilder {
   m.creature('beast/bat', 21, 12, HUNT(5))
   m.anchor('cell.lina', ...HAT.lina)
   // by Lina's cell, a helm of the Order rusted through: what lies below begins here
-  m.item({ form: 'item/armor/helmet', material: 'iron', quality: 'crude', name: L('Rusted Helm of the Thorn', '生锈的荆棘骑士团头盔') }, 8, 21)
+  m.item({ form: 'item/armor/helmet', material: 'iron', quality: 'crude', name: L('Rusted Helm of the Briar') }, 8, 21)
   // the east cell: a stair cut down into the rock, to the Order's ossuary
   const [dx, dy] = BARROW.down
   m.set(dx, dy, 'stairs_down')
-  m.portal(dx, dy, 'ossuary', OSSUARY.up[0], OSSUARY.up[1] + 1, L('The Ossuary of the Thorn', '荆棘骸骨堂'))
+  m.portal(dx, dy, 'ossuary', OSSUARY.up[0], OSSUARY.up[1] + 1, L('The Ossuary of the Briar'))
   m.appear = [hunters('actor/creature/undead/skeleton', 2, 2400, ['floor_stone'])]
   const { put, strew } = dresser(m)
   // the antechamber's columns, and the gallery's
@@ -153,11 +153,11 @@ export function buildBarrow(): MapBuilder {
 // =================================================================== the Ossuary of the Thorn
 
 /** The Order of the Thorn's dead, each in a niche: who they were (one niche is empty, and waits). */
-const NICHES: [number, number, string, string][] = [
-  [9, 7, 'BROTHER ODO OF THE THORN. He held the gate at Varn three days. He did not kneel.', '荆棘修士奥多。他在瓦恩守了三天城门。他没有下跪。'],
-  [21, 7, 'SISTER MAREN OF THE THORN, who carried water to both armies.', '荆棘修女玛伦，她给两边的军队都送过水。'],
-  [10, 16, 'BROTHER TOMAS OF THE THORN, the Commander\'s brother. Warden of this house until the night comes back.', '荆棘修士托马斯，骑士长的兄弟。看守此墓，直到夜晚归来。'],
-  [20, 16, 'Carved, and left empty: FENNICK, SQUIRE TO THE COMMANDER. The stone is clean. Someone keeps it swept.', '刻好了字，却空着：芬尼克，骑士长的侍从。石头很干净。有人一直在打扫。'],
+const NICHES: [number, number, string, string?][] = [
+  [9, 7, 'BROTHER ODO OF THE BRIAR. He held the gate at Varn three days for the Queen. He did not yield.'],
+  [21, 7, 'SISTER AGNA OF THE BRIAR, who carried water to both armies.'],
+  [10, 16, 'BROTHER TOMAS OF THE BRIAR, the Commander\'s brother. Warden of this house until the Queen\'s light comes home.'],
+  [20, 16, 'Carved, and left empty: FENNICK, SQUIRE TO THE COMMANDER. The stone is clean. Someone keeps it swept.'],
 ]
 
 /**
@@ -167,7 +167,7 @@ const NICHES: [number, number, string, string][] = [
  * further down, Oskar's cell south-east, and a passage south that has fallen in.
  */
 export function buildOssuary(): MapBuilder {
-  const m = new MapBuilder('ossuary', L('The Ossuary of the Thorn', '荆棘骸骨堂'), 'dungeon', OSSUARY.w, OSSUARY.h, 'cave_wall', 'crypt', 'dark', 'frostfang')
+  const m = new MapBuilder('ossuary', L('The Ossuary of the Briar'), 'dungeon', OSSUARY.w, OSSUARY.h, 'cave_wall', 'crypt', 'dark', 'frostfang')
   m.gearLevel = 3
   m.paint('ossuary')
   const [ux, uy] = OSSUARY.up
@@ -178,20 +178,19 @@ export function buildOssuary(): MapBuilder {
   m.portal(dx, dy, 'sanctum', SANCTUM.up[0], SANCTUM.up[1] + 1, L("The Warden's Sanctum", '守墓者圣所'))
   for (const [x, y] of [[4, 4], [13, 11], [17, 11], [24, 5], [29, 18]] as const) brazier(m, x, y)
   // the niches of the Order's dead, and the roll of the Order on its altar
-  for (const [x, y, en, zh] of NICHES) m.fixture('fixture/sacred/gravestone', x, y, { name: L('A niche of the Order', '骑士团的墓龛'), props: { text: en, text_zh: zh } })
+  for (const [x, y, en, zh] of NICHES) m.fixture('fixture/sacred/gravestone', x, y, { name: L('A niche of the Briar Knights'), props: { text: en, ...(zh && { text_zh: zh }) } })
   m.fixture('fixture/sacred/altar', ...HAT.roll, {
     id: 'ossuary.roll',
-    name: L('The roll of the Order', '骑士团名册'),
+    name: L('The roll of the Briar Knights'),
     tags: ['readable'],
     props: {
-      text: 'THE ORDER OF THE THORN. Forty-one names, the oldest worn smooth. The last, cut deeper than the rest: ALBERIC, KNIGHT-COMMANDER, WHO KNELT TO CHILDREN. TAKEN UP BY THE HOLY CITY TO BEAR THE CROWN. HE HOLDS.',
-      text_zh: '荆棘骑士团。四十一个名字，最老的已经磨平了。最后一个比别的刻得都深：阿尔贝里克，骑士长，曾向孩子们下跪。蒙圣城擢选，承戴荆棘冠。他坚守着。',
+      text: 'THE BRIAR KNIGHTS, SWORN TO THE QUEEN. Forty-one names, the oldest worn smooth. The last, cut deeper than the rest: GAVREL, KNIGHT-COMMANDER, FIRST WARDEN, WHO KNELT TO CHILDREN. HE TOOK UP THE BRIAR ON THE SUNDERING NIGHT. HE HOLDS.',
     },
   })
-  // what the Order's dead were laid down with (Vowbound: theirs, and it remembers): Odo's pauldrons, Maren's ring
-  // (their vows, content VOWS — and migrateGear.ts NAMED_VOWS for a save from before: Odo held the gate, Maren gave water)
+  // what the Order's dead were laid down with (Vowbound: theirs, and it remembers): Odo's pauldrons, Agna's ring
+  // (their vows, content VOWS — and migrateGear.ts NAMED_VOWS for a save from before: Odo held the gate, Agna gave water)
   m.item({ form: 'item/armor/pauldrons', material: 'steel', quality: 'vowed', name: L("Brother Odo's Pauldrons", '奥多修士的护肩'), vow: 'holdfast' }, 9, 8)
-  m.item({ form: 'item/valuable/ring', material: 'silver', quality: 'vowed', name: L("Sister Maren's Ring", '玛伦修女的戒指'), vow: 'mercy', props: { def: 1, lifesteal: 1 } }, 21, 8)
+  m.item({ form: 'item/valuable/ring', material: 'silver', quality: 'vowed', name: L("Sister Agna's Ring"), vow: 'mercy', props: { def: 1, lifesteal: 1 } }, 21, 8)
   m.regions.oskar_cell = [24, 17, 7, 5]
   m.regions.niches = [8, 6, 15, 12]
   m.anchor('cell.oskar', ...HAT.oskar)
@@ -236,15 +235,14 @@ export function buildSanctum(): MapBuilder {
   m.paint('sanctum')
   const [ux, uy] = SANCTUM.up
   m.set(ux, uy, 'stairs_up')
-  m.portal(ux, uy, 'ossuary', OSSUARY.down[0] - 1, OSSUARY.down[1] + 1, L('The Ossuary of the Thorn', '荆棘骸骨堂'))
+  m.portal(ux, uy, 'ossuary', OSSUARY.down[0] - 1, OSSUARY.down[1] + 1, L('The Ossuary of the Briar'))
   for (const [x, y] of [[6, 6], [17, 6], [6, 13], [17, 13]] as const) brazier(m, x, y)
   m.fixture('fixture/sacred/altar', ...HAT.vow, {
     id: 'sanctum.vow',
     name: L("The Commander's vow", '骑士长的誓言'),
     tags: ['readable'],
     props: {
-      text: 'Cut into the altar, in a knight\'s plain hand: "I WILL HOLD UNTIL I AM RELIEVED. — ALBERIC." Below it, newer, pressed into the soot with a thumb: a mark of ash.',
-      text_zh: '祭坛上刻着一行朴素的骑士字迹："我将坚守，直到有人来接替我。——阿尔贝里克。"下面是新的痕迹，用拇指按在烟灰里：一个灰印。',
+      text: 'Cut into the altar, in a knight\'s plain hand: "WE HOLD THE RIVER UNTIL THE QUEEN\'S LIGHT COMES HOME. — G." Below it, newer, pressed into the soot with a thumb: a little sun of ash.',
     },
   })
   m.regions.vow = [8, 13, 9, 4]

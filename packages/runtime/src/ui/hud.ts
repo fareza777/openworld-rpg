@@ -602,7 +602,7 @@ export class Hud {
   }
 
   advanceDialog(): void {
-    if (this.questionOpen) return
+    if (this.questionOpen || this.sceneChoiceOpen) return
     // a talk stays open while one chooses (the line finishes typing; Esc or goodbye closes it)
     if (this.talkOpen) {
       if (!this.typedAll) (clearInterval(this.typer), ($('#dLine').textContent = this.fullText), (this.typedAll = true))
@@ -710,7 +710,7 @@ export class Hud {
   private sceneChoiceOpen = false
   private sceneChoices: string[] = []
   private renderSceneChoice(f: Frame): void {
-    const c = f.scene?.waiting === 'choose' ? f.scene.choice : undefined
+    const c = f.scene?.choice
     const sig = c ? `${locale.value}|${tx(c.text)}|${c.options.map(tx).join('|')}` : ''
     if (sig === this.sceneChoiceSig) return
     this.sceneChoiceSig = sig
@@ -736,6 +736,7 @@ export class Hud {
   private pickScene(i: number): void {
     if (!this.sceneChoiceOpen) return
     this.sceneChoiceOpen = false
+    this.sceneDialog = false
     $('#dChoices').classList.add('hidden')
     $('#dialog').classList.add('hidden')
     this.send.choose(i)

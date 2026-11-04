@@ -31,7 +31,7 @@ export const odette: PersonDef = {
   lines: [
     // a chat (the talk's `chat` verb, docs/npc-sandbox.md §2.15): small talk in their own voice; what they like best is said beside these
     line('chat', "Don't laugh at my hair. I do everyone else's all day and never get round to my own.", '我自己的头发乱成这样，你可别笑。一整天都在给别人弄，轮不到我自己。'),
-    line('chat', 'In the Holy City the ladies wanted gold on everything. Here a sprig of wildflowers looks lovely, and honestly, I like it better.', '在圣城，太太们什么都要镶金。到了这儿，别一枝野花就很好看了。说实话，我更喜欢这样。'),
+    line('chat', 'In Solmere the ladies wanted gold on everything. Here a sprig of wildflowers looks lovely, and honestly, I like it better.'),
     line('greeting:first', "New face! Sit, sit. I'm Odette — I do hair, and anything else about you that wants doing. Bring me wildflowers if you find any; I'm always short.", '生面孔！坐，坐。我叫奥黛特，做头发的——你身上还有哪儿想改改，也可以找我。看见野花的话给我带点来，我总是不够用。', { once: true }),
     line('default', "It's ten marks and three wildflowers a time. Hair, face, the colour of your coat — I can change any of it.", '做一次是十枚晨辉币，外加三枝野花。头发、脸、衣服的颜色，哪样都能换。'),
     line('default', "Greta always says I talk too much with scissors in my hand. I've cut her hair every month since I came, and I've never nicked her once.", '葛瑞塔总说我拿着剪刀还说个不停。我来了以后每个月都给她剪头发，一回都没剪着过她。'),

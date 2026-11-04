@@ -111,7 +111,7 @@ export const STAND = {
 } as const satisfies Record<string, readonly [number, number]>
 
 function buildMap(): MapBuilder {
-  const m = new MapBuilder('ford', L('Vesper Ford', '晚祷渡'), 'wild', 48, 30, 'grass', 'ford', 'outdoor', 'frostfang')
+  const m = new MapBuilder('ford', L('Greywater Ford'), 'wild', 48, 30, 'grass', 'ford', 'outdoor', 'frostfang')
   const grass = (t: string) => t === 'grass'
   // ------------------------------------------------------------ the river: a pool at the landing, narrows at the dead tree
   for (let y = 0; y < m.h; y++) for (let x = NEAR[y]; x <= FAR[y]; x++) m.set(x, y, 'water')
@@ -189,7 +189,7 @@ function buildMap(): MapBuilder {
   for (const [x, y] of [[20, 5], [21, 4], [17, 9]] as const) m.fixture('fixture/nature/boulder', x, y)
   clump(m, 22, 8, 1.2, 0.7)
   // where the road east leaves the far bank, a signpost
-  m.fixture('fixture/sign', 40, 14, { props: { text: "EAST — the Pilgrims' Rest, and the Pilgrim's Road beyond it.", text_zh: '往东——朝圣者驿站，再往前是朝圣者之路。' } })
+  m.fixture('fixture/sign', 40, 14, { props: { text: "EAST — the Wardens' Rest, and the Old Crown Road beyond it." } })
   m.fixture('fixture/nature/haystack', ...AT.haystack)
   // the landing: the post the ferry line ran from, the boat on the water, a bucket, a coil of old line
   m.fixture('fixture/ferry/winch', ...AT.winch, { id: 'ford.winch', statuses: { broken: -1 } })
@@ -283,7 +283,7 @@ function buildMeadow(): MapBuilder {
   // the woodworker's bench in the woodcutter's yard, by the wood pile: what is made at a workbench is made here (world-model.md §6.4)
   m.fixture('fixture/craft/workbench', 12, 14, { id: 'village.workbench' })
   // the boards at the square's north-west corner, under the chapel: the village's notices, and the favours people want done (docs/quests.md §3)
-  m.fixture('fixture/sign/noticeboard', 19, 13, { id: 'village.notice', props: { text: 'FIRSTLIGHT VILLAGE. East: Vesper Ford. West: Millbrook. North: Dawn Hill. South: Dusklea, and Hushwood beyond.', text_zh: '初原村。东：晚祷渡。西：水车磨坊。北：晨光丘。南：暮牧原，再往南是噤声林。' } })
+  m.fixture('fixture/sign/noticeboard', 19, 13, { id: 'village.notice', props: { text: 'EMBERWICK. East: Greywater Ford. West: Millbrook. North: Beacon Hill. South: Dusklea, and Hushwood beyond.' } })
   m.fixture('fixture/sign/questboard', 20, 13, { id: 'village.board' })
   for (const [x, y] of [[25, 13], [12, 16]] as const) m.fixture('fixture/light/lamppost', x, y, { id: `village.lamp.${x}`, statuses: { lit: -1 } })
   // Tobin and his stock move together, at the square's market corner where the road comes in. Stable IDs keep saved trades and inventories intact.
@@ -426,7 +426,7 @@ function buildForest(): MapBuilder {
   m.fixture('fixture/nature/logpile/stack', 25, 7)
   m.fixture('fixture/nature/logpile/stack', 20, 5)
   // the fork, where the trails part: a signpost that says where each goes
-  m.fixture('fixture/sign', 19, 13, { props: { text: 'NORTH — Dusklea, and Firstlight. WEST — the Charcoal Dell. EAST — over the brook to the Reed Bend. SOUTH — Thornwood Hollow; keep to the path.', text_zh: '北——暮牧原，再往前是初原村。西——烧炭谷。东——过了溪就是芦苇湾。南——荆棘谷，别离开小路。' } })
+  m.fixture('fixture/sign', 19, 13, { props: { text: 'NORTH — Dusklea, and Emberwick. WEST — the Charcoal Dell. EAST — over the brook to the Reed Bend. SOUTH — Thornwood Hollow; keep to the path.' } })
   // what the forest gives a forager and a beekeeper (content life.ts): mushroom rings in the frostcap glade's shade,
   // wild hives on the sunny side of the trees by the clearing and the spring
   for (const [x, y] of [[5, 20], [9, 19], [7, 21]] as const) m.fixture('fixture/nature/mushroom_ring', x, y)
@@ -561,9 +561,9 @@ const scenes: StepDef[] = [
       { face: 'player', dir: 'down' },
       { wait: 10 },
       say('npc.hesper', 'Off the mountain? Nobody has come down that stair since the storm. And the evenings come sooner every week.', '从山上下来的？风暴以后，那道石阶就没人走过。天也一个礼拜比一个礼拜黑得早。'),
-      say('npc.hesper', 'The storm took my ferry rope. The bridge was a rider. He was all in white, with a crown of thorns grown through his helm. He pulled the planks up with his hands and laid the nails out on my pier in a row, like a toll.', '风暴扯断了我的渡绳。桥是一个骑手拆的。那人一身白，荆棘冠长进了头盔里。他徒手把木板一块块拔起来，把钉子在我的码头上摆成一排，像是交了过路钱。'),
+      say('npc.hesper', 'The storm took my ferry rope. The bridge was a rider. He was all in white, with a crown of briars grown through his helm. He pulled the planks up with his hands and laid the nails out on my pier in a row, like a toll. He said none cross for Solmere.'),
       say('npc.hesper', 'Three planks would mend it. There\'s an old axe by the stump, and the woods are full of trees.', '补上三块木板，桥就能走。树桩边上有把旧斧头，林子里树有的是。'),
-      say('npc.hesper', 'West of here is Firstlight Village. Tobin keeps his cart there now. A meal might buy you something useful from him.', '往西是初原村。托宾现在把货车停在那边。给他一顿饭，兴许能换到点有用的东西。'),
+      say('npc.hesper', 'West of here is Emberwick. Tobin keeps his cart there now. A meal might buy you something useful from him.'),
       say('npc.hesper', 'It\'s a small place. Good soil, a well, and a roof when the weather turns.', '村子不大。地好，有口井，变天了也有个躲雨的地方。'),
       // before the bridge, the village (docs/quests.md): its rescue opens the bridge chapter (quest 1)
       say('npc.hesper', 'They\'ve had it worse than me, though. Two of theirs went missing in the storm, I hear. Rowan, their elder, is asking anyone who can hold a blade. The bridge can wait. Go to them first.', '不过他们比我惨。听说村里有两个人在风暴里没了音信。他们的长老罗万在找会使兵器的人。桥不急，你先去那边。'),
@@ -596,8 +596,8 @@ const scenes: StepDef[] = [
       { fact: 'ford.crossed', value: 1 },
       { wait: 10 },
       // (the road east comes first to the Church's Rest: the Pilgrim's Road, docs/chapter-1.md §14)
-      say('npc.hesper', 'Go on, then. East, the road comes first to the Church\'s Rest. The rider went a long way past it, beyond the burned farm. If you find him, mind his bow.', '去吧。往东走，先到教会的驿站。那个骑手去得远多了，在烧掉的农庄再过去。真找着他，当心他的弓。'),
-      say('npc.hesper', 'If you need anything before the road, Firstlight Village is just west of here.', '上路前要是还缺什么，初原村就在西边，不远。'),
+      say('npc.hesper', 'Go on, then. East, the road comes first to the Wardens\' Rest. The rider went a long way past it, beyond the burned farm. If you find him, mind his bow.'),
+      say('npc.hesper', 'If you need anything before the road, Emberwick is just west of here.'),
       { topic: 'crossed', days: 30 },
     ],
   },
@@ -944,7 +944,7 @@ export function buildFord(opts: { overworld?: boolean } = {}): FordWorld {
   // guides last (one step plays at a poll: a lesson of hers never delays the story's own moment)
   const steps = [...PROLOGUE_BEATS, ...FIRSTLIGHT_BEATS, ...scenes, ...CHAPTER1_STORY, ...PILGRIMAGE_STORY, ...FLANKS_STORY, ...CHAPTER1_SCENES, ...HAVEN_STORY, ...QUEST_SCENES, ...CHAPTER2_STORY, ...CHAPTER3_STORY, ...CHAPTER4_STORY, ...CHAPTER5_STORY, ...FINALE_STORY, ...GUIDE_BEATS]
   const index: WorldIndex = {
-    name: L('Vesper Ford', '晚祷渡'),
+    name: L('Greywater Ford'),
     version: VERSION,
     seed: 4242,
     // a new game begins on Cloudtop, the summit plateau, in its ruined shelter; the tutorial is a
@@ -969,7 +969,7 @@ export function buildFord(opts: { overworld?: boolean } = {}): FordWorld {
       // a little hungry: the first thing the mountain teaches is to eat
       props: { hp: 40, maxHp: 40, atk: 2, def: 0, speed: 2, hunger: 12 },
     },
-    companions: [{ id: 'pip', type: 'actor/companion/fairy', name: L('Lumi', '露米'), place: { on: 'none' }, facing: 'down' }],
+    companions: [{ id: 'pip', type: 'actor/companion/fairy', name: L('Kiri'), place: { on: 'none' }, facing: 'down' }],
     // the quests (docs/quests.md): the main line, what the people ask, the radiant favours
     quests: QUESTS,
     waypoints: chunks.flatMap((c) => c.entities.filter((e) => e.type === 'fixture/sacred/waypoint').map((e) => ({ id: e.id, map: c.map.id, x: (e.place as { x: number }).x, y: (e.place as { y: number }).y, name: e.name ?? L('Waypoint', '传送雕像') }))),

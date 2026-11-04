@@ -1279,7 +1279,8 @@ function raf(now: number) {
   cursor.tick()
   building.tick()
   building.hand(handUp)
-  touch?.show(!cover.open && !death.open && !menu.anyOpen && !dev.open)
+  // (a line or a scene on screen: the controls step aside, nothing lies over the dialogue)
+  touch?.show(!cover.open && !death.open && !menu.anyOpen && !dev.open && !hud.dialogOpen)
   requestAnimationFrame(raf)
 }
 requestAnimationFrame(raf)

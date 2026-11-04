@@ -24,7 +24,7 @@ The APK is `mobile/android/app/build/outputs/apk/debug/app-debug.apk`. Install w
 
 | | Where |
 |---|---|
-| Landscape only, full screen (system bars hidden, a swipe shows them), screen kept on | `MainActivity.java`, `AndroidManifest.xml` |
+| Portrait by default, turning to landscape as the phone is held (the phone's rotation lock is kept); full screen (system bars hidden, a swipe shows them); screen kept on | `MainActivity.java`, `AndroidManifest.xml` |
 | The back button is Esc (closes what is open, else the menu) | `games/openworld/client/src/native.ts` |
 | The app paused saves at once (besides the game's own autosave every minute, on each new map and quest step) | `native.ts` → `lsw:save` in `packages/runtime/src/main.ts` |
 | Icon and splash from the game's pixel art | `mobile/tools/icons.py` |
@@ -36,16 +36,18 @@ Shown on any touch screen (or with `?touch=1` in a desktop browser for testing; 
 
 | Control | Does |
 |---|---|
-| Stick, bottom left | walk (eight ways) — it holds the player's own movement keys |
+| Floating stick | nothing on screen until a thumb goes down on the left half of the world; it appears under the thumb, walks eight ways (it holds the player's own movement keys) and is gone when the thumb lifts |
+| Cluster, bottom right (above the toolbar) | |
 | ⚔ Attack | a blow ahead; held, blows go on (Space) |
 | ✋ Interact | take, talk, open, read (E) |
-| ◆ Use held | the held thing's own use: swing a tool, eat, drink, put on (left click) |
+| ◆ Use | the held thing's own use: swing a tool, eat, drink, put on (left click) |
 | ➚ Use on | the held thing used on what is ahead: sow, cook, feed (right click) |
 | » Dash | dash (Q) |
-| ⇩ / ⚐ | put down (G) / draw or sheathe the weapon (X) |
-| Tap the world | the left click there (aim + act); a long press is the right click there |
-| The HUD's own buttons | bag, crafting, skills, quests, journal, map, build, menu, the toolbar's slots — all tappable |
-| Dialogue | tap to go on; a choice shows its answers as buttons |
+| ⇩ Put / ⚐ | put down, put into, give (G) / draw or sheathe the weapon (X) |
+| Tap the world (right half) | the left click there (aim + act); a long press is the right click there |
+| ☰ (top) | opens the tray of panels: quests, build, bag, skills, journal, crafting, skill bar, menu |
+| The HUD | toolbar slots, minimap (the world map), Kiri's badge — all tappable; key labels are hidden on touch screens |
+| Dialogue | tap to go on; a choice shows its answers as buttons; the controls step aside while a line is on screen |
 
 ## Performance notes
 

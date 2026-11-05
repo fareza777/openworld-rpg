@@ -291,7 +291,7 @@ describe("the fairy's guides", () => {
     eng.author(() => eng.teleport(eng.world.player, { map: FIRSTLIGHT.map, ...at }))
   }
 
-  it('a skill point unspent: Lumi begins the first lesson herself, a guide beside the main road; a skill learned ends it', () => {
+  it('a skill point unspent: Kiri begins the first lesson herself, a guide beside the main road; a skill learned ends it', () => {
     const { eng } = world()
     const w = eng.world
     ticks(eng, 5)
@@ -432,7 +432,7 @@ describe("the fairy's guides", () => {
     expect(state(eng, 'guide_shrines')).toBe('done')
   })
 
-  it("the main line, followed on the road, points at each dark shrine and Lumi leads to one — in a save from before the shrines were named too", () => {
+  it("the main line, followed on the road, points at each dark shrine and Kiri leads to one — in a save from before the shrines were named too", () => {
     const { eng } = world()
     const w = eng.world
     ticks(eng, 5)

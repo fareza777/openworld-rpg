@@ -54,7 +54,7 @@ function lay(f: F, shrine: string, item: Entity): void {
 }
 
 describe('the wayside shrines', () => {
-  it('never take a relic or what matters most: the Crown of Thorns on the Shrine of the Crown, the Order\'s seal and the ninth nail on the Shrine of the Nails', () => {
+  it('never take a relic or what matters most: the Briar Diadem on the Shrine of the Crown, the Order\'s seal and the ninth nail on the Shrine of the Nails', () => {
     const f = fresh()
     const kept = (shrine: string, type: string) => {
       const it = carried(f, type)
@@ -130,7 +130,7 @@ describe("the Pilgrims' Rest after the knight", () => {
 })
 
 describe("the Rest's chapel", () => {
-  it('its litany on the bookstand is read with a hand (E), as any written thing; the skill books are Firstlight\'s chapel\'s', () => {
+  it('its litany on the bookstand is read with a hand (E), as any written thing; the skill books are Emberwick\'s chapel\'s', () => {
     const f = fresh()
     const litany = Object.values(f.w.state.entities).find((e) => e.type === 'fixture/furniture/bookstand' && e.place.on === 'tile' && e.place.map === 'waystation.chapel')!
     const at = f.w.posOf(litany)!
@@ -156,7 +156,7 @@ describe("the Rest's chapel", () => {
 })
 
 describe("the oath's scallop", () => {
-  it("is the pilgrim's own (sworn): taking it does not count as finding the scallop of the pilgrim before (The Pilgrim Before)", () => {
+  it("is the Crownseeker's own (sworn): taking it does not count as finding the scallop of the Crownseeker before (The Pilgrim Before)", () => {
     const f = fresh()
     f.eng.author(() => {
       f.eng.quests.put('scallop', 10)
@@ -212,8 +212,8 @@ describe('an older save at the First Seal across the river', () => {
   })
 })
 
-describe("Firstlight's chapel", () => {
-  it("is Sister Ilse's, behind Astra's altar on the square: Brother Anselm keeps its bookstand; the First Dawn's is the chapel on Dawn Hill", () => {
+describe("Emberwick's chapel", () => {
+  it("is Sister Maren's, behind Astra's altar on the square: Brother Anselm keeps its bookstand; the First Dawn's is the chapel on Dawn Hill", () => {
     const f = fresh()
     const door = f.w.map('meadow')!.portals.find((p) => p.to === 'meadow.church')!
     const altar = f.w.posOf(f.w.get('village.astra')!)!

@@ -28,7 +28,9 @@ export const CH2 = {
   channels: 'ch2.channels',
   /** Into the War-Giver's Bastion. */
   bastion: 'ch2.bastion',
-  /** Matthias down (his sin's own fact, bosses.ts). */
+  /** The Pillar Yard's first scene played (`pillar_yard_scourge` or `pillar_yard`: one of them, once). */
+  yard: 'ch2.yard',
+  /** Matthias down (his sin's own fact, bosses.ts) — felled, or relieved by Odran's scourge (choice.ch2.warden). */
   matthias: 'sins.defeated.matthias',
   /** The Chain of the Scourging Post given (the scene `chain`). */
   chain: 'ch2.chain',

@@ -128,6 +128,9 @@ export const SAFE_FALL = 1
 export const FALL_DAMAGE = 6
 /** Heavy weather slows a long step (world-model.md §5.6): rain, storm, snow. */
 export const RAIN_COST = 1.5
+/** The walking pace (engine `params.pace`): each step takes this many times as long as the walker's speed says — about
+ * three and a half tiles a second for the player, a pace the eye follows and the feet keep (the run half again as quick). */
+export const PACE = 1.4
 /** How many storeys may stand above the ground (world-model.md §5.2). */
 export const STOREYS = 4
 
@@ -811,7 +814,7 @@ export function buildOntology(): Ontology {
     // Lumi leading the way when the player stands idle (leading.ts)
     guide: LEADING,
     efficiency: EFFICIENCY,
-    params: { recovery: RECOVERY, safeFall: SAFE_FALL, fallDamage: FALL_DAMAGE, rainCost: RAIN_COST, storeys: STOREYS, roomSize: ROOM_SIZE, riseHour: 6, rest: 0.5, reach: 1, carry: 1, slotCount: { ring: 2 }, nightFact: 'night.shift', gearLevels: GEAR_LEVELS, made: { quality: MADE_QUALITY }, restyle: { coin: 10, needs: [{ type: 'item/material/flower', count: 3 }] } },
+    params: { recovery: RECOVERY, safeFall: SAFE_FALL, fallDamage: FALL_DAMAGE, rainCost: RAIN_COST, storeys: STOREYS, roomSize: ROOM_SIZE, riseHour: 6, rest: 0.5, reach: 1, carry: 1, pace: PACE, slotCount: { ring: 2 }, nightFact: 'night.shift', gearLevels: GEAR_LEVELS, made: { quality: MADE_QUALITY }, restyle: { coin: 10, needs: [{ type: 'item/material/flower', count: 3 }] } },
     // what makes a room what it is: a bed a bedroom (a night there gives everything back), a cooking fire a
     // kitchen, a workbench or forge a workshop, three chests and more a storeroom (world-model.md §5.4)
     roomRoles: [

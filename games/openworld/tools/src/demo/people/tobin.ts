@@ -55,7 +55,7 @@ export const tobin: PersonDef = {
     line('chat', "Every charm on this cart, I can tell you where it came from. This bell I had off an old nun on the coast road, and that red cord — no, wait, don't go, I haven't got to the good part yet.", '这车上的护符，每一个我都能给你讲出来历。这个铃铛是在海边那条路上跟一位老修女换的，那根红绳嘛——哎，你别走啊，最好听的还没讲到呢。'),
     line('chat', "Where am I from? I usually give three places, depending on the day. One of them is even right.", '问我是哪儿人？我一般说三个地方，看那天的心情。其中有一个还真是对的。'),
     // the news the story spreads (its topics), said once while fresh
-    line('topic:dragon_slain', "They say the dragon's dead and the road to Emberfall is open again! At last there's somewhere to sell what's on this cart. When I've some coin, I'll buy you a drink — I mean it.", '听说龙死了，去余烬镇的路又通了！我车上这些东西总算有地方卖了。等我手头有了钱，一定请你喝一杯——说真的。'),
+    line('topic:dragon_slain', "They say the dragon's dead and the road to Cinderholt is open again! At last there's somewhere to sell what's on this cart. When I've some coin, I'll buy you a drink — I mean it.", '听说龙死了，去余烬镇的路又通了！我车上这些东西总算有地方卖了。等我手头有了钱，一定请你喝一杯——说真的。'),
     line('topic:crossed', "You crossed Greywater Ford! Then the road east is yours to try. Bring me back something strange."),
     line('greeting:first', "Welcome to Emberwick! Tobin, of the eastern road. Charms, oils, oddments — the ferry is still broken, so I brought the cart here. You wouldn't have anything to eat?", { mood: 'surprised', once: true }),
     line('default', "I'd trade the whole cart for a hot meal. Well — not the whole cart. Most of it.", '为了一顿热饭，我愿意拿整车货来换。嗯——也不是整车。大半车吧。'),

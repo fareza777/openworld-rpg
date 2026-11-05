@@ -92,6 +92,8 @@ export class AiOptions {
   }
 
   html(): string {
+    // a build with no model to ask (VITE_NO_AI: the offline Android build) has nothing here to set
+    if (!ai) return ''
     const q = this.quality
     const preset = presetOf(q)
     const seg = (on: AiLevel | undefined, attr: string) =>

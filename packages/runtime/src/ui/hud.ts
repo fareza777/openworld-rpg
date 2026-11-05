@@ -35,6 +35,8 @@ export interface HudSend {
 }
 
 /** The system asks for less motion: the portraits keep still. */
+/** How long a changed quest stays open in the tracker on a touch screen before it folds to its title. */
+const TRACKER_PEEK_MS = 6000
 const reducedMotion = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches
 
 export class Hud {
@@ -348,11 +350,27 @@ export class Hud {
     this.obSig = sig
     $('#objective').classList.toggle('hidden', !q || !prefs.get('tracker'))
     if (!q) return
+    // on a touch screen the tracker is its title alone (a tap opens it, touch.css): a change opens it a while, to be read
+    if (document.body.classList.contains('touch')) this.peekTracker()
     $('#obTitle').textContent = tx(q.title)
     $('#obProgress').innerHTML = open
       .slice(0, 4)
       .map((o) => `<div>· ${esc(tx(o.text))}${o.need ? ` ${o.have}/${o.need}` : ''}${o.where ? ` <em>→ ${esc(tx(o.where))}</em>` : ''}</div>`)
       .join('')
+  }
+
+  private peekTimer: ReturnType<typeof setTimeout> | undefined
+  /** The tracker opened for a few seconds, then folded back to its title (a tap in between keeps it as the tap left it). */
+  private peekTracker(): void {
+    const tracker = $('#objective')
+    const set = (open: boolean) => {
+      tracker.dataset.expanded = String(open)
+      tracker.setAttribute('aria-expanded', String(open))
+    }
+    set(true)
+    clearTimeout(this.peekTimer)
+    this.peekTimer = setTimeout(() => set(false), TRACKER_PEEK_MS)
+    tracker.addEventListener('click', () => clearTimeout(this.peekTimer), { once: true })
   }
 
   /** Called when the journal opens. */

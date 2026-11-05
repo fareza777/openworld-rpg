@@ -26,7 +26,7 @@ export const vera: PersonDef = {
     ],
   },
   lines: [
-    line('chat', 'I trained in the Holy City. They taught me that pain tells a man where he is hurt. I had to come here to see what happens without it.', '我是在圣城学的医。他们教我，疼会告诉一个人伤在哪里。我到了这儿，才看见没有疼会怎么样。'),
+    line('chat', 'I trained in Solmere. They taught me that pain tells a man where he is hurt. I had to come here to see what happens without it.', '我是在圣城学的医。他们教我，疼会告诉一个人伤在哪里。我到了这儿，才看见没有疼会怎么样。'),
     line('chat', 'I roll bandages in the evenings. The shelf is full. Nobody takes them.', '我每天晚上卷绷带。架子都摆满了，没人来拿。'),
     line('greeting:first', 'A visitor who is not bleeding. Or are you? Nobody here would know. I am Vera, the Host\'s surgeon. My tent is the one nobody comes to.', '来了个没在流血的客人。还是说你在流？这里的人谁也不会知道。我叫薇拉，赤军的军医。我的帐篷，就是没人来的那一顶。', { once: true }),
     line('default', 'After every dusk I walk the line and write down what I see. I write a great deal, and I do very little.', '每次黄昏过后，我都沿着队列走一遍，把看见的写下来。我写得很多，做得很少。'),

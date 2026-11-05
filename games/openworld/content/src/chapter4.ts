@@ -29,6 +29,9 @@ export const CH4 = {
   /** The Shroud seen, and Severin there: the pilgrim comes to his belief (the scene `shroud`). */
   shroud: 'ch4.shroud',
   /** Nacht down (his sin's own fact, bosses.ts). */
+  /** The Ford of the Dead's first scene played (`dead_ford_coin` or `dead_ford`: one of them, once). */
+  ford: 'ch4.ford',
+  /** Nacht down (his sin's own fact) — felled, or relieved by the ferryman's way across (choice.ch4.warden). */
   nacht: 'sins.defeated.nacht',
   /** The Holy Wood given (the scene `reins`). */
   wood: 'ch4.wood',

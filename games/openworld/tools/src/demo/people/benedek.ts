@@ -31,7 +31,7 @@ export const benedek: PersonDef = {
     line('greeting:first', 'Peace on you, pilgrim. I am Benedek, abbot of Whiteveil. We keep the ones who did not finish the road.', '愿你平安，朝圣者。我是白纱修道院的院长本尼德克。我们守着那些没有走完这条路的人。', { once: true }),
     line('default', 'They were told to rest yet a little while, until the number of their fellows should be fulfilled. We do not know the number. We robe them, and we wait.', '他们被吩咐再安息片时，等他们同伴的数目满足。我们不知道那个数目。我们给他们穿上白袍，然后等。'),
     line('default', 'Every one of them was chosen. The road chooses. It has chosen you, I think.', '他们每一个都是被拣选的。是道路在拣选。我想，它拣选了你。'),
-    line('fact:ch5.roll', 'You read it. Then you know what you are walking. Few do, until the end. It is a kindness the Church gives them, not knowing.', '你读过了。那你就知道自己走的是什么路了。很少有人知道，直到最后。不知道，是教会给他们的慈悲。'),
+    line('fact:ch5.roll', 'You read it. Then you know what you are walking. Few do, until the end. It is a kindness the Order gives them, not knowing.', '你读过了。那你就知道自己走的是什么路了。很少有人知道，直到最后。不知道，是教会给他们的慈悲。'),
     line('topic:it_is_enough', 'They are quiet. I went down this evening and there was no sound at all. I did not know there could be so much silence under one church.', '他们安静了。今晚我下去了一趟，一点声音都没有。我从来不知道一座教堂底下，能有这么多的寂静。', { mood: 'sad' }),
     line('given:item/light/candle', 'A candle for the catacombs. They will not need it now. I will light it anyway.', '给墓窟的一支蜡烛。如今他们用不着了。我还是会点上。', { mood: 'happy' }),
   ],

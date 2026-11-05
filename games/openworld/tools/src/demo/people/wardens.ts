@@ -28,7 +28,7 @@ export const wardenW = warden('npc.warden_w', 'w', ['Warden of the Porch', '大�
   line('chat', 'We keep the porch a day at a time. Nothing comes up the avenue that is not expected.', '我们一班守一整天。凡是走上大道来的，没有一个是没人等着的。'),
   line('chat', 'My father kept this porch, and his father. None of us has been past the nave.', '我父亲守过这道门廊，他父亲也守过。我们没有一个人进过中殿后面。'),
   line('default', 'The door is open to you, bearer. It has been open to others. You are the first to come with five.', '门为你开着，承担者。它也为别人开过。你是头一个带着五件来的。'),
-  line('fact:fin.end', 'We heard the bell from under the floor, and then nothing. The Primate says we are to keep the porch. So we keep it.', '我们听见地底下传来钟声，后来就什么也没有了。首席司祭说，我们要守着门廊。那就守着。'),
+  line('fact:fin.end', 'We heard the bell from under the floor, and then nothing. The High Luminant says we are to keep the porch. So we keep it.', '我们听见地底下传来钟声，后来就什么也没有了。首席司祭说，我们要守着门廊。那就守着。'),
 ])
 export const wardenE = warden('npc.warden_e', 'e', ['Warden of the Porch', '大殿门廊守卫'], 'female', 'hair.bun', [
   line('chat', 'The statues are washed once a year, on the night of the Night. We are told not to look at their faces. There are no faces left, but we do not look.', '雕像一年洗一回，就在原夜那一夜。上面吩咐我们不许看它们的脸。脸早就没有了，可我们还是不看。'),

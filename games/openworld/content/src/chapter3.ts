@@ -29,6 +29,9 @@ export const CH3 = {
   /** The ledger seen in the counting room, and Severin there (the scene `ledger`). */
   ledger: 'ch3.ledger',
   /** Ele down (their sin's own fact, bosses.ts). */
+  /** The Scale Floor's first scene played (`scale_floor_name` or `scale_floor`: one of them, once). */
+  floor: 'ch3.floor',
+  /** Ele down (their sin's own fact) — felled, or relieved by Agnes's name (choice.ch3.warden). */
   ele: 'sins.defeated.ele',
   /** The Scale of Hunger given (the scene `scale`). */
   scale: 'ch3.scale',

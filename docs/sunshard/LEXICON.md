@@ -27,7 +27,7 @@ lore) as they are.
 | Seal-bearer(s) | **Warden(s)** | |
 | seal (a bearer's), the First Seal | **Regalia**, the first of the Regalia | "a seal falls" → "a Warden falls" |
 | the Crown of Thorns (`item/relic/crown_of_thorns`) | **the Briar Diadem** | |
-| the five Regalia, by March | **the Briar Diadem** (Eastmarch, Ch 1), **the Ember Chain** (the Scarred March, Ch 2), **the Golden Scales** (the Golden Reach, Ch 3), **the Drowned Lantern** (the Mirewood, Ch 4), **the Vigil Lance** (the Silverspire Heights, Ch 5); upstream's item names for Ch 4 ("the Starfall Wood") get renamed when that chapter is written | |
+| the five Regalia, by March | **the Briar Diadem** (Eastmarch, Ch 1), **the Ember Chain** (the Scarred March, Ch 2), **the Golden Scales** (the Golden Reach, Ch 3), **the Starfall Wood** (the Mirewood, Ch 4), **the Vigil Lance** (the Silverspire Heights, Ch 5); upstream's item names for Ch 4 ("the Starfall Wood") get renamed when that chapter is written | |
 | the Church, the Holy Church | **the Radiant Order**, the Order | its clergy: sisters, brothers, Luminants |
 | the Holy City | **Solmere**, the Crown City | |
 | the Great Rite | **the Reforging** | |

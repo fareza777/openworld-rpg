@@ -165,7 +165,7 @@ const MATTHIAS_FIGHT: EncounterDef = {
   ],
 }
 const SCOURGED = DO(unleash({ power: POWER(1.1), edge: 'cut', coat: 'bleeding' }))
-const MATTHIAS_RULES = kitRule('boss/matthias', MATTHIAS, 'The War-Giver\'s skills: his great sword cuts the cone before him; the post\'s chains lash out in a cross and leave the struck bleeding; his charge down the yard knocks back what it meets; the red threads strike where his foe stood; his chains sweep away one who stands too close; at the post the ring of chains whips out round him.', [
+const MATTHIAS_RULES = kitRule('boss/matthias', MATTHIAS, 'The Ember-Sworn\'s skills: his great sword cuts the cone before him; the post\'s chains lash out in a cross and leave the struck bleeding; his charge down the yard knocks back what it meets; the red threads strike where his foe stood; his chains sweep away one who stands too close; at the post the ring of chains whips out round him.', [
   ['sword', DO(unleash({ power: POWER(1.5), edge: 'cut' }))],
   ['lash', SCOURGED],
   ['lash_twice', SCOURGED],
@@ -204,7 +204,7 @@ const ELE_FIGHT: EncounterDef = {
   ],
 }
 const PAN_FALLS = DO(unleash({ power: POWER(1.6), edge: 'blunt' }))
-const ELE_RULES = kitRule('boss/ele', ELE, 'The Priest of the Black Scales\' skills: the beam of the balance swings down along a line and makes the struck heavy; the great pan comes down on the foe; grain pours from the hanging pans; the famine leaves the struck hungrier by the second; the beam sweeps away one who stands too close; risen, weightless, Ele drives everything back.', [
+const ELE_RULES = kitRule('boss/ele', ELE, 'The Warden of the Golden Scales\' skills: the beam of the balance swings down along a line and makes the struck heavy; the great pan comes down on the foe; grain pours from the hanging pans; the famine leaves the struck hungrier by the second; the beam sweeps away one who stands too close; risen, weightless, Ele drives everything back.', [
   ['weigh', DO(unleash({ power: POWER(1.2), edge: 'blunt', coat: 'mired' }))],
   ['pan', PAN_FALLS],
   ['pan_twice', PAN_FALLS],
@@ -378,7 +378,7 @@ export const BOSSES: BossDef[] = [
   { id: 'alberic', type: ALBERIC, name: L('Ser Gavrel the Thornbound · First Warden'), footprint: [3, 2], hp: 1200, defense: 2, atk: 24, skills: ALBERIC_SKILLS, encounter: ALBERIC_FIGHT },
   { id: 'dragon', type: DRAGON, name: L('Vharok, the Drake of Cinder Peak'), footprint: [2, 2], hp: 1600, defense: 3, atk: 22, skills: DRAGON_SKILLS, encounter: DRAGON_FIGHT },
   { id: 'matthias', type: MATTHIAS, name: L('Matthias the Ember-Sworn · Second Warden'), footprint: [3, 2], hp: 1400, defense: 3, atk: 26, skills: MATTHIAS_SKILLS, encounter: MATTHIAS_FIGHT },
-  { id: 'nacht', type: NACHT, name: L('Nacht, the Drowned Lantern · Fourth Warden'), footprint: [3, 2], hp: 1800, defense: 3, atk: 30, skills: NACHT_SKILLS, encounter: NACHT_FIGHT },
+  { id: 'nacht', type: NACHT, name: L('Nacht, the Starfall Wood · Fourth Warden'), footprint: [3, 2], hp: 1800, defense: 3, atk: 30, skills: NACHT_SKILLS, encounter: NACHT_FIGHT },
   { id: 'witnesses', type: WITNESSES, name: L('The Witnesses of the Vigil · Fifth Warden'), footprint: [3, 2], hp: 2000, defense: 3, atk: 32, skills: WITNESSES_SKILLS, encounter: WITNESSES_FIGHT },
   { id: 'astra', type: ASTRA, name: L('Caedmon, the False Sun'), footprint: [3, 2], hp: 2600, defense: 4, atk: 34, skills: ASTRA_SKILLS, encounter: ASTRA_FIGHT },
   { id: 'ele', type: ELE, name: L('Ele of the Golden Scales · Third Warden'), footprint: [3, 2], hp: 1600, defense: 3, atk: 28, skills: ELE_SKILLS, encounter: ELE_FIGHT },

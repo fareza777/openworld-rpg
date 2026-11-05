@@ -69,7 +69,7 @@ describe('the continent (docs/continent.md)', () => {
     expect(continentJson(generateContinent(c.seed, fixed, east))).toBe(readFileSync(CONTINENT_FILE, 'utf8'))
   })
 
-  it('holds every region of the lore, each with its places: a capital, a Seal-bearer\'s seat for every seal but the first, the Holy City its Hall and quarters', () => {
+  it('holds every region of the lore, each with its places: a capital, a Warden\'s seat for every seal but the first, Solmere its Hall and quarters', () => {
     const regions = new Set(Object.values(c.keys))
     expect([...regions].sort()).toEqual(REGIONS.map((r) => r.id).sort())
     for (const r of REGIONS) {
@@ -210,7 +210,7 @@ describe('the continent (docs/continent.md)', () => {
     expect(trapped).toEqual([])
   }, 150_000)
 
-  it('the backdrop\'s places differ: the Holy City\'s eight quarters each laid out its own way, every fort walled with towers and a gatehouse, each region its own buildings', () => {
+  it('the backdrop\'s places differ: Solmere\'s eight quarters each laid out its own way, every fort walled with towers and a gatehouse, each region its own buildings', () => {
     const signature = (id: string) => {
       const ch = byId.get(id)!
       const keys = new Set((ch.map.stamps ?? []).map((st) => st.key))

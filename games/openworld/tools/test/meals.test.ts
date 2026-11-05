@@ -57,7 +57,7 @@ describe('meals', () => {
     }
   })
 
-  it('Firstlight goes two days watched and two away without anyone starving', { timeout: 300_000 }, () => {
+  it('Emberwick goes two days watched and two away without anyone starving', { timeout: 300_000 }, () => {
     const eng = fresh()
     const w = eng.world
     const low = new Map<string, number>()

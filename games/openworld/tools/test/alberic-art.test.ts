@@ -50,7 +50,7 @@ function frame(sheet: ReturnType<typeof decode>, col: number, width: number, hei
   return pixels
 }
 
-describe('Alberic delivered pixel art', () => {
+describe('Gavrel delivered pixel art', () => {
   it('preloads every directional strip and slices all frames without cropping their raised sword space', () => {
     const actor = SIN_ACTORS['boss:sin:alberic']!, key = 'cre:boss:sin:alberic'
     const paths = imagePaths(CATALOG)

@@ -43,7 +43,7 @@ const mulOf = (u: Extract<Effect, { op: 'unleash' }> | undefined) => (u?.power &
 const SINS = BOSSES.filter((b) => ['lust', 'envy', 'pride'].includes(b.id))
 
 describe('the boss fights', () => {
-  it('fields the Seal-bearers, the dragon and the three kept for later — every body multi-tile but one single-tile assassin — each a kit and a fight of its type', () => {
+  it('fields the Wardens, the dragon and the three kept for later — every body multi-tile but one single-tile assassin — each a kit and a fight of its type', () => {
     expect(BOSSES.map((b) => b.id).sort()).toEqual(['alberic', 'astra', 'dragon', 'ele', 'envy', 'lust', 'matthias', 'nacht', 'pride', 'witnesses'])
     expect(BOSSES.filter((b) => b.footprint[0] * b.footprint[1] === 1).map((b) => b.id)).toEqual(['envy'])
     for (const b of BOSSES) {
@@ -232,7 +232,7 @@ describe('the boss fights', () => {
   })
 })
 
-describe('Alberic visual timing and locked effects', () => {
+describe('Gavrel visual timing and locked effects', () => {
   it.each([1, 2])('holds the delivered anticipation pose until release in phase %s and keeps the clip through saves', (phase) => {
     const { game, index, map, eng, w, boss, ticks, pending } = arena('alberic')
     if (phase === 2) (boss.props = { ...boss.props, hp: BOSS_BY_ID.alberic.hp * 0.4 }), Object.assign(boss.boss!, { phase: 2, opened: 2 })

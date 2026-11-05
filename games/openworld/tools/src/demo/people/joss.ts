@@ -28,7 +28,7 @@ export const joss: PersonDef = {
     line('chat', 'Green wood moves as it dries. I cut every board a finger long and plane it to size a week later.', '新木头晾干的时候会走形。我裁木板总多留一指长，过一个礼拜再刨到尺寸。'),
     line('chat', 'Aldo could hold a plank level with one hand and argue with the other. I miss arguing with him.', '阿尔多能一只手把木板端得平平的，另一只手指着人吵架。我挺怀念跟他吵架的那些日子。'),
     // the news the story spreads (its topics), said once while fresh
-    line('topic:dragon_slain', "The dragon's dead, I hear. Emberfall will want beams and roofs mended, then. I might go over.", "听说龙死了。那余烬镇的房梁屋顶得修不少。说不定我会过去一趟。"),
+    line('topic:dragon_slain', "The dragon's dead, I hear. Cinderholt will want beams and roofs mended, then. I might go over.", "听说龙死了。那余烬镇的房梁屋顶得修不少。说不定我会过去一趟。"),
     line('greeting:first', "Joss. I build things: bridges, fences, benches. The footbridge at Greywater Ford was mine and Aldo's."),
     line('default', 'An axe fells a tree, and an axe on a log gives you planks. Three planks and the footbridge is whole again.', '用斧头把树砍倒，再拿斧头劈木头，就有木板了。有三块木板，小桥就能补好。'),
     line('default', 'Nails pulled straight and laid in a row. No storm pulls nails. Someone wanted that bridge gone, and wanted us to know it.', '钉子拔得直直的，一排摆好。哪有风暴会拔钉子？是有人想拆了那座桥，还想让我们知道。'),

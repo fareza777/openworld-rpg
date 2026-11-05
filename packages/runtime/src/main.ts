@@ -42,6 +42,8 @@ import './ui/polish.css'
 import './ui/fishing.css'
 import './ui/research.css'
 import './ui/touch.css'
+import './ui/splash.css'
+import './ui/phone.css'
 
 const PARAMS = new URLSearchParams(location.search)
 // a game written in fewer languages is played in one of its own (the remembered choice may be another game's)
@@ -819,15 +821,20 @@ const held: Dir[] = []
 scene.walking = () => held.length > 0
 // (a walk held over the run: the walk's pace, engine movePlayer)
 scene.running = () => held.length > 0 && runHeld && !walkHeld
-let sentDir: Dir | null = null
+/** What the worker was last told is held (the way, and a way across it: `up|right`), so it is told again only when it changes. */
+let sentDir: string | null = null
 /** The walk key is held (right Shift by default): the steps go slower. The run key (left Shift): half again as quick. */
 let walkHeld = false
 let runHeld = false
+const CROSS: Record<Dir, Dir[]> = { up: ['left', 'right'], down: ['left', 'right'], left: ['up', 'down'], right: ['up', 'down'] }
 const syncMove = () => {
   const d = held.length ? held[held.length - 1] : null
-  if (d !== sentDir) {
-    sentDir = d
-    send({ t: 'move', dir: d, walk: walkHeld, run: runHeld })
+  // the latest way held across it, if any: a diagonal (up with right)
+  const also = d ? [...held].reverse().find((x) => CROSS[d].includes(x)) : undefined
+  const sig = `${d}|${also ?? ''}`
+  if (sig !== sentDir) {
+    sentDir = sig
+    send({ t: 'move', dir: d, ...(also && { also }), walk: walkHeld, run: runHeld })
   }
 }
 /** The pace changed under a key held: the worker is told again. */
@@ -1225,8 +1232,9 @@ gameEl.addEventListener('pointerdown', (e) => {
   if (hud.questionShown) return
   if (hud.dialogOpen) return hud.advanceDialog()
   if (menu.anyOpen || dev.open) return
-  // the left half of the world is the floating stick's: it appears under the thumb (ui/touch.ts)
-  if (!building.open && touch?.grab(e)) return
+  // the left half of the world is the floating stick's: it appears under the thumb (ui/touch.ts); building, once a thing
+  // is chosen, too (one walks to where it goes, and taps the right half there)
+  if ((!building.open || building.placing) && touch?.grab(e)) return
   mouseAt = { x: e.clientX, y: e.clientY }
   pointerStill = false
   reaim()
@@ -1280,7 +1288,9 @@ function raf(now: number) {
   building.tick()
   building.hand(handUp)
   // (a line or a scene on screen: the controls step aside, nothing lies over the dialogue)
-  touch?.show(!cover.open && !death.open && !menu.anyOpen && !dev.open && !hud.dialogOpen)
+  // (and while the building palette's list is up: it has the foot of the screen)
+  touch?.show(!cover.open && !death.open && !menu.anyOpen && !dev.open && !hud.dialogOpen && !(building.open && !building.placing))
+  touch?.context(lastFrame?.keys, lastFrame?.player.skills)
   requestAnimationFrame(raf)
 }
 requestAnimationFrame(raf)

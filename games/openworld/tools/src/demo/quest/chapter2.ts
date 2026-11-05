@@ -259,7 +259,7 @@ export function buildRedCamp(): MapBuilder {
   for (const [x, y] of [[23, 24], [24, 24], [39, 21], [7, 26]] as Cell[]) m.fixture('fixture/container/barrel', x, y)
   for (const [x, y] of [[26, 24], [39, 24], [14, 21]] as Cell[]) m.fixture('fixture/container/crate', x, y)
   for (const [x, y] of [[23, 26], [3, 21]] as Cell[]) m.fixture('fixture/container/sack', x, y)
-  m.fixture('fixture/furniture/cart', 33, 11, { name: L('A cart that came from Emberfall', '从余烬镇来的大车') })
+  m.fixture('fixture/furniture/cart', 33, 11, { name: L('A cart that came from Cinderholt', '从余烬镇来的大车') })
   for (const [x, y] of [[38, 12], [38, 16]] as Cell[]) m.fixture(RED_STANDARD, x, y, banner(true))
   // the people's places (people/brannoc.ts, vera.ts, wil.ts, kell.ts, dunn.ts, holt.ts)
   m.anchor('brannoc.yard', ...spot(m, wx + 7, wy + 8, true))
@@ -461,7 +461,7 @@ const KEEP = [26, 5] as Cell
  */
 export function buildBastion(): MapBuilder {
   const P = MARCH.bastion
-  const m = new MapBuilder('bastion', L("The War-Giver's Bastion", '赐战者堡垒'), 'dungeon', P.w, P.h, 'dirt', 'ruins', 'outdoor', 'redmarch')
+  const m = new MapBuilder('bastion', L("The Ember-Sworn's Bastion", '赐战者堡垒'), 'dungeon', P.w, P.h, 'dirt', 'ruins', 'outdoor', 'redmarch')
   m.gearLevel = 8
   for (let y = 0; y < m.h; y++)
     for (let x = 0; x < m.w; x++) {
@@ -490,7 +490,7 @@ export function buildBastion(): MapBuilder {
   doors.forEach(([x, y], i) => {
     const [ix, iy] = CH2_AT.yard.gate[i]
     m.portal(x, y, 'pillaryard', ix, iy - 2, L('The Pillar Yard', '刑柱庭'))
-    m.fixture('fixture/fog', x, y, { name: L("The War-Giver's fog", '赐战者的雾门'), props: { boss: 'matthias', interior: 'pillaryard', interiorX: ix, interiorY: iy - 2 } })
+    m.fixture('fixture/fog', x, y, { name: L("The Ember-Sworn's fog", '赐战者的雾门'), props: { boss: 'matthias', interior: 'pillaryard', interiorX: ix, interiorY: iy - 2 } })
   })
   m.rect(kx + 4, ky + 11, 4, 2, 'flagstone')
   for (const [x, y] of [[kx + 3, ky + 11], [kx + 8, ky + 11]] as Cell[]) {
@@ -552,8 +552,8 @@ export function buildPillarYard(): MapBuilder {
   CH2_AT.yard.gate.forEach(([x, y], i) => {
     m.set(x, y, 'flagstone')
     m.set(x, y + 1, 'flagstone')
-    m.portal(x, y, 'bastion', KEEP[0] + 5 + i, KEEP[1] + 11, L("The War-Giver's Bastion", '赐战者堡垒'))
-    m.fixture('fixture/fog', x, y, { name: L("The War-Giver's fog", '赐战者的雾门'), props: { boss: 'matthias' } })
+    m.portal(x, y, 'bastion', KEEP[0] + 5 + i, KEEP[1] + 11, L("The Ember-Sworn's Bastion", '赐战者堡垒'))
+    m.fixture('fixture/fog', x, y, { name: L("The Ember-Sworn's fog", '赐战者的雾门'), props: { boss: 'matthias' } })
   })
   m.anchors.arrive = [CH2_AT.yard.arrive[0], CH2_AT.yard.arrive[1]]
   m.regions.yard = [2, 2, P.w - 4, P.h - 3]
@@ -590,7 +590,7 @@ const Y = CH2_AT.yard
 
 /** The chapter's card at its end. */
 const CHAPTER_END = {
-  en: 'CHAPTER TWO · THE SECOND SEAL\n\nThe War-Giver gave back what he had taken.\nThe Red Host lay down its spears and wept.\nThe grey man carried a second light east.\nAnd the night came sooner again.',
+  en: 'CHAPTER TWO · ASHES OF CINDERHOLT\n\nThe Ember-Sworn let go of a war he had carried for sixty-one years.\nThe Red Host lay down its spears and wept.\nThe Ember Chain gave back a night nobody else remembers.\nAnd the man in grey carried a second light east.',
   zh: '第二章 · 第二印\n\n赐战者把拿走的疼还了回去。\n赤军放下长矛，哭了出来。\n灰衣人带着第二道光往东去了。\n夜晚又来得更早了。',
 }
 
@@ -636,10 +636,20 @@ export const CHAPTER2_STORY: StepDef[] = [
     script: [
       say('player', '(Tents in rows inside a palisade, a war hall, a cook fire. The same red banner with a white pillar hangs everywhere. Nobody here limps, though many are bandaged badly or not at all.)', '（木栅栏里，一排排营帐，一座军议厅，一口煮饭的大锅。到处挂着同一面红旗，上面一根白柱子。这里没有一个人瘸着腿走路，可许多人身上的伤只是胡乱包了包，有的根本没包。）'),
       { place: 'npc.holt', map: 'redcamp', x: 7, y: 15 },
-      say('npc.holt', 'Pilgrim! So you came over too. I signed on with the Left Company. I took a cut across the back this morning and never felt a thing. Not a thing!', '朝圣者！你也翻过来了。我在左营报了名。今天早上背上挨了一刀，一点感觉都没有。一点都没有！', 'happy'),
+      say('npc.holt', 'Crownseeker! So you came over too. I signed on with the Left Company. I took a cut across the back this morning and never felt a thing. Not a thing!', '朝圣者！你也翻过来了。我在左营报了名。今天早上背上挨了一刀，一点感觉都没有。一点都没有！', 'happy'),
       say('npc.holt', "The grey man came through here. I'll find him. But the captain says I fight at dusk first.", '那个灰衣人从这儿过去了，我会找到他的。不过队长说，先得打完今晚这一仗。'),
       say('pip', "Holt, your back's all red.", '霍尔特，你背上全红了。', 'sad'),
       say('npc.holt', 'Is it? Huh.', '是吗？嗯。'),
+      // the rival (docs/sunshard/STORY.md §4): Sable Vire got here first
+      { place: 'npc.sable', map: 'redcamp', x: 9, y: 15 },
+      say('player', '(A young woman in black and gold comes out of the captain\'s tent, pulling on her gloves. A small shadow with wings sits on her shoulder, and watches Kiri.)'),
+      say('npc.sable', 'So you are the one my father\'s Herald named. I expected someone taller.'),
+      say('npc.sable', 'Sable Vire. I have spoken to the captain already. The Ember-Sworn is mine, Crownseeker: the Regent sent me for his Chain a month before he sent anyone for you.'),
+      { branch: 'choice.ch2.diadem', is: 'kept', skip: 1 },
+      say('npc.sable', 'And you refused the Herald the Diadem. In front of peasants. My father laughed when he heard. He does not laugh often.', undefined, 'angry'),
+      say('pip', 'Her little shadow just hissed at me!', undefined, 'surprised'),
+      say('npc.sable', 'Umbra hisses at everything that shines. Do not take it to heart.'),
+      { place: 'npc.sable', map: 'offstage', x: 4, y: 1 },
     ],
   },
   {
@@ -663,7 +673,7 @@ export const CHAPTER2_STORY: StepDef[] = [
       { move: 'npc.roderick', x: D.bridge[2][0], y: D.bridge[2][1] },
       { move: 'npc.osric', x: D.bridge[3][0], y: D.bridge[3][1] },
       say('player', '(Spears go in and come out. Men are knocked down and get up again. No one cries out. You hear only the drum, and boots, and breathing.)', '（长矛扎进去，又拔出来。有人被撞倒，又爬起来。没有一个人喊疼。你只听得见鼓声、脚步声和喘气声。）'),
-      say('npc.holt', 'Ha! Pilgrim, look! Not a thing!', '哈！朝圣者你看！一点都不疼！', 'happy'),
+      say('npc.holt', 'Ha! Crownseeker, look! Not a thing!', '哈！朝圣者你看！一点都不疼！', 'happy'),
       { wait: 20 },
       say('player', '(The drum stops. Both sides walk back across the bridges as if a bell had rung the end of the day.)', '（鼓声停了。两边的人像听见了收工的钟，各自从桥上走回去。）'),
       { move: 'npc.kell', x: D.left[1][0], y: D.left[1][1] },
@@ -701,8 +711,9 @@ export const CHAPTER2_STORY: StepDef[] = [
       { place: 'npc.severin', map: 'scourgehouse.undercroft', x: CH2_AT.undercroft.severin[0], y: CH2_AT.undercroft.severin[1] },
       { music: 'severin' },
       say('npc.severin', 'You came down.', '你下来了。'),
-      say('npc.severin', 'These run west. Follow them to the end and you are in the Holy City.', '这些沟往西去。顺着走到头，就是圣城。'),
-      say('npc.severin', 'I am going to the Bastion. When the second seal breaks, I will be there.', '我要去堡垒。第二道印碎的时候，我会在那儿。'),
+      say('npc.severin', 'These run west. Follow them to the end and you are under Solmere, beneath the Crown Chapel.', '这些沟往西去。顺着走到头，就是圣城。'),
+      say('npc.severin', 'The Order says it is an offering. The Order has never been down there to see what drinks it.'),
+      say('npc.severin', 'I am going to the Bastion. When the Ember Chain comes loose, I will be there.', '我要去堡垒。第二道印碎的时候，我会在那儿。'),
       say('pip', 'Wait! What runs in them?', '等等！沟里流的是什么？', 'surprised'),
       say('player', '(He does not answer. He goes up the stair past you, and is gone.)', '（他没有回答，从你身边走上楼梯，不见了。）'),
       { place: 'npc.severin', map: 'offstage', x: 2, y: 2 },
@@ -718,12 +729,43 @@ export const CHAPTER2_STORY: StepDef[] = [
     facts: { [CH2.bastion]: 1 },
   },
   {
-    // The Pillar Yard: the War-Giver at his post.
-    id: 'pillar_yard',
-    when: { map: 'pillaryard', region: 'yard', facts: { [CH2.matthias]: 0 } },
+    // The Pillar Yard, Odran's word carried to Lucan (docs/sunshard/STORY.md C4, "relieved": the errand `odran` past its asks):
+    // the Warden remembers the novice whose lashes he took, and the Crownseeker may ask him to let go — or fight.
+    id: 'pillar_yard_scourge',
+    when: { map: 'pillaryard', region: 'yard', facts: { [CH2.matthias]: 0, [CH2.yard]: 0 }, quest: { odran: { gte: 20 } } },
     script: [
+      { fact: CH2.yard, value: 1 },
+      say('player', '(A yard of red stone. In its middle stands a broken pillar, and chained to it a giant in a torn red tabard, a ring of iron spikes round his head. Threads of red light run from his open hand out over the walls.)'),
+      say(MATTHIAS_ID, 'Another Crownseeker. The Regent sends one every spring. Come, then. Nothing hurts here. I see to that.'),
+      say('player', '(You say two names into the yard: Odran, alive in Cinderholt, and Lucan, who still takes Odran\'s strokes at dusk. The threads in his hand go still.)'),
+      say(MATTHIAS_ID, 'Odran. ...There was a boy who cried at the first stroke. I took his twelve. I had room.', undefined, 'surprised'),
+      {
+        choose: L('Matthias the Ember-Sworn is listening.'),
+        options: [
+          { text: L('Draw your weapon.'), facts: { 'choice.ch2.warden': 'felled' } },
+          { text: L('Tell him the rest. "He is alive. He still feels every stroke you took for him, and he is glad of it."'), facts: { 'choice.ch2.warden': 'relieved' } },
+        ],
+      },
+      { branch: 'choice.ch2.warden', is: 'relieved', skip: 5 },
+      say(MATTHIAS_ID, 'Alive. Odran. ...Then one of them remembers what it was to hurt, and lived.', undefined, 'sad'),
+      say(MATTHIAS_ID, 'I swore to the Queen I would hold the March until her light came home. I forgot the light. I only kept holding.', undefined, 'sad'),
+      say('player', '(He closes his hand. One by one the red threads come back to him, and he lets them fall.)'),
+      // he lets go: the story knows his fall (the fog lifts) and no blow is struck
+      { fact: CH2.matthias, value: 1 },
+      { fact: 'quest.relieved.matthias', value: 1 },
+      { branch: 'choice.ch2.warden', is: 'felled', skip: 1 },
+      say(MATTHIAS_ID, 'So. You came to fight after all. Good. Come, then.', undefined, 'angry'),
+    ],
+  },
+  {
+    // The Pillar Yard: the Ember-Sworn at his post (no scourge carried, or the scene above already played).
+    id: 'pillar_yard',
+    when: { map: 'pillaryard', region: 'yard', facts: { [CH2.matthias]: 0, [CH2.yard]: 0 } },
+    script: [
+      { fact: CH2.yard, value: 1 },
+      { fact: 'choice.ch2.warden', value: 'felled' },
       say('player', '(A yard of red stone. In its middle stands a broken pillar, and chained to it a giant in a torn red tabard, a ring of iron spikes round his head. Threads of red light run from his open hand out over the walls.)', '（一片红石铺成的院子。正中立着一根断柱，柱上锁着一个巨人，披着破烂的红罩袍，头上围着一圈铁刺。一缕缕红色的光从他摊开的手里伸出去，越过了院墙。）'),
-      say(MATTHIAS_ID, 'Another one who has come to fight. Good.', '又来了一个要打仗的人。好。'),
+      say(MATTHIAS_ID, 'Another Crownseeker. The Regent sends one every spring.', '又来了一个要打仗的人。好。'),
       say(MATTHIAS_ID, 'Come, then. Nothing hurts here. I see to that.', '来吧。在这里，什么都不疼。有我在。'),
     ],
   },
@@ -734,29 +776,60 @@ export const CHAPTER2_STORY: StepDef[] = [
     script: [
       { music: 'sorrow' },
       { wait: 22 },
+      // felled: he goes down at the post, and dies a man
+      { branch: 'choice.ch2.warden', is: 'felled', skip: 4 },
       say('player', '(Matthias goes down on one knee against the post. The red threads running from his hand go slack, one after another.)', '（马提亚靠着刑柱单膝跪了下去。从他手里伸出去的那些红线，一根接一根地松了。）'),
       say('player', '("It hurts. ...I had forgotten how much.")', '（“疼。……我都忘了，原来这么疼。”）', 'sad'),
       say('player', '(Outside the walls, far off, men begin to cry out. Then more of them, all across the March.)', '（墙外很远的地方，有人喊了起来。接着是更多的人，整片边境都在喊。）'),
       say('player', '("Do you hear them? That is their own pain. I held it for them sixty-one years. Now that it hurts, they will stop.")', '（“听见了吗？那是他们自己的疼。我替他们拿了六十一年。现在疼了，他们就会停下来了。”）', 'sad'),
-      say('player', '(He takes hold of the chain where it runs into the post and pulls. The ring comes out of the stone. He holds the chain out to you.)', '（他攥住拴进柱子的那截链子，一扯，铁环从石头里脱了出来。他把链子递给你。）'),
-      say('player', '("Take it. This is what your Church sent you for.")', '（“拿去吧。你的教会派你来，就是为了这个。”）'),
+      // relieved: he sits down against the post, alive, and the March cries out all the same
+      { branch: 'choice.ch2.warden', is: 'relieved', skip: 3 },
+      say('player', '(Matthias sits down with his back to the post, like a man at the end of a long march. Outside the walls, far off, men begin to cry out. Then more of them, all across the March.)'),
+      say(MATTHIAS_ID, 'Their own pain. I held it for them sixty-one years. Now that it hurts, they will stop.', undefined, 'sad'),
+      say(MATTHIAS_ID, 'And so will I. I think I will walk down to the camp, and let the surgeon look at me. I have not been looked at in a long time.', undefined, 'happy'),
+      say('player', '(He takes hold of the chain where it runs into the post and pulls. The ring comes out of the stone, and the chain in his hand begins to glow like iron in a forge. He holds it out to you.)'),
+      say('player', '("The Ember Chain. The Queen gave it to me the night her chapel burned. Take it. It was never mine to keep.")'),
       { give: POST_CHAIN },
-      say('player', '(Something comes loose from the chain, a cold light, and runs to Lumi.)', '（链子上有什么东西散了出来，是一道冷光，流向了露米。）'),
+      // the Ember Memory (docs/sunshard/STORY.md §5): the Regalia gives back one of the Crownseeker's own memories
+      say('player', '(The chain is warm. Then it is hot. Then you are not in the yard at all.)'),
+      { fade: 'out' },
+      { card: L('AN EMBER MEMORY\nThe Sundering Night\n\nnineteen years ago') },
+      say('player', '(Rain on a burning roof. You are someone else: a young knight in white, running down the steps of the Crown Chapel with something small held against your chest, wrapped against the cold.)'),
+      say('player', '(Behind you a woman\'s voice, very calm, over the roar of the fire: "Gavrel. Take the child to the mountain. Do not tell anyone the child\'s name. Not even the child.")'),
+      say('player', '(The chapel windows go white. Five lights tear up out of its roof and fly apart over the city like comets, east, west, north, south, and one straight up into the rain.)'),
+      say('player', '(The baby in your arms does not cry. It watches the lights go, and reaches up for one of them.)'),
+      say('player', '(You ride east all night. You do not look back at Solmere once.)'),
+      { fade: 'in' },
+      say('pip', 'That was you. In his arms. The baby was you.', undefined, 'surprised'),
+      say('pip', '...And the light that went straight up. How do I know that one was me?', undefined, 'shy'),
+      say('player', '(Something comes loose from the chain, a cold light, and runs to Kiri.)', '（链子上有什么东西散了出来，是一道冷光，流向了露米。）'),
       { tell: 'pip', params: { what: 'boon', unlock: 'endure', from: MATTHIAS_ID } },
       { wait: 32 },
       say('pip', 'It came to me again! ...Ow. My back stings.', '又到我这儿来了！……嘶，背上好疼。', 'surprised'),
       say('pip', "It's gone now. That's strange. There's nothing wrong with my back.", '已经不疼了。好奇怪，我背上又没有伤。'),
       { place: 'npc.severin', map: 'pillaryard', x: Y.severin[0], y: Y.severin[1] },
       { music: 'severin' },
-      say('player', '(The grey man steps out from behind the post and opens his lantern. The rest of the light goes into the flame. It shrinks to a point, and he has to hold the lantern with both hands.)', '（灰衣人从柱子后面走出来，打开提灯。剩下的光流进了火里。火苗缩成了一个点，他得用两只手才捧得住那盏灯。）'),
+      say('player', '(Corvin steps out from behind the post and opens his lantern. The rest of the light goes into the flame. It shrinks to a point, and he has to hold the lantern with both hands.)', '（灰衣人从柱子后面走出来，打开提灯。剩下的光流进了火里。火苗缩成了一个点，他得用两只手才捧得住那盏灯。）'),
       say('npc.severin', 'Two.', '第二道了。'),
-      say('npc.severin', 'The night will come earlier again. You know where to ask why.', '夜晚又要来得早一些了。为什么，你知道该去问谁。'),
-      say('player', '(He looks at Lumi for a long time. Then he goes out through the fog, east.)', '（他看了露米很久，然后穿过雾门，往东去了。）'),
+      { branch: 'choice.ch2.warden', is: 'relieved', skip: 1 },
+      say('npc.severin', 'You let him live. ...I did not know that could be done. Neither, I think, does Solmere.', undefined, 'surprised'),
+      say('npc.severin', 'Every piece you gather, the nights come sooner. Ask your Regent why. Then ask what drinks from those channels.', '夜晚又要来得早一些了。为什么，你知道该去问谁。'),
+      say('player', '(He looks at Kiri for a long time. Then he goes out through the fog, east.)', '（他看了露米很久，然后穿过雾门，往东去了。）'),
       { move: 'npc.severin', x: Y.gate[0][0], y: Y.gate[0][1] - 1 },
       { place: 'npc.severin', map: 'offstage', x: 2, y: 2 },
+      // the rival, a minute late (docs/sunshard/STORY.md: the race)
+      { place: 'npc.sable', map: 'pillaryard', x: Y.gate[0][0], y: Y.gate[0][1] - 1 },
+      say('player', '(Footsteps through the fog. Sable Vire stops at the edge of the yard, her sword half drawn, and looks at the chain in your hands.)'),
+      say('npc.sable', 'You. ...Father said you would be slow.', undefined, 'angry'),
+      say('npc.sable', 'Keep it, then. There are three more, and I do not lose twice.'),
+      { place: 'npc.sable', map: 'offstage', x: 4, y: 1 },
+      // he lives (relieved): he goes down to the camp; felled, he lies by the post
+      { branch: 'choice.ch2.warden', is: 'relieved', skip: 1 },
+      { place: MATTHIAS_ID, map: 'offstage', x: 6, y: 4 },
       { fact: CH2.chain, value: 1 },
-      // the second seal down: the night longer again (calendar.ts nightHours: dusk at seven, dawn at six)
-      { fact: 'night.shift', value: 2 },
+      // the Daylight Ledger (docs/sunshard/STORY.md §5): a Warden felled lengthens the night by an hour; one relieved does not
+      { branch: 'choice.ch2.warden', is: 'felled', skip: 1 },
+      { tally: 'night.shift', by: 1 },
       { topic: 'quiet_dusk', days: 30 },
     ],
   },
@@ -771,8 +844,12 @@ export const CHAPTER2_STORY: StepDef[] = [
       say('player', '(Holt lies on a cot by the hospital, his side bound up. Under the binding a burn has closed the wound, neat as a seam.)', '（霍尔特躺在医院门口的一张行军床上，腰上缠着布。布底下，一道烙痕把伤口封住了，像缝过一样整齐。）'),
       say('npc.holt', 'The thief was here. The grey one. He sat with me half the night and burned the cut shut with that lantern of his.', '那个贼来过了。灰衣服那个。他在我旁边坐了半夜，用他那盏灯把伤口烙上了。'),
       say('npc.holt', "I'm not going after him. Not this time.", '我不追他了。这回不追了。'),
-      say('npc.wil', "Pilgrim, I burned my hand on the pot, and it hurts! It really hurts! Is this what hurt is?", '朝圣者，我的手被锅烫了，好疼！真的好疼！这就是疼吗？', 'sad'),
-      say('player', '(The sun has gone down behind the red hills. It went down at seven.)', '（太阳已经落到红色的山后面去了。七点就落了。）'),
+      say('npc.wil', "Crownseeker, I burned my hand on the pot, and it hurts! It really hurts! Is this what hurt is?", '朝圣者，我的手被锅烫了，好疼！真的好疼！这就是疼吗？', 'sad'),
+      { branch: 'choice.ch2.warden', is: 'relieved', skip: 2 },
+      say('player', '(At the cook fire sits a giant in a torn red tabard, his hands open on his knees. Nobody knows what to say to him. Wil brings him a bowl of soup, and he says thank you.)'),
+      say('player', '(The sun has gone down behind the red hills. No earlier than last night: the Ledger in Nessa\'s almanac would not have moved.)'),
+      { branch: 'choice.ch2.warden', is: 'felled', skip: 1 },
+      say('player', '(The sun has gone down behind the red hills. It went down at seven, an hour sooner than it should.)', '（太阳已经落到红色的山后面去了。七点就落了。）'),
       { fact: CH2.end, value: 1 },
       // the grain road south to the Vale of Scales opens (docs/chapter-3.md §2.4)
       { fact: CHAPTER_THREE, value: 1 },
@@ -783,7 +860,7 @@ export const CHAPTER2_STORY: StepDef[] = [
     // The chapter's card.
     id: 'chapter2_end',
     when: { after: 'quiet_dusk' },
-    script: [{ card: L(`${CHAPTER_END.en}\n\nThe grain road south to the Vale of Scales is open.`, `${CHAPTER_END.zh}\n\n往南去衡谷平原的运粮路通了。`) }],
+    script: [{ card: L(`${CHAPTER_END.en}\n\nChapter Three · The Weight of Grain\nThe grain road south into the Golden Reach is open.`, `${CHAPTER_END.zh}\n\n往南去衡谷平原的运粮路通了。`) }],
   },
 ]
 

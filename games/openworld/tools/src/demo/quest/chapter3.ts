@@ -297,7 +297,7 @@ export function buildGuildHall(): MapBuilder {
   m.fixture('fixture/furniture/table/long', D.x + 3, D.y + 1, { name: L("The guild's table", '行会的长桌') })
   m.fixture('fixture/furniture/throne', D.x + 4, D.y, { name: L("The guildmistress's chair", '会长的椅子') })
   m.fixture('fixture/container/chest', D.x + 8, D.y, { name: L("The guild's strongbox", '行会的保险箱') })
-  m.fixture(LEDGER, H.x + 3, H.y + 2, { name: L("The guild's ledger", '行会的账簿'), props: { text: 'The Grain Guild\'s ledger. The granary is full: so many measures of wheat, so many of barley, all of it entered "owed to the Holy City". The tithe-carts were due three seasons ago. In the margin, smaller: "still not come".', text_zh: '谷物行会的账簿。粮仓是满的：多少斗麦子，多少斗大麦，每一笔后面都写着“欠圣城”。什一税的车三季以前就该来了。页边上有一行小字：“还是没来。”' } })
+  m.fixture(LEDGER, H.x + 3, H.y + 2, { name: L("The guild's ledger", '行会的账簿'), props: { text: 'The Grain Guild\'s ledger. The granary is full: so many measures of wheat, so many of barley, all of it entered "owed to Solmere". The tithe-carts were due three seasons ago. In the margin, smaller: "still not come".', text_zh: '谷物行会的账簿。粮仓是满的：多少斗麦子，多少斗大麦，每一笔后面都写着“欠圣城”。什一税的车三季以前就该来了。页边上有一行小字：“还是没来。”' } })
   for (const x of [H.x + 1, H.x + H.w - 2]) m.fixture('fixture/container/bookcase', x, H.y)
   for (const [x, y] of [[D.x, D.y + 1], [D.x + D.w - 1, D.y + 1]] as Cell[]) m.fixture('fixture/light/candelabrum', x, y, lit)
   m.fixture('fixture/furniture/bed', H.x + H.w - 2, H.y + H.h - 2, { name: L("The guildmistress's bed", '会长的床') })
@@ -569,7 +569,7 @@ const F = CH3_AT.floor
 
 /** The chapter's card at its end. */
 const CHAPTER_END = {
-  en: 'CHAPTER THREE · THE THIRD SEAL\n\nThe Priest of the Black Scales was hungry at the last.\nFairweight ate on its square, and wept, and ate.\nThe grey man carried a third light south.\nAnd the night came sooner again.',
+  en: 'CHAPTER THREE · THE WEIGHT OF GRAIN\n\nWarden Ele weighed out the Vale\'s hunger, and was hungry at the last.\nThe Golden Scales gave back a door on a mountain, and a child asking where they came from.\nThe man in grey carried a third light south.\nAnd the Golden Reach remembered what bread tastes of.',
   zh: '第三章 · 第三印\n\n黑衡司铎到最后，终于饿了。\n公秤镇的人在广场上吃饭，哭着，吃着。\n灰衣人带着第三道光往南去了。\n夜晚又来得更早了。',
 }
 
@@ -596,8 +596,8 @@ export const CHAPTER3_STORY: StepDef[] = [
     id: 'nessa_vale',
     when: { map: 'chaffroad', region: 'stone', facts: { [CH3.road]: 1 } },
     script: [
-      say('npc.nessa', 'You! The pilgrim from Firstlight. Of course it is you. Every time a seal falls, the sun goes down earlier, and here you are.', '是你！初原村那个朝圣者。当然是你。每倒下一道印，太阳就落得更早，然后你就出现了。', 'surprised'),
-      say('npc.nessa', 'Seven o\'clock tonight. On the day I left Firstlight it was a quarter past eight. I have it all written down.', '今晚七点。我离开初原村那天，是八点一刻。我全都记下来了。'),
+      say('npc.nessa', 'You! The Crownseeker from Emberwick. Of course it is you. Every time a Regalia comes loose, the sun goes down earlier, and here you are.', '是你！初原村那个朝圣者。当然是你。每倒下一道印，太阳就落得更早，然后你就出现了。', 'surprised'),
+      say('npc.nessa', 'Seven o\'clock tonight. On the day I left Emberwick it was a quarter past eight. I have it all written down.', '今晚七点。我离开初原村那天，是八点一刻。我全都记下来了。'),
       say('npc.nessa', 'The old almanac\'s curve and mine still match. To the minute.', '那本旧历书的曲线，和我的还是对得上。分毫不差。'),
       say('npc.nessa', 'I am going on south, to the Fens. They say the dusk there never lifts. I want to know why. If you come that way, look for me.', '我要继续往南，去林沼。听说那里的黄昏从来不散。我想知道为什么。你要是往那边走，就来找我。'),
     ],
@@ -619,7 +619,7 @@ export const CHAPTER3_STORY: StepDef[] = [
       say('player', '(She steps down, smiling, and walks off toward the fields. Nobody stops her. A woman in a grey habit pulls a little girl back out of the line by the hand.)', '（她笑着走下来，朝田里去了。没有人拦她。一个穿灰色会衣的女人拉着一个小女孩的手，把她从队伍里拽了出来。）'),
       { place: 'npc.elsie', map: 'fairweight', x: W.elsie[0], y: W.elsie[1] },
       say('pip', 'She looked happy. ...Why does that make me feel strange?', '她看起来很高兴。……为什么我心里怪怪的？', 'sad'),
-      say('npc.haskel', 'A pilgrim. You may be weighed too, if you are hungry. No one in Fairweight starves. The scale sees to that.', '一位朝圣者。你要是饿了，也可以来过秤。公秤镇没有人会饿死。有这杆秤在。'),
+      say('npc.haskel', 'A Crownseeker. You may be weighed too, if you are hungry. No one in Fairweight starves. The scale sees to that.', '一位朝圣者。你要是饿了，也可以来过秤。公秤镇没有人会饿死。有这杆秤在。'),
       { place: 'npc.edith', map: 'fairweight', x: 27, y: 32 },
       { place: 'npc.elsie', map: 'fairweight', x: 7, y: 30 },
       { fact: CH3.weighing, value: 1 },
@@ -662,12 +662,12 @@ export const CHAPTER3_STORY: StepDef[] = [
       say('player', '(A long room of desks and shelves. On a stand at its middle, a ledger as big as a door lies open, and a man in grey is reading it by his lantern.)', '（一间狭长的屋子，摆满了桌子和书架。正中的架子上摊着一本门板那么大的账簿，一个穿灰衣的人正就着提灯在读。）'),
       { place: 'npc.severin', map: 'blackbalance.counting', x: CH3_AT.ledger.severin[0], y: CH3_AT.ledger.severin[1] },
       { music: 'severin' },
-      say('npc.severin', 'Five columns. One for each seal. Look at the foot of each.', '五栏。一印一栏。你看每一栏的最底下。'),
-      say('npc.severin', 'Every one is carried to the same account. The Hall. For three hundred years.', '每一栏都转进同一个账户。大殿。转了三百年。'),
-      say('npc.severin', 'And every year since the nights began to lengthen, the Hall has drawn more.', '自从夜晚开始变长，大殿每年支取的都比前一年多。'),
-      say('pip', 'What does the Hall do with it?', '大殿拿这些做什么？', 'surprised'),
-      say('npc.severin', 'Something there is eating.', '那里有什么东西在吃。'),
-      say('npc.severin', 'Ele is on the floor beyond the fog. When the third seal breaks, I will be there.', '厄勒在雾门后面的衡台上。第三道印碎的时候，我会在那儿。'),
+      say('npc.severin', 'Five columns. One for each Warden\'s March. Look at the foot of each.', '五栏。一印一栏。你看每一栏的最底下。'),
+      say('npc.severin', 'Every one is carried to the same account: the Crown Chapel, in Solmere. Nineteen years of it, since the night the Queen died.', '每一栏都转进同一个账户。大殿。转了三百年。'),
+      say('npc.severin', 'And every year since the nights began to lengthen, Solmere has drawn more.', '自从夜晚开始变长，大殿每年支取的都比前一年多。'),
+      say('pip', 'What does Solmere do with it?', '大殿拿这些做什么？', 'surprised'),
+      say('npc.severin', 'Feeds something. A thing under the chapel that the Regent calls the Sun.', '那里有什么东西在吃。'),
+      say('npc.severin', 'Ele is on the floor beyond the fog. When the Golden Scales come loose, I will be there.', '厄勒在雾门后面的衡台上。第三道印碎的时候，我会在那儿。'),
       say('player', '(He closes his lantern\'s shutter and goes out past you.)', '（他合上提灯的挡板，从你身边走了出去。）'),
       { place: 'npc.severin', map: 'offstage', x: 2, y: 2 },
       { music: '' },
@@ -675,12 +675,42 @@ export const CHAPTER3_STORY: StepDef[] = [
     ],
   },
   {
-    // The Scale Floor: the Priest of the Black Scales between the pans.
-    id: 'scale_floor',
-    when: { map: 'scalefloor', region: 'floor', facts: { [CH3.ele]: 0 } },
+    // The Scale Floor, Agnes's name carried (docs/sunshard/STORY.md C4, "relieved": the errand `wifename` past its asks): a
+    // man the scale found light remembers whom he loved; the Warden may set the scales down — or the Crownseeker fights.
+    id: 'scale_floor_name',
+    when: { map: 'scalefloor', region: 'floor', facts: { [CH3.ele]: 0, [CH3.floor]: 0 }, quest: { wifename: { gte: 20 } } },
     script: [
+      { fact: CH3.floor, value: 1 },
+      say('player', '(A floor of black stone under two great pans hanging from the dark. Grain trickles from their lips. Between them stands someone tall and thin in black and gold, holding the beam of a balance like a staff.)'),
+      say(ELE_ID, 'A Crownseeker. Come to be weighed. Everything that comes into the Vale is weighed. So much grain. So much hunger. It must balance.'),
+      say('player', '(You tell Ele of Corwin in the dead fields, who was weighed light three years ago and has forgotten everything but the hoe, and who heard his wife\'s name today, and wept: Agnes.)'),
+      say(ELE_ID, 'Agnes. ...He remembers her. The scale took his hunger, and he remembers her anyway.', undefined, 'surprised'),
+      {
+        choose: L('Warden Ele holds the beam of the balance very still.'),
+        options: [
+          { text: L('Draw your weapon.'), facts: { 'choice.ch3.warden': 'felled' } },
+          { text: L('"A name weighs more than grain. Set the scales down, and let them be hungry, and remember."'), facts: { 'choice.ch3.warden': 'relieved' } },
+        ],
+      },
+      { branch: 'choice.ch3.warden', is: 'relieved', skip: 5 },
+      say(ELE_ID, 'I promised the Queen the Vale would never starve. I did not promise it would never be hungry. I forgot the difference.', undefined, 'sad'),
+      say(ELE_ID, 'Very well. Let them be hungry. Let them remember.', undefined, 'sad'),
+      say('player', '(Ele lowers the beam until the two great pans hang level, and lets go.)'),
+      { fact: CH3.ele, value: 1 },
+      { fact: 'quest.relieved.ele', value: 1 },
+      { branch: 'choice.ch3.warden', is: 'felled', skip: 1 },
+      say(ELE_ID, 'Then you will be weighed after all.', undefined, 'angry'),
+    ],
+  },
+  {
+    // The Scale Floor: Warden Ele of the Golden Scales between the pans.
+    id: 'scale_floor',
+    when: { map: 'scalefloor', region: 'floor', facts: { [CH3.ele]: 0, [CH3.floor]: 0 } },
+    script: [
+      { fact: CH3.floor, value: 1 },
+      { fact: 'choice.ch3.warden', value: 'felled' },
       say('player', '(A floor of black stone under two great pans hanging from the dark. Grain trickles from their lips. Between them stands someone tall and thin in black and gold, holding the beam of a balance like a staff.)', '（一片黑石地面，头顶的黑暗里垂下两只巨大的秤盘，谷粒从盘沿细细地漏下来。两只盘子中间站着一个又高又瘦的人，一身黑金色的祭袍，把一杆秤的秤杆当作手杖拄着。）'),
-      say(ELE_ID, 'A pilgrim. Come to be weighed.', '一位朝圣者。来过秤的。'),
+      say(ELE_ID, 'A Crownseeker. Come to be weighed.', '一位朝圣者。来过秤的。'),
       say(ELE_ID, 'Everything that comes into the Vale is weighed. So much grain. So much hunger. It must balance.', '凡入衡谷者，皆须过秤。这么多粮食，这么多饥饿。必须两相平衡。'),
     ],
   },
@@ -691,13 +721,30 @@ export const CHAPTER3_STORY: StepDef[] = [
     script: [
       { music: 'sorrow' },
       { wait: 22 },
+      // felled: Ele hungry at the last, and gone
+      { branch: 'choice.ch3.warden', is: 'felled', skip: 4 },
       say('player', '(Ele goes down on one knee. The beam falls from their hands. Above, the grain stops running from the pans.)', '（厄勒单膝跪了下去，秤杆从手里掉了。头顶上，秤盘里漏着的谷粒停了。）'),
       say('player', '("What is this? ...It is hollow. Here.")', '（“这是什么？……空的。这里。”）', 'sad'),
       say('player', '("Oh. ...This is what they asked me to take from them.")', '（“啊。……这就是他们求我替他们拿走的东西。”）', 'sad'),
-      say('player', '("Hunger is not made less, pilgrim. It is only weighed out. Remember that, when it is weighed out to you.")', '（“饥饿不会变少，朝圣者。它只会被分出去。等它分到你头上的时候，记住这句话。”）'),
-      say('player', '(Ele takes a small black scale from their belt, tips its pans empty, and holds it out to you.)', '（厄勒从腰间取下一杆黑色的小秤，把秤盘倒空，递给了你。）'),
+      say('player', '("Hunger is not made less, Crownseeker. It is only weighed out. Remember that, when it is weighed out to you.")', '（“饥饿不会变少，朝圣者。它只会被分出去。等它分到你头上的时候，记住这句话。”）'),
+      // relieved: Ele sits down between the level pans, hungry, alive
+      { branch: 'choice.ch3.warden', is: 'relieved', skip: 2 },
+      say('player', '(Ele sits down on the black floor between the level pans and puts a hand to their stomach, surprised.)'),
+      say(ELE_ID, 'Hollow. Here. ...So this is what they asked me to take from them. I think I will go up to Fairweight, and stand in Berthe\'s line.', undefined, 'happy'),
+      say('player', '(A small scale of gold hangs at Ele\'s belt. Ele tips its pans empty, and holds it out to you.)', '（厄勒从腰间取下一杆黑色的小秤，把秤盘倒空，递给了你。）'),
       { give: SCALE_OF_HUNGER },
-      say('player', '(Something comes loose from the scale, a cold light, and runs to Lumi.)', '（秤上有什么东西散了出来，是一道冷光，流向了露米。）'),
+      // the Ember Memory (docs/sunshard/STORY.md §7, Chapter 3): the watchman's door
+      say('player', '(The little scale tips in your hand, all by itself, toward the north. Then you are somewhere else.)'),
+      { fade: 'out' },
+      { card: L('AN EMBER MEMORY\nThe Watchman\'s Door\n\nCloudtop, twelve winters ago') },
+      say('player', '(Snow against a window. A tall old man in a watchman\'s coat writes the hour of sunset in a book, as he does every evening. You are small enough to stand under his elbow.)'),
+      say('player', '(You ask him where you came from. He does not look up. "From the road, little one. Someone brought you up the road in the snow.")'),
+      say('player', '(You ask who. He shuts the book. "Someone who loved you more than his own name." He goes to the door, and stands there a long time, looking down the mountain.)'),
+      say('player', '(That night you hear him talking to someone outside in the cold. A woman\'s name, said once, very quietly, as if it might break.)'),
+      { fade: 'in' },
+      say('pip', 'The watchman. He knew. He knew the whole time, and he never told you.', undefined, 'sad'),
+      say('pip', '...He was trying to keep you safe. Like the knight. Everyone keeps trying to keep you safe.', undefined, 'shy'),
+      say('player', '(Something comes loose from the scale, a cold light, and runs to Kiri.)', '（秤上有什么东西散了出来，是一道冷光，流向了露米。）'),
       { tell: 'pip', params: { what: 'boon', unlock: 'fast', from: ELE_ID } },
       { wait: 32 },
       say('pip', 'It came to me again! ...Oh. I\'m hungry. I\'ve never been hungry.', '又到我这儿来了！……哎呀。我饿了。我从来没饿过。', 'surprised'),
@@ -706,13 +753,19 @@ export const CHAPTER3_STORY: StepDef[] = [
       { music: 'severin' },
       say('player', '(The grey man comes out from behind a pan and opens his lantern. The rest of the light goes into the flame. It nearly goes out. He coughs, and what he coughs into his hand is ash.)', '（灰衣人从秤盘后面走出来，打开了提灯。剩下的光流进火里。火苗差点灭了。他咳了起来，咳在手心里的是灰。）'),
       say('npc.severin', 'Three.', '第三道了。'),
-      say('npc.severin', 'When you have the Nails, come to the Fens. I will show you what you are carrying them to.', '等你拿到圣钉，就到林沼来。我让你看看，你是把它们送到什么东西那里去。'),
+      { branch: 'choice.ch3.warden', is: 'relieved', skip: 1 },
+      say('npc.severin', 'Another one living. ...The lantern is lighter than it should be. I am not sure that is a bad thing.', undefined, 'surprised'),
+      say('npc.severin', 'Come to the Fens, Crownseeker. I will show you what you are carrying these to.', '等你拿到圣钉，就到林沼来。我让你看看，你是把它们送到什么东西那里去。'),
       say('player', '(He goes out through the fog, south.)', '（他穿过雾门，往南去了。）'),
       { move: 'npc.severin', x: F.gate[0][0], y: F.gate[0][1] - 1 },
       { place: 'npc.severin', map: 'offstage', x: 2, y: 2 },
+      // relieved, Ele goes up to Fairweight; felled, Ele lies on the floor
+      { branch: 'choice.ch3.warden', is: 'relieved', skip: 1 },
+      { place: ELE_ID, map: 'offstage', x: 7, y: 1 },
       { fact: CH3.scale, value: 1 },
-      // the third seal down: the night longer again (calendar.ts nightHours: dusk at six, dawn at half past six)
-      { fact: 'night.shift', value: 3 },
+      // the Daylight Ledger (docs/sunshard/STORY.md §5): a Warden felled lengthens the night by an hour
+      { branch: 'choice.ch3.warden', is: 'felled', skip: 1 },
+      { tally: 'night.shift', by: 1 },
       { topic: 'scale_tipped', days: 30 },
     ],
   },
@@ -725,8 +778,30 @@ export const CHAPTER3_STORY: StepDef[] = [
       { place: 'npc.berthe', map: 'fairweight', x: 22, y: 16 },
       { place: 'npc.edith', map: 'fairweight', x: 25, y: 16 },
       say('npc.edith', 'I am hungry. I am so hungry. I had forgotten. How could I have forgotten this?', '我饿。我好饿。我都忘了。我怎么会忘了这个？', 'sad'),
-      say('npc.berthe', 'Three years of hunger, all on one morning. The granary is full. The Guild has it sealed for the Church\'s carts, and the carts have not come in three seasons.', '三年的饿，一个早上全回来了。粮仓是满的。行会把它封着，等教会的车来拉，可那些车三季都没来了。', 'angry'),
+      say('npc.berthe', 'Three years of hunger, all on one morning. The granary is full. The Guild has it sealed for the Order\'s carts, and the carts have not come in three seasons.', '三年的饿，一个早上全回来了。粮仓是满的。行会把它封着，等教会的车来拉，可那些车三季都没来了。', 'angry'),
+      // the rival with the Regent's writ, and the chapter's choice (docs/sunshard/STORY.md §7: the player decides who eats)
+      { place: 'npc.sable', map: 'fairweight', x: 28, y: 16 },
+      say('player', '(A rider in black and gold comes through the crowd at a walk. Sable Vire. She holds up a paper with the Regent\'s sun on its seal.)'),
+      say('npc.sable', 'By the Lord Regent\'s writ, the grain in that granary is the Regency\'s, three seasons owed to Solmere. My carts are an hour behind me. Nobody touches the doors.'),
+      say('npc.berthe', 'There are children on this square who have not eaten since the scale broke.', undefined, 'angry'),
+      say('npc.sable', 'And there are children in Solmere. Crownseeker, you carry a Regalia. Tell them it is owed.'),
+      {
+        choose: L('The whole square is looking at you.'),
+        options: [
+          { text: L('"Fairweight eats first. Your carts can wait."'), facts: { 'choice.ch3.grain': 'town' } },
+          { text: L('"It is owed. Let the carts take it to Solmere."'), facts: { 'choice.ch3.grain': 'solmere' } },
+        ],
+      },
+      { branch: 'choice.ch3.grain', is: 'town', skip: 3 },
+      say('npc.sable', 'Then I will tell my father who chose this town over his city. He will want your name spelled properly.', undefined, 'angry'),
+      { place: 'npc.sable', map: 'offstage', x: 4, y: 1 },
       say('npc.berthe', 'The key is with Ottilie at the guild hall. Or the doors are only wood.', '钥匙在行会会馆的奥蒂莉手里。要不然，那两扇门也不过是木头做的。'),
+      { branch: 'choice.ch3.grain', is: 'solmere', skip: 5 },
+      say('npc.sable', 'Sensible. ...Thank you.', undefined, 'surprised'),
+      say('player', '(Her men break the Guild\'s seal at noon. By evening the carts are gone west, and the granary is empty to the walls.)'),
+      say('npc.berthe', 'Then we will eat the bran, and the children first. Go on, Crownseeker. Go and give the rest of it to Solmere.', undefined, 'sad'),
+      { place: 'npc.sable', map: 'offstage', x: 4, y: 1 },
+      { fact: CH3.granary, value: 1 },
       { fact: CH3.hunger, value: 1 },
     ],
   },
@@ -735,16 +810,28 @@ export const CHAPTER3_STORY: StepDef[] = [
     id: 'supper',
     when: { map: 'fairweight', facts: { [CH3.granary]: 1 }, hour: { from: 17, to: 23 } },
     script: [
+      // the grain sent west (choice.ch3.grain): bran and the last of the poorhouse's, and the night an hour longer for it
+      { branch: 'choice.ch3.grain', is: 'solmere', skip: 3 },
+      say('player', '(Berthe\'s kettles are on the fires, but there is only bran in them. The town sits on the paving with half a bowl each, and the children eat first, and nobody speaks.)'),
+      say('player', '(West, far off, the carts are still going toward Solmere. The sun goes down behind them like a door closing.)'),
+      { tally: 'night.shift', by: 1 },
+      { branch: 'choice.ch3.grain', is: 'town', skip: 1 },
       say('player', '(Berthe\'s kettles are on fires across the square. The whole town sits on the paving with bowls, and eats, and cries, and eats.)', '（贝尔特的锅支在广场各处的火上。全镇的人都坐在石板地上，捧着碗，吃着，哭着，又吃着。）'),
       { place: 'npc.berthe', map: 'fairweight', x: 22, y: 16 },
       { place: 'npc.corwin', map: 'fairweight', x: 25, y: 17 },
       { place: 'npc.ottilie', map: 'fairweight', x: 28, y: 16 },
       { place: 'npc.haskel', map: 'fairweight', x: 19, y: 16 },
+      { branch: 'choice.ch3.grain', is: 'town', skip: 1 },
       say('npc.corwin', 'Bread. ...I had forgotten bread. It tastes of my kitchen. There was someone in my kitchen.', '面包。……我把面包都忘了。它是我家灶房的味道。我家灶房里，原来还有一个人。', 'sad'),
-      say('npc.ottilie', 'I will write to the Holy City that the scale broke, and that a pilgrim opened the granary. Both are true.', '我会写信告诉圣城，大秤坏了，有个朝圣者打开了粮仓。两件都是实话。'),
+      { branch: 'choice.ch3.grain', is: 'solmere', skip: 1 },
+      say('npc.corwin', 'Bran. ...I remember now that bread tasted of something. There was someone in my kitchen.', undefined, 'sad'),
+      { branch: 'choice.ch3.grain', is: 'town', skip: 1 },
+      say('npc.ottilie', 'I will write to Solmere that the scale broke, and that a Crownseeker opened the granary. Both are true.', '我会写信告诉圣城，大秤坏了，有个朝圣者打开了粮仓。两件都是实话。'),
+      { branch: 'choice.ch3.grain', is: 'solmere', skip: 1 },
+      say('npc.ottilie', 'I will write to Solmere that the scale broke, and that the Regency had its grain. Both are true. Neither will feed anyone here.', undefined, 'sad'),
       say('npc.haskel', 'The beam has split down its length. I have weighed this town for thirty years. ...I do not know what I will do in the mornings.', '秤杆从头到尾裂开了。这个镇子我称了三十年。……往后的早上，我都不知道该干什么。', 'sad'),
       say('npc.berthe', 'Eat something, Haskel. Then go to bed. That is what the mornings are for.', '吃点东西吧，哈斯克尔。然后去睡觉。早上本来就是干这个的。'),
-      say('player', '(The sun has gone down behind the dead fields. It went down at six.)', '（太阳已经落到枯死的田地后面去了。六点就落了。）'),
+      say('player', '(The sun has gone down behind the dead fields. Earlier again: Nessa would have it to the minute.)', '（太阳已经落到枯死的田地后面去了。六点就落了。）'),
       { fact: CH3.end, value: 1 },
       { fact: CHAPTER_FOUR, value: 1 },
       { music: 'ending' },
@@ -754,7 +841,7 @@ export const CHAPTER3_STORY: StepDef[] = [
     // The chapter's card.
     id: 'chapter3_end',
     when: { after: 'supper' },
-    script: [{ card: L(`${CHAPTER_END.en}\n\nThe road south into the Pale Fens is open.`, `${CHAPTER_END.zh}\n\n往南去苍白林沼的路通了。`) }],
+    script: [{ card: L(`${CHAPTER_END.en}\n\nChapter Four · Mirelight\nThe road south into the Mirewood is open.`, `${CHAPTER_END.zh}\n\n往南去苍白林沼的路通了。`) }],
   },
 ]
 

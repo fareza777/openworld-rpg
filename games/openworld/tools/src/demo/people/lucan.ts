@@ -34,7 +34,7 @@ export const lucan: PersonDef = {
     line('default', 'At dusk the brothers stand at the posts and take strokes for the Rider, so that he carries a little less. It is our whole rule.', '每到黄昏，修士们站到柱子前面，替骑者受鞭，好让他少担一点。这就是我们全部的戒律。'),
     line('default', 'Under the Rider no one in the March suffers. The soldiers do not, and the farmers do not. That is a grace the rest of the world has not been given.', '在骑者治下，边境上没有人受苦。士兵不受，农人也不受。这是世上别处都没有得到的恩典。'),
     line('hour:evening', 'Dusk. Forgive me; it is the hour of the posts.', '黄昏了。请原谅，到站柱的时辰了。'),
-    line('fact:ch2.channels', 'You went down. ...The offering is carried west, to the Holy City, as it always has been. The Church keeps the Five with it. I have never asked how.', '你下去过了。……献祭往西送，送到圣城，一向如此。教会靠它维系五苦。怎么维系的，我从来没有问过。'),
+    line('fact:ch2.channels', 'You went down. ...The offering is carried west, to Solmere, as it always has been. The Order keeps the Five with it. I have never asked how.', '你下去过了。……献祭往西送，送到圣城，一向如此。教会靠它维系五苦。怎么维系的，我从来没有问过。'),
     line('topic:quiet_dusk', 'The brothers stood at the posts this evening and wept at the first stroke. Some could not go on. I could not either.', '今天黄昏，修士们站到柱前，第一鞭落下就哭了。有人没能再站下去。我也没能。', { mood: 'sad' }),
     line('given:item/light/candle', 'A candle for the altar. The Order thanks you.', '一支给祭坛的蜡烛。修会感谢你。', { mood: 'happy' }),
   ],

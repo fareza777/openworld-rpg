@@ -114,7 +114,7 @@ describe('what would weigh on one\'s conscience is asked first', () => {
     expect(w.num(marta, 'hp')).toBe(hp)
   })
 
-  it("in a fight one's own side is not struck (design.md §5.2): a press on Lumi is a swing at the air, an arrow goes past her; out of a fight, it is asked", () => {
+  it("in a fight one's own side is not struck (design.md §5.2): a press on Kiri is a swing at the air, an arrow goes past her; out of a fight, it is asked", () => {
     const { eng, w, p, clear } = fresh()
     clear()
     const lumi = Object.values(w.state.entities).find((e) => e.type.startsWith('actor/companion/'))!

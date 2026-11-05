@@ -1154,6 +1154,11 @@ export const CATALOG: Catalog = {
     cornerJournal: ui('Items/Object/Book.png', 16, 16),
     cornerCraft: ui('Items/Tool/Anvil.png', 16, 16),
     cornerOptions: ui('lsw/Ui/Gear.png', 16, 16),
+    // the touch screen's action buttons (runtime ui/touch.ts): a sword, the reaching hand, the winged boot, the down arrow
+    touchAttack: ui('lsw/skills/sword.png', 64, 64),
+    touchInteract: ui('Items/Action/Interact.png', 16, 16),
+    touchDash: ui('lsw/skills/dash.png', 64, 64),
+    touchPut: ui('Ui/Arrow.png', 13, 13),
     // Lumi's badge, left of the corner buttons: her panel — her portrait brought down to pixels in a gilt ring
     // (tools/src/art/lumi-icon.py, the game's icon too); her happy face under the pointer
     cornerCompanion: ui('lsw/Ui/LumiBadge.png', 60, 60),

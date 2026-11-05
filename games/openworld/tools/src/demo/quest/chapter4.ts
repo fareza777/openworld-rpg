@@ -223,9 +223,9 @@ export function buildFenChapel(): MapBuilder {
     id: 'nailgate.chronicle',
     name: L('The Chronicle of the Holy Body', '圣尸纪事'),
     tags: ['readable'],
-    props: { text: 'A copy of the Church\'s chronicle, sent to every chapel of the Five: what the keepers of the Most Holy Hall see of the First Martyr\'s body, by the day. For three hundred years: "The Body unchanged." This last year: "The Body\'s colour returned." "The Body warm to the hand." "The Body\'s eyelids moved." In the margin someone has written: THE QUICKENING.', text_zh: '教会纪事的抄本，发给五苦的每一座礼拜堂：至圣大殿的守护者逐日记下他们所见的初殉者遗体。三百年来都是：“圣尸如故。”最近这一年：“圣尸复有血色。”“圣尸触手生温。”“圣尸眼睑微动。”页边上有人写了两个字：复苏。' },
+    props: { text: 'A copy of the Order\'s chronicle, sent to every chapel of the Five: what the keepers of the Most Holy Hall see of the First Martyr\'s body, by the day. For three hundred years: "The Body unchanged." This last year: "The Body\'s colour returned." "The Body warm to the hand." "The Body\'s eyelids moved." In the margin someone has written: THE QUICKENING.', text_zh: '教会纪事的抄本，发给五苦的每一座礼拜堂：至圣大殿的守护者逐日记下他们所见的初殉者遗体。三百年来都是：“圣尸如故。”最近这一年：“圣尸复有血色。”“圣尸触手生温。”“圣尸眼睑微动。”页边上有人写了两个字：复苏。' },
   })
-  m.fixture('fixture/furniture/desk', H.x + 11, H.y + 2, { name: L("Nessa's tables", '奈莎的表'), tags: ['readable'], props: { text: 'Sheets of figures weighted down with stones: every sunset since Firstlight, to the minute. Beside the days the sun set early, in red ink, a seal\'s name. Beside some of them, in black, a line from the chronicle.', text_zh: '一张张写满数字的纸，用石头压着：从初原村起的每一次日落，精确到分钟。太阳早落的那些日子旁边，用红墨水写着一道印的名字。其中几天旁边，又用黑墨水抄着纪事里的一句话。' } })
+  m.fixture('fixture/furniture/desk', H.x + 11, H.y + 2, { name: L("Nessa's tables", '奈莎的表'), tags: ['readable'], props: { text: 'Sheets of figures weighted down with stones: every sunset since Emberwick, to the minute. Beside the days the sun set early, in red ink, a seal\'s name. Beside some of them, in black, a line from the chronicle.', text_zh: '一张张写满数字的纸，用石头压着：从初原村起的每一次日落，精确到分钟。太阳早落的那些日子旁边，用红墨水写着一道印的名字。其中几天旁边，又用黑墨水抄着纪事里的一句话。' } })
   m.fixture('fixture/container/chest', H.x + 13, H.y, { name: L('A box of nails', '一箱钉子') })
   m.fixture('fixture/furniture/bed', H.x, H.y + 5, { name: L("The sexton's cot", '司事的小床') })
   m.fixture('fixture/furniture/bed', H.x + 13, H.y + 5, { name: L('A cot for travellers', '给过路人的小床') })
@@ -407,7 +407,7 @@ const FR = CH4_AT.ferry
 
 /** The chapter's card at its end. */
 const CHAPTER_END = {
-  en: 'CHAPTER FOUR · THE FOURTH SEAL\n\nThe Reinholder let go of the reins.\nThe dead of the Fens lay down, and the ferry went out full.\nThe grey man and the pilgrim went west together.\nAnd the night came sooner again.',
+  en: 'CHAPTER FOUR · MIRELIGHT\n\nWarden Nacht let go of the reins.\nThe dead of the Mirewood lay down, and the ferry went out full.\nThe Starfall Wood gave back a lullaby in a burning chapel.\nAnd the man in grey and the Crownseeker went west together.',
   zh: '第四章 · 第四印\n\n执辔者松开了缰绳。\n林沼的死者躺下了，渡船满载着出发。\n灰衣人和朝圣者一起往西去了。\n夜晚又来得更早了。',
 }
 
@@ -453,14 +453,20 @@ export const CHAPTER4_STORY: StepDef[] = [
     when: { map: 'nailgate.chapel', facts: { [CH4.kept]: 1 } },
     script: [
       { place: 'npc.nessa', map: 'nailgate.chapel', x: CH4_AT.quickening.nessa[0], y: CH4_AT.quickening.nessa[1] },
-      say('npc.nessa', 'Pilgrim. Sit down. I want you to look at something, and then I want you to tell me I am wrong.', '朝圣者。坐下。我想让你看一样东西，看完了，我想听你跟我说，是我弄错了。'),
-      say('npc.nessa', 'This is my table. Every sunset since the bridge at Firstlight. Here: four minutes early, the day the Crown came down. Here, the Chain. Here, the Scale.', '这是我的表。从初原村那座桥起的每一次日落。这里：早了四分钟，荆棘冠倒下的那天。这里，锁链。这里，秤。'),
-      say('npc.nessa', 'And this is the Church\'s own chronicle of the Holy Body. Every chapel of the Five keeps a copy. Three hundred years of "the Body unchanged". And this last year...', '这是教会自己记的圣尸纪事。五苦的每座礼拜堂都有一份抄本。三百年来，一直是“圣尸如故”。可是最近这一年……'),
-      say('npc.nessa', '"The Body\'s colour returned." "The Body warm to the hand." "The Body\'s eyelids moved."', '“圣尸复有血色。”“圣尸触手生温。”“圣尸眼睑微动。”'),
+      say('npc.nessa', 'Crownseeker. Sit down. I want you to look at something, and then I want you to tell me I am wrong.', '朝圣者。坐下。我想让你看一样东西，看完了，我想听你跟我说，是我弄错了。'),
+      say('npc.nessa', 'This is my table. Every sunset since the bridge at Emberwick. Here: minutes early, the day the Diadem came home. Here, the Chain. Here, the Scales.', '这是我的表。从初原村那座桥起的每一次日落。这里：早了四分钟，荆棘冠倒下的那天。这里，锁链。这里，秤。'),
+      say('npc.nessa', 'And this is the Order\'s own chronicle of the Sun beneath the Crown Chapel. Every chapel of the Radiant keeps a copy. Eighteen years of "the Sun at rest". And this last year...', '这是教会自己记的圣尸纪事。五苦的每座礼拜堂都有一份抄本。三百年来，一直是“圣尸如故”。可是最近这一年……'),
+      say('npc.nessa', '"The Sun brighter under the floor." "The Sun warm to the stone above it." "The Sun heard to breathe."', '“圣尸复有血色。”“圣尸触手生温。”“圣尸眼睑微动。”'),
       say('npc.nessa', 'The days are the same. Every one of them. To the day.', '日子是一样的。每一天都对得上。一天都不差。'),
       say('pip', 'What does it mean?', '这是什么意思？', 'surprised'),
-      say('npc.nessa', 'It means that every time the night grows, something in the Holy City grows with it. And they knew. They have been writing it down.', '意思是，夜晚每长一分，圣城里就有个东西跟着长一分。而且他们知道。他们一直在往下记。'),
-      say('npc.nessa', 'Tell me I am wrong.', '跟我说，是我弄错了。'),
+      say('npc.nessa', 'It means that every time the night grows, something in Solmere grows with it. And they knew. They have been writing it down.', '意思是，夜晚每长一分，圣城里就有个东西跟着长一分。而且他们知道。他们一直在往下记。'),
+      // Sister Maren comes down with the Order's party (docs/sunshard/STORY.md §4: her faith breaks in Chapter 4)
+      { place: 'npc.ilse', map: 'nailgate.chapel', x: CH4_AT.quickening.nessa[0] + 2, y: CH4_AT.quickening.nessa[1] },
+      say('player', '(Sister Maren is standing in the chapel door, still in her travelling cloak, with the Order\'s chain of office at her throat. She came down the fen road with the Luminant\'s party. She has been listening.)'),
+      say('npc.ilse', 'I copy that chronicle out myself. Every winter, for the shrine at Emberwick. Eighteen copies. ...I never once read it.', undefined, 'sad'),
+      say('npc.ilse', 'Show me the page with the Diadem\'s day, Nessa. Please.', undefined, 'sad'),
+      say('player', '(Nessa shows her. Maren reads it twice. Then she takes the chain of office from her neck, and puts it down on the table between the two books.)'),
+      say('npc.ilse', 'Tell her she is wrong, Crownseeker. Please. Tell one of us.', undefined, 'sad'),
       say('player', '(You do not.)', '（你没有说。）'),
       { fact: CH4.nessa, value: 1 },
       { topic: 'quickening', days: 30 },
@@ -496,12 +502,12 @@ export const CHAPTER4_STORY: StepDef[] = [
       { music: 'severin' },
       say('npc.severin', 'You came. ...No. Leave me. Look at the altar first.', '你来了。……别扶我。先看祭坛。'),
       say('player', '(On the altar, under glass, lies a folded cloth. It is black, and the black moves under the glass, slowly, like water under ice.)', '（祭坛上，玻璃罩下面叠着一块布。那块布是黑的，而且那片黑在玻璃底下动，慢慢地，像冰面下的水。）'),
-      say('npc.severin', 'The Shroud of the Translation. It wrapped him when they carried him to the Holy City. It was white.', '移灵裹尸布。当年他们把他抬到圣城，就是用它裹的。它原本是白的。'),
-      say('npc.severin', 'Your almanac-maker showed you the dates. The nights grow, and he grows warm.', '你的历书匠给你看过那些日子了。夜晚变长，他就变暖。'),
-      say('npc.severin', 'He is waking. And you are carrying him his limbs.', '他正在醒来。而你，是在给他送去他的四肢。'),
-      say('player', '(You think of the Crown, the Chain and the Scale in your pack. You do not argue.)', '（你想起包里的荆棘冠、锁链和秤。你没有反驳。）'),
-      say('pip', '...I don\'t want to give them to him.', '……我不想把它们交给他。', 'sad'),
-      say('npc.severin', 'Then do not. Take the fourth from the Rider before the Church can. Then we will see about the fifth. Together, if you will have me.', '那就别交。抢在教会前面，从骑者手里拿下第四件。然后再说第五件。我们一起，如果你愿意的话。'),
+      say('npc.severin', 'The Shroud of the Starfall. The Ashen Covenant kept it for six hundred years, since the night the sky fell. It was white.', '移灵裹尸布。当年他们把他抬到圣城，就是用它裹的。它原本是白的。'),
+      say('npc.severin', 'Your almanac-maker showed you the dates. The nights grow, and the thing under the Crown Chapel grows warm.', '你的历书匠给你看过那些日子了。夜晚变长，他就变暖。'),
+      say('npc.severin', 'It drinks what the Wardens held. And you are carrying it the rest.', '他正在醒来。而你，是在给他送去他的四肢。'),
+      say('player', '(You think of the Diadem, the Chain and the Scales in your pack. You do not argue.)', '（你想起包里的荆棘冠、锁链和秤。你没有反驳。）'),
+      say('pip', '...I don\'t want to give them to it.', '……我不想把它们交给他。', 'sad'),
+      say('npc.severin', 'Then do not. Take the fourth from Nacht before the Regency can. Then we will see about the fifth. Together, if you will have me.', '那就别交。抢在教会前面，从骑者手里拿下第四件。然后再说第五件。我们一起，如果你愿意的话。'),
       say('player', '(He gets to his feet, and coughs, and what he coughs is ash.)', '（他站起来，咳嗽，咳出来的是灰。）'),
       say('npc.severin', 'I cannot carry another one alone. The ford is through the arch on the east shore. I will be there.', '再来一道，我一个人担不住了。渡口在东岸那座拱门后面。我会在那儿。'),
       { place: 'npc.severin', map: 'offstage', x: 2, y: 2 },
@@ -510,10 +516,39 @@ export const CHAPTER4_STORY: StepDef[] = [
     ],
   },
   {
-    // The Ford of the Dead: the Reinholder on his pale horse.
-    id: 'dead_ford',
-    when: { map: 'deadford', region: 'ford', facts: { [CH4.nacht]: 0 } },
+    // The Ford of the Dead, the ferryman's way remembered (docs/sunshard/STORY.md C4, "relieved": the errand `ferrycoin` past
+    // its asks): the dead have a way across after all; the Warden may let go of the reins — or the Crownseeker fights.
+    id: 'dead_ford_coin',
+    when: { map: 'deadford', region: 'ford', facts: { [CH4.nacht]: 0, [CH4.ford]: 0 }, quest: { ferrycoin: { gte: 20 } } },
     script: [
+      { fact: CH4.ford, value: 1 },
+      say('player', '(A bar of grey mud in the middle of a black river. At its far end a dead tree stands in the water, three great nails through its trunk. Before it, on a pale horse hung with bells, a rider in white rags, a scythe across his saddle.)'),
+      say(NACHT_ID, 'Another one, come to take them from me. Do you know what is past this water now? Neither do they. None of mine go into the dark. Not while I hold the reins.'),
+      say('player', '(You tell him of Klaas at the landing, who has kept his boat tarred for forty years, and who still remembers the way across. You tell him of Hedda, with a coin in her hand, waiting to be ferried.)'),
+      say(NACHT_ID, 'The ferryman remembers. ...I swore to the Queen no one of hers would be lost in the dark. I forgot there was a boat.', undefined, 'surprised'),
+      {
+        choose: L('Warden Nacht\'s hand tightens on the reins, and the bells ring.'),
+        options: [
+          { text: L('Draw your weapon.'), facts: { 'choice.ch4.warden': 'felled' } },
+          { text: L('"They are not lost. They are only waiting for the boat. Let go of the reins."'), facts: { 'choice.ch4.warden': 'relieved' } },
+        ],
+      },
+      { branch: 'choice.ch4.warden', is: 'relieved', skip: 4 },
+      say(NACHT_ID, 'Then I will ride ahead of the boat, and light the far shore for them. That much I can still see to.', undefined, 'sad'),
+      say('player', '(He opens his hand. The bells on the horse stop. Across the fen, all at once, everything is very quiet.)'),
+      { fact: CH4.nacht, value: 1 },
+      { fact: 'quest.relieved.nacht', value: 1 },
+      { branch: 'choice.ch4.warden', is: 'felled', skip: 1 },
+      say(NACHT_ID, 'Then you will stay on this shore with the rest of mine.', undefined, 'angry'),
+    ],
+  },
+  {
+    // The Ford of the Dead: Warden Nacht on his pale horse.
+    id: 'dead_ford',
+    when: { map: 'deadford', region: 'ford', facts: { [CH4.nacht]: 0, [CH4.ford]: 0 } },
+    script: [
+      { fact: CH4.ford, value: 1 },
+      { fact: 'choice.ch4.warden', value: 'felled' },
       say('player', '(A bar of grey mud in the middle of a black river. At its far end a dead tree stands in the water, three great nails through its trunk. Before it, on a pale horse hung with bells, a rider in white rags, a scythe across his saddle.)', '（黑河中央有一道灰泥滩。滩的那头，一棵枯树立在水里，树干上穿着三根大钉。树前，一匹挂满铃铛的苍白马上，坐着一个裹着白色破布的骑者，镰刀横在鞍上。）'),
       say(NACHT_ID, 'Another one, come to take them from me.', '又来了一个，要把他们从我身边带走。'),
       say(NACHT_ID, 'Do you know what is past this water now? Neither do they. None of mine go into the dark. Not while I hold the reins.', '你知道这条水那边如今是什么吗？他们也不知道。我的人，一个也不进黑暗。只要缰绳还在我手里。'),
@@ -526,17 +561,31 @@ export const CHAPTER4_STORY: StepDef[] = [
     script: [
       { music: 'sorrow' },
       { wait: 22 },
+      // felled: he falls into the shallows, and the horse goes into the river alone
+      { branch: 'choice.ch4.warden', is: 'felled', skip: 5 },
       say('player', '(Nacht falls from the horse into the shallows. The reins are still wound round his hand. He looks at them a long time.)', '（纳赫特从马上摔进浅水里。缰绳还缠在他手上。他盯着它们看了很久。）'),
       say('player', '("Then go. All of you.")', '（“那就走吧。你们所有人。”）', 'sad'),
       say('player', '("I cannot see where.")', '（“我看不见是哪里。”）', 'sad'),
       say('player', '(He opens his hand. The bells on the horse stop. Across the fen, all at once, everything is very quiet.)', '（他松开了手。马身上的铃铛停了。整片林沼，一下子安静得出奇。）'),
-      say('player', '(He pulls a board of black wood from his saddle, three nails through it, and holds it out to you. Then he is still. The pale horse walks into the river and does not come back.)', '（他从马鞍上取下一块黑木板，上面穿着三颗钉子，递给了你。然后他就不动了。那匹苍白的马走进河里，再也没有回来。）'),
+      say('player', '(He pulls a stave of black wood from his saddle, three nails through it, and holds it out to you. Then he is still. The pale horse walks into the river and does not come back.)', '（他从马鞍上取下一块黑木板，上面穿着三颗钉子，递给了你。然后他就不动了。那匹苍白的马走进河里，再也没有回来。）'),
+      // relieved: he gives it from the saddle, and rides ahead of the boat
+      { branch: 'choice.ch4.warden', is: 'relieved', skip: 1 },
+      say('player', '(Nacht pulls a stave of black wood from his saddle, three nails through it, and holds it out to you from the saddle.)'),
       { give: HOLY_WOOD },
-      say('player', '(Something comes loose from the wood, a cold light, and runs to Lumi. More of it than ever before.)', '（木板上有什么东西散了出来，是一道冷光，流向了露米。比以往任何一次都多。）'),
+      // the Ember Memory (docs/sunshard/STORY.md §7, Chapter 4): the lullaby
+      say('player', '(The wood is cold and wet, and then it is not wood at all, but a cradle\'s rail under your hand.)'),
+      { fade: 'out' },
+      { card: L('AN EMBER MEMORY\nThe Lullaby\n\nthe Crown Chapel, nineteen years ago') },
+      say('player', '(Candles. Rain on high windows. A woman in grey sits by a cradle in a side chapel, and sings, very low, so that nobody in the great hall beyond can hear.)'),
+      say('player', '("Sleep, little light, the sky is long. Sleep, little light, the night is wrong. Keep what I give you, keep it deep, and wake when the Crown cannot make you sleep.")'),
+      say('player', '(She stops. Her hand is on your forehead, and it is shaking. Through the door, men are coming up the nave with lanterns, and one of them is laughing.)'),
+      { fade: 'in' },
+      say('pip', 'I know that song. I KNOW that song. Who taught it to me? ...Who taught it to you?', undefined, 'surprised'),
+      say('player', '(Something comes loose from the wood, a cold light, and runs to Kiri. More of it than ever before.)', '（木板上有什么东西散了出来，是一道冷光，流向了露米。比以往任何一次都多。）'),
       { tell: 'pip', params: { what: 'boon', unlock: 'hold', from: NACHT_ID } },
       { wait: 32 },
       say('pip', 'It came to me again. ...So much of it.', '又到我这儿来了。……好多啊。', 'surprised'),
-      say('pip', 'Pilgrim, the dead in the water are looking at me. All of them. Why are they looking at me like they know me?', '朝圣者，水里的死人都在看我。所有人都在看。他们为什么像认识我一样看着我？', 'sad'),
+      say('pip', 'Crownseeker, the dead in the water are looking at me. All of them. Why are they looking at me like they know me?', '朝圣者，水里的死人都在看我。所有人都在看。他们为什么像认识我一样看着我？', 'sad'),
       { place: 'npc.severin', map: 'deadford', x: FD.severin[0], y: FD.severin[1] },
       { music: 'severin' },
       say('player', '(The grey man comes out of the fog with his lantern open. The rest of the light goes toward it, and the flame bends almost flat, and he cannot hold it.)', '（灰衣人打开提灯，从雾里走出来。剩下的光朝灯流去，火苗被压得几乎贴平，他稳不住了。）'),
@@ -544,9 +593,13 @@ export const CHAPTER4_STORY: StepDef[] = [
       say('npc.severin', 'Four.', '第四道了。'),
       say('npc.severin', '...We go on together.', '……我们一起往前走。'),
       { place: 'npc.severin', map: 'nailgate', x: FR.severin[0], y: FR.severin[1] },
+      // relieved, Nacht rides ahead of the ferry; felled, he lies in the shallows
+      { branch: 'choice.ch4.warden', is: 'relieved', skip: 1 },
+      { place: NACHT_ID, map: 'offstage', x: 7, y: 5 },
       { fact: CH4.wood, value: 1 },
-      // the fourth seal down: the night longer again (calendar.ts nightHours: dusk at five, dawn at seven)
-      { fact: 'night.shift', value: 4 },
+      // the Daylight Ledger (docs/sunshard/STORY.md §5): a Warden felled lengthens the night by an hour
+      { branch: 'choice.ch4.warden', is: 'felled', skip: 1 },
+      { tally: 'night.shift', by: 1 },
       { topic: 'reins_let_go', days: 30 },
     ],
   },
@@ -566,8 +619,16 @@ export const CHAPTER4_STORY: StepDef[] = [
       say('npc.klaas', 'Hedda went an hour ago, in her bed, with a coin in her hand. She laughed first.', '海达一个钟头前走了，在她自己的床上，手里攥着一枚钱。走之前，她还笑了一声。'),
       say('player', '(The boat goes out into the fog, low in the water, and the lamps on the walks go out one by one behind it.)', '（船驶进雾里，吃水很深。它身后，栈道上的灯一盏接一盏地灭了。）'),
       { place: 'npc.severin', map: 'nailgate', x: FR.severin[0], y: FR.severin[1] },
-      say('npc.severin', 'West, then. The Heights. The fifth is under an altar there.', '那就往西。去高地。第五件在那里的一座祭坛底下。'),
-      say('player', '(The sun, if there was one, has gone down. It went down at five.)', '（太阳——如果还有太阳的话——已经落下去了。五点就落了。）'),
+      { branch: 'choice.ch4.warden', is: 'relieved', skip: 1 },
+      say('player', '(Far out on the black water, a light goes before the boat: a rider on a pale horse, holding a lantern up for them, riding on the water as if it were a road.)'),
+      // the rival, at the landing (docs/sunshard/STORY.md §4: the first doubt)
+      { place: 'npc.sable', map: 'nailgate', x: FR.klaas[0] + 2, y: FR.klaas[1] },
+      say('player', '(Sable Vire stands at the end of the landing with her hood down. She has come for the fourth Regalia, and she has not drawn her sword. She is watching the boats.)'),
+      say('npc.sable', 'My father says the Wardens hold the dead back out of spite. ...That is not what this is, is it.', undefined, 'sad'),
+      say('npc.sable', 'Do not look at me like that. I have not changed my mind about anything. I am only tired.'),
+      { place: 'npc.sable', map: 'offstage', x: 4, y: 1 },
+      say('npc.severin', 'West, then. The Silverspire Heights. The fifth is under an altar there, and so, I think, is the end of the Regent\'s story.', '那就往西。去高地。第五件在那里的一座祭坛底下。'),
+      say('player', '(The sun, if there was one, has gone down. Nessa will have the minute in her table.)', '（太阳——如果还有太阳的话——已经落下去了。五点就落了。）'),
       { place: 'npc.liese', map: 'offstage', x: 4, y: 6 },
       { place: 'npc.jory', map: 'offstage', x: 6, y: 6 },
       { place: 'npc.hedda', map: 'offstage', x: 8, y: 6 },
@@ -580,7 +641,7 @@ export const CHAPTER4_STORY: StepDef[] = [
     // The chapter's card.
     id: 'chapter4_end',
     when: { after: 'the_ferry' },
-    script: [{ card: L(`${CHAPTER_END.en}\n\nThe road west into the White Altar Heights is open.`, `${CHAPTER_END.zh}\n\n往西去白坛高地的路通了。`) }],
+    script: [{ card: L(`${CHAPTER_END.en}\n\nChapter Five · The White Vigil\nThe road west into the Silverspire Heights is open.`, `${CHAPTER_END.zh}\n\n往西去白坛高地的路通了。`) }],
   },
 ]
 

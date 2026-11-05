@@ -57,7 +57,8 @@ export type ToWorker =
   /** The one at the keys, fallen, rises again: where they fell, or at home (the death screen). */
   | { t: 'respawn'; home: boolean }
   /** Hold a direction (null: stop); `walk`: Shift, slower than the default run. */
-  | { t: 'move'; dir: Dir | null; walk?: boolean; run?: boolean }
+  /** the way held (`dir`), and a way across it held too (`also`): a diagonal (engine movePlayer) */
+  | { t: 'move'; dir: Dir | null; also?: Dir; walk?: boolean; run?: boolean }
   /** Q: dash (the skill), the way the player faces. */
   | { t: 'dash' }
   /** Space: strike ahead with the held weapon (or a fist), again and again while it is held. */

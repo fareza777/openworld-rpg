@@ -81,7 +81,7 @@ export const FIN_TYPES: TypeDef[] = [
   channel(CHANNELS.thorn, 'fixture:channel_thorn', 'thorn-grown channel', '长满荆棘的沟槽', 'A gutter cut in the floor, grown over with dark thorns. It comes from the north-west, from the coast.', '地上凿出的一道沟，上面长满了黑色的荆棘。它从西北来，从海岸那边来。'),
   {
     id: BEARER_STATUE,
-    name: L('a statue of a Seal-bearer', '持印者的雕像'),
+    name: L('a statue of a Warden', '持印者的雕像'),
     tags: ['stone', 'readable'],
     solid: true,
     sprite: 'fixture:bearer_statue',

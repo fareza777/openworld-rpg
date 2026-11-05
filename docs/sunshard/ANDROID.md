@@ -36,18 +36,21 @@ Shown on any touch screen (or with `?touch=1` in a desktop browser for testing; 
 
 | Control | Does |
 |---|---|
-| Floating stick | nothing on screen until a thumb goes down on the left half of the world; it appears under the thumb, walks eight ways (it holds the player's own movement keys) and is gone when the thumb lifts |
-| Cluster, bottom right (above the toolbar) | |
-| ⚔ Attack | a blow ahead; held, blows go on (Space) |
-| ✋ Interact | take, talk, open, read (E) |
-| ◆ Use | the held thing's own use: swing a tool, eat, drink, put on (left click) |
-| ➚ Use on | the held thing used on what is ahead: sow, cook, feed (right click) |
-| » Dash | dash (Q) |
-| ⇩ Put / ⚐ | put down, put into, give (G) / draw or sheathe the weapon (X) |
+| Floating stick | nothing on screen until a thumb goes down on the left half of the world; it appears under the thumb and is gone when the thumb lifts. The world walks four ways, so the stick holds one way (the axis leaned along most, kept until the thumb is clearly past ~54°, so a thumb near the diagonal does not flip it); it starts at 30% lean and stops under 20%; pushed to the edge (92%) it runs. A thumb past its reach draws the stick after it, so turning back is a short move |
+| Cluster, bottom right (above the toolbar) | only what would do something now (touch.ts `context`) |
+| Attack (a sword) | a blow ahead; held, blows go on (Space) — always |
+| Interact (a hand) | take, talk, open, read (E) — always |
+| Dash (a winged boot) | dash (Q) — once the skill tree's Dash is learned |
+| Use (the held thing's icon) | its own use: swing a tool, eat, drink, put on (left click) — while it has one |
+| Use on (the held thing, ➚) | used on what is ahead: sow, cook, feed (right click) — while it has one |
+| Put (an arrow) | put down, put into, give (G) — while there is one |
 | Tap the world (right half) | the left click there (aim + act); a long press is the right click there |
-| ☰ (top) | opens the tray of panels: quests, build, bag, skills, journal, crafting, skill bar, menu |
-| The HUD | toolbar slots, minimap (the world map), Kiri's badge — all tappable; key labels are hidden on touch screens |
-| Dialogue | tap to go on; a choice shows its answers as buttons; the controls step aside while a line is on screen |
+| ☰ (top) | opens the tray of panels, each named under its icon: Quests, Build, Bag, Skill tree, Codex, Craft, Skills, Settings |
+| The HUD | toolbar slots, minimap (the world map), Kiri's badge — all tappable; no key labels anywhere, and the texts say "tap", "long-press", "Interact", "☰ Craft" in place of clicks and keys (ui/touchwords.ts) |
+| Quest tracker | folded to the quest's title; a tap opens its objectives; a change opens it for six seconds |
+| Dialogue | a compact box at the foot; tap to go on; a choice shows its answers as buttons; the controls step aside while a line is on screen |
+| Building | a sheet of tiles at the foot; once a thing is chosen it folds to a bar (its name, whether it can go there, turn, list, done): walk with the stick, tap where it goes |
+| Loading | the splash (ui/splash.ts): Kiri's medallion, the title, a bar filled as far as the art has come, lines in turn |
 
 ## Performance notes
 

@@ -29,10 +29,10 @@ export const haskel: PersonDef = {
   },
   lines: [
     line('chat', 'A scale does not lie and does not pity. That is why it can be trusted with what pity would get wrong.', '秤不撒谎，也不怜悯。所以怜悯会弄错的事，可以交给秤。'),
-    line('chat', 'The black weight came from the Holy City with the first Weighmaster. It has never been moved off that plinth but to weigh.', '那块黑秤砣是第一任称量官从圣城带来的。除了过秤，它从没离开过那个石座。'),
+    line('chat', 'The black weight came from Solmere with the first Weighmaster. It has never been moved off that plinth but to weigh.', '那块黑秤砣是第一任称量官从圣城带来的。除了过秤，它从没离开过那个石座。'),
     line('greeting:first', 'A pilgrim of the Five. Welcome to Fairweight. I am Haskel, the Weighmaster. If you are hungry, you may be weighed; there is no charge.', '五苦的朝圣者。欢迎来到公秤镇。我是称量官哈斯克尔。你要是饿了，可以来过秤，不收钱。', { once: true }),
     line('default', 'No one in Fairweight starves. Those the scale finds light are relieved of hunger, and the rest share what is left. It balances.', '公秤镇没有人饿死。秤称出来轻的人，就不再受饿；剩下的人，分剩下的粮。两相平衡。'),
-    line('default', 'I remember every one I have weighed. I do not need the Register. I keep it because the Church asks.', '每一个过过秤的人我都记得，用不着名录。我记着它，是因为教会要。'),
+    line('default', 'I remember every one I have weighed. I do not need the Register. I keep it because the Order asks.', '每一个过过秤的人我都记得，用不着名录。我记着它，是因为教会要。'),
     line('hour:evening', 'The light is going earlier. I weigh by daylight; the Measure does not like candles.', '天黑得越来越早了。我只在白天过秤，衡砣不喜欢烛光。'),
     line('fact:ch3.ledger', 'You went to the Black Balance? ...I have sent its tithe there every season for thirty years. I have never been inside.', '你去过黑衡殿了？……三十年来，我每季都把什一税送到那里。我从来没进去过。'),
     line('topic:scale_tipped', 'The beam split in the night. I heard it from my bed. It sounded like a door.', '秤杆是夜里裂开的。我躺在床上听见了。那声音像是一扇门。', { mood: 'sad' }),

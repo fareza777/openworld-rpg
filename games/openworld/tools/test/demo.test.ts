@@ -465,7 +465,7 @@ req('E4', 'the library is shared and persistent: a save keeps it, a new game kee
   expect(next.engine.lib.rules.has('patch/raft')).toBe(true)
 })
 
-req('E5', 'what a thing affords (design.md §5.17): a chair in a house of Firstlight, its learned answer a posture, asks the one who used it to sit (the settle impulse every actor answers): one sits on it, drawn so, and stands up walking off', ['fixture/furniture/chair'], () => {
+req('E5', 'what a thing affords (design.md §5.17): a chair in a house of Emberwick, its learned answer a posture, asks the one who used it to sit (the settle impulse every actor answers): one sits on it, drawn so, and stands up walking off', ['fixture/furniture/chair'], () => {
   const f = fresh()
   const w = W(f)
   const chair = Object.values(w.state.entities).find((e) => e.type === 'fixture/furniture/chair' && e.place.on === 'tile' && e.place.map.startsWith('meadow.'))!
@@ -1220,7 +1220,7 @@ function walk(f: Ford, dir: Entity['facing']): { map: string; x: number; y: numb
   return W(f).posOf(W(f).player)!
 }
 
-req('W19', "Firstlight's healing spring: Lumi points it out as one comes near; whoever steps into it is mended and soaking (a status that draws green crosses), a little at once and more for as long as they sit in it; out of it, the mending stops", ['region:spring'], () => {
+req('W19', "Emberwick's healing spring: Kiri points it out as one comes near; whoever steps into it is mended and soaking (a status that draws green crosses), a little at once and more for as long as they sit in it; out of it, the mending stops", ['region:spring'], () => {
   const f = fresh()
   const w = W(f)
   const [sx, sy] = FIRSTLIGHT.spring
@@ -1252,7 +1252,7 @@ req('W19', "Firstlight's healing spring: Lumi points it out as one comes near; w
   expect(w.hasStatus({ e: w.player.id }, 'soaking')).toBe(false)
 })
 
-req('W20', "Firstlight's pond and its garden are where Lumi's guides begin (content quests/guides.ts): stepping onto the pond's bank begins the first cast, into the garden the garden's lesson — each told by her, beside the main road, its markers pointing there; the trainer's lesson waits on level five", ['region:pond', 'region:garden'], () => {
+req('W20', "Emberwick's pond and its garden are where Kiri's guides begin (content quests/guides.ts): stepping onto the pond's bank begins the first cast, into the garden the garden's lesson — each told by her, beside the main road, its markers pointing there; the trainer's lesson waits on level five", ['region:pond', 'region:garden'], () => {
   const f = fresh({ main: 'rescue' })
   const w = W(f)
   const q = f.eng.quests
@@ -1515,7 +1515,7 @@ req('W6', 'the river is a barrier on the overworld too: the Ford\'s cell is the 
   }
 })
 
-req('W6b', 'the places beyond the White Knight are Chapter 2\'s, sealed on the world map until the Crown is home (docs/chapter-2.md §12), he fallen or not: Emberfall\'s cell stops one like a wall, and bumping into it says why; stood on (an older save), E says why and does not go in; it is drawn sealed; once the road east opens, one walks onto it and in', [], () => {
+req('W6b', 'the places beyond the White Knight are Chapter 2\'s, sealed on the world map until the Crown is home (docs/chapter-2.md §12), he fallen or not: Cinderholt\'s cell stops one like a wall, and bumping into it says why; stood on (an older save), E says why and does not go in; it is drawn sealed; once the road east opens, one walks onto it and in', [], () => {
   const f = fresh()
   const w = W(f)
   author(f, () => w.setFact(CH1.knight, true))
@@ -1528,7 +1528,7 @@ req('W6b', 'the places beyond the White Knight are Chapter 2\'s, sealed on the w
   stand(f, at.x - d[0], at.y - d[1], dir, OVERWORLD)
   w.fx = []
   expect(walk(f, dir)).toMatchObject({ map: OVERWORLD, x: at.x - d[0], y: at.y - d[1] })
-  expect(w.fx.filter((x) => x.t === 'log').map((x) => textOf((x as unknown as { text: { en: string; zh: string } }).text))).toContain('The road on east to Cinderholt is not open yet. Chapter Two waits there, in the next update.')
+  expect(w.fx.filter((x) => x.t === 'log').map((x) => textOf((x as unknown as { text: { en: string; zh: string } }).text))).toContain('The road on east to Cinderholt is barred at the toll-post. The Regency lets no Crownseeker through before the first Regalia has gone home.')
   stand(f, at.x, at.y, 'down', OVERWORLD)
   const plan = f.eng.controls.plan('hands')!
   expect(textOf(plan.label)).toMatch(/^Sealed: /)
@@ -1941,7 +1941,7 @@ req('F16', 'an original vegetable garden and its usable construction/farming kit
   expect(resumed.engine.world.entitiesAt(plot.map, plot.x, plot.y).some((e) => e.statuses?.watered)).toBe(true)
 })
 
-req('F17', 'Firstlight Village is the former meadow: homes, a well, a lit square and Tobin; the Ford keeps only its ferrykeeper and a wider river', [
+req('F17', 'Emberwick Village is the former meadow: homes, a well, a lit square and Tobin; the Ford keeps only its ferrykeeper and a wider river', [
   'fixture/water/well', 'fixture/light/lamppost', 'fixture/light/campfire', 'fixture/furniture/bench/log', 'fixture/sign/noticeboard',
 ], () => {
   const f = fresh()
@@ -1986,7 +1986,7 @@ req('F17', 'Firstlight Village is the former meadow: homes, a well, a lit square
 
 /** What a household lives with and the village keeps in its yards (docs/release-1.md): F18's. */
 const LIVED = ['fixture/furniture/table/long', 'fixture/container/drawers', 'fixture/container/cupboard', 'fixture/nature/plant', 'fixture/furniture/rack/arms', 'fixture/furniture/washing_line', 'fixture/water/trough']
-req('F18', "Firstlight is lived in (release 1, docs/release-1.md): every household sleeps in its own beds behind its own door, in a house of rooms joined by doorways, and what is in its house is its own; the houses and yards hold what a household uses — a long table, a chest of drawers, a cupboard, a plant, a weapon rack, a washing line, a trough — each a thing an input reaches", LIVED, () => {
+req('F18', "Emberwick is lived in (release 1, docs/release-1.md): every household sleeps in its own beds behind its own door, in a house of rooms joined by doorways, and what is in its house is its own; the houses and yards hold what a household uses — a long table, a chest of drawers, a cupboard, a plant, a weapon rack, a washing line, a trough — each a thing an input reaches", LIVED, () => {
   const f = fresh()
   const w = W(f)
   const household: Record<string, string[]> = { cook: ['npc.marta', 'npc.mia', 'npc.pell', 'npc.lina'], watch: ['npc.holt', 'npc.fennick', 'npc.oskar'], elder: ['npc.rowan'], wood: ['npc.gus', 'npc.cass'], joss: ['npc.joss'], edda: ['npc.edda'] }
@@ -2204,7 +2204,7 @@ req('BR2', "the warden's room and the last keeper's (docs/boss-rooms.md): the fo
   }
 })
 
-req('Q2', 'the road east: past the far bank the Pilgrim\'s Road, and past the Kneeling Field the East Road; the burned farm shows the dragon\'s mark; wolves and a boar on the road; it ends at Emberfall, Chapter 2\'s (opened by the Crown home: docs/chapter-2.md §12)', ['actor/creature/beast/wolf', 'actor/creature/beast/boar'], () => {
+req('Q2', 'the road east: past the far bank the Pilgrim\'s Road, and past the Kneeling Field the East Road; the burned farm shows the dragon\'s mark; wolves and a boar on the road; it ends at Cinderholt, Chapter 2\'s (opened by the Crown home: docs/chapter-2.md §12)', ['actor/creature/beast/wolf', 'actor/creature/beast/boar'], () => {
   const f = fresh()
   // past the far bank, the Pilgrim's Road (docs/chapter-1.md §14) first: the Rest; the Kneeling Field gives onto the road
   expect(cross(f, 'ford', W(f).map('ford')!.width - 2, EAST_ROAD.fordEast[1], 'right')).toBe('waystation')
@@ -2225,7 +2225,7 @@ req('Q2', 'the road east: past the far bank the Pilgrim\'s Road, and past the Kn
   expect(ticks(f, 200, () => quest(f) === 3 && !W(f).scene)).toBe(true)
 })
 
-req('Q3', 'chapter 3, Emberfall: the elder tells of the dragon, gives bread, and sets the tasks; the smithy and the herbalist\'s cauldron are lit', ['npc.mara', 'fixture/water/well', 'fixture/sign/noticeboard', 'fixture/light/lamppost', 'fixture/craft/forge', 'fixture/craft/anvil', 'fixture/container/barrel', 'fixture/craft/cauldron', 'fixture/container/crate'], () => {
+req('Q3', 'chapter 3, Cinderholt: the elder tells of the dragon, gives bread, and sets the tasks; the smithy and the herbalist\'s cauldron are lit', ['npc.mara', 'fixture/water/well', 'fixture/sign/noticeboard', 'fixture/light/lamppost', 'fixture/craft/forge', 'fixture/craft/anvil', 'fixture/container/barrel', 'fixture/craft/cauldron', 'fixture/container/crate'], () => {
   const f = fresh()
   toEmberfall(f)
   stand(f, 2, EMBERFALL.west[1], 'right', 'emberfall')
@@ -2469,7 +2469,7 @@ req('S3', 'each profession\'s forged gear covers the whole body (head, ear, neck
   expect(own('luck')).toBeCloseTo(0.03 + 0.1, 5)
 })
 
-req('PR1', "the Pilgrim's Road (docs/chapter-1.md §14), played through the player's own inputs: past the river, the Church's Rest — its people, the Holy See's notice (the pilgrimage as proclaimed), the litany, the priest's oath at the five wounds and the pilgrim's own scallop; five wayside shrines on the road, each lit only by what its suffering asks, laid on it (G) from what the road itself holds (F: a hat, a cord, a loaf in an abandoned cart, a helm, a candle); a penitent on it; the Abbey of the Thorn north of it — the roll, a leaf of Alberic's journal read, the writ of relief never sent; in its crypt the Order's last keeper, fought down with blows, and its seal; the Kneeling Field of those who would not kneel to him; each a stage of the First Seal", [
+req('PR1', "the Pilgrim's Road (docs/chapter-1.md §14), played through the player's own inputs: past the river, the Order's Rest — its people, the Holy See's notice (the pilgrimage as proclaimed), the litany, the priest's oath at the five wounds and the Crownseeker's own scallop; five wayside shrines on the road, each lit only by what its suffering asks, laid on it (G) from what the road itself holds (F: a hat, a cord, a loaf in an abandoned cart, a helm, a candle); a penitent on it; the Abbey of the Thorn north of it — the roll, a leaf of Gavrel's journal read, the writ of relief never sent; in its crypt the Order's last keeper, fought down with blows, and its seal; the Kneeling Field of those who would not kneel to him; each a stage of the First Seal", [
   'npc.caius', 'npc.ezra', 'npc.maud', 'npc.wynn', 'fixture/sacred/wayshrine/crown', 'fixture/sacred/wayshrine/scourge', 'fixture/sacred/wayshrine/scales', 'fixture/sacred/wayshrine/nails', 'fixture/sacred/wayshrine/lance',
   'item/document/writ_of_relief', 'item/valuable/order_seal', 'fixture/scarecrow', 'fixture/furniture/bookstand', 'fixture/furniture/cart', 'fixture/sign', 'item/document/letter', 'item/clothing/hat', 'item/light/candle',
 ], () => {
@@ -3006,7 +3006,7 @@ req('T2', "a game without the tutorial begins on Cloudtop, above the foot of the
   expect(sw.posOf(sw.get('pip')!)?.map).toBe('summit')
 })
 
-req('P1', "the prologue's end, offline: from Cloudtop (where a new game begins) down the cut, by the foot of the mountain to the Ford, every beat reached through the player's inputs, Lumi at your side, the waypoint stone on the world map", [
+req('P1', "the prologue's end, offline: from Cloudtop (where a new game begins) down the cut, by the foot of the mountain to the Ford, every beat reached through the player's inputs, Kiri at your side, the waypoint stone on the world map", [
   'fixture/sacred/waypoint', 'fixture/sacred/seal_stone',
 ], () => {
   const { index, chunks } = buildFord()
@@ -3078,7 +3078,7 @@ function carryN(f: Ford, type: string, n = 1): void {
   f.eng.controls.sync()
 }
 
-req('S1', 'a smithy in Firstlight Village, a house on the east road: inside, a lit forge and an anvil anyone may use — ore and coal smelt to bars at the forge, and with a hammer carried the anvil makes gear of their metal; Haldor the smith works there by day (a smith\'s mark over his head) and sells the hammer, coal and bars', ['npc.haldor'], () => {
+req('S1', 'a smithy in Emberwick Village, a house on the east road: inside, a lit forge and an anvil anyone may use — ore and coal smelt to bars at the forge, and with a hammer carried the anvil makes gear of their metal; Haldor the smith works there by day (a smith\'s mark over his head) and sells the hammer, coal and bars', ['npc.haldor'], () => {
   const f = fresh()
   const w = W(f)
   expect(w.get('smithy.forge')).toMatchObject({ type: 'fixture/craft/forge', statuses: { lit: -1 } })
@@ -3113,7 +3113,7 @@ req('S1', 'a smithy in Firstlight Village, a house on the east road: inside, a l
   expect(w.materialOf(dagger)?.id).toBe('iron')
 })
 
-req('T1', 'Firstlight\'s houses are walked into: every house on the village map has a door that leads into a furnished room — the elder\'s, the families\', two homes in the south lane, the general store, the smithy and the chapel — and out again to its door', ['fixture/furniture/bed', 'fixture/light/fireplace', 'fixture/furniture/chair', 'fixture/container/pot', 'fixture/container/bookshelf', 'fixture/container/shelf', 'fixture/furniture/counter'], () => {
+req('T1', 'Emberwick\'s houses are walked into: every house on the village map has a door that leads into a furnished room — the elder\'s, the families\', two homes in the south lane, the general store, the smithy and the chapel — and out again to its door', ['fixture/furniture/bed', 'fixture/light/fireplace', 'fixture/furniture/chair', 'fixture/container/pot', 'fixture/container/bookshelf', 'fixture/container/shelf', 'fixture/furniture/counter'], () => {
   const f = fresh()
   const w = W(f)
   const village = w.map('meadow')!
@@ -3205,7 +3205,7 @@ req('T2', 'the general store: Greta keeps it by day, behind her counter; a hand 
   expect(f.eng.controls.count('item/misc/thornmark')).toBe(10 - RECIPE_BY_ID['store/buy/light-torch'].needs[0].count + RECIPE_BY_ID['store/sell/material-herb'].count!)
 })
 
-req('T3', "Firstlight's chapel, Sister Ilse's, behind Astra's altar on the square: Brother Anselm keeps its bookstand, where every skill one learns from a book is sold — the common ones cheaper, a profession's dearer; bought and read, the book teaches its skill", ['npc.anselm', 'fixture/furniture/bookstand'], () => {
+req('T3', "Emberwick's chapel, Sister Maren's, behind Astra's altar on the square: Brother Anselm keeps its bookstand, where every skill one learns from a book is sold — the common ones cheaper, a profession's dearer; bought and read, the book teaches its skill", ['npc.anselm', 'fixture/furniture/bookstand'], () => {
   const f = fresh()
   const w = W(f)
   setHour(f, 2, 10)
@@ -3226,7 +3226,7 @@ req('T3', "Firstlight's chapel, Sister Ilse's, behind Astra's altar on the squar
   expect(book.props?.teaches).toBe(common.id.split('/')[1])
 })
 
-req('S2', 'the Held Ground has a smithy too, and its smith is Alberic: a lit forge and an anvil beside the planted sword, where he works the mornings once he holds the ground (a smith\'s mark over his head), selling hammer, coal and bars', [], () => {
+req('S2', 'the Held Ground has a smithy too, and its smith is Gavrel: a lit forge and an anvil beside the planted sword, where he works the mornings once he holds the ground (a smith\'s mark over his head), selling hammer, coal and bars', [], () => {
   const f = fresh()
   const w = W(f)
   expect(w.get('haven.forge')).toMatchObject({ type: 'fixture/craft/forge', statuses: { lit: -1 } })
@@ -3244,7 +3244,7 @@ req('S2', 'the Held Ground has a smithy too, and its smith is Alberic: a lit for
   expect(f.eng.controls.craft(RECIPE_BY_ID['smith/smelt-iron'])).toBe(true)
 })
 
-req('P2', 'a profession trainer in Firstlight Village: he keeps his spot in the drill yard, day and night; spoken to, he offers the choice; at level 5 a profession is taken up, its weapon handed over, and a change gives its points back', ['npc.bram'], () => {
+req('P2', 'a profession trainer in Emberwick Village: he keeps his spot in the drill yard, day and night; spoken to, he offers the choice; at level 5 a profession is taken up, its weapon handed over, and a change gives its points back', ['npc.bram'], () => {
   const f = fresh()
   const w = W(f)
   const bram = w.get('npc.bram')!
@@ -3384,7 +3384,7 @@ req('P3', "the main line never breaks: Rowan's rescue begins by itself at the we
   expect(rescue.log.length).toBeGreaterThanOrEqual(3)
 })
 
-req('P5', 'skipping ahead: whoever brings the White Knight down first finds everything before him done — the rescue, the First Seal, the pilgrim\'s road — and the main line goes on with the Crown', [], () => {
+req('P5', 'skipping ahead: whoever brings the White Knight down first finds everything before him done — the rescue, the First Seal, the Crownseeker\'s road — and the main line goes on with the Crown', [], () => {
   const f = fresh({ main: 'rescue' })
   const w = W(f)
   const q = f.eng.quests
@@ -3608,7 +3608,7 @@ function touch(f: Ford, id: string): void {
   f.eng.interact('interact', 'player', { e: id }, { instrument: null })
 }
 
-req('C1', 'Chapter 1, offline: the night of the flame (the grey man takes it), the letter, the pilgrim\'s road (Fennick, Joss, Hesper), the knight\'s kingdom and the White Knight, the Crown and the fairy\'s first power, the grey man again, a longer night, and home', [
+req('C1', 'Chapter 1, offline: the night of the flame (the grey man takes it), the letter, the Crownseeker\'s road (Fennick, Joss, Hesper), the knight\'s kingdom and the White Knight, the Crown and the fairy\'s first power, the grey man again, a longer night, and home', [
   'npc.ilse', 'npc.severin', 'npc.courier', 'npc.fennick', 'npc.joss', 'npc.nessa', 'actor/creature/sin/alberic', 'region:kingdom', 'fixture/nature/briar', 'fixture/sacred/gravestone', 'fixture/sacred/altar',
 ], () => {
   const f = fresh({ main: 'rescue' })
@@ -3704,11 +3704,13 @@ req('C1', 'Chapter 1, offline: the night of the flame (the grey man takes it), t
   expect(cards[0].text.en).toMatch(/^CHAPTER ONE · THE EMBER LETTER[\s\S]*Chapter Two · Ashes of Cinderholt/)
   // the player's answers are the story's (advanced past, each takes its first: Kiri holds the light; the truth told)
   expect([w.fact('choice.ch1.light'), w.fact('choice.ch1.tale')]).toEqual(['kiri', 'truth'])
-  // this fork seals Chapter Two for the next update: the road east stays shut, the Dragon Road unbegun
-  expect(w.fact(CHAPTER_TWO)).toBeFalsy()
+  // the Herald back for the Diadem (docs/sunshard/STORY.md C3; advanced past: the first answer, under the Regent's seal),
+  // and the road east open with it: the Dragon Road begins
+  expect(w.fact('choice.ch2.diadem')).toBe('herald')
+  expect(w.fact(CHAPTER_TWO)).toBe(1)
   ticks(f, 20)
   expect(f.eng.quests.isDone('crown_home')).toBe(true)
-  expect(ticks(f, 60, () => f.eng.quests.stage('dragon_road') === 10)).toBe(false)
+  expect(ticks(f, 60, () => f.eng.quests.stage('dragon_road') === 10)).toBe(true)
 })
 
 req('C2', "Chapter 1's errands: Pell's drawings (four, where the grey man was), Nessa's measure of days (three statues), Fennick's old templar (three of the dead), Joss's ninth nail and Edda's ring (both in the knight's kingdom)", [
@@ -3765,7 +3767,7 @@ req('C2', "Chapter 1's errands: Pell's drawings (four, where the grey man was), 
   expect([qs(f, 'nail'), qs(f, 'band'), c.count('item/tool/smith_hammer')]).toEqual(['done', 'done', 1])
 })
 
-req('C5', "Chapter 1 on every map before the knight: Cloudtop's watchman's log (Nessa's errand), the grassland's kneeling herd and Brin's night, the forest's cold camp of the pilgrim before (his scallop to Ilse; his shade after dark), the hollow's carved stones at the barrow mouth", [
+req('C5', "Chapter 1 on every map before the knight: Cloudtop's watchman's log (Nessa's errand), the grassland's kneeling herd and Brin's night, the forest's cold camp of the Crownseeker before (his scallop to Maren; his shade after dark), the hollow's carved stones at the barrow mouth", [
   'npc.brin', 'item/valuable/scallop', 'fixture/furniture/table', 'fixture/tent', 'fixture/sign/noticeboard',
 ], () => {
   const f = fresh()
@@ -3834,7 +3836,7 @@ req('C5', "Chapter 1 on every map before the knight: Cloudtop's watchman's log (
   enter('hollow', [22, 22, 11, 6], 'barrow_mouth')
 })
 
-req('C6', "Chapter 1's gear: worn pieces lie along the whole road to the knight and come as rewards, in tiers up to the story's own — Vowbound (the Order's dead, the pilgrim before) and Stigmatic (the Crown of Thorns, which asks something back)", [
+req('C6', "Chapter 1's gear: worn pieces lie along the whole road to the knight and come as rewards, in tiers up to the story's own — Vowbound (the Order's dead, the Crownseeker before) and Stigmatic (the Briar Diadem, which asks something back)", [
   'item/clothing/boots', 'item/armor/helmet', 'item/armor/pauldrons', 'item/clothing/belt', 'item/valuable/earring', 'item/clothing/gloves', 'item/clothing/cloak',
 ], () => {
   const f = fresh()
@@ -3900,7 +3902,7 @@ req('C7', "the barrow's dead lie in its walls (release 1, docs/release-1.md): bo
   }
 })
 
-req('H1',"the Held Ground: once the knight falls, a thorn of his crown is the Oath-Thorn, and the main line's next quest is to go through it (the Crown is carried home after); used on oneself it opens a camp ringed in mist, where Alberic, unhelmed, keeps it as steward and is to be spoken to; what he asks widens it — the first ring of mist lifts, the next waits; used again, it brings one back where one stood, and the Crown home is next", [
+req('H1',"the Held Ground: once the knight falls, a thorn of his crown is the Oath-Thorn, and the main line's next quest is to go through it (the Crown is carried home after); used on oneself it opens a camp ringed in mist, where Gavrel, unhelmed, keeps it as steward and is to be spoken to; what he asks widens it — the first ring of mist lifts, the next waits; used again, it brings one back where one stood, and the Crown home is next", [
   'fixture/nature/mist', 'npc.alberic',
 ], () => {
   const f = fresh()
@@ -4026,7 +4028,7 @@ req('H2', "the Held Ground's quest in an older save: one who had been through th
   }
 })
 
-req('V1', "Firstlight's vigil (the main line between the rescue and the night of thanks): oil from the cellar under Tam's mill (Millbrook, west), dawnbloom from Dawn Hill (north), the bell rung in the Chapel of the First Dawn on its top; handed in to Ilse, the night may come, and the First Seal is next", [
+req('V1', "Emberwick's vigil (the main line between the rescue and the night of thanks): oil from the cellar under Tam's mill (Millbrook, west), dawnbloom from Dawn Hill (north), the bell rung in the Chapel of the First Dawn on its top; handed in to Maren, the night may come, and the First Seal is next", [
   'npc.tam', 'item/material/herb', 'fixture/light/candles', 'fixture/furniture/bench', 'fixture/sacred/altar/hearth', 'fixture/furniture/pew/old',
 ], () => {
   const f = fresh({ main: 'rescue' })
@@ -4223,7 +4225,7 @@ req('FL1', "the forest's flanks (docs/chapter-1.md §15): west, by the side trai
 
 /** What the flanks are made of (release 1, docs/release-1.md): FL2's. */
 const FLANK_THINGS = ['fixture/nature/soot', 'fixture/furniture/rack/nets', 'fixture/furniture/rack/fish', 'fixture/boat']
-req('CH2', "Chapter 2, the Second Seal (docs/chapter-2.md), offline: the road east open with the Crown home; Odran in Emberfall asks after Lucan; the way down off the pass shut while the dragon lives, open once it is dead; the Lashmarks — red ground cut by ravines, a cut that does not hurt, Dunn with an arrow in him; the camp of the Red Host, Holt signed on, Captain Brannoc; the dusk on the Lashmarks, the Left and the Right under one banner, Dunn dead on his feet; the Scourging House and its Prior, the channels under it and the grey man; the Bastion's old guard and the Left's banner; Matthias in the Pillar Yard, the Chain of the Scourging Post and Lumi's second power, the grey man again, a longer night; the quiet dusk at the camp and the chapter's card; the March's errands: Vera's bandages, Wil's drum, a word for Lucan, the stolen banner", [
+req('CH2', "Chapter 2, the Ember Chain (docs/chapter-2.md), offline: the road east open with the Crown home; Odran in Cinderholt asks after Lucan; the way down off the pass shut while the dragon lives, open once it is dead; the Lashmarks — red ground cut by ravines, a cut that does not hurt, Dunn with an arrow in him; the camp of the Red Host, Holt signed on, Captain Brannoc; the dusk on the Lashmarks, the Left and the Right under one banner, Dunn dead on his feet; the Scourging House and its Prior, the channels under it and the grey man; the Bastion's old guard and the Left's banner; Matthias in the Pillar Yard, the Ember Chain and Kiri's second power, the grey man again, a longer night; the quiet dusk at the camp and the chapter's card; the March's errands: Vera's bandages, Wil's drum, a word for Lucan, the stolen banner", [
   'npc.odran', 'npc.brannoc', 'npc.vera', 'npc.wil', 'npc.lucan', 'npc.ivo', 'npc.kell', 'npc.dunn', 'npc.roderick', 'npc.osric',
   'actor/creature/sin/matthias', 'fixture/sacred/scourging_post', 'fixture/sacred/whipping_post', 'fixture/sacred/red_channel', 'fixture/standard/red', 'fixture/sacred/tomb', 'fixture/furniture/throne', 'fixture/light/candelabrum',
   'item/valuable/war_drum', 'item/valuable/left_banner', 'item/weapon/polearm/spear',
@@ -4331,7 +4333,8 @@ req('CH2', "Chapter 2, the Second Seal (docs/chapter-2.md), offline: the road ea
   // the Pillar Yard behind the keep's fog: Matthias at the post, softer here than in the Boss Challenge
   go('pillaryard', 14, 26)
   walk(f, 'up')
-  waitFor('pillar_yard')
+  // (Odran's word carried to Lucan: the scene that offers the relief; advanced past, its first answer the fight)
+  waitFor('pillar_yard_scourge')
   const matthias = w.get('pillaryard.matthias')!
   expect(matthias.type).toBe(BOSS_BY_ID.matthias.type)
   expect(w.num(matthias, 'maxHp')).toBeLessThan(BOSS_BY_ID.matthias.hp)
@@ -4354,7 +4357,10 @@ req('CH2', "Chapter 2, the Second Seal (docs/chapter-2.md), offline: the road ea
   go('redcamp', 20, 14)
   const cards: { text: { en: string } }[] = []
   expect(ticks(f, 1500, () => { cards.push(...(w.fx.filter((x) => x.t === 'card') as unknown as { text: { en: string } }[])); w.fx = []; return !!w.fact('seen.chapter2_end') && !w.scene })).toBe(true)
-  expect(cards.map((x) => x.text.en)).toEqual([expect.stringMatching(/^CHAPTER TWO · THE SECOND SEAL/)])
+  // (the Ember Memory the Chain gave back, then the chapter's card)
+  expect(cards.map((x) => x.text.en)).toEqual([expect.stringMatching(/^AN EMBER MEMORY\nThe Sundering Night/), expect.stringMatching(/^CHAPTER TWO · ASHES OF CINDERHOLT/)])
+  // felled (docs/sunshard/STORY.md C4): the Warden lies by the post
+  expect(w.fact('choice.ch2.warden')).toBe('felled')
   expect([w.fact('ch2.end'), qs(f, 'march_quiet')]).toEqual([1, 'done'])
   // the errands handed in: the banner to Brannoc, the word to Odran
   talkTo(f, 'npc.brannoc')
@@ -4365,7 +4371,46 @@ req('CH2', "Chapter 2, the Second Seal (docs/chapter-2.md), offline: the road ea
   expect([qs(f, 'odran'), c.count('item/valuable/novice_scourge')]).toEqual(['done', 1])
 })
 
-req('CH3', "Chapter 3, the Third Seal (docs/chapter-3.md), offline: the grain road open with the March quiet, out of the camp's south gate, eight days on the card; the Chaff Road's dead fields and a Lightened man at work at noon; Nessa at the waystone; Fairweight's weighing day, a widow found light against the Church's black weight; Sister Berthe at the poorhouse; the White Pans, the Standing in rows, one gone to dust in the wind, the salt-works' scale that does not move under Lumi; the Black Balance's dead clerks, the ledger of five columns and the grey man; Ele on the Scale Floor, the Scale of Hunger and Lumi's third power, the grey man again, a longer night; the Lightened hungry again, the granary opened with the Guild's key, the supper and the chapter's card, the road to the Fens; the Vale's errands: bread for the poorhouse, Elsie's mother's scarf, Corwin's wife's name, one more grinding", [
+req('CH2b', "Chapter 2's other way (docs/sunshard/STORY.md C4): Odran's word carried to Lucan before the Pillar Yard, the Ember-Sworn relieved — he remembers the novice, lets the threads go and lives; no blow struck, the fog lifted, the Ember Chain and its memory given, Sable a minute late, and the night no longer for it", [], () => {
+  const f = fresh()
+  const w = W(f)
+  const c = f.eng.controls
+  const q = f.eng.quests
+  const played = (id: string) => !!w.fact(`seen.${id}`)
+  author(f, () => {
+    for (const id of ['first_seal', 'held_ground', 'crown_home', 'dragon_road']) q.put(id, 'done')
+    for (const k of [CH1.knight, CH1.crown, CH1.end, CHAPTER_TWO, 'mq.dragon', 'ch2.march', 'ch2.camp', 'ch2.dusk', 'ch2.house', 'ch2.channels', 'ch2.bastion']) w.setFact(k, 1)
+    w.setFact('night.shift', 1)
+    q.put('odran', 20)
+  })
+  c.sync()
+  ticks(f, 5)
+  f.eng.author(() => f.eng.teleport(w.player, { map: 'pillaryard', x: 14, y: 26 }))
+  walk(f, 'up')
+  // the word carried: his own scene; its second answer the relief
+  const answer = (i: number) => {
+    for (let n = 0; n < 1500; n++) {
+      if (w.scene?.choice) return f.eng.story.choose(i)
+      if (w.scene?.waiting === 'advance') f.eng.story.advance()
+      f.eng.tick()
+    }
+    throw new Error('no choice came')
+  }
+  answer(1)
+  expect(ticks(f, 1500, () => played('chain') && !w.scene)).toBe(true)
+  expect(played('pillar_yard_scourge')).toBe(true)
+  expect(played('pillar_yard')).toBe(false)
+  expect(w.fact('choice.ch2.warden')).toBe('relieved')
+  expect(w.fact('sins.defeated.matthias')).toBe(1)
+  expect(c.count('item/relic/post_chain')).toBe(1)
+  // he lives: gone down to the camp (offstage), not dead in the yard; the night as long as it was
+  const m = w.get('pillaryard.matthias')
+  expect(m && w.posOf(m)?.map).toBe('offstage')
+  expect(w.fact('night.shift')).toBe(1)
+  expect(w.fact('ch2.chain')).toBe(1)
+})
+
+req('CH3', "Chapter 3, the Golden Scales (docs/chapter-3.md), offline: the grain road open with the March quiet, out of the camp's south gate, eight days on the card; the Chaff Road's dead fields and a Lightened man at work at noon; Nessa at the waystone; Fairweight's weighing day, a widow found light against the Order's black weight; Sister Berthe at the poorhouse; the White Pans, the Standing in rows, one gone to dust in the wind, the salt-works' scale that does not move under Kiri; the Black Balance's dead clerks, the ledger of five columns and the grey man; Ele on the Scale Floor, the Golden Scales and Kiri's third power, the grey man again, a longer night; the Lightened hungry again, the granary opened with the Guild's key, the supper and the chapter's card, the road to the Fens; the Vale's errands: bread for the poorhouse, Elsie's mother's scarf, Corwin's wife's name, one more grinding", [
   'npc.haskel', 'npc.berthe', 'npc.elsie', 'npc.corwin', 'npc.edith', 'npc.ottilie', 'npc.godwin',
   'actor/creature/sin/ele', 'fixture/scale/wayside', 'fixture/scale/great', 'fixture/sacred/weight_of_sin', 'fixture/sacred/hanging_pan', 'fixture/furniture/ledger', 'fixture/nature/salt_pan', 'fixture/remains/dust',
   'fixture/remains/standing/a', 'fixture/remains/standing/b', 'fixture/remains/standing/c', 'fixture/door/granary', 'fixture/nature/dead_wheat',
@@ -4461,7 +4506,7 @@ req('CH3', "Chapter 3, the Third Seal (docs/chapter-3.md), offline: the grain ro
   // the Scale Floor behind the fog: Ele, softer here than in the Boss Challenge
   go('scalefloor', 14, 26)
   walk(f, 'up')
-  waitFor('scale_floor')
+  waitFor('scale_floor_name')
   const ele = w.get('scalefloor.ele')!
   expect(ele.type).toBe(BOSS_BY_ID.ele.type)
   expect(w.num(ele, 'maxHp')).toBeLessThan(BOSS_BY_ID.ele.hp)
@@ -4496,7 +4541,7 @@ req('CH3', "Chapter 3, the Third Seal (docs/chapter-3.md), offline: the grain ro
   go('fairweight', 22, 18)
   cards.length = 0
   expect(ticks(f, 1500, () => (watchCards(), played('chapter3_end') && !w.scene))).toBe(true)
-  expect(cards).toEqual([expect.stringMatching(/^CHAPTER THREE · THE THIRD SEAL/)])
+  expect(cards).toEqual([expect.stringMatching(/^CHAPTER THREE · THE WEIGHT OF GRAIN/)])
   expect([w.fact(CH3.end), w.fact(CHAPTER_FOUR), qs(f, 'granary')]).toEqual([1, 1, 'done'])
   // Elsie's errand handed in
   talkTo(f, 'npc.elsie')
@@ -4504,7 +4549,7 @@ req('CH3', "Chapter 3, the Third Seal (docs/chapter-3.md), offline: the grain ro
   expect(qs(f, 'scarf')).toBe('done')
 })
 
-req('CH4', "Chapter 4, the Fourth Seal (docs/chapter-4.md), offline: the fen road open with the Vale fed, out of Fairweight's fields, five days on the card; the Long Causeway's nailed graves; Nailgate on its piles, the sexton's nail, Liese at Piet's door not knowing his name; Nessa's sunset table beside the Church's chronicle of the Holy Body; the Drowned Graves at dusk and the Rider gathering the Pale; the Ossuary of the Holy Wood, the black Shroud and the grey man on his knees; Nacht at the Ford of the Dead, the Holy Wood and Lumi's fourth power, the dead knowing her, the pilgrim's hand on the lantern, a longer night; the ferry at Nailgate, the dead lying down, the chapter's card and the road west; the Fens' errands: the ferryman's coin, Jory's kite, nails", [
+req('CH4', "Chapter 4, the Starfall Wood (docs/chapter-4.md), offline: the fen road open with the Vale fed, out of Fairweight's fields, five days on the card; the Long Causeway's nailed graves; Nailgate on its piles, the sexton's nail, Liese at Piet's door not knowing his name; Nessa's sunset table beside the Order's chronicle of the Holy Body; the Drowned Graves at dusk and the Rider gathering the Pale; the Ossuary of the Holy Wood, the black Shroud and the grey man on his knees; Nacht at the Ford of the Dead, the Holy Wood and Kiri's fourth power, the dead knowing her, the Crownseeker's hand on the lantern, a longer night; the ferry at Nailgate, the dead lying down, the chapter's card and the road west; the Fens' errands: the ferryman's coin, Jory's kite, nails", [
   'npc.klaas', 'npc.hedda', 'npc.piet', 'npc.liese', 'npc.sanne', 'npc.jory', 'npc.barnaby',
   'actor/creature/sin/nacht', 'fixture/sacred/nail_post', 'fixture/sacred/grave_post', 'fixture/sacred/shroud', 'fixture/sacred/holy_wood', 'item/valuable/kite',
   'actor/creature/wisp', 'actor/creature/undead/zombie', 'fixture/sacred/cross', 'fixture/sacred/sarcophagus', 'site/place/graveyard',
@@ -4595,7 +4640,8 @@ req('CH4', "Chapter 4, the Fourth Seal (docs/chapter-4.md), offline: the fen roa
   // the Ford of the Dead behind the fog: Nacht, softer here than in the Boss Challenge
   go('deadford', 14, 26)
   walk(f, 'up')
-  waitFor('dead_ford')
+  // (the ferryman's way across asked after: the scene that offers the relief; advanced past, its first answer the fight)
+  waitFor('dead_ford_coin')
   const nacht = w.get('deadford.nacht')!
   expect(nacht.type).toBe(BOSS_BY_ID.nacht.type)
   expect(w.num(nacht, 'maxHp')).toBeLessThan(BOSS_BY_ID.nacht.hp)
@@ -4616,12 +4662,12 @@ req('CH4', "Chapter 4, the Fourth Seal (docs/chapter-4.md), offline: the fen roa
   go('nailgate', 23, 14)
   cards.length = 0
   expect(ticks(f, 1500, () => (watchCards(), played('chapter4_end') && !w.scene))).toBe(true)
-  expect(cards).toEqual([expect.stringMatching(/^CHAPTER FOUR · THE FOURTH SEAL/)])
+  expect(cards).toEqual(expect.arrayContaining([expect.stringMatching(/^CHAPTER FOUR · MIRELIGHT/)]))
   expect([w.fact(CH4.end), w.fact(CHAPTER_FIVE), qs(f, 'ferry')]).toEqual([1, 1, 'done'])
   for (const id of ['npc.liese', 'npc.jory', 'npc.hedda']) expect([id, w.posOf(w.get(id)!)?.map]).toEqual([id, 'offstage'])
 })
 
-req('CH5', "Chapter 5, the Fifth Seal (docs/chapter-5.md), offline: the road west open with the Fens at rest, out of Nailgate's west walk, six days on the card; the White Stair's robes over the graves, Severin beside the pilgrim, the hermit who turned back; Whiteveil Abbey and its abbot; the roll in the robing house, a robe sewn to the pilgrim's measure, Severin's reading; the catacombs, the white-robed murmuring, Cassian's empty niche and the second's, Lumi reading her own name; the Witnesses beneath the altar, the Lance and Lumi's fifth power, the flame burning white, a longer night; the bells at four, the abbot kneeling, the chapter's card and the road to the Holy City; the Heights' errands: Cassian's scallop laid in his niche, thread for Agathe, a road pass for Tomas", [
+req('CH5', "Chapter 5, the Vigil Lance (docs/chapter-5.md), offline: the road west open with the Fens at rest, out of Nailgate's west walk, six days on the card; the White Stair's robes over the graves, Corvin beside the Crownseeker, the hermit who turned back; Whiteveil Abbey and its abbot; the roll in the robing house, a robe sewn to the Crownseeker's measure, Corvin's reading; the catacombs, the white-robed murmuring, Cassian's empty niche and the second's, Kiri reading her own name; the Witnesses beneath the altar, the Lance and Kiri's fifth power, the flame burning white, a longer night; the bells at four, the abbot kneeling, the chapter's card and the road to Solmere; the Heights' errands: Cassian's scallop laid in his niche, thread for Agathe, a road pass for Tomas", [
   'npc.benedek', 'npc.agathe', 'npc.tomas', 'npc.ysolde',
   'actor/creature/sin/witnesses', 'fixture/sacred/robe_pole', 'fixture/sacred/niche', 'fixture/sacred/niche/empty', 'fixture/sacred/lance_altar', 'fixture/remains/robed', 'fixture/remains/robed/kneeling', 'fixture/craft/sewing_frame', 'item/document/road_pass',
   'actor/creature/beast/frost_wolf', 'fixture/garden/cypress', 'fixture/garden/topiary', 'fixture/sacred/altar/high', 'fixture/sacred/statue/martyr', 'fixture/furniture/pew',
@@ -4685,7 +4731,7 @@ req('CH5', "Chapter 5, the Fifth Seal (docs/chapter-5.md), offline: the road wes
   go('whiteveil.robing', 10, 10)
   waitFor('roll')
   expect([w.fact(CH5.roll), q.stage('fifth_seal')]).toEqual([1, 20])
-  expect(String(w.get('whiteveil.roll')!.props?.text)).toMatch(/A BEARER NEW/)
+  expect(String(w.get('whiteveil.roll')!.props?.text)).toMatch(/NAME A PROPHECY FOR THEM/)
   // the abbey's church: its high altar over the white-robed, the martyrs' statues, the pews; the garth's cypresses and box
   for (const type of ['fixture/sacred/altar/high', 'fixture/sacred/statue/martyr', 'fixture/furniture/pew']) expect([type, onMap(f, type, 'whiteveil.church').length > 0]).toEqual([type, true])
   for (const type of ['fixture/garden/cypress', 'fixture/garden/topiary']) expect([type, onMap(f, type, 'whiteveil').length > 0]).toEqual([type, true])
@@ -4702,7 +4748,7 @@ req('CH5', "Chapter 5, the Fifth Seal (docs/chapter-5.md), offline: the road wes
   go('catacombs', 15, 4)
   waitFor('the_niches')
   expect([w.fact(CH5.niches), q.stage('fifth_seal')]).toEqual([1, 30])
-  expect(String(w.get('catacombs.second')!.props?.text)).toMatch(/THE SECOND/)
+  expect(String(w.get('catacombs.second')!.props?.text)).toMatch(/Isolde/)
   expect(onMap(f, 'fixture/sacred/niche', 'catacombs').length).toBeGreaterThan(40)
   // beneath the altar behind the fog: the Witnesses, softer here than in the Boss Challenge
   go('beneathaltar', 14, 26)
@@ -4732,14 +4778,14 @@ req('CH5', "Chapter 5, the Fifth Seal (docs/chapter-5.md), offline: the road wes
   go('whiteveil', 22, 30)
   cards.length = 0
   expect(ticks(f, 1500, () => (watchCards(), played('chapter5_end') && !w.scene))).toBe(true)
-  expect(cards).toEqual([expect.stringMatching(/^CHAPTER FIVE · THE FIFTH SEAL/)])
+  expect(cards).toEqual(expect.arrayContaining([expect.stringMatching(/^CHAPTER FIVE · THE WHITE VIGIL/)]))
   expect([w.fact(CH5.end), w.fact(FINALE), qs(f, 'bells')]).toEqual([1, 1, 'done'])
 })
 
 // the main line's sets (docs/sets.md): what lies on the maps of them — the rest are sold, paid by quests or dropped by the
 // Seal-bearers (tools/test/gearsets.test.ts holds every piece to where its set's file says)
 const LAID_PIECES = SET_PIECES.filter((p) => p.piece.from.startsWith('map:'))
-req('SETS', "the main line's sets (docs/sets.md): every piece a set lays on a map lies there, in someone's bones or a chest — the Order of the Thorn's dead on the Pilgrim's Road, the vigil-keeper's things, the miners, the dragon's hoard, Severin's brothers, the Red Order, the tithe riders, the Lightened, the Black Balance, the Fens' drowned and sexton's lamps, the reliquary, the riders nailed down, the stair's bearers, those who turned back, the restless, the Elect's honours, the white-robed, the wardens, the Curia, the last door, the second's relics, and a pilgrim before you in every chapter", LAID_PIECES.map((p) => p.type), () => {
+req('SETS', "the main line's sets (docs/sets.md): every piece a set lays on a map lies there, in someone's bones or a chest — the Order of the Thorn's dead on the Pilgrim's Road, the vigil-keeper's things, the miners, the dragon's hoard, Corvin's brothers, the Red Order, the tithe riders, the Lightened, the Black Balance, the Fens' drowned and sexton's lamps, the reliquary, the riders nailed down, the stair's bearers, those who turned back, the restless, the Elect's honours, the white-robed, the wardens, the Curia, the last door, the second's relics, and a pilgrim before you in every chapter", LAID_PIECES.map((p) => p.type), () => {
   const { chunks } = buildFord({ overworld: false })
   for (const p of LAID_PIECES) {
     const map = p.piece.from.slice('map:'.length)
@@ -4751,7 +4797,7 @@ req('SETS', "the main line's sets (docs/sets.md): every piece a set lays on a ma
   }
 }, 120_000)
 
-req('FIN', "the finale (docs/finale.md), offline: the road down to the Holy City open with the fifth seal down, out of Whiteveil's close, the bells on the card; the close of the Most Holy Hall, the avenue of the five bearers' statues, Severin going in under; Nessa on the parvis; the Primate at the altar, the truth not believed, the floor opened; the Confluence, the five lands' channels meeting, Severin waiting; the Rite and Astra waking, the way up open; Astra down, his last words, the Night out of him, the lantern out, the way up the Night's; the Five taken up at the bier, Lumi going up to the morning, the sun risen whole, the last sentence; after it the pilgrim kept in the Holiest, Severin at its door", [
+req('FIN', "the finale (docs/finale.md), offline: the road down to Solmere open with the fifth seal down, out of Whiteveil's close, the bells on the card; the close of the Most Holy Hall, the avenue of the five bearers' statues, Corvin going in under; Nessa on the parvis; the High Luminant at the altar, the truth not believed, the floor opened; the Confluence, the five lands' channels meeting, Corvin waiting; the Rite and Astra waking, the way up open; Astra down, his last words, the Night out of him, the lantern out, the way up the Night's; the Five taken up at the bier, Kiri going up to the morning, the sun risen whole, the last sentence; after it the Crownseeker kept in the Holiest, Corvin at its door", [
   'npc.primate', 'npc.warden_w', 'npc.warden_e',
   'actor/creature/sin/astra', 'fixture/sacred/bier', 'fixture/sacred/instrument_niche', 'fixture/sacred/bearer_statue',
   'fixture/sacred/red_channel/dust', 'fixture/sacred/red_channel/black', 'fixture/sacred/red_channel/white', 'fixture/sacred/red_channel/thorn',
@@ -4959,7 +5005,7 @@ req('H6', "the Held Ground's people: one in full regard (ten hearts), not bound 
   expect(s.residenceBeds().map((b) => [b.anchor, b.who ?? null])).toEqual([['home.camp', 'npc.tam'], ['home.lodge1.a', null], ['home.lodge1.b', null]])
 })
 
-req('H2', "the homestead: Alberic's stall sells seeds, fertilizer, feed, beasts in crates and bait for Dawnmarks and buys back what one grows, raises and catches; a fed cow gives milk to a bucket once a day; a crated hen set down walks out; a rod made at hand, baited, fishes the pond", [
+req('H2', "the homestead: Gavrel's stall sells seeds, fertilizer, feed, beasts in crates and bait for Dawnmarks and buys back what one grows, raises and catches; a fed cow gives milk to a bucket once a day; a crated hen set down walks out; a rod made at hand, baited, fishes the pond", [
   'fixture/furniture/stall/trade',
 ], () => {
   const f = fresh()

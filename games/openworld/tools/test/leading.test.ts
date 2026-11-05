@@ -60,7 +60,7 @@ function wait(eng: Engine, n: number, said: string[] = []): string[] {
 
 const far = (a: { x: number; y: number }, b: { x: number; y: number }) => Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y))
 
-describe('Lumi leads the way', () => {
+describe('Kiri leads the way', () => {
   it('to the dawnbloom itself: the marker on the flower, and she flies over it and calls out after five idle seconds', () => {
     const eng = world()
     const w = eng.world

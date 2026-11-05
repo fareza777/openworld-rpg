@@ -44,6 +44,10 @@ interface EView {
   overlayName?: string
   /** How far a posture sets the body down from where it stands (drawPose): seated, it sinks onto the seat. */
   poseDy?: number
+  /** A blow's lunge along the screen's y (attackPose): added to the body's height each frame, which the frame sets. */
+  lungeY?: number
+  /** The blow under way (attackPose) and the body's own scale before it: a new blow stops it and starts from that. */
+  blow?: { tween: Phaser.Tweens.TweenChain; scale: [number, number] }
   hp: Phaser.GameObjects.Graphics
   /** What shows over its head (the health bar, the quest mark, a sign of what it is): drawn over the world, following the body. */
   head: Phaser.GameObjects.Container
@@ -56,6 +60,9 @@ interface EView {
   runRow?: number
   /** How far the player's figure has gone (tiles, walk): the run's frames go by the ground covered, not the clock. */
   stride?: number
+  /** The player's walk: how far round its four frames the legs are (a steady beat, at the pace walked), and when last moved on. */
+  walkBeat?: number
+  walkAt?: number
   phase: number
   /** Drawn in a wind-up's pose this moment (windupPose): set back when it ends. */
   posed?: boolean
@@ -139,8 +146,10 @@ const OVERLAY_FX: [string, string][] = [
 /** The overlay each of the base statuses names (ontology.ts), for a cell whose snapshot names none. */
 const CELL_OVERLAY: Record<string, string> = { burning: 'fire', frozen: 'ice', electrified: 'spark', wet: 'wet', oiled: 'oil', lit: 'flame' }
 // The engine's DIRS, kept here so the main thread does not bundle the engine.
-/** The ground a run's four frames take (tiles): two strides, each foot landing once — as calm as the walk's frames. */
-const RUN_CYCLE = 3.2
+/** The ground a run's four frames take (tiles): two strides, each foot landing once. */
+const RUN_CYCLE = 2.6
+/** The ground the player's four walking frames take (tiles): half the run's, each foot landing where the ground is (no skating). */
+const WALK_CYCLE = RUN_CYCLE / 2
 const STEP: Record<Dir, [number, number]> = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] }
 
 /** The ground a stocked pond's fish shadows swim in. */
@@ -154,6 +163,9 @@ function hashStr(s: string, salt = 0): number {
   for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619)
   return h >>> 0
 }
+
+/** How dark deep night is over the world (an overlay's alpha): a touch screen's a little lighter (ui/touch.ts). */
+const DEEP_NIGHT = () => (typeof document !== 'undefined' && document.body?.classList.contains('touch') ? 0.45 : 0.6)
 
 export class WorldScene extends Phaser.Scene {
   hooks!: SceneHooks
@@ -239,20 +251,18 @@ export class WorldScene extends Phaser.Scene {
 
   preload(): void {
     preloadCatalog(this, catalog())
-    const bar = this.add.rectangle(this.scale.width / 4, this.scale.height / 2, 1, 6, 0xf0b85a).setOrigin(0, 0.5)
-    this.preloadBar = bar
     this.load.on('progress', this.onPreloadProgress, this)
   }
 
-  private preloadBar?: Phaser.GameObjects.Rectangle
+  /** The art coming in: the page's loading screen (ui/splash.css), up until it has all come, fills its bar as far. */
   private onPreloadProgress(p: number): void {
-    if (this.preloadBar?.active) this.preloadBar.setSize(Math.max(1, (this.scale.width / 2) * p), 6)
+    document.getElementById('loading')?.style.setProperty('--p', p.toFixed(3))
   }
 
   create(): void {
     this.load.off('progress', this.onPreloadProgress, this)
-    this.preloadBar?.destroy()
-    this.preloadBar = undefined
+    // the art is in: the loading screen goes (the title, if it waits on the world behind it, says so with its own)
+    document.getElementById('loading')?.remove()
     const images: Record<string, HTMLImageElement> = {}
     for (const b of Object.values(catalog().blobs)) images[b.img] = this.textures.get(b.img).getSourceImage() as HTMLImageElement
     for (const [img] of Object.values(catalog().plain).flat()) images[img] = this.textures.get(img).getSourceImage() as HTMLImageElement
@@ -1675,7 +1685,8 @@ export class WorldScene extends Phaser.Scene {
           v.walker = { x: px, y: py, t: v.walker?.t ?? now }
           // (a little past the pace: a run's steps come unevenly in a world of ten ticks a second — one tick, one, two —
           // and its figure keeps its stride across the long one rather than stand for a frame)
-          v.movingUntil = now + this.stepAvg + 90
+          // (a phone's worker sends its steps unevenly: the stride is kept a while longer there, so a late step is not a stop)
+          v.movingUntil = now + this.stepAvg + (DEEP_NIGHT() < 0.6 ? 180 : 90)
         } else {
           const dur = e.tags.includes('companion') ? 110 : e.tags.includes('agent') && (e.look || e.tags.includes('person')) ? 380 : 330
           this.tweens.add({ targets: v.root, x: px, y: py, duration: dur, ease: 'Linear' })
@@ -1932,11 +1943,25 @@ export class WorldScene extends Phaser.Scene {
         // the player running: the sheet's run (a look's figure has one), a frame for so much ground covered, a little
         // dust as a foot lands
         const run = moving && e.id === this.playerId && this.running() && v.actor.rows >= RUN_ROW + 4
-        const row = run ? RUN_ROW + (Math.floor(((v.stride ?? 0) / RUN_CYCLE) * 4) % 4) : moving ? Math.floor((time + v.phase) / 130) % walkRows : working ? Math.floor(time / 110) % walkRows : e.look || e.tags.includes('person') ? (v.actor.idleRow ?? 0) : Math.floor((time + v.phase) / 260) % walkRows
+        // (the player's walk too is a frame for so much ground: their pace is their own, not the clock's; another's steps
+        // are slid at a walker's pace, so the clock's frames keep with them)
+        const pace = moving && e.id === this.playerId && v.walker
+        // the walk's beat: the legs go round their four frames steadily while one walks (not only as the body slides, which
+        // on a slow screen waits on each step), at a rate that covers WALK_CYCLE tiles a round at the pace walked
+        // (the run as well, on its own longer round)
+        if (pace) {
+          const beat = Math.max(60, Math.min(200, (this.stepAvg * (run ? RUN_CYCLE : WALK_CYCLE)) / 4))
+          v.walkBeat = ((v.walkBeat ?? 0) + Math.min(100, time - (v.walkAt ?? time)) / beat) % 4
+        }
+        v.walkAt = time
+        // a blow under way, standing (attackPose): the walk's stride with the arm thrown forward, held for the blow — the
+        // sheet has no frames of its own for it, and this one reads as the arm going in with the body
+        const striking = !!v.blow && !moving && !run
+        const row = striking ? 1 % walkRows : run ? RUN_ROW + (Math.floor(pace ? (v.walkBeat ?? 0) : ((v.stride ?? 0) / RUN_CYCLE) * 4) % 4) : pace ? Math.floor(v.walkBeat ?? 0) % walkRows : moving ? Math.floor((time + v.phase) / 130) % walkRows : working ? Math.floor(time / 110) % walkRows : e.look || e.tags.includes('person') ? (v.actor.idleRow ?? 0) : Math.floor((time + v.phase) / 260) % walkRows
         if (run && row !== v.runRow && (row - RUN_ROW) % 2 === 0) this.kickDust(v, e.facing)
         v.runRow = run ? row : undefined
         v.body.setFrame(`${v.actor.key}:${col},${row}`)
-        v.body.y = (working ? -Math.abs(Math.sin(time / 95)) * 1.5 : 0) + (v.poseDy ?? 0)
+        v.body.y = (working ? -Math.abs(Math.sin(time / 95)) * 1.5 : 0) + (v.poseDy ?? 0) + (v.lungeY ?? 0)
       }
       if (v.dragon) this.updateDragon(v, time)
       if (!e.boss) this.windupPose(v, time)
@@ -2091,7 +2116,7 @@ export class WorldScene extends Phaser.Scene {
       f.zoom = cam.zoom
       f.view.x = cam.worldView.x
       f.view.y = cam.worldView.y
-      f.dark = Math.min(1, this.darkness / 0.6)
+      f.dark = Math.min(1, this.darkness / DEEP_NIGHT())
       // the region's grade, lighter at the light strength
       const r = this.shownLook
       const scale = s === 'light' ? 0.6 : 1
@@ -2105,11 +2130,13 @@ export class WorldScene extends Phaser.Scene {
     const h = f.hour
     // dusk and dawn move as the story's night lengthens (the frame's night)
     const { dusk, dawn } = f.night ?? { dusk: 21, dawn: 5 }
+    // (a phone's screen, often out of doors, shows less of the dark: deep night a little lighter there)
+    const deep = DEEP_NIGHT()
     let d = 0
-    if (h >= dusk || h < dawn - 0.5) d = 0.6
-    else if (h >= dusk - 3) d = ((h - (dusk - 3)) / 3) * 0.6
-    else if (h < dawn + 2) d = ((dawn + 2 - h) / 2.5) * 0.6
-    if (light === 'dark') d = 0.55
+    if (h >= dusk || h < dawn - 0.5) d = deep
+    else if (h >= dusk - 3) d = ((h - (dusk - 3)) / 3) * deep
+    else if (h < dawn + 2) d = ((dawn + 2 - h) / 2.5) * deep
+    if (light === 'dark') d = deep - 0.05
     if (light === 'indoor') d *= 0.4
     // a grey day is a little darker
     const dim: Record<string, number> = { cloud: 0.1, rain: 0.16, storm: 0.26, fog: 0.06 }
@@ -2355,7 +2382,7 @@ export class WorldScene extends Phaser.Scene {
   private shinePools(f: Frame): void {
     if (!this.pools.length) return
     const { dusk, dawn } = f.night ?? { dusk: 21, dawn: 5 }
-    const day = Math.max(0, 1 - this.darkness / 0.6)
+    const day = Math.max(0, 1 - this.darkness / DEEP_NIGHT())
     const up = f.hour > dawn && f.hour < dusk
     // the sun's hour from noon, -1 at dawn to 1 at dusk
     const sun = Math.max(-1, Math.min(1, (f.hour - (dawn + dusk) / 2) / ((dusk - dawn) / 2)))
@@ -2422,6 +2449,58 @@ export class WorldScene extends Phaser.Scene {
    * (assets/types.ts Swing): swept in an arc across the way they face, raised, drawn and loosed, or swung up and brought
    * down to point. A weapon with no swing (and bare hands) shows the blow alone.
    */
+  /**
+   * A blow in the body (any blow, a weapon's or a bare hand's): a wind-up — drawn back a pixel and a half, squashed — then
+   * the strike — thrown four pixels in, stretched along it — then back to stand. Along the screen's y the frame sets the
+   * body's height, so the lunge there is an offset it adds (`lungeY`).
+   */
+  private attackPose(v: EView, dx: number, dy: number): void {
+    const b = v.body
+    if (v.blow) {
+      v.blow.tween.stop()
+      b.setScale(...v.blow.scale)
+    }
+    const [sx, sy] = [b.scaleX, b.scaleY]
+    const pose = { t: 0 }
+    // (the strike stretches the way it goes: wider thrown sideways, taller thrown up or down)
+    const along = dx !== 0
+    const set = (x: number, y: number, s: number) => {
+      b.setX(x)
+      v.lungeY = y
+      b.setScale(sx * (along ? 1 + s : 1 - s * 0.5), sy * (along ? 1 - s * 0.5 : 1 + s))
+    }
+    const tween = this.tweens.chain({
+      targets: pose,
+      tweens: [
+        { t: 1, duration: 70, ease: 'Sine.easeOut', onUpdate: () => set(-dx * 1.5 * pose.t, -dy * 1.5 * pose.t, -0.06 * pose.t) },
+        { t: 0, duration: 1, onComplete: () => (pose.t = 0) },
+        { t: 1, duration: 80, ease: 'Back.easeOut', onUpdate: () => set(dx * 4 * pose.t, dy * 3 * pose.t, 0.06 * pose.t) },
+        { t: 0, duration: 130, ease: 'Sine.easeInOut', onUpdate: () => set(dx * 4 * pose.t, dy * 3 * pose.t, 0.06 * pose.t) },
+      ],
+      onComplete: () => {
+        set(0, 0, 0)
+        v.blow = undefined
+      },
+    })
+    v.blow = { tween, scale: [sx, sy] }
+  }
+
+  /** A bare-handed blow: the fist, a little square of skin outlined dark, punched out from the hand and drawn back. */
+  private punch(v: EView, hand: number[], dx: number, dy: number, dir: string): void {
+    const fist = this.add.rectangle(hand[0], hand[1], 4, 4, 0xf0c7a0).setStrokeStyle(1, 0x4a2c1c)
+    if (dir === 'up') v.root.addAt(fist, Math.max(0, v.root.getIndex(v.body)))
+    else v.root.add(fist)
+    this.tweens.chain({
+      targets: fist,
+      tweens: [
+        { x: hand[0] - dx * 1.5, y: hand[1] - dy * 1.5, duration: 70, ease: 'Sine.easeOut' },
+        { x: hand[0] + dx * 8, y: hand[1] + dy * 7, duration: 80, ease: 'Back.easeOut' },
+        { x: hand[0], y: hand[1], alpha: 0, duration: 130, ease: 'Sine.easeIn' },
+      ],
+      onComplete: () => fist.destroy(),
+    })
+  }
+
   private swingWeapon(x: number, y: number, dir: string, who?: string): void {
     // whoever made it, wherever they are drawn now (one striking on the move has stepped on); else whoever stands there
     const v = (who && this.views.get(who)) || [...this.views.values()].find((u) => u.snap.tags.includes('agent') && u.snap.x === x && u.snap.y === y)
@@ -2431,18 +2510,19 @@ export class WorldScene extends Phaser.Scene {
     const key = held ?? (isMe ? this.mainHand : undefined)
     const d = key ? catalog().items[key] : undefined
     const kind = d?.swing
-    if (!kind || !key || !d) return
-    const [frame] = spriteFrames(this, `ico:${key}`, d)
     const [dx, dy] = dirVec(dir)
     // the hand: before the body, to its right side as it faces (behind it, facing away)
     const hand = { down: [5, -6], up: [-5, -8], left: [-4, -7], right: [4, -7] }[dir as 'down'] ?? [5, -6]
+    // the whole body in the blow, whatever is in hand: drawn back, thrown in, and back to stand
+    this.attackPose(v, dx, dy)
+    // a bare hand: the fist itself goes out to where the blow lands, and back
+    if (!kind || !key || !d) return this.punch(v, hand, dx, dy, dir)
+    const [frame] = spriteFrames(this, `ico:${key}`, d)
     const facing = (Math.atan2(dy, dx) * 180) / Math.PI
     const img = this.add.image(hand[0], hand[1], d.img, frame)
     if (dir === 'up') v.root.addAt(img, Math.max(0, v.root.getIndex(v.body)))
     else v.root.add(img)
     const gone = (delay = 0) => this.tweens.add({ targets: img, alpha: 0, delay, duration: 90, onComplete: () => img.destroy() })
-    // a lean into the blow
-    this.tweens.add({ targets: v.body, x: dx * 2, duration: 70, yoyo: true, onComplete: () => v.body.setX(0) })
     if (kind === 'sweep') {
       // the blade points up in its picture: swept from one side of the facing to the other, about the hilt
       img.setOrigin(0.5, 0.9).setAngle(facing + 90 - 80)

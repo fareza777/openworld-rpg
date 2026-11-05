@@ -546,7 +546,7 @@ export const REGION_GOODS: Record<string, RegionGoods> = {
       book: Book of the Five Sufferings|五苦圣典; Pilgrim's Guide to the City|圣城朝圣指南; Hymnal|赞美诗集
       scroll: Bull of the Holy See|圣座诏书
       letter: Letter of Safe Conduct|安全通行证
-      map: Map of the Holy City|圣城地图
+      map: Map of Solmere|圣城地图
       bell: Sanctus Bell|圣铃
       lute: Cittern|西特琴
       doll: Saint Doll|圣徒布偶

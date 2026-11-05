@@ -8,6 +8,7 @@
 import type { Frame, FxEvent, LessonInput, LessonView } from '@openworld/engine'
 import { lessonKey, keys } from '../keymap.ts'
 import { locale } from './common.ts'
+import { onTouch, touchLessonKey } from './touchwords.ts'
 
 /** How a mouse button is named on screen (a key, written as the default map has it, is the key that does that now: keymap.ts). */
 const KEY_TEXT: Record<string, { en: string; zh: string }> = {
@@ -132,7 +133,8 @@ export class LessonGuide {
     if (hide || !l) return
     const t = this.target(l)
     const zh = locale.value === 'zh'
-    const key = l.key ? (KEY_TEXT[l.key]?.[zh ? 'zh' : 'en'] ?? lessonKey(l.key, keys.map, locale.value)) : ''
+    // (on a touch screen, the touch control's name: touchwords.ts)
+    const key = l.key ? ((onTouch() && touchLessonKey(l.key)) || (KEY_TEXT[l.key]?.[zh ? 'zh' : 'en'] ?? lessonKey(l.key, keys.map, locale.value))) : ''
     const text = `<b>${key}</b><span>${l.index + 1}/${l.total}</span>`
     if (this.glyph.innerHTML !== text) this.glyph.innerHTML = text
     this.glyph.style.left = `${t.x}px`

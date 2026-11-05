@@ -22,7 +22,22 @@
       <div id="hud"></div>
       <div id="dev" class="panel dev hidden"></div>
       <div id="intro" class="hidden"></div>
-      <div id="loading"><i class="loadbar"></i></div>
+      <!-- the loading screen (runtime ui/splash.css; the same as the title draws, ui/splash.ts, and game.ts's cover lines) -->
+      <div id="loading">
+        <div class="splash">
+          <div class="sp-glow"></div>
+          <img class="sp-icon" src="./icons/icon-192.png" alt="" />
+          <div class="sp-title">Sunshard</div>
+          <div class="sp-tagline">The Sundered Crown</div>
+          <div class="sp-bar"><i></i></div>
+          <div class="sp-tips">
+            <span style="--i: 0">Light is memory. Every lamp in Solmere was lit by someone who remembered.</span>
+            <span style="--i: 1">Hold a thumb on the left half of the screen to walk.</span>
+            <span style="--i: 2">The sunsets come a little earlier every year. Someone has been counting.</span>
+            <span style="--i: 3">☰ at the top opens your bag, quests, crafting and more.</span>
+          </div>
+        </div>
+      </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>

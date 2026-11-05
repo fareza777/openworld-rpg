@@ -79,9 +79,9 @@ export function composeSprite(look: Look): Uint8Array {
 }
 
 /**
- * The run (RUN_ROW on), made of a facing's two strides as the walk draws them (rows 1 and 3: legs apart, the body a
- * row down), so every outfit, hair and pair of shoes runs as it walks. Each stride is shown landing, as drawn, then in
- * the air, a row up (the feet off the ground): a bound of a row, as the walk's, at the run's longer stride. Seen from
+ * The run (RUN_ROW on), made of the walk's frames as it draws them, so every outfit, hair and pair of shoes runs as it
+ * walks: a stride (row 1: legs apart), the legs passing in the air (row 0, a row up: the feet off the ground), the other
+ * stride (row 3), and passing again (row 2) — each leg seen to go by the other, not two scissor poses swapped. Seen from
  * the side the figure leans into the run from the hips (a pixel, the head and shoulders as one, so nothing shears) and
  * its legs reach a pixel further fore and aft.
  */
@@ -89,7 +89,7 @@ function runFrames(out: Uint8Array, col: number): void {
   // (the side view: into the way it faces — left in its own column, right in the mirrored one)
   const ahead = col === 2 ? -1 : col === 3 ? 1 : 0
   const at = (row: number, x: number, y: number) => ((row * FH + y) * FW * 4 + col * FW + x) * 4
-  const strides = [1, 1, 3, 3]
+  const strides = [1, 0, 3, 2]
   const lifts = [0, -1, 0, -1]
   for (let i = 0; i < 4; i++) {
     const from = strides[i]

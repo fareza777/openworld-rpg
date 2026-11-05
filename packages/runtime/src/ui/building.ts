@@ -2,6 +2,7 @@ import { Controls, type Dir, type Frame, type PlacementPreview, type PlacementRe
 import { game, ontology, perGame } from '../game.ts'
 import type { Tile, ToWorker } from '../protocol.ts'
 import { esc, kbd, locale, tx } from './common.ts'
+import { onTouch } from './touchwords.ts'
 import { artEpoch } from '../render/assets.ts'
 import { mountCloseButton } from './components/window.ts'
 import { choiceTile } from './components/primitives.ts'
@@ -76,6 +77,11 @@ const countOfItem = (it: object): number => ('count' in it && typeof it.count ==
 
 export class BuildingMode {
   open = false
+  /**
+   * On a touch screen, a thing chosen: the palette folds to a bar at the foot (its name, whether it can go there, turn,
+   * the list again, done), so the world is clear to walk in (the stick) and to tap where it goes (phone.css).
+   */
+  placing = false
   // (a game with nothing to build: the palette holds nothing, and nothing is set down from it)
   selected: Entry = made()[0] ?? (game().crafting.buildings[0] ? fromRecipe(game().crafting.buildings[0]) : NOTHING)
   category: PlacementRecipe['category'] = 'building'
@@ -110,6 +116,8 @@ export class BuildingMode {
       const button = (e.target as HTMLElement).closest<HTMLButtonElement>('button')
       if (!button) return
       if (button.dataset.close) return this.toggle(false)
+      if (button.dataset.rotate) return this.rotate()
+      if (button.dataset.list) return this.setPlacing(false)
       if (button.dataset.category) {
         this.category = button.dataset.category as PlacementRecipe['category']
         this.selected = this.entries()[0] ?? NOTHING
@@ -129,6 +137,7 @@ export class BuildingMode {
         })
         this.setArt(this.selected.sprite)
         this.details()
+        if (onTouch()) this.setPlacing(true)
       }
       this.refreshAim(true)
     })
@@ -171,8 +180,13 @@ export class BuildingMode {
     const dy = at.y - p.y
     return Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : dy > 0 ? 'down' : 'up'
   }
+  private setPlacing(on: boolean): void {
+    this.placing = on
+    this.panel.classList.toggle('placing', on)
+  }
   toggle(on = !this.open): void {
     this.open = on
+    this.setPlacing(false)
     this.dragging = false
     this.facing = undefined
     this.up = false
@@ -333,8 +347,9 @@ export class BuildingMode {
     this.panel.innerHTML = `<header><strong>${zh ? '建筑模式' : 'Build & plant'}</strong><button data-close="1" title="${esc([kbd('build'), 'Esc'].filter(Boolean).join(' / '))}"></button></header>
       <nav aria-label="${zh ? '建造分类' : 'Build category'}"><button type="button" data-category="building" aria-pressed="${this.category === 'building'}" class="${this.category === 'building' ? 'chosen' : ''}">${zh ? '建筑' : 'Structures'}</button><button type="button" data-category="farming" aria-pressed="${this.category === 'farming'}" class="${this.category === 'farming' ? 'chosen' : ''}">${zh ? '种植' : 'Farming'}</button></nav>
       <div class="build-content"><div class="build-recipes" role="group" aria-label="${zh ? '选择建造物' : 'Choose what to build'}"></div>
-      <div class="build-details"></div><footer>${esc(tx({ en: 'Left click / {key:hands} place · hold and drag to place a row · {key:rotate} turn · {key:build} / Esc / RMB exit', zh: '左键 / {key:hands} 放置 · 按住左键拖动连续放置 · {key:rotate} 转向 · {key:build} / Esc / 右键退出' }))}<br>${esc(tx({ en: '{key:move} move · Time keeps moving', zh: '{key:move} 移动 · 世界时间继续' }))}</footer></div>`
-    this.panel.querySelectorAll<HTMLButtonElement>('[data-close]').forEach(mountCloseButton)
+      <div class="build-details"></div>
+      <div class="build-bar"><span class="bb-art"></span><span class="bb-text"><b class="bb-name"></b><small class="bb-status"></small></span><button type="button" data-rotate="1" aria-label="${zh ? '转向' : 'Turn'}">⟳</button><button type="button" data-list="1" aria-label="${zh ? '列表' : 'List'}">▤</button><button type="button" class="bb-done" data-close="1" aria-label="${zh ? '完成' : 'Done'}">✓</button></div><footer>${esc(tx({ en: 'Left click / {key:hands} place · hold and drag to place a row · {key:rotate} turn · {key:build} / Esc / RMB exit', zh: '左键 / {key:hands} 放置 · 按住左键拖动连续放置 · {key:rotate} 转向 · {key:build} / Esc / 右键退出' }))}<br>${esc(tx({ en: '{key:move} move · Time keeps moving', zh: '{key:move} 移动 · 世界时间继续' }))}</footer></div>`
+    this.panel.querySelectorAll<HTMLButtonElement>('header [data-close]').forEach(mountCloseButton)
     const recipes = this.panel.querySelector('.build-recipes')!
     for (const entry of entries) {
       const tile = choiceTile({ label: tx(entry.name), artwork: this.paint?.(entry.sprite), selected: entry.id === this.selected.id })
@@ -369,5 +384,15 @@ export class BuildingMode {
     if (html === this.detailSignature) return
     this.detailSignature = html
     this.panel.querySelector('.build-details')!.innerHTML = html
+    // the touch screen's bar, folded: the name, and whether it can go where it is aimed
+    const bar = this.panel.querySelector('.build-bar')
+    if (bar) {
+      bar.querySelector('.bb-name')!.textContent = tx(s.name)
+      const status = bar.querySelector('.bb-status')!
+      status.textContent = tx(this.preview?.reason) || (this.preview?.ok ? (zh ? '点一格放下' : 'Tap a tile to build') : zh ? '选择邻近的一格' : 'Tap a nearby tile')
+      status.className = `bb-status ${this.preview?.ok ? 'enough' : 'missing'}`
+      const art = this.paint?.(s.sprite)
+      if (art) bar.querySelector('.bb-art')!.replaceChildren(art)
+    }
   }
 }

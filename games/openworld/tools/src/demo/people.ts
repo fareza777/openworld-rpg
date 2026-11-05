@@ -42,6 +42,7 @@ import { odran } from './people/odran.ts'
 import { brannoc } from './people/brannoc.ts'
 import { vera } from './people/vera.ts'
 import { wil } from './people/wil.ts'
+import { sable } from './people/sable.ts'
 import { lucan } from './people/lucan.ts'
 import { ivo } from './people/ivo.ts'
 import { kell } from './people/kell.ts'
@@ -75,7 +76,7 @@ import { wardenE, wardenW } from './people/wardens.ts'
 // Chapter 4's (docs/chapter-4.md §7): Nailgate's ferryman, its living and its kept dead, its sexton;
 // Chapter 5's (docs/chapter-5.md §7): Whiteveil's abbot, robe-sewer and novice, the hermit of the stair;
 // the finale's (docs/finale.md §5): the Primate and the Hall's wardens
-export const PEOPLE: PersonDef[] = [hesper, tobin, mara, garrick, wren, bram, rowan, marta, mia, holt, gus, lina, oskar, ilse, joss, pell, nessa, fennick, edda, brin, tam, alberic, severin, courier, cass, vigo, haldor, greta, anselm, caius, ezra, maud, wynn, orrin, hilde, odette, odran, brannoc, vera, wil, lucan, ivo, kell, dunn, roderick, osric, haskel, berthe, elsie, corwin, edith, ottilie, godwin, klaas, hedda, piet, liese, sanne, jory, barnaby, benedek, agathe, tomas, ysolde, primate, wardenW, wardenE]
+export const PEOPLE: PersonDef[] = [hesper, tobin, mara, garrick, wren, bram, rowan, marta, mia, holt, gus, lina, oskar, ilse, joss, pell, nessa, fennick, edda, brin, tam, alberic, severin, courier, cass, vigo, haldor, greta, anselm, caius, ezra, maud, wynn, orrin, hilde, odette, odran, brannoc, vera, wil, lucan, ivo, kell, dunn, roderick, osric, haskel, berthe, elsie, corwin, edith, ottilie, godwin, klaas, hedda, piet, liese, sanne, jory, barnaby, benedek, agathe, tomas, ysolde, primate, wardenW, wardenE, sable]
 
 /**
  * Who keeps house together (docs/npc-sandbox.md §2.1): what one of them owns, all of them do; a theft from one

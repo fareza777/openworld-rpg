@@ -52,7 +52,7 @@ export const nessa: PersonDef = {
     line('fact:world.fin', 'I deliver the almanacs here every year. This year I brought the table instead. They took it, and thanked me, and put it in a drawer.', '每年我都把历书送到这里来。今年我带来的是那张表。他们收下了，谢过我，放进了抽屉。'),
     line('fact:fin.end', 'Sunrise at five. Sunset tonight at nine. ...I wrote it down twice. I could not believe it the first time.', '日出，五点。今晚日落，九点。……我记了两遍。头一遍，我自己都不敢信。', { mood: 'happy' }),
     line('fact:fin.end', 'The old almanac\'s last page. "Stop him." I read the rest of the line again this morning, by the new light. It was not a curse. Someone loved him.', '那本旧历书的最后一页。“拦住他。”今天早上，借着新的天光，我把那一行剩下的字又读了一遍。那不是诅咒。是有人爱着他。', { once: true, mood: 'sad' }),
-    line('topic:quickening', 'I have written to the Holy City. I asked them, politely, what the Body is doing. I do not expect an answer. I wanted it on paper that someone asked.', '我给圣城写了信。我很客气地问他们，圣尸在做什么。我不指望有回音。我只是想让纸上留下一笔：有人问过。'),
+    line('topic:quickening', 'I have written to Solmere. I asked them, politely, what the Body is doing. I do not expect an answer. I wanted it on paper that someone asked.', '我给圣城写了信。我很客气地问他们，圣尸在做什么。我不指望有回音。我只是想让纸上留下一笔：有人问过。'),
     line('fact:ch4.end', 'Five o\'clock. I measured it from the landing while the boat went out. I will measure the next one too, wherever I am.', '五点。船开出去的时候，我在渡口量的。下一次我也会量，不管我在哪儿。', { once: true }),
     line('fact:world.ch3', 'The flattest horizon in the Five Lands. If the sun is cheating, this is where I will catch it.', '五印之地最平的地平线。太阳要是在耍花样，我就在这儿逮住它。'),
     line('fact:ch3.scale', 'Six o\'clock tonight. Six. I am going south tomorrow, to the Fens. Something there does not let the dusk lift, and I want to see it.', '今晚六点。六点。我明天就往南，去林沼。那边有什么东西不让黄昏散去，我想亲眼看看。', { once: true }),

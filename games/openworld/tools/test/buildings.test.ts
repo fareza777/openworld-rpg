@@ -53,7 +53,7 @@ describe('the buildings on the maps (docs/building.md §10)', () => {
     expect(ownedHouses(world.chunks).some((h) => h.map.id === FIRSTLIGHT.map)).toBe(true)
   })
 
-  it('a Firstlight wall struck through the keys: cracked, more with every blow, then holding at its last crack — solid, drawn whole, nothing fallen out', () => {
+  it('a Emberwick wall struck through the keys: cracked, more with every blow, then holding at its last crack — solid, drawn whole, nothing fallen out', () => {
     const game = Game.create(world.index, onto, new RuleLibrary([...BASE_RULES, ...STORY_RULES]))
     for (const c of world.chunks) game.loadChunk(decodeChunk(c))
     const eng = game.engine

@@ -155,7 +155,7 @@ function doorsOutside(): string[] {
 }
 
 describe('every building can be walked through', () => {
-  it('holds rooms enough to mean it: Firstlight\'s houses, the hand-made interiors and every backdrop room', () => {
+  it('holds rooms enough to mean it: Emberwick\'s houses, the hand-made interiors and every backdrop room', () => {
     expect(roomed.filter((m) => m.id.startsWith('meadow.')).length).toBeGreaterThanOrEqual(9)
     expect(roomed.length).toBeGreaterThan(700)
   })

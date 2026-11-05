@@ -111,7 +111,7 @@ describe('waypoint statues', () => {
     expect(chunks.flatMap((c) => c.entities).filter((e) => e.type === 'fixture/sacred/statue').map((e) => e.id)).toEqual([])
   })
 
-  it("a way the story has not opened, run off: Lumi says so in its gate's words, once a minute, shorter the next time; alone, the message line says it", () => {
+  it("a way the story has not opened, run off: Kiri says so in its gate's words, once a minute, shorter the next time; alone, the message line says it", () => {
     const made = () => {
       const { index, chunks } = buildFord()
       const game = Game.create(index, buildOntology(), new RuleLibrary([...BASE_RULES, ...STORY_RULES]))

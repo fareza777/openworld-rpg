@@ -15,6 +15,7 @@ import type { AiOptions } from './quality.ts'
 import type { SaveSummary } from '../protocol.ts'
 import { SLOTS, deleteSlot, exportSlot, listSlots, pickSaveFile, writeSlot, type Slot, type SlotData } from '../saves.ts'
 import { $, esc, locale, prefs, t, tx, volumeRows, wireVolumes } from './common.ts'
+import { splashHtml } from './splash.ts'
 
 /** The companion beside the menu (the game's, when its cover says so): the sheet it names in the game's assets, or OpenWorld's fairy. */
 const companionSheet = (c: string | boolean) => `${assetsBase()}${typeof c === 'string' ? c : 'lsw/Companion/Fairy/SpriteSheet.png'}`
@@ -111,7 +112,7 @@ export class Cover {
     this.booting = !!game().cover?.scenes?.length
     clearTimeout(this.boot)
     if (this.booting) this.boot = setTimeout(() => this.reveal(), BOOT_MS)
-    document.getElementById('loading')?.remove()
+    // (the page's loading screen stays over the title until the art is in: the scene takes it away, render/scene.ts)
     $('#intro').classList.remove('hidden')
     document.getElementById('app')?.classList.add('on-cover')
     document.addEventListener('keydown', this.onKey)
@@ -267,7 +268,7 @@ export class Cover {
           <nav class="cv-menu">${pip}${this.items().map(line).join('')}</nav>
           <div class="cv-status"></div>
         </div>
-        <div class="cv-loader" role="status" aria-label="${esc(t('cvLoading'))}"><i></i></div>
+        <div class="cv-loader" role="status" aria-label="${esc(t('cvLoading'))}">${splashHtml({ title: cv.title ? tx(cv.title) : game().id, tagline: cv.tagline && tx(cv.tagline), tips: cv.tips?.map((x) => tx(x)) })}</div>
         ${this.panel ? `<div class="cv-dim"></div><div class="cv-panel wood${this.panel === 'new' ? ` cv-new cv-new--${this.newStep}` : ''}">${this.panelHtml()}</div>` : ''}
       </div>`
     $('#intro').querySelectorAll<HTMLButtonElement>('[data-item]').forEach((b) => {

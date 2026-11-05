@@ -1873,10 +1873,9 @@ export const SITE_GATES: Gate[] = [
   // Chapter 2's road (regions.ts CHAPTER_TWO): the road on east from the knight's field, opened once the Crown is home
   {
     fact: CHAPTER_TWO,
-    // (this fork seals it for the next update: docs/sunshard/STORY.md §7)
-    say: L('The road on east to Cinderholt is not open yet. Chapter Two waits there, in the next update.'),
-    remark: L("Cinderholt is that way... but the road is closed. Not yet. Let's see to Emberwick first."),
-    again: L('Not yet. Cinderholt waits.'),
+    say: L('The road on east to Cinderholt is barred at the toll-post. The Regency lets no Crownseeker through before the first Regalia has gone home.'),
+    remark: L("Cinderholt is that way... but they won't let us through yet. The Diadem has to go home to Emberwick first."),
+    again: L('Not yet. Emberwick first.'),
   },
   // the way down off Cinder Pass into the Scarred March, under the dragon's nest (docs/chapter-2.md §2)
   {
@@ -1888,25 +1887,25 @@ export const SITE_GATES: Gate[] = [
   // the later chapters' long roads (regions.ts CHAPTER_THREE…FINALE; docs/chapter-3.md §2.4): each opened by the chapter before's end
   {
     fact: CHAPTER_THREE,
-    say: L('The grain road to the Vale of Scales opens once the Second Seal has fallen.', '去衡谷平原的运粮路，要等第二印倒下以后才走得通。'),
+    say: L('The grain road to the Vale of Scales opens once the Ember Chain has fallen.', '去衡谷平原的运粮路，要等第二印倒下以后才走得通。'),
     remark: L("Let's finish in the March first. Then we can go on.", '先把边境这边的事办完吧，然后再往前走。'),
     again: L('The March first.', '先办边境的事。'),
   },
   {
     fact: CHAPTER_FOUR,
-    say: L('The road down into the Pale Fens opens once the Third Seal has fallen.', '下到苍白林沼的路，要等第三印倒下以后才走得通。'),
+    say: L('The road down into the Pale Fens opens once the Golden Scales has fallen.', '下到苍白林沼的路，要等第三印倒下以后才走得通。'),
     remark: L("The Vale isn't done with us yet.", '衡谷这边还没完呢。'),
     again: L('The Vale first.', '先办衡谷的事。'),
   },
   {
     fact: CHAPTER_FIVE,
-    say: L('The road west into the White Altar Heights opens once the Fourth Seal has fallen.', '往西去白坛高地的路，要等第四印倒下以后才走得通。'),
+    say: L('The road west into the White Altar Heights opens once the Starfall Wood has fallen.', '往西去白坛高地的路，要等第四印倒下以后才走得通。'),
     remark: L("Not yet. The Fens first.", '还不行。先办林沼的事。'),
     again: L('The Fens first.', '先办林沼的事。'),
   },
   {
     fact: FINALE,
-    say: L('The road down to the Holy City opens once the Fifth Seal has fallen.', '下到圣城的路，要等第五印倒下以后才走得通。'),
+    say: L('The road down to Solmere opens once the Vigil Lance has fallen.', '下到圣城的路，要等第五印倒下以后才走得通。'),
     remark: L("Not yet. There's still one seal left.", '还不行，还剩一道印。'),
     again: L('One seal left.', '还剩一道印。'),
   },

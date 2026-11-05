@@ -57,43 +57,62 @@
   height: 176px;
   pointer-events: none;
 }
+/* a round of parchment in a dark wood ring, the game's own pixel icon in it and its name small beneath */
 .t-btn {
   position: absolute;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  border: 2px solid rgba(80, 50, 20, 0.7);
-  background: rgba(250, 230, 190, 0.72);
+  border: 2px solid #5a3a1c;
+  background: radial-gradient(circle at 50% 38%, rgba(255, 244, 214, 0.9), rgba(226, 192, 134, 0.82) 70%);
+  box-shadow: inset 0 -3px 0 rgba(120, 72, 30, 0.35), inset 0 2px 0 rgba(255, 255, 255, 0.45), 0 3px 6px rgba(0, 0, 0, 0.35);
   color: #3b2412;
   font: 700 20px/1 'Pixelify Sans', system-ui, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1px;
   pointer-events: auto;
   touch-action: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   padding: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
+.t-icon { width: 26px; height: 26px; image-rendering: pixelated; object-fit: contain; pointer-events: none; }
 .t-btn small {
-  font-size: 7px;
-  line-height: 1;
-  margin-top: 1px;
-  opacity: 0.75;
+  font: 600 8px/1 'Pixelify Sans', system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  color: #5a3a1c;
 }
 .t-btn.on {
-  background: rgba(255, 210, 120, 0.95);
-  transform: scale(0.94);
+  background: radial-gradient(circle at 50% 38%, #fff3c8, #f2c870 70%);
+  transform: scale(0.93);
 }
-/* the attack under the thumb; the rest on a quarter ring round it; put and draw the smallest, at the ring's ends */
-#tAttack { right: 0; bottom: 0; width: 70px; height: 70px; font-size: 28px; }
-#tHands { right: 80px; bottom: 4px; }
-#tUse { right: 4px; bottom: 80px; }
-#tOn { right: 62px; bottom: 62px; }
-#tDash { right: 136px; bottom: 26px; width: 40px; height: 40px; font-size: 16px; }
-#tPut { right: 26px; bottom: 136px; width: 40px; height: 40px; font-size: 16px; }
-#tDraw { right: 98px; bottom: 112px; width: 34px; height: 34px; font-size: 14px; }
-#tDraw small { display: none; }
+/* a button that would do nothing now is not there (touch.ts context) */
+.t-btn.idle { opacity: 0; transform: scale(0.7); pointer-events: none; }
+/* Use and Use on wear the held thing's icon; bare-handed, their glyph */
+.t-btn .t-glyph { display: none; font-size: 18px; }
+.t-btn.bare .t-held { display: none; }
+.t-btn.bare .t-glyph { display: block; }
+/* Use on: the held thing with a small arrow at its shoulder */
+#tOn::after { content: '➚'; position: absolute; right: 3px; top: 2px; font-size: 11px; color: #8a3b12; }
+#tOn.bare::after { content: none; }
+
+/* the attack under the thumb, the hand beside it, the dash further in; the rest (only while they would do something)
+   on the ring above */
+#tAttack { right: 0; bottom: 0; width: 72px; height: 72px; }
+#tAttack .t-icon { width: 40px; height: 40px; }
+/* the large painted icons (64px) drawn smooth; the small ones (16px) kept in pixels */
+#tAttack .t-icon, #tDash .t-icon { image-rendering: auto; }
+#tHands { right: 80px; bottom: 2px; width: 56px; height: 56px; }
+#tHands .t-icon { width: 28px; height: 28px; }
+#tDash { right: 144px; bottom: 10px; width: 44px; height: 44px; }
+#tDash .t-icon { width: 28px; height: 28px; }
+#tUse { right: 8px; bottom: 80px; }
+#tOn { right: 68px; bottom: 66px; width: 46px; height: 46px; }
+#tOn .t-icon { width: 22px; height: 22px; }
+#tPut { right: 20px; bottom: 140px; width: 42px; height: 42px; }
+#tPut .t-icon { width: 18px; height: 18px; }
 
 /* ------------------------------------------------------------------ the ☰ tray of the panels' buttons */
 
@@ -124,31 +143,30 @@ body.touch.tray-open .corner {
   right: auto !important;
   bottom: auto !important;
   transform: translateX(-50%);
-  grid-template-columns: repeat(4, 44px);
-  gap: 8px;
+  grid-template-columns: repeat(4, 64px);
+  gap: 6px;
   max-width: none !important;
   max-height: none !important;
-  padding: 10px;
+  padding: 8px;
+  border: 2px solid #5a3a1c;
   border-radius: 10px;
-  background: rgba(32, 20, 10, 0.82);
+  background: rgba(32, 20, 10, 0.9);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
   z-index: 45;
 }
-body.touch .cbtn { width: 44px; height: 44px; }
-body.touch .cbtn .cb-icon { width: 26px; height: 26px; }
+/* in the tray: a tile, its icon over its name */
+body.touch .corner .cbtn { width: 64px !important; height: 58px !important; min-height: 0 !important; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; padding: 4px 2px !important; }
+body.touch .corner .cbtn .cb-icon { width: 24px !important; height: 24px !important; }
+body.touch .corner .cbtn::after { content: attr(data-name); font: 600 10px/1 'Pixelify Sans', system-ui, sans-serif; color: #3b2412; white-space: nowrap; }
+body.touch .corner .cbtn .badge { top: 2px; right: 4px; }
 
 /* ------------------------------------------------------------------ the HUD, decluttered */
 
-/* the keys' labels mean nothing under a thumb */
-body.touch #hud kbd,
-body.touch #hud .key[data-kbd],
-body.touch .companion-badge kbd {
-  display: none !important;
-}
+/* the title's menu far enough in that the companion beside it is not cut by the edge */
+body.touch .cv-main { left: max(64px, 8vw); }
 /* the minimap and the clock a size smaller, in the top corners */
 body.touch .minimap canvas { max-width: 84px; max-height: 62px; }
 body.touch .clockbox { width: 112px !important; padding: 4px 6px 12px !important; top: max(8px, env(safe-area-inset-top)) !important; }
-/* the quest tracker under the clock, narrow and short */
-body.touch .objective { top: calc(max(8px, env(safe-area-inset-top)) + 62px) !important; width: min(46vw, 210px) !important; max-height: 22vh !important; font-size: 11px !important; padding: 4px 8px !important; }
 /* the star-sprite's badge small, under the minimap */
 body.touch .companion-badge { position: fixed !important; left: max(8px, env(safe-area-inset-left)) !important; right: auto !important; top: calc(max(8px, env(safe-area-inset-top)) + 104px) !important; bottom: auto !important; width: 52px !important; height: 52px !important; }
 /* the skill bar only once a skill is set on it, left above the toolbar, smaller */
@@ -160,5 +178,4 @@ body.touch .dialog { z-index: 5; }
 /* a short screen (a phone held sideways): the cluster a size smaller, so the world shows between the thumbs */
 @media (max-height: 460px) {
   .t-buttons { transform: scale(0.8); transform-origin: bottom right; }
-  body.touch .objective { max-height: 30vh !important; }
 }

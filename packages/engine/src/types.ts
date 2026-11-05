@@ -192,6 +192,8 @@ export interface WorldParams {
   made?: { quality?: Record<string, number> }
   /** How many times as quick the player's steps are running (the run key held) as walking: 1.5 when absent. */
   run?: number
+  /** How many times as long the player's every step takes as their speed says (a game's walking pace): 1 when absent. */
+  pace?: number
 }
 
 /** The spaces of a cell (world-model.md §5.2): what one stands on, what fills it, what roots in it, a body. */
@@ -1185,6 +1187,8 @@ export type SceneCmd =
   | { fade: 'out' | 'in' }
   | { place: Id; map: string; x: number; y: number }
   | { fact: string; value: PropValue }
+  /** add to a numeric fact (none yet: from 0): a ledger the story keeps, as each choice moves it (`night.shift`) */
+  | { tally: string; by: number }
   | { topic: string; days?: number }
   | { give: string; count?: number }
   | { warp: string; x: number; y: number }

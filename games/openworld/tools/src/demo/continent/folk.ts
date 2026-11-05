@@ -70,7 +70,7 @@ const BY_ROLE: Record<string, LineDef[]> = {
   villager: [
     L('default', 'Watch the rut at the end of the lane. The rain dug it deeper, and a cart tipped over in it the day before yesterday.', '巷口那道车辙你留神点。下过一场雨又冲深了，前天还有辆车在那儿翻了。'),
     L('default', 'It gets dark earlier every day. Our lamp oil used to last till spring; this year I doubt it will see midwinter.', '天黑得一天比一天早了。我家的灯油往年能点到开春，今年怕是撑不到冬至。'),
-    L('default', "You're not from here, are you? There have been more people on the road than usual lately. They say the Church is calling for pilgrims.", '你是外地来的吧？这阵子路上的人比往年多，听说是教会在召朝圣的人。'),
+    L('default', "You're not from here, are you? There have been more people on the road than usual lately. They say the Order is calling for pilgrims.", '你是外地来的吧？这阵子路上的人比往年多，听说是教会在召朝圣的人。'),
     L('hour:morning', "Up already? The bakery isn't open yet. I want the first batch; flour is short, and by mid-morning there's nothing left.", '这么早就起了？面包房还没开门呢。我得赶第一炉，这阵子面粉紧，晚了就买不着了。'),
     L('hour:evening', "Done at last. I'll fetch a bucket from the well, and then there's supper to make for the whole house.", '活总算干完了。我去井边打桶水，回来还得给一家子做饭。'),
   ],
@@ -95,7 +95,7 @@ const BY_ROLE: Record<string, LineDef[]> = {
   ],
   priest: [
     L('default', 'If you are weary, traveller, come in and sit. Many come to light candles of late; the chapel is brighter than it used to be.', '旅人，若是累了，便进来坐坐。近来点烛的人多，堂里倒比往日亮些。'),
-    L('default', 'Those who come to pray these days ask for longer days and quiet nights. I tell them what the Church teaches: suffering brings us closer to God.', '近来来祷告的人，求的多是白昼长些、夜里平安。我便照教会的教导告诉他们：苦难使人接近神。'),
+    L('default', 'Those who come to pray these days ask for longer days and quiet nights. I tell them what the Order teaches: suffering brings us closer to God.', '近来来祷告的人，求的多是白昼长些、夜里平安。我便照教会的教导告诉他们：苦难使人接近神。'),
     L('hour:morning', 'Morning prayers are just over. If you want holy water, you will have to wait for the deacon; he has the key.', '晨祷刚做完。你若要领圣水，得等执事回来，钥匙在他身上。'),
   ],
   guard: [
@@ -131,7 +131,7 @@ const BY_ROLE: Record<string, LineDef[]> = {
     L('default', 'Feverfew for headaches, yarrow to stop bleeding. Both are slow to come up this year; I have to go deeper into the woods to gather enough.', '小白菊治头疼，蓍草止血。这两样今年都长得慢，我得往林子深处走才采得够。'),
   ],
   scholar: [
-    L('default', "I'm copying the pilgrim rolls for the Church: names sent in from every parish, dozens a day. By noon my hand aches.", '我在替教会誊朝圣者的名册。各地报上来的名字，一天就有好几十个，抄到中午手就酸了。'),
+    L('default', "I'm copying the Crownseeker rolls for the Order: names sent in from every parish, dozens a day. By noon my hand aches.", '我在替教会誊朝圣者的名册。各地报上来的名字，一天就有好几十个，抄到中午手就酸了。'),
   ],
   noble: [
     L('default', 'Stand aside, if you would. My coachman has gone for someone to mend the wheel, and I can hardly wait in the mud.', '劳驾让一让。我的车夫找人修车轮去了，我总不能站在泥里等着。'),
@@ -144,7 +144,7 @@ const BY_ROLE: Record<string, LineDef[]> = {
   ],
   traveler: [
     L('default', "Six days on the road to get here, and I've worn through my soles. Is there a cobbler round here?", '我走了六天才到这儿，鞋底都磨穿了。这附近有补鞋的吗？'),
-    L('default', 'The Church named me for the pilgrimage. They say it is calling people everywhere; of every ten I meet on the road, three or four are on the same errand.', '教会点了我的名，叫我去朝圣。听说各地都在召人，路上碰见的十个人里，倒有三四个跟我一样。'),
+    L('default', 'The Order named me for the pilgrimage. They say it is calling people everywhere; of every ten I meet on the road, three or four are on the same errand.', '教会点了我的名，叫我去朝圣。听说各地都在召人，路上碰见的十个人里，倒有三四个跟我一样。'),
   ],
   peddler: [
     L('default', 'Needles, thread, buttons, torches, bait, I have all of that. Have a look; after this town, the next market is four days off.', '针线、扣子、火把、鱼饵，都有。看看吧，过了这个镇子，下一个集要走四天。'),

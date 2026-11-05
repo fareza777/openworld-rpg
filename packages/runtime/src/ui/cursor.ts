@@ -126,12 +126,18 @@ const same = (a: KeyView, b: KeyView | undefined) => !!b && a.x === b.x && a.y =
 function linesOf(k: Keys, pointer: boolean): string {
   if (!k) return ''
   // (an input whose key the player left unbound says nothing)
-  const line = (key: string, v: KeyView | undefined) =>
-    v && key ? `<div class="kl${v.unknown ? ' unknown' : ''}${v.steal ? ' steal' : ''}"><kbd>${esc(key)}</kbd> ${esc(tx(v.label))}${v.confirm ? esc(t('asksFirst')) : ''}${v.unknown ? ' <span class="q">?</span>' : ''}</div>` : ''
+  // on a touch screen, the button's own icon (touch.ts, the catalog's `touch…`) in place of the key
+  const touch = document.body.classList.contains('touch')
+  const mark = (key: string, icon: string) => {
+    const d = touch ? (catalog().ui[icon] as { img: string } | undefined) : undefined
+    return d ? `<img class="tkey" src="${assetUrl(d.img)}" alt="">` : `<kbd>${esc(key)}</kbd>`
+  }
+  const line = (key: string, v: KeyView | undefined, icon = '') =>
+    v && key ? `<div class="kl${v.unknown ? ' unknown' : ''}${v.steal ? ' steal' : ''}">${mark(key, icon)} ${esc(tx(v.label))}${v.confirm ? esc(t('asksFirst')) : ''}${v.unknown ? ' <span class="q">?</span>' : ''}</div>` : ''
   const hands = k.hands?.ground && (k.hands.unknown || k.hands.idle) ? undefined : k.hands
   // the right click where it is not what the left click already does (an axe at a tree chops either way)
   const right = k.secondary && same(k.secondary, k.primary) ? undefined : k.secondary
-  return (pointer ? line(t('lmb'), k.primary) + line(t('rmb'), right) : '') + line(kbd('hands'), hands) + line(kbd('put'), k.put)
+  return (pointer ? line(t('lmb'), k.primary) + line(t('rmb'), right) : '') + line(kbd('hands'), hands, 'touchInteract') + line(kbd('put'), k.put, 'touchPut')
 }
 
 export class Cursor {

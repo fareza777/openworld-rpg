@@ -5,6 +5,7 @@ import { gameIfAny, hasModule } from '../game.ts'
 import { bindingLabel, fillKeys, keys, moveKeys, slotKeys, type Action } from '../keymap.ts'
 import { textOf } from '../render/scene.ts'
 import { syncSlider } from './components/primitives.ts'
+import { onTouch, touchWords } from './touchwords.ts'
 
 export type Locale = 'en' | 'zh'
 
@@ -34,8 +35,9 @@ export const locale = {
   },
 }
 
-/** A text in the player's language, its `{key:…}` the keys that do it now (keymap.ts). */
-export const tx = (t: Text | undefined) => fillKeys(textOf(t, locale.value), keys.map, locale.value)
+/** A text in the player's language, its `{key:…}` the keys that do it now (keymap.ts); on a touch screen, the touch controls (touchwords.ts). */
+export const tx = (t: Text | undefined) => filled(textOf(t, locale.value))
+const filled = (s: string) => fillKeys(onTouch() ? touchWords(s) : s, keys.map, locale.value)
 
 /** The key an action has now, as a button, a slot or a tip draws it (Shift as ⇧; '' when it has none). */
 export function kbd(a: Action): string {
@@ -174,7 +176,7 @@ export const STRINGS: Record<string, [string, string]> = {
   cvConfirmDelete: ['Delete slot {n}? This cannot be undone (unless you exported it).', '删除存档 {n}？删除后无法恢复（除非你导出过）。'],
   cvBadFile: ['That file is not a Sunshard save.', '这个文件不是 Sunshard 的存档。'],
   cvIncompatible: ['That save is from another version of the world. It was kept: export it, or start a new game in another slot.', '这个存档来自另一个版本的世界。它已被保留：可以导出它，或在别的存档位开始新游戏。'],
-  cvNote: ['Saves live in this browser (it autosaves as you play). Export one to keep it as a file, or to carry it to another browser.', '存档保存在这个浏览器里（游戏中会自动保存）。导出可以存成文件，或带到别的浏览器。'],
+  cvNote: ['Saves stay on this device (it autosaves as you play). Export one to keep it as a file, or to carry it to another device.', '存档保存在这台设备上（游戏中会自动保存）。导出可以存成文件，或带到别的设备。'],
   skillNoProfession: ['No profession yet: a trainer sets you on one once you are ready.', '还没有职业：时候到了，会有导师为你指点。'],
   boonTitle: ['The Companion\'s Powers', '同伴的力量'],
   boonSealed: ['Not yet found', '尚未获得'],
@@ -487,9 +489,9 @@ const volumeHere: Partial<Record<'music' | 'ambience', number>> = {}
 
 export function t(k: string): string {
   const own = gameText(k)
-  if (own !== undefined) return fillKeys(own, keys.map, locale.value)
+  if (own !== undefined) return filled(own)
   const v = STRINGS[k]
-  return v ? fillKeys(locale.value === 'zh' ? v[1] : v[0], keys.map, locale.value) : k
+  return v ? filled(locale.value === 'zh' ? v[1] : v[0]) : k
 }
 
 /** What the game itself says for a key (ClientGame.texts), if it says anything: words only a game has (a tier's lore). */

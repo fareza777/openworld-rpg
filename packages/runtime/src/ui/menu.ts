@@ -1004,7 +1004,7 @@ export class Menu {
       ${game().worldFilter ? `<div class="opt"><span>${t('optFilter')}</span><button id="oFilter">${t({ off: 'filterOff', light: 'filterLight', full: 'filterFull' }[prefs.filter()])}</button></div>` : ''}
       <div class="opt-acts"><button id="oSave">${t('save')}</button><button id="oNew">${t('toTitle')}</button>${import.meta.env.DEV ? `<button id="oDev">${t('devConsole')}</button>` : ''}</div>
       ${this.ai.html()}
-      <h4>${t('controls')} <button id="oKeys">${t('keysSet')}</button></h4>${controlsTable(import.meta.env.DEV)}
+      <div class="opt-controls"><h4>${t('controls')} <button id="oKeys">${t('keysSet')}</button></h4>${controlsTable(import.meta.env.DEV)}</div>
     </div>`
   }
 

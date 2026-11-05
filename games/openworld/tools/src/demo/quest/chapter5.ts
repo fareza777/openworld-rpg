@@ -175,7 +175,7 @@ export function buildWhiteveil(): MapBuilder {
 
 /** The church: the altar over the catacombs, the pews, the statues of the martyrs, the stair down in the east chapel. */
 export function buildAbbeyChurch(): MapBuilder {
-  const { m, P } = altarHall('chapel', 'whiteveil.church', 'The Church of Whiteveil', '白纱修道院教堂', 'marble', { music: 'temple', floors: [['apse', 'floor_stone']] })
+  const { m, P } = altarHall('chapel', 'whiteveil.church', 'The Order of Whiteveil', '白纱修道院教堂', 'marble', { music: 'temple', floors: [['apse', 'floor_stone']] })
   const N = P.nave
   const A = P.apse
   m.rect(N.x + 9, A.y, 2, N.y + N.h - A.y + 3, 'carpet_royal')
@@ -199,9 +199,9 @@ export function buildRobingHouse(): MapBuilder {
   const S = P.scriptorium
   m.fixture('fixture/furniture/bookstand', H.x + 5, H.y + 1, {
     id: 'whiteveil.roll',
-    name: L('The Roll of the White-Robed', '白袍名册'),
+    name: L('The Roll of Crownseekers'),
     tags: ['readable'],
-    props: { text: 'A roll as long as the room, wound on two staves. Names, four hundred years of them, each with a year of the Five and where they fell: "the March", "the Vale", "the Fens", "under the knight". Some say "came to the Hall, could not bear it". At its head, in the oldest hand: THE ROAD CHOOSES. WHOEVER BRINGS DOWN THE FIVE AND BEARS THEIR POWER IS THE ONE THE RITE NEEDS: A BEARER NEW. ALL WHO FALL SHALL BE ROBED AND REST YET A LITTLE WHILE.', text_zh: '一卷和屋子一样长的名册，卷在两根轴上。四百年的名字，每个名字后面写着五苦纪年和倒下的地方：“边境”“衡谷”“林沼”“骑士麾下”。有些写着：“至大殿，不能承受。”卷首是最古老的笔迹：道路自会拣选。凡能击倒五者、承其力者，即大礼所需之人：一位新的承担者。凡倒下者，皆着白袍，再安息片时。' },
+    props: { text: 'A roll as long as the room, wound on two staves. Names, nineteen years of them, each with the year of the Regency and where they fell: "the March", "the Vale", "the Fens", "under the knight". Some say "came to Solmere, and was not the one". At its head, in a firm hand under the Regent\'s sun: LET THEM BE SENT, ONE EACH SPRING, UNTIL ONE COMES BACK WITH ALL FIVE. THE CROWN WILL COME WHOLE ONLY IN THE HAND OF THE ONE IT WAS POURED INTO, AND ONLY IF THAT ONE CARRIES IT HOME OF THEIR OWN WILL. NAME A PROPHECY FOR THEM. — C.V.' },
   })
   m.fixture(SEWING_FRAME, H.x + 9, H.y + 2, { id: 'whiteveil.frame' })
   for (const x of [H.x + 2, H.x + 8]) m.fixture('fixture/furniture/bench', x, H.y + 6)
@@ -248,14 +248,14 @@ export function buildCatacombs(): MapBuilder {
   // Cassian's, on the west gallery: empty, swept
   m.fixture(NICHE_EMPTY, We.x, We.y + 3, {
     id: 'catacombs.cassian',
-    props: { for: 'cassian', text: 'An empty niche, swept clean. The plate under it: CASSIAN OF FIRSTLIGHT. THE 380TH YEAR. NOT YET BROUGHT.', text_zh: '一个空着的壁龛，扫得干干净净。下面的铭牌：初原村的卡西安。三百八十年。尚未带来。' },
+    props: { for: 'cassian', text: 'An empty niche, swept clean. The plate under it: BROTHER CASSIAN OF EMBERWICK, CROWNSEEKER. THE ELEVENTH YEAR OF THE REGENCY. NOT YET BROUGHT.' },
   })
   m.regions.cassian = [We.x, We.y, We.w + 1, We.h]
   // the oldest, in the east tomb: empty too
   const T = P.tombE
   m.fixture(NICHE_EMPTY, T.x + 2, T.y, {
     id: 'catacombs.second',
-    props: { for: 'second', text: 'The oldest niche, its chalk gone yellow. It is empty. The plate is worn almost smooth: LU—, THE SECOND. SHE TOOK UP THE FIVE IN THE FOURTH YEAR OF THE FIVE AND BORE THEM A NIGHT AND A DAY. THE NIGHT WENT OUT OF HER, AND SHE WENT SMALL.', text_zh: '最古老的一个壁龛，白垩已经发黄。龛里是空的。铭牌几乎磨平了：露——，第二位。她于五苦四年承受五苦，承受了一夜一日。原夜从她身上退去，她变小了。' },
+    props: { for: 'second', text: 'The oldest niche, its chalk gone yellow. There is no body in it: only a letter, folded small, under a seal of white wax pressed with a crown. In a woman\'s hand: "To whoever carries my child\'s memory home. The Crown does not make light. It takes the realm\'s memory to feed the thing Caedmon keeps under my chapel, which he calls the Sun. Tonight I break it, and pour my child into the pieces, so that no hand but theirs can ever make it whole. Wardens, keep them. Forgive me. — Isolde."' },
   })
   for (const x of [T.x, T.x + 4]) m.fixture('fixture/light/candles', x, T.y, lit)
   glow(m, T.x + 2.5, T.y + 1.5, 5, 3, '#ffe2a0', 0.45)
@@ -332,7 +332,7 @@ const FL = CH5_AT.floor
 
 /** The chapter's card at its end. */
 const CHAPTER_END = {
-  en: 'CHAPTER FIVE · THE FIFTH SEAL\n\nThe white-robed asked how long, and were told: enough.\nThe Lance came free of the altar.\nThe grey man\'s flame burned white.\nAnd the night came sooner again.',
+  en: 'CHAPTER FIVE · THE WHITE VIGIL\n\nThe Queen\'s guard asked how long, and were told: enough.\nThe Vigil Lance came free of the altar, and gave back the night the Crown was broken.\nThe prophecy was the Regent\'s, and the road was his.\nAnd the man in grey knew, at last, whom he had been walking beside.',
   zh: '第五章 · 第五印\n\n白袍者问还要多久，得到的回答是：够了。\n圣枪离开了祭坛。\n灰衣人的火焰烧成了白色。\n夜晚又来得更早了。',
 }
 
@@ -346,8 +346,8 @@ export const CHAPTER5_STORY: StepDef[] = [
       { place: 'npc.severin', map: 'whitestair', x: CH5_AT.arrival.severin[0], y: CH5_AT.arrival.severin[1] },
       say('player', '(Chalk cliffs, white in a grey light, climb in shelves toward the sky. A stair of switchbacks goes up them. Beside it, every few steps, a white robe hangs on a pole over a grave, its hem moving in the wind.)', '（白垩悬崖在灰白的天光里一层一层地往天上爬，一道之字形的石阶沿着它往上。石阶旁，每隔几步，就有一件白袍挂在杆子上，下面是一座坟，衣摆在风里飘。）'),
       say('pip', 'So many of them. ...Were they all going up?', '这么多。……他们都是要往上去的吗？', 'sad'),
-      say('npc.severin', 'Pilgrims. The ones who did not get to the top. The brothers carry them up the rest of the way.', '朝圣者。没走到顶的那些。剩下的路，修士们把他们抬上去。'),
-      say('npc.severin', 'Every one of them was sent, the way you were.', '他们每一个都是被派来的，跟你一样。'),
+      say('npc.severin', 'Crownseekers. The ones who did not get to the top. The brothers carry them up the rest of the way.', '朝圣者。没走到顶的那些。剩下的路，修士们把他们抬上去。'),
+      say('npc.severin', 'Every one of them was named by a Herald, the way you were.', '他们每一个都是被派来的，跟你一样。'),
       { fact: CH5.road, value: 1 },
     ],
   },
@@ -358,7 +358,7 @@ export const CHAPTER5_STORY: StepDef[] = [
     script: [
       { place: 'npc.ysolde', map: 'whitestair', x: CH5_AT.hermit.ysolde[0], y: CH5_AT.hermit.ysolde[1] },
       say('npc.ysolde', 'Another one. And the grey man with you. That is new.', '又来一个。还带着那个灰衣人。这倒是头一回。'),
-      say('npc.ysolde', 'I was named forty years ago. I brought down the Crown\'s knight\'s squire, and the Rider\'s banner, and at the Scale I turned back. I could feel it taking me. I came up here instead, and they let me keep this cell.', '四十年前我也被点了名。我打倒过骑士的侍从，夺过骑者的军旗，到了秤那儿我就回头了。我感觉得到它在把我拿走。我就到这上面来了，他们准我住这间小屋。'),
+      say('npc.ysolde', 'I was named in the third year of the Regency. I brought down the Diadem\'s knight\'s squire, and the March\'s banner, and at the Scales I turned back. I could feel them taking me. I came up here instead, and they let me keep this cell.', '四十年前我也被点了名。我打倒过骑士的侍从，夺过骑者的军旗，到了秤那儿我就回头了。我感觉得到它在把我拿走。我就到这上面来了，他们准我住这间小屋。'),
       say('npc.ysolde', 'You have four. Do you feel it? Lighter, and harder, and further away from your own hands?', '你有四件了。你感觉到了吗？更轻，更硬，离自己的手更远？'),
       say('npc.ysolde', 'Go on up. They will give you a robe either way.', '上去吧。不管怎样，他们都会给你一件袍子的。'),
       { place: 'npc.ysolde', map: 'whitestair', x: 9, y: 16 },
@@ -373,10 +373,10 @@ export const CHAPTER5_STORY: StepDef[] = [
       { place: 'npc.severin', map: 'whiteveil.robing', x: CH5_AT.roll.severin[0], y: CH5_AT.roll.severin[1] },
       say('player', '(A long hall smelling of linen. A roll as long as the room lies open on its lectern. A sister in white works at a frame with a half-sewn robe on it. She looks up at you, once, the way a tailor looks.)', '（一间狭长的厅堂，满是麻布的味道。讲台上摊着一卷和屋子一样长的名册。一个穿白衣的修女在一个架子前做活，架上绷着一件缝了一半的袍子。她抬头看了你一眼，就一眼，像裁缝看人那样。）'),
       say('npc.agathe', 'Go on and read it. Everyone who comes up reads it.', '去读吧。上来的人都会读。'),
-      say('player', '(Four hundred years of names. Where each fell: the March, the Vale, the Fens, under the knight. Some: "came to the Hall, could not bear it." At the head, in the oldest hand: the road chooses. Whoever brings down the five and bears their power is the one the Rite needs. A bearer new.)', '（四百年的名字，每个名字后面写着倒下的地方：边境、衡谷、林沼、骑士麾下。有些写着：“至大殿，不能承受。”卷首是最古老的笔迹：道路自会拣选。凡能击倒五者、承其力者，即大礼所需之人。一位新的承担者。）'),
-      say('npc.severin', 'They are not renewing a rite.', '他们不是在重行大礼。'),
-      say('npc.severin', 'They are making him a new body. You.', '他们是在给他造一副新的身体。就是你。'),
-      say('pip', '...', '……', 'sad'),
+      say('player', '(Nineteen years of names, one each spring. Where each fell. And at the head, under the Regent\'s sun, in a firm hand: the Crown will come whole only in the hand of the one it was poured into, and only if that one carries it home of their own will. Name a prophecy for them. — C.V.)', '（四百年的名字，每个名字后面写着倒下的地方：边境、衡谷、林沼、骑士麾下。有些写着：“至大殿，不能承受。”卷首是最古老的笔迹：道路自会拣选。凡能击倒五者、承其力者，即大礼所需之人。一位新的承担者。）'),
+      say('npc.severin', 'C.V. Caedmon Vire. ...There was never a prophecy. He wrote one, and sent it ahead of you.', '他们不是在重行大礼。'),
+      say('npc.severin', 'He has known what you are from the first day. Every Crownseeker before you was only practice for the road.', '他们是在给他造一副新的身体。就是你。'),
+      say('pip', '"One who walks with a fallen star shall gather the Crown." ...He wrote that about me.', '……', 'sad'),
       say('npc.agathe', 'It will be ready by the time you come back up. Either way.', '等你再上来的时候，它就缝好了。不管怎样。'),
       { place: 'npc.severin', map: 'whiteveil', x: 28, y: 19 },
       { fact: CH5.roll, value: 1 },
@@ -390,11 +390,14 @@ export const CHAPTER5_STORY: StepDef[] = [
       { place: 'npc.severin', map: 'catacombs', x: CH5_AT.niches.severin[0], y: CH5_AT.niches.severin[1] },
       say('player', '(Galleries cut in the chalk, and in every wall niches, and in every niche someone in a white robe with their face covered. Under the cloths, lips are moving. The sound fills the dark like water: "How long? How long?")', '（白垩里凿出一条条长廊，每面墙上都是壁龛，每个壁龛里躺着一个穿白袍、盖着脸的人。布底下，嘴唇在动。那声音像水一样灌满了黑暗：“还要多久？还要多久？”）'),
       say('player', '(On the west gallery an empty niche is swept clean. Its plate: CASSIAN OF FIRSTLIGHT. THE 380TH YEAR. NOT YET BROUGHT.)', '（西边那条廊上，有个空壁龛扫得干干净净。铭牌上写着：初原村的卡西安。三百八十年。尚未带来。）'),
-      say('pip', 'Cassian... that\'s Sister Ilse\'s pilgrim. They told her he got to the Holy City.', '卡西安……是伊尔丝修女说的那个朝圣者。他们告诉她，他走到了圣城。', 'sad'),
-      say('player', '(At the end of the east tomb there is one more niche, older than the rest, its chalk gone yellow. It is empty too.)', '（东边那间墓室的尽头还有一个壁龛，比别的都老，白垩已经发黄。它也是空的。）'),
-      say('pip', '"Lu... the second. She took up the Five in the fourth year of the Five, and bore them a night and a day. The Night went out of her, and she went small."', '“露……第二位。她于五苦四年承受五苦，承受了一夜一日。原夜从她身上退去，她变小了。”'),
-      say('pip', 'That\'s a nice name. I wonder who she was.', '这名字真好听。不知道她是谁。', 'happy'),
-      say('player', '(Severin looks at Lumi for a long time, and says nothing.)', '（塞弗林看了露米很久，什么也没说。）'),
+      say('pip', 'Cassian... that\'s the brother the Herald named before you. Sister Maren raised him. They told her he got to Solmere.', '卡西安……是伊尔丝修女说的那个朝圣者。他们告诉她，他走到了圣城。', 'sad'),
+      say('player', '(At the end of the east tomb there is one more niche, older than the rest, its chalk gone yellow. There is no one in it: only a letter, folded small, under a seal of white wax pressed with a crown.)', '（东边那间墓室的尽头还有一个壁龛，比别的都老，白垩已经发黄。它也是空的。）'),
+      // Isolde's lock (docs/sunshard/STORY.md §2, layer 3)
+      say('pip', '"To whoever carries my child\'s memory home. The Crown does not make light. It takes the realm\'s memory, to feed the thing Caedmon keeps under my chapel, which he calls the Sun."', '“露……第二位。她于五苦四年承受五苦，承受了一夜一日。原夜从她身上退去，她变小了。”'),
+      say('pip', '"Tonight I break it, and pour my child into the pieces, so that no hand but theirs can ever make it whole. Wardens, keep them. Forgive me. — Isolde."', undefined, 'sad'),
+      say('player', '(Corvin does not look at Kiri. He looks at you, and at the locket at your throat, for a long time. When he speaks, his voice is not steady.)'),
+      say('npc.severin', 'The heir did not die. ...It was you. All this way, it was you.', '（塞弗林看了露米很久，什么也没说。）', 'surprised'),
+      say('npc.severin', 'Every light I took from you, I took from you. ...I will give it back. Not yet. When it can do the most good. I swear it.', undefined, 'sad'),
       { fact: CH5.niches, value: 1 },
     ],
   },
@@ -404,8 +407,22 @@ export const CHAPTER5_STORY: StepDef[] = [
     when: { map: 'beneathaltar', region: 'floor', facts: { [CH5.witnesses]: 0 } },
     script: [
       say('player', '(A vault of white stone. At its head an altar, and standing in it a plain black spear under a ring of faint light. Round it, heaped on the floor in their hundreds, the white-robed. As you come in, three of them sit up.)', '（一间白石砌的穹室。顶头是一座祭坛，坛里立着一杆普通的黑矛，头顶一圈淡淡的光。祭坛四周，几百个白袍者堆在地上。你一进来，其中三个坐了起来。）'),
-      say(WITNESSES_ID, 'Another one has come. Is it fulfilled?', '又来了一个。应验了吗？'),
+      say(WITNESSES_ID, 'Another one has come. Is the Queen\'s light come home?', '又来了一个。应验了吗？'),
       say(WITNESSES_ID, 'How long? How long?', '还要多久？还要多久？'),
+      // the Witnesses of the Vigil (docs/sunshard/STORY.md C4): the Queen's guard, bound into one; the letter read, they can be
+      // told the truth — or fought
+      {
+        choose: L('The Queen\'s guard wait, in their hundreds, for an answer.'),
+        options: [
+          { text: L('Draw your weapon.'), facts: { 'choice.ch5.warden': 'felled' } },
+          { text: L('Open the locket, and hold it up to them. "Her light has come home. It is enough."'), facts: { 'choice.ch5.warden': 'relieved' } },
+        ],
+      },
+      { branch: 'choice.ch5.warden', is: 'relieved', skip: 4 },
+      say('player', '(The three who sat up look at the locket for a long time. Then one of them, very slowly, kneels.)'),
+      say(WITNESSES_ID, 'Her eyes. ...You have her eyes.', undefined, 'sad'),
+      { fact: CH5.witnesses, value: 1 },
+      { fact: 'quest.relieved.witnesses', value: 1 },
     ],
   },
   {
@@ -420,20 +437,45 @@ export const CHAPTER5_STORY: StepDef[] = [
       say('player', '("...It is enough.")', '（“……够了。”）', 'sad'),
       say('player', '(The white-robed lie still. The ring of light over the altar goes out, and the spear leans, and falls into your hands.)', '（白袍者们静静地躺着。祭坛上那圈光灭了，长矛一歪，落进了你手里。）'),
       { give: HOLY_LANCE },
-      say('player', '(Something comes loose from the spear, a cold light, and runs to Lumi.)', '（矛上有什么东西散了出来，是一道冷光，流向了露米。）'),
+      // the Ember Memory (docs/sunshard/STORY.md §7, Chapter 5): the lock
+      say('player', '(The spear is cold in your hands, and then it is not a spear but the edge of an altar, and you are very small, and someone is holding you up to the light.)'),
+      { fade: 'out' },
+      { card: L('AN EMBER MEMORY\nThe Lock\n\nthe Crown Chapel, the Sundering Night') },
+      say('player', '(A tall woman stands at the altar of the Crown Chapel with a baby in her arms and the Dawn Crown on her head. Behind her, the great doors shudder. Someone is breaking them in.)'),
+      say('player', '(She takes the Crown off. It is heavy; her arms shake. "Forgive me, little light." She presses it to the baby\'s forehead.)'),
+      say('player', '(The Crown breaks into five pieces of fire. Each one takes something from the child as it goes: a laugh, a door, a song, a name, a face. Then they fly, out through the windows, to the five Marches.)'),
+      say('player', '(A sixth light, very small, does not go with them. It hides in the baby\'s blanket, and holds on.)'),
+      say('player', '(The woman puts the baby into a knight\'s arms. "Gavrel. To the mountain." The doors give way. She turns to face them, and her hair is full of light.)'),
+      { fade: 'in' },
+      say('pip', 'She broke it on purpose. She hid you in the pieces, so nobody could make it whole without you.', undefined, 'sad'),
+      say('pip', '...And the sixth light. The one that held on. That was me, wasn\'t it? I came with you.', undefined, 'shy'),
+      say('player', '(Something comes loose from the spear, a cold light, and runs to Kiri.)', '（矛上有什么东西散了出来，是一道冷光，流向了露米。）'),
       { tell: 'pip', params: { what: 'boon', unlock: 'pierce', from: WITNESSES_ID } },
       { wait: 32 },
       say('pip', 'It came to me. The last one.', '到我这儿来了。最后一道。', 'surprised'),
-      say('pip', 'Pilgrim... one of them said "sister". Just before. Did you hear?', '朝圣者……刚才他们当中有一个人说了声“妹妹”。你听见了吗？', 'sad'),
+      say('pip', 'Crownseeker... one of them said "your Majesty". Just before. Did you hear?', '朝圣者……刚才他们当中有一个人说了声“妹妹”。你听见了吗？', 'sad'),
       { place: 'npc.severin', map: 'beneathaltar', x: FL.severin[0], y: FL.severin[1] },
       { music: 'severin' },
-      say('player', '(Severin opens the lantern. You put your hand on it with his. The rest of the light goes in, and the flame stands up straight, and burns white.)', '（塞弗林打开提灯。你把手和他的一起放在灯上。剩下的光流了进去，火苗直直地立起来，烧成了白色。）'),
+      say('player', '(Corvin opens the lantern. You put your hand on it with his. The rest of the light goes in, and the flame stands up straight, and burns white.)', '（塞弗林打开提灯。你把手和他的一起放在灯上。剩下的光流了进去，火苗直直地立起来，烧成了白色。）'),
       say('npc.severin', 'Five.', '第五道了。'),
+      // Corvin's lantern (docs/sunshard/STORY.md C5): the light he took can be asked back, to undo one step of the Dimming
+      say('npc.severin', 'The lantern holds what the Wardens held for you: five pieces of your own light. I can pour one back into the sky tonight, and the night will be an hour shorter for it. Or I can keep it all, until Solmere, when it may do more.'),
+      {
+        choose: L('Corvin holds the lantern out to you. It is burning white.'),
+        options: [
+          { text: L('"Keep it. We will need it in Solmere."'), facts: { 'choice.ch5.lantern': 'kept' } },
+          { text: L('"Give one back to the sky. Let the Heights have an hour of evening."'), facts: { 'choice.ch5.lantern': 'given' } },
+        ],
+      },
+      { branch: 'choice.ch5.lantern', is: 'given', skip: 2 },
+      say('player', '(Corvin opens the lantern\'s shutter and lifts it over his head. A thread of light goes up through the vault\'s roof as if the stone were not there.)'),
+      { tally: 'night.shift', by: -1 },
       say('npc.severin', 'Now we end it.', '现在，我们去了结它。'),
       { place: 'npc.severin', map: 'whiteveil', x: CH5_AT.bells.severin[0], y: CH5_AT.bells.severin[1] },
       { fact: CH5.lance, value: 1 },
-      // the fifth seal down: the night longer again (calendar.ts nightHours: dusk at four, dawn at half past seven)
-      { fact: 'night.shift', value: 5 },
+      // the Daylight Ledger (docs/sunshard/STORY.md §5): the last Warden felled lengthens the night by an hour
+      { branch: 'choice.ch5.warden', is: 'felled', skip: 1 },
+      { tally: 'night.shift', by: 1 },
       { topic: 'it_is_enough', days: 30 },
     ],
   },
@@ -446,10 +488,16 @@ export const CHAPTER5_STORY: StepDef[] = [
       { place: 'npc.benedek', map: 'whiteveil', x: CH5_AT.bells.benedek[0], y: CH5_AT.bells.benedek[1] },
       say('npc.benedek', 'They have stopped asking. For four hundred years they have asked, and tonight they are quiet.', '他们不再问了。四百年来他们一直在问，今晚安静了。'),
       say('player', '(The old man goes down on his knees on the flagstones before you.)', '（老人在石板地上朝你跪了下去。）'),
-      say('npc.benedek', 'The road has chosen. Go down to the Holy City, bearer. They are waiting for you at the Hall.', '道路已经拣选了。下山去圣城吧，承担者。他们在大殿等你。'),
+      say('npc.benedek', 'The road has chosen. Go down to Solmere, Crownseeker. The Lord Regent is waiting for you in the Crown Chapel.', '道路已经拣选了。下山去圣城吧，承担者。他们在大殿等你。'),
       { place: 'npc.severin', map: 'whiteveil', x: CH5_AT.bells.severin[0], y: CH5_AT.bells.severin[1] },
-      say('npc.severin', 'Tomorrow. They will open the door to you. They will not open it to me. I know another way in.', '明天。他们会给你开门。不会给我开。我知道另一条进去的路。'),
-      say('player', '(The sun goes down behind the white hills. It went down at four.)', '（太阳落到白色的群山后面去了。四点就落了。）'),
+      say('npc.severin', 'Tomorrow. They will open the gates of Solmere to you. They will not open them to me. I know another way in.', '明天。他们会给你开门。不会给我开。我知道另一条进去的路。'),
+      // the rival (docs/sunshard/STORY.md §4): she has read the roll too
+      { place: 'npc.sable', map: 'whiteveil', x: CH5_AT.bells.benedek[0] + 2, y: CH5_AT.bells.benedek[1] },
+      say('player', '(Sable Vire is standing at the edge of the close, in the snow. She has the Roll\'s last page in her hand, torn out.)'),
+      say('npc.sable', 'He wrote that the Crown comes whole only in the hand it was poured into. I have been the heir since I could walk. ...He told me I was.', undefined, 'sad'),
+      say('npc.sable', 'I am going home ahead of you. I will hear him say it to my face.', undefined, 'angry'),
+      { place: 'npc.sable', map: 'offstage', x: 4, y: 1 },
+      say('player', '(The sun goes down behind the white hills, early, as it has gone down all year.)', '（太阳落到白色的群山后面去了。四点就落了。）'),
       { fact: CH5.end, value: 1 },
       { fact: FINALE, value: 1 },
       { music: 'ending' },
@@ -459,7 +507,7 @@ export const CHAPTER5_STORY: StepDef[] = [
     // The chapter's card.
     id: 'chapter5_end',
     when: { after: 'bells_at_four' },
-    script: [{ card: L(`${CHAPTER_END.en}\n\nThe road down to the Holy City is open.`, `${CHAPTER_END.zh}\n\n下到圣城的路通了。`) }],
+    script: [{ card: L(`${CHAPTER_END.en}\n\nChapter Six · The Gilded Cage\nThe road down to Solmere is open.`, `${CHAPTER_END.zh}\n\n下到圣城的路通了。`) }],
   },
 ]
 

@@ -465,9 +465,7 @@
 .cover.loading .cv-veil { opacity: 1; }
 .cv-loader { position: absolute; inset: 0; z-index: 3; display: none; place-items: center; pointer-events: none; }
 .cover.booting .cv-loader, .cover.loading .cv-loader { display: grid; }
-.cv-loader i, #loading .loadbar { position: relative; display: block; width: 160px; height: 2px; overflow: hidden; background: rgba(217, 167, 90, 0.18); }
-.cv-loader i::after, #loading .loadbar::after { content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 40%; background: linear-gradient(90deg, rgba(246, 212, 138, 0), #f6d48a, rgba(246, 212, 138, 0)); animation: cvLoad 1.3s ease-in-out infinite; }
-@keyframes cvLoad { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+/* the loader itself: ui/splash.css */
 /* black until the world has drawn, then it lifts */
 .cv-veil { position: absolute; inset: 0; background: #05060a; pointer-events: none; transition: opacity 1.6s ease; }
 .cover.lit .cv-veil, .cover.plain .cv-veil { opacity: 0; }

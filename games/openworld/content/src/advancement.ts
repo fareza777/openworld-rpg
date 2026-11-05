@@ -180,7 +180,7 @@ const WARRIOR: SkillDef[] = [
   A('briar-line', 'warrior', TK, ['thorned-mail'], { kind: 'field', leaves: HAZARDS.briars, pattern: 'line', range: 4, cooldown: 180 }, 'Briar Line', '荆棘线', 'Grow briars down the 4 cells ahead for 6 s: a foe who walks into them kneels.', '在前方 4 格长出荆棘，持续 6 秒：走进去的敌人会跪地。'),
   T('crowns-due', 'warrior', TK, ['kneel'], "Crown's Due", '冠之偿', 'Damage +30% against the kneeling and the stunned.', '对跪地或眩晕中的敌人伤害 +30%。', { passive: { when: { target: { status: ['knelt', 'stunned'] } }, damage: 0.3 } }),
   T('hold-the-line', 'warrior', TK, ['briar-line'], 'Hold the Line', '坚守阵线', 'Standing your ground (no step this second): combat damage taken −20%.', '站定不动满 1 秒时，受到的战斗伤害 −20%。', { passive: { when: { standing: true }, taken: -0.2 } }),
-  A('crown-of-thorns', 'warrior', TK, ['crowns-due', 'hold-the-line'], { kind: 'field', leaves: HAZARDS.briars, pattern: 'ring', cooldown: 360, ticks: 60, buff: { taken: -0.3 } }, 'Crown of Thorns', '荆冠', 'Briars spring up in a ring round you; for 6 s you take 30% less.', '你周围长出一圈荆棘；6 秒内你受到的伤害 −30%。', 2),
+  A('crown-of-thorns', 'warrior', TK, ['crowns-due', 'hold-the-line'], { kind: 'field', leaves: HAZARDS.briars, pattern: 'ring', cooldown: 360, ticks: 60, buff: { taken: -0.3 } }, 'Briar Diadem', '荆冠', 'Briars spring up in a ring round you; for 6 s you take 30% less.', '你周围长出一圈荆棘；6 秒内你受到的伤害 −30%。', 2),
 
   T('iron-body', 'warrior', MS, [], 'Iron Body', '铁躯', 'Max health +20.', '生命上限 +20。', { grant: { maxHp: 20 } }),
   A('unbreakable-will', 'warrior', MS, ['iron-body'], { kind: 'buff', cooldown: 300, ticks: 50, buff: { taken: -0.4 } }, 'Unbreakable Will', '不灭意志', 'For 5 s nothing holds you still (no stun, freeze or kneeling) and you take 40% less.', '5 秒内不受眩晕、冰冻、跪地等控制，受到的伤害 −40%。'),

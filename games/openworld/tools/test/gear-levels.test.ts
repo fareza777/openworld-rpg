@@ -111,7 +111,7 @@ describe('where a piece gets its level', () => {
     expect(by('golem/stone_golem').props.def).toBe(Math.round(3 * 1.5 * levelFactor(GEAR_LEVELS, 6)))
   })
 
-  it('a Seal-bearer\'s arms: the Stigmatic level, their family\'s base at the Stigmatic quality', () => {
+  it('a Warden\'s arms: the Stigmatic level, their family\'s base at the Stigmatic quality', () => {
     const sword = onto.types['item/weapon/blade/sword/oathbrand'].props!
     expect(sword.level).toBe(10)
     expect(sword.power).toBe(gearProps({ power: 4 }, undefined, q('legendary'), 10, GEAR_LEVELS).power)
@@ -156,7 +156,7 @@ describe('where a piece gets its level', () => {
     expect(plain.props?.level).toBe(r.level)
   })
 
-  it('what a merchant stocks: the merchant\'s level (the smith of Emberfall\'s four), at the start and at each restock; and worth more for it', () => {
+  it('what a merchant stocks: the merchant\'s level (the smith of Cinderholt\'s four), at the start and at each restock; and worth more for it', () => {
     const { eng, w, p } = fresh()
     const s = socialOf(eng)
     const garrick = w.get('npc.garrick')!

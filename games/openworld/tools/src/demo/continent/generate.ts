@@ -84,7 +84,7 @@ const CAPITALS: Record<string, { kind: string; name: Name }> = {
   altar: { kind: 'city', name: { en: 'Candlecrest', zh: '烛岭城' } },
 }
 const SEATS: Record<string, Name> = {
-  redmarch: { en: "The War-Giver's Bastion", zh: '赐战者堡垒' },
+  redmarch: { en: "The Ember-Sworn's Bastion", zh: '赐战者堡垒' },
   tithe: { en: 'The Black Balance', zh: '黑衡圣堂' },
   palefen: { en: "The Pale Rider's Ossuary", zh: '执辔者骨堂' },
   altar: { en: 'The Altar Beneath', zh: '祭坛之下' },

@@ -20,7 +20,7 @@ const MOMENTS: Moment[] = [
 ]
 
 describe('music', () => {
-  it('plays Firstlight’s own daytime theme and keeps its old evening, night and rainy music', () => {
+  it('plays Emberwick’s own daytime theme and keeps its old evening, night and rainy music', () => {
     const { chunks } = buildFord()
     const village = chunks.find((c) => c.map.id === 'meadow')!.map
     const day = { hour: 12, dusk: 19, dawn: 6, weather: 'sun' }

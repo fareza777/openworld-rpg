@@ -1574,7 +1574,12 @@ export class Engine {
    * The player steps one tile at their pace: their `speed` (ticks a step), a tick more held to a walk, or `params.run`
    * times as quick (one and a half by default) running; what is left of a tick is carried to the next step.
    */
-  movePlayer(dir: Dir, walk = false, run = false): boolean {
+  /**
+   * The player steps the way held; with a second way held across it (`also`: up with right), a diagonal — the two
+   * steps at once, each the one tile it always is (so every wall, ledge, stair and way behaves as it does), taking the
+   * diagonal's longer time; one of them stopped, the other alone (one slides along a wall instead of standing).
+   */
+  movePlayer(dir: Dir, walk = false, run = false, also?: Dir): boolean {
     const p = this.world.player
     this.companions.stir()
     // a lesson at hand that does not let the keys move (docs/prologue.md, the drills)
@@ -1583,10 +1588,18 @@ export class Engine {
       if (!this.busy(p)) p.facing = dir
       return false
     }
-    const moved = this.step(p, dir)
+    const across = also && also !== dir && also !== OPPOSITE[dir] ? also : undefined
+    const from = p.place.on === 'tile' ? p.place.map : undefined
+    const first = this.step(p, dir)
+    // (not on past a way the first step went through: a door, an edge out onto the world, another map)
+    const second = !!across && !this.pendingTransition && p.place.on === 'tile' && p.place.map === from && this.step(p, across)
+    // facing the way held first (the stick's stronger lean), whichever of the two moved
+    if (first && second) p.facing = dir
+    const moved = first || second
     if (moved) {
       const speed = this.world.num(p, 'speed', 2)
-      const base = walk ? speed + 1 : run ? speed / (this.world.onto.data.params?.run ?? 1.5) : speed
+      const pace = this.world.onto.data.params?.pace ?? 1
+      const base = (walk ? speed + 1 : run ? speed / (this.world.onto.data.params?.run ?? 1.5) : speed) * pace * (first && second ? Math.SQRT2 : 1)
       const ticks = this.combat.delay(p, base, 'move') + this.moveCarry
       const whole = Math.max(1, Math.floor(ticks + 1e-9))
       this.moveCarry = Math.max(0, ticks - whole)

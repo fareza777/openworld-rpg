@@ -21,7 +21,7 @@ function game() {
   return { g, index, chunks, chunk, eng: g.engine, w: g.engine.world }
 }
 
-describe('the Held Ground\'s plots and Firstlight\'s loom in an older save', () => {
+describe('the Held Ground\'s plots and Emberwick\'s loom in an older save', () => {
   it('a save that had been to both before they were staked out (fb7bb3a) gets every plot and the loom where the maps have them, the waypoint statue moved aside for it; a building already paid for rises on its plot', () => {
     const { g, chunk, eng, w } = game()
     const plots = structuredClone(Object.values(w.state.entities).filter((e) => e.type.startsWith('fixture/build/plot/')))

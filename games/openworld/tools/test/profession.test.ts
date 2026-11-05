@@ -71,7 +71,7 @@ describe('professions', () => {
     }
   })
 
-  it('Bram, in Firstlight Village, opens the choice when spoken to', () => {
+  it('Bram, in Emberwick Village, opens the choice when spoken to', () => {
     const eng = world()
     const bram = atBram(eng, 1)
     expect(eng.world.posOf(bram)?.map).toBe('meadow')

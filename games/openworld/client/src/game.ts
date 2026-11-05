@@ -115,12 +115,20 @@ export const CLIENT_GAME: ClientGame = {
     ink: '#281d18',
     paper: '#f3ecd8',
     light: { desat: 0.22, sage: 0.15, tone: 0.25, warm: 0.5, contrast: 0.15, ink: 0.6, paper: 0.5, vignette: 0.1, hatch: 0 },
-    full: { desat: 0.35, sage: 0.25, tone: 0.45, warm: 0.8, contrast: 0.25, ink: 1, paper: 1, vignette: 0.18, hatch: 1 },
+    full: { desat: 0.35, sage: 0.25, tone: 0.45, warm: 0.8, contrast: 0.25, ink: 1, paper: 1, vignette: 0.1, hatch: 0 },
   },
   // the fork speaks English only (docs/sunshard/LEXICON.md): the options offer no other language
   locales: ['en'],
   cover: {
     title: 'Sunshard',
+    tagline: 'The Sundered Crown',
+    // the loading screen's lines in turn (docs/sunshard/STORY.md: light is memory); the same four as index.html's
+    tips: [
+      'Light is memory. Every lamp in Solmere was lit by someone who remembered.',
+      'Hold a thumb on the left half of the screen to walk.',
+      'The sunsets come a little earlier every year. Someone has been counting.',
+      '☰ at the top opens your bag, quests, crafting and more.',
+    ],
     tutorial: true,
     // the world behind the title, the Holy City's six showcase places one after another (docs/showcase.md), each from
     // where its own vista looks and at an hour that suits it: the abbey's front at dusk, the North Gate at dawn, the Bell

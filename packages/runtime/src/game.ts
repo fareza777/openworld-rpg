@@ -76,6 +76,10 @@ export interface DevShortcut {
 export interface CoverDef {
   /** The title (default: the game's name). */
   title?: Text
+  /** The line under the title on the loading screen (ui/splash.ts). */
+  tagline?: Text
+  /** Lines the loading screen shows in turn: the world's sayings, a hint or two. */
+  tips?: Text[]
   /** The game has a tutorial run of its own (a start named `tutorial` in its world): offered as a new game begins. */
   tutorial?: boolean
   /**

@@ -355,6 +355,9 @@ export class Story {
       if (e) this.send(e, { map: c.map, x: c.x, y: c.y })
     } else if ('fact' in c) {
       this.story([{ op: 'setProp', key: c.fact, value: c.value }])
+    } else if ('tally' in c) {
+      const now = w.fact(c.tally)
+      this.story([{ op: 'setProp', key: c.tally, value: (typeof now === 'number' ? now : 0) + c.by }])
     } else if ('topic' in c) {
       this.story([{ op: 'topic', id: c.topic, days: c.days }])
     } else if ('give' in c) {

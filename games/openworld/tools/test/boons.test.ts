@@ -107,7 +107,7 @@ describe('the companion\'s boons', () => {
     expect(w.fx.some((f) => f.t === 'panel' && f.panel === 'boons')).toBe(true)
   })
 
-  it('Lumi spoken to opens her panel (the main road, and her boons: the seals, the unfound sealed), wherever one is; changing one still wants a statue', () => {
+  it('Kiri spoken to opens her panel (the main road, and her boons: the seals, the unfound sealed), wherever one is; changing one still wants a statue', () => {
     const eng = world()
     const w = eng.world
     w.fx = []
@@ -116,7 +116,7 @@ describe('the companion\'s boons', () => {
   })
 })
 
-describe('Lumi, the fairy', () => {
+describe('Kiri, the fairy', () => {
   it('is a fairy companion drawn from the project\'s own art; an older save\'s bird becomes her', async () => {
     const { readFileSync } = await import('node:fs')
     const { COMPANION_LAYOUT, migrateCompanion } = await import('@openworld-game/content')

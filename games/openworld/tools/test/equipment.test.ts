@@ -100,7 +100,7 @@ describe('Vowbound traits and Stigmatic powers', () => {
     for (const v of Object.values(VOWS)) expect([v.en, v.zh, v.text.en, v.text.zh].every((x) => x.length > 0)).toBe(true)
   })
 
-  it('the Crown of Thorns makes the struck kneel, now and then', () => {
+  it('the Briar Diadem makes the struck kneel, now and then', () => {
     const { w, p, foe, give, wear } = setup()
     give('item/relic/crown_of_thorns', 'crown')
     wear('crown')

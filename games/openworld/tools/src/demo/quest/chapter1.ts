@@ -205,6 +205,7 @@ export function buildOffstage(): MapBuilder {
   m.anchor('severin.hide', 2, 2)
   m.anchor('courier.hide', 5, 3)
   m.anchor('alberic.hide', 6, 1)
+  m.anchor('sable.hide', 4, 1)
   m.zone = 'peaceful'
   return m
 }
@@ -498,8 +499,8 @@ export const HAVEN_STORY: StepDef[] = [
 /** The first chapter's card (`chapter_end`). */
 const CHAPTER_END = 'CHAPTER ONE · THE EMBER LETTER\n\nThe White Knight knelt, and gave up the Briar Diadem.\nThe man in grey went east with the Hearthshard\'s flame.\nAnd the night came a little sooner.'
 
-/** Chapter Two waits for the next update: the road east stays sealed (docs/sunshard/STORY.md §7). */
-const CHAPTER_NEXT = 'Chapter Two · Ashes of Cinderholt\nwaits beyond the river, in the next update.\n\nEmberwick, its country and Thornhold are yours until then.'
+/** The road on: Chapter Two (docs/sunshard/STORY.md §7). */
+const CHAPTER_NEXT = 'Chapter Two · Ashes of Cinderholt\nThe road east is open: a mining town under Cinder Peak, and a Warden in a red March beyond it.'
 
 /** How many of the Diadem scene's commands each answer's branch holds (the `branch` command skips them). */
 const KIRI_BRANCH = 5
@@ -624,7 +625,8 @@ export const CHAPTER1_SCENES: StepDef[] = [
   {
     // The return: the village sees the Diadem; the player tells them what the knight was (choice.ch1.tale); Nessa counts
     // the minutes; the chapter ends. After Thornhold (the quest `held_ground`, over: the chapter's card gives it to the
-    // player), so the way into it is never missed. Chapter Two is not opened in this release (no `world.ch2`).
+    // player), so the way into it is never missed. Then the Herald comes back for the Diadem (choice.ch2.diadem), and the
+    // road east opens (world.ch2).
     id: 'return',
     when: { map: 'meadow', facts: { [CH1.crown]: 1 }, quest: { held_ground: { gte: 100 } } },
     script: [
@@ -647,7 +649,30 @@ export const CHAPTER1_SCENES: StepDef[] = [
       say('npc.nessa', 'Four minutes. The sun set four minutes early tonight. I am sure it means nothing.'),
       { branch: 'choice.ch1.light', is: 'kiri', skip: 1 },
       say('npc.nessa', 'Five minutes. The sun set five minutes early tonight. I measured it twice. I am sure it means nothing.'),
+      // the Herald again (docs/sunshard/STORY.md C3): the Regency wants the Diadem in its own keeping; the Crownseeker keeps it
+      // either way (the Crown is made of all five), but under whose seal is the choice
+      { place: 'npc.courier', map: 'meadow', x: v.courier[0], y: v.courier[1] },
+      { music: 'revelation' },
+      say('npc.courier', 'Crownseeker. The Lord Regent has heard of the Eastmarch, and he is pleased. I am to take the Diadem into the Regency\'s keeping. It will ride ahead of you to Solmere, under guard.'),
+      say('pip', 'He keeps looking at me again.', undefined, 'shy'),
+      {
+        choose: L('The Herald holds out his gloved hands for the Briar Diadem.'),
+        options: [
+          { text: L('"Take it to the Regent, then."'), facts: { 'choice.ch2.diadem': 'herald' } },
+          { text: L('"No. I carry what I win."'), facts: { 'choice.ch2.diadem': 'kept' } },
+        ],
+      },
+      { branch: 'choice.ch2.diadem', is: 'herald', skip: 2 },
+      say('player', '(The Herald turns the Diadem in his hands. The briars cut through his gloves, and he gives it back quickly.)'),
+      say('npc.courier', 'It does not like me. ...Carry it yourself, then, under the Regent\'s seal. Every gate in Valdoria will open to you for it.', undefined, 'surprised'),
+      { branch: 'choice.ch2.diadem', is: 'kept', skip: 2 },
+      say('npc.courier', 'You refuse the Lord Regent. In front of a whole village.', undefined, 'angry'),
+      say('npc.courier', 'Very well. Carry it. But the Regency will remember who held it back, Crownseeker, and so will Sable Vire.', undefined, 'angry'),
+      say('npc.fennick', 'He rode in the same way nineteen years ago, in that coat. ...East, then. The road to Cinderholt is open now.'),
+      { place: 'npc.courier', map: 'offstage', x: 5, y: 3 },
       { fact: CH1.end, value: 1 },
+      // Chapter Two's road (docs/chapter-2.md §12; this fork's docs/sunshard/STORY.md §7)
+      { fact: CHAPTER_TWO, value: 1 },
       { music: 'ending' },
     ],
   },

@@ -271,7 +271,7 @@ export const SIDE_QUESTS: QuestDef[] = [
   errand({
     id: 'odran',
     title: L('A Word for Brother Lucan', '带给卢坎修士的话'),
-    summary: L('Odran, an old brother of the Red Order who lives in Emberfall, asks whether Lucan, a novice with him long ago, is still alive in the Scourging House.', '住在余烬镇的红衣修会老修士奥德兰，想知道当年和他一起做见习修士的卢坎，还在不在鞭笞院。'),
+    summary: L('Odran, an old brother of the Red Order who lives in Cinderholt, asks whether Lucan, a novice with him long ago, is still alive in the Scourging House.', '住在余烬镇的红衣修会老修士奥德兰，想知道当年和他一起做见习修士的卢坎，还在不在鞭笞院。'),
     giver: 'npc.odran',
     offer: L("If you're going over the pass, I'll ask you one thing. There was a novice with me at the Scourging House, Lucan. We took our first strokes on the same evening. Find out whether he's still alive. If he is, tell him Odran is too.", '你要是翻山过去，我只求你一件事。当年在鞭笞院跟我一起做见习修士的，有个叫卢坎的。我们是同一个晚上挨的第一鞭。替我看看他还活着没有。要是还活着，告诉他，奥德兰也还活着。'),
     waiting: L("Lucan. At the Scourging House, east of the Red Host's camp. He'll be old now, like me.", '卢坎。在赤旗营东边的鞭笞院。他现在也该老了，跟我一样。'),
@@ -282,7 +282,7 @@ export const SIDE_QUESTS: QuestDef[] = [
   errand({
     id: 'banner',
     title: L('The Stolen Banner', '被抢走的军旗'),
-    summary: L("Sixty-one years ago the Right Company took the Left's banner. Captain Brannoc says it hangs in the War-Giver's Bastion, by the inner gate, and wants it back.", '六十一年前，右营抢走了左营的军旗。布兰诺克队长说它挂在赐战者堡垒的内门边上，想把它拿回来。'),
+    summary: L("Sixty-one years ago the Right Company took the Left's banner. Captain Brannoc says it hangs in the Ember-Sworn's Bastion, by the inner gate, and wants it back.", '六十一年前，右营抢走了左营的军旗。布兰诺克队长说它挂在赐战者堡垒的内门边上，想把它拿回来。'),
     giver: 'npc.brannoc',
     when: { fact: { [CH2.camp]: 1 } },
     offer: L("Sixty-one years ago the Right took our banner. That is how it started; my sergeant told me so, and his sergeant told him. They say it hangs in the Bastion now, by the inner gate, among the Rider's old guard. If you are going there anyway, bring it back. The Left has carried a spare for sixty-one years.", '六十一年前，右营抢走了我们的军旗。我的军士是这么跟我说的，他的军士也是这么跟他说的：事情就是从那儿开始的。听说那面旗现在挂在堡垒里，就在内门边上，骑者那些老卫兵中间。你反正要去那儿，就把它带回来。左营扛了六十一年备用的旗。'),
@@ -378,10 +378,10 @@ export const SIDE_QUESTS: QuestDef[] = [
   errand({
     id: 'cassian',
     title: L('Not Yet Brought', '尚未带来'),
-    summary: L('In the catacombs under Whiteveil there is an empty niche: CASSIAN OF FIRSTLIGHT. THE 380TH YEAR. NOT YET BROUGHT. His scallop is the pilgrim\'s, from his camp in Hushwood.', '白纱修道院地下的墓窟里有一个空壁龛：初原村的卡西安。三百八十年。尚未带来。他的扇贝在朝圣者手里，是从噤声林他的营地里找到的。'),
+    summary: L('In the catacombs under Whiteveil there is an empty niche: CASSIAN OF FIRSTLIGHT. THE 380TH YEAR. NOT YET BROUGHT. His scallop is the Crownseeker\'s, from his camp in Hushwood.', '白纱修道院地下的墓窟里有一个空壁龛：初原村的卡西安。三百八十年。尚未带来。他的扇贝在朝圣者手里，是从噤声林他的营地里找到的。'),
     giver: 'npc.benedek',
     when: { fact: { [CH5.abbot]: 1 } },
-    offer: L('Cassian of Firstlight? We keep his niche swept. He was named in the three hundred and eightieth year and never came; the brothers who went down for him found nothing. If you know where he lies, or have anything of his, lay it in the niche. The empty ones are the hardest to keep.', '初原村的卡西安？他的壁龛我们一直扫着。他是三百八十年被点的名，却一直没来；下山去找他的修士什么也没找到。你要是知道他躺在哪里，或者手里有他的东西，就放进那个壁龛吧。空着的壁龛最难守。'),
+    offer: L('Cassian of Emberwick? We keep his niche swept. He was named in the three hundred and eightieth year and never came; the brothers who went down for him found nothing. If you know where he lies, or have anything of his, lay it in the niche. The empty ones are the hardest to keep.', '初原村的卡西安？他的壁龛我们一直扫着。他是三百八十年被点的名，却一直没来；下山去找他的修士什么也没找到。你要是知道他躺在哪里，或者手里有他的东西，就放进那个壁龛吧。空着的壁龛最难守。'),
     waiting: L('His niche is in the catacombs, on the west gallery. Anything of his will do.', '他的壁龛在墓窟的西廊。他的任何东西都行。'),
     done: L('Brought. ...I will write it in the roll myself. Take this robe. It was sewn for him, and has waited thirty-one years.', '带来了。……我亲手把这件事写进名册。这件白袍你拿去吧。它是给他缝的，等了三十一年。'),
     asks: [{ id: 'niche', text: L("Lay Cassian's scallop in his niche in the catacombs", '把卡西安的扇贝放进墓窟里他的壁龛'), fact: CH5.cassian }],

@@ -44,7 +44,7 @@ function legacy(visited = true, fordVisited = true) {
   return { game, w, resume, migrate, ford, village }
 }
 
-describe('Firstlight Village save compatibility', () => {
+describe('Emberwick Village save compatibility', () => {
   it.each([true, false])('moves residents and remaining garden stock without resetting progress (village visited: %s)', (visited) => {
     const f = legacy(visited)
     const crate = f.w.get('ford.garden.supplies')!
@@ -135,7 +135,7 @@ describe('Firstlight Village save compatibility', () => {
   })
 })
 
-describe('Firstlight Village garden', () => {
+describe('Emberwick Village garden', () => {
   it('has no tree whose canopy hides a plot or the supplies crate (the pointer there would meet the tree)', () => {
     const { chunks } = buildFord()
     const village = decodeChunk(chunks.find((c) => c.map.id === FIRSTLIGHT.map)!)
@@ -144,7 +144,7 @@ describe('Firstlight Village garden', () => {
   })
 })
 
-describe("Firstlight's houses redrawn (2026-10-26)", () => {
+describe("Emberwick's houses redrawn (2026-10-26)", () => {
   it('moves what an older save left where a wall now stands, in the village and in its houses, and keeps it whole', () => {
     const { index, chunks } = buildFord()
     const game = Game.create(index, buildOntology(), new RuleLibrary([...BASE_RULES, ...STORY_RULES]))

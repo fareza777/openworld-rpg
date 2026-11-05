@@ -211,7 +211,7 @@ describe('the overworld (world-model.md §5.1, §10.2)', () => {
     }
   })
 
-  it('an older save\'s widening errands (the Held Ground widened by Alberic\'s quests) go; how far the ground goes stays', () => {
+  it('an older save\'s widening errands (the Held Ground widened by Gavrel\'s quests) go; how far the ground goes stays', () => {
     const g = game()
     const w = g.engine.world
     g.engine.author(() => {

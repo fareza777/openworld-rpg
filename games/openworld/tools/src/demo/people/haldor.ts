@@ -15,7 +15,7 @@ export const haldor: PersonDef = {
   look: { parts: { hair: 'hair.short', face: 'face.keen', outfit: 'outfit.apron', beard: 'beard.stubble', hat: null, mark: null }, colors: { hair: 'copper', eyes: 'hazel', skin: 'warm', 'outfit.1': 'darkleather' } },
   age: 29,
   temperament: { personality: 'steady', manner: 'plain', social: 'outgoing', outlook: 'hopeful' },
-  ties: { 'npc.garrick': 'the master who taught him, in Emberfall' },
+  ties: { 'npc.garrick': 'the master who taught him, in Cinderholt' },
   // a smith struck strikes back; a mark over his head (tag smith) so he is easy to find
   fights: true,
   tags: ['smith'],

@@ -24,7 +24,7 @@ The APK is `mobile/android/app/build/outputs/apk/debug/app-debug.apk`. Install w
 
 | | Where |
 |---|---|
-| Portrait by default, turning to landscape as the phone is held (the phone's rotation lock is kept); full screen (system bars hidden, a swipe shows them); screen kept on | `MainActivity.java`, `AndroidManifest.xml` |
+| Portrait locked; status bar hidden, Android navigation visible; screen kept on | `MainActivity.java`, `AndroidManifest.xml` |
 | The back button is Esc (closes what is open, else the menu) | `games/openworld/client/src/native.ts` |
 | The app paused saves at once (besides the game's own autosave every minute, on each new map and quest step) | `native.ts` → `lsw:save` in `packages/runtime/src/main.ts` |
 | Icon and splash from the game's pixel art | `mobile/tools/icons.py` |

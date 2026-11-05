@@ -1,0 +1,29 @@
+.sun-film { position:fixed; inset:0; z-index:99999; overflow:hidden; background:#070b12; color:#fff1cf; font-family:Georgia,serif; isolation:isolate }
+.sun-film-art { position:absolute; width:100%; height:100%; object-fit:cover; object-position:50% 50%; transform:scale(1.04); transition:transform 8s ease-in-out,object-position 8s ease-in-out; z-index:-3 }
+.sun-film[data-shot="1"] .sun-film-art { transform:scale(1.35); object-position:70% 45% }
+.sun-film[data-shot="2"] .sun-film-art { transform:scale(1.18); object-position:35% 55% }
+.sun-film[data-shot="3"] .sun-film-art { transform:scale(1.02); object-position:50% 50% }
+.sun-film-shade { position:absolute; inset:0; z-index:-2; background:linear-gradient(#050b16aa,transparent 35%,#050b16e8); box-shadow:inset 0 0 100px #0008 }
+.sun-film header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding: max(22px,env(safe-area-inset-top)) 22px; font:10px/1.4 system-ui; letter-spacing:.18em }
+.sun-film button,.sun-extras button,.sun-store button { color:#ffedc6; background:#0d1427e6; border:1px solid #c9a36588; padding:12px 17px; border-radius:4px; min-height:44px; cursor:pointer; font:13px system-ui }
+.sun-film button:focus-visible,.sun-store button:focus-visible { outline:2px solid #ffe7a0; outline-offset:3px }
+.sun-film-title { position:absolute; bottom:19%; left:16px; right:16px; text-align:center; transition:opacity 1.5s }
+.sun-film-title small { font:9px system-ui; letter-spacing:.28em }
+.sun-film h1 { font-weight:400; font-size:clamp(38px,10vw,100px); letter-spacing:.13em; margin:18px 0 8px; text-shadow:0 4px 30px #000 }
+.sun-film-title p { font:11px system-ui; letter-spacing:.3em; margin-bottom:30px }
+.sun-film-title button { display:block; margin:10px auto; min-width:190px }
+.sun-film-title .sun-silent { background:transparent; border:0; font-size:11px }
+.sun-film.running .sun-film-title { opacity:0; pointer-events:none }
+.sun-sub { position:absolute; bottom:max(9%,40px); left:8%; right:8%; text-align:center; font-size:clamp(18px,4.6vw,28px); line-height:1.55; text-shadow:0 2px 8px #000 }
+.sun-timeline { position:absolute; height:2px; left:24px; right:24px; bottom:max(22px,env(safe-area-inset-bottom)); background:#ffffff22 }
+.sun-timeline i { display:block; height:100%; width:0; background:#ffd38b }
+.sun-extras { position:fixed; z-index:1500; bottom:max(12px,env(safe-area-inset-bottom)); left:12px; display:flex; gap:8px }
+.sun-extras[hidden] { display:none }
+.sun-extras button { font-size:11px; padding:8px 12px }
+.sun-store { background:#101727; color:#ffedcc; border:1px solid #c9a365; border-radius:10px; width:min(420px,86vw); max-height:80vh; padding:22px; font:14px/1.6 system-ui }
+.sun-store::backdrop { background:#020711c9 }
+.sun-store button { display:block; width:100%; margin-top:10px }
+.sun-store button:disabled { opacity:.5; cursor:default }
+.sun-store h2 { font:26px Georgia,serif }
+.splash { background:linear-gradient(#060a16aa,#060a16ef),url('/cinematic/dawn.webp') center/cover !important }
+@media(prefers-reduced-motion:reduce) { .sun-film-art,.sun-film-title { transition:none } }

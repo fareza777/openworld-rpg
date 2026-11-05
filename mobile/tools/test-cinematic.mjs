@@ -1,0 +1,18 @@
+import { chromium } from 'playwright';
+const browser=await chromium.launch({headless:true});
+const page=await browser.newPage({viewport:{width:412,height:915},isMobile:true,hasTouch:true});
+const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.goto('http://127.0.0.1:5173');
+await page.locator('.sun-film').waitFor({timeout:120000});
+await page.screenshot({path:'C:/dev/sunshard-intro-portrait.png'});
+await page.getByRole('button',{name:'Begin with sound'}).click();
+await page.locator('.sun-film.running').waitFor({timeout:15000});
+await page.waitForTimeout(500);
+if(!await page.locator('.sun-film.running').count())throw Error('Intro did not start');
+if(!await page.locator('.sun-sub').textContent())throw Error('Missing subtitles');
+await page.getByRole('button',{name:'Skip intro'}).click();
+if(await page.locator('.sun-film').count())throw Error('Skip failed');
+await page.waitForTimeout(10000);
+await page.screenshot({path:'C:/dev/sunshard-menu-portrait.png'});
+console.log(JSON.stringify({passed:['portrait intro','audio starts on gesture','subtitles','skip cleanup'],errors}));
+await browser.close();

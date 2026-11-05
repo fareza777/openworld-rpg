@@ -23,3 +23,5 @@ packages/editor/desktop/release/
 # the Android shell's installs and the web build Capacitor copies in
 mobile/node_modules/
 mobile/android/app/src/main/assets/public/
+
+mobile/tools/voice-cache/
